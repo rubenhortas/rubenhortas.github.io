@@ -23,7 +23,7 @@ timezone: Europe/Madrid
 
 title: rubenhortas@blog             # the main title
 
-tagline: My personal blog   # it will display as the sub-title
+tagline: Learning everyday   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
   Rubén Hortas' personal blog
@@ -83,7 +83,7 @@ theme_mode:   # [light|dark]
 img_cdn:
 
 # the avatar on sidebar, support local or CORS resources
-avatar:
+avatar: /assets/img/avatar.jpg
 
 # boolean type, the global switch for ToC in posts.
 toc: true
