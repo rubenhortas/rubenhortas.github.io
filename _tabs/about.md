@@ -47,6 +47,7 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/Operating%20System-Windows-informational?&logo=windows&logoColor=white&color=%230078D6">](https://en.wikipedia.org/wiki/Microsoft_Windows)
 
 ### Github stats
+
   <table>
     <tr>
       <td>
@@ -58,18 +59,6 @@ You can know more about me visiting my profiles on social networks:
     </tr>
   </table>
 
-### One
-<span>
-[<img src="https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark">](){: width="380" height="150" }
-[<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark">](){: width="318" height="150" }
-</span>
-### Two
-<span>
-![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: width="380" height="150" .left }
-![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="318" height="150" .right }
-</span>
-
-### Footer
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
 ![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left }
 ![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social){: .left }
