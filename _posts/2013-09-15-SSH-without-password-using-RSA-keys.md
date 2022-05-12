@@ -23,8 +23,8 @@ We generate the public and private RSA keys on computer1:
 rubenhortas@computer1:~/.ssh$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/rubenhortas/.ssh/id_rsa): [ENTER]
-Enter passphrase (empty for no passphrase): [ENTER*]
-Enter same passphrase again: [ENTER*]
+Enter passphrase (empty for no passphrase):
+Enter same passphrase again:
 Your identification has been saved in /home/rubenhortas/.ssh/id_rsa.
 Your public key has been saved in /home/rubenhortas/.ssh/id_rsa.pub.
 The key fingerprint is:
@@ -32,7 +32,7 @@ The key fingerprint is:
 The key's randomart image is: 
 ```
 
-_*You have to leave the passphrase blank, otherwise it will ask for it every time we connect to computer2 via SSH_
+_*You have to leave the passphrase empty, otherwise it will ask for it every time we connect to computer2 via SSH_
 
 We copy the public key from computer1 to computer2:
 
@@ -43,7 +43,7 @@ RSA key fingerprint is **:**:**:**:**:**:**:**:**:**:**:**:**:**:**:**.
 Are you sure you want to continue connecting (yes/no)? yes
 /usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
 /usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
-rubenhortas@10.0.0.2's password: [COMPUTER2 PASSWORD]
+rubenhortas@10.0.0.2's password:
 ```
 
 Finally we connect from computer1 to computer2 by SSH, and check that it does not ask us for the password.
