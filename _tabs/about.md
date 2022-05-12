@@ -48,8 +48,8 @@ You can know more about me visiting my profiles on social networks:
 
 ### Github stats
 <span><img height="150px" width="380px" src="https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark"> <img height="150px" width="318px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark"></span>
-![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: width="380" height="150" .left }
-![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="318" height="150" .left }\
+<span>![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: width="380" height="150" .left }
+![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="318" height="150" .left }</span>
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
 ![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left }
 ![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social){: .left }
