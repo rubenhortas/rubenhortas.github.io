@@ -8,7 +8,7 @@ img_path: /assets/img/posts/
 
 Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
 
-![Connection between computers](sshrsa.png){: width="277" height="132" }
+![Connection between computers](sshrsa.png){: width="288" height="127" }
 _Connection between computers_
 
 We connect very frequently from computer1 to computer2 using SSH.
