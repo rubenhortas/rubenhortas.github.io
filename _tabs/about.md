@@ -49,7 +49,7 @@ You can know more about me visiting my profiles on social networks:
 ### Github stats
 <img height="150px" width="380px" src="https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark"> <img height="150px" width="318px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark">
 
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas)
-![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social) 
-![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social)
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
+![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left }
+![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social){: .left }
 
