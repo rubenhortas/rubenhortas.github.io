@@ -22,7 +22,7 @@ We generate the public and private RSA keys on computer1:
 ```console
 rubenhortas@computer1:~/.ssh$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
-Enter file in which to save the key (/home/rubenhortas/.ssh/id_rsa): [ENTER]
+Enter file in which to save the key (/home/rubenhortas/.ssh/id_rsa):
 Enter passphrase (empty for no passphrase):
 Enter same passphrase again:
 Your identification has been saved in /home/rubenhortas/.ssh/id_rsa.
