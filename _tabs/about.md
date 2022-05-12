@@ -59,13 +59,15 @@ You can know more about me visiting my profiles on social networks:
   </table>
 
 ### One
+<span>
 [<img src="https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark">](){: width="380" height="150" }
 [<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark">](){: width="318" height="150" }
-
+</span>
 ### Two
+<span>
 ![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: width="380" height="150" .left }
-![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="318" height="150" .left }
-<br>
+![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="318" height="150" .right }
+</span>
 
 ### Footer
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
