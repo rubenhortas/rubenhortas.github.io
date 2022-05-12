@@ -19,7 +19,7 @@ To be able to connect via SSH using the RSA keys, instead of having to enter the
 
 We generate the public and private RSA keys on computer1:
 
-```bash
+```console
 rubenhortas@computer1:~/.ssh$ ssh-keygen -t rsa
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/rubenhortas/.ssh/id_rsa): [ENTER]
@@ -36,7 +36,7 @@ _*You have to leave the passphrase blank, otherwise it will ask for it every tim
 
 We copy the public key from computer1 to computer2:
 
-```bash
+```console
 rubenhortas@computer1$ ssh-copy-id -i ~/.ssh/id_rsa.pub 10.0.0.2
 The authenticity of host '10.0.0.2 (10.0.0.2)' can't be established.
 RSA key fingerprint is **:**:**:**:**:**:**:**:**:**:**:**:**:**:**:**.
