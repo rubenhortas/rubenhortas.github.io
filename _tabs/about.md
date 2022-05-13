@@ -4,7 +4,7 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-### 👋 Hi! About me:
+## 👋 Hi! About me:
 
 - 💻 I’m currently working as a software engineer, mainly with .net, sql and android technologies.
 - 🌱 I’m always learning about programming. 
@@ -19,7 +19,7 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/Microsoft%20learn-rubenhortas-informational?&logo=microsoft&logoColor=white&color=%235E5E5E">](https://docs.microsoft.com/es-es/users/rhortas/)
 [<img src="https://img.shields.io/badge/Hack%20the%20box-Trazi-informational?&logo=hackthebox&logoColor=white&color=%239FEF00">](https://app.hackthebox.com/profile/1009738)
 
-### Skills
+## Skills
 [<img src="https://img.shields.io/badge/Language-VB.NET-informational?&logo=.net&logoColor=white&color=%23512BD4">](https://en.wikipedia.org/wiki/Visual_Basic_.NET)
 [<img src="https://img.shields.io/badge/Language-C%23-informational?&logo=csharp&logoColor=white&color=%23239120">](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))
 [<img src="https://img.shields.io/badge/Language-Java-informational?&logo=java&logoColor=white&color=%23007396">](https://en.wikipedia.org/wiki/Java_(programming_language))
@@ -46,10 +46,11 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/Operating%20System-Debian%20GNU%2FLinux-informational?&logo=debian&logoColor=white&color=%23A81D33">](https://en.wikipedia.org/wiki/Debian)
 [<img src="https://img.shields.io/badge/Operating%20System-Windows-informational?&logo=windows&logoColor=white&color=%230078D6">](https://en.wikipedia.org/wiki/Microsoft_Windows)
 
-### Github stats
+## Github stats
 ![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark)
 ![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark)
 
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
 ![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left }
 ![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social){: .left }
+
