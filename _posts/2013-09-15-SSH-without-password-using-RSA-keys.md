@@ -5,19 +5,18 @@ categories: [hardening, ssh]
 tags: [hardening, ssh, rsa]
 img_path: /assets/img/posts/
 ---
+![Connection between computers](sshrsa.png){: width="288" height="127" }
 
 Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
-
-![Connection between computers](sshrsa.png){: width="288" height="127" }
 _Connection between computers_
 
-We connect very frequently from computer1 to computer2 using SSH.
+We connect very frequently from **computer1** to **computer2** using SSH.
 As we connect very frequently, entering the password every time we connect becomes a repetitive task and a waste of time.
+In order to be able to connect between them in a comfortable and secure way, we can do it using RSA keys, instead using a password.
 
-In order to be able to connect between them in a comfortable and secure way, we can do it using RSA keys, instead of a password.
 To be able to connect via SSH using the RSA keys, instead of having to enter the password:
 
-We generate the public and private RSA keys on computer1:
+We generate the public and private RSA keys on **computer1**:
 
 ```console
 rubenhortas@computer1:~/.ssh$ ssh-keygen -t rsa
@@ -34,7 +33,7 @@ The key's randomart image is:
 
 _*You have to leave the passphrase empty, otherwise it will ask for it every time we connect to computer2 via SSH_
 
-We copy the public key from computer1 to computer2:
+We copy the public key from **computer1** to **computer2**:
 
 ```console
 rubenhortas@computer1$ ssh-copy-id -i ~/.ssh/id_rsa.pub 10.0.0.2
@@ -46,6 +45,6 @@ Are you sure you want to continue connecting (yes/no)? yes
 rubenhortas@10.0.0.2's password:
 ```
 
-Finally we connect from computer1 to computer2 by SSH, and check that it does not ask us for the password.
+Finally, we connect from **computer1** to **computer2** using SSH and checking that it does not ask us for the password.
 
 _Enjoy! ;)_
