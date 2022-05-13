@@ -59,6 +59,8 @@ You can know more about me visiting my profiles on social networks:
     </tr>
   </table>
 
+![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: width="300" height="150" .left }
+![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="300" height="150" .left }
 ![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
 ![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left }
 ![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social){: .left }
