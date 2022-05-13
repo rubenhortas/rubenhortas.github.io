@@ -6,10 +6,9 @@ tags: [hardening, ssh, rsa]
 img_path: /assets/img/posts/
 ---
 ![Connection between computers](sshrsa.png){: width="288" height="127" }
-
-Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
 _Connection between computers_
 
+Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
 We connect very frequently from **computer1** to **computer2** using SSH.
 As we connect very frequently, entering the password every time we connect becomes a repetitive task and a waste of time.
 In order to be able to connect between them in a comfortable and secure way, we can do it using RSA keys, instead using a password.
