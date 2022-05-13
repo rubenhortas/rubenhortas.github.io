@@ -58,6 +58,9 @@ You can know more about me visiting my profiles on social networks:
       </td>
     </tr>
   </table>
+  
+  <img height="150px" width="310px" src="https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark"> 
+  <img height="150px" width="310px" src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark">
 
 ![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: width="310" height="400" .left }
 ![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: width="310" height="100" .left }
