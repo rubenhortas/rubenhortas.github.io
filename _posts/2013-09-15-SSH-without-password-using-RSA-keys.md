@@ -2,7 +2,7 @@
 title: SSH without password, using RSA keys
 date: 2013-09-15 00:00:01 +0000
 categories: [hardening, ssh]
-tags: [hardening, ssh, rsa]
+tags: [hardening, ssh, rsa, network]
 img_path: /assets/img/posts/
 ---
 ![Connection between computers](sshrsa.png){: width="288" height="127" }
