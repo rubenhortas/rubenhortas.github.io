@@ -47,11 +47,9 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/Operating%20System-Windows-informational?&logo=windows&logoColor=white&color=%230078D6">](https://en.wikipedia.org/wiki/Microsoft_Windows)
 
 ### Github stats
-<!--![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark){: .left }
-![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark){: .right} -->
+![Github stats](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark)
+![Most used languages](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark)
 
-[<img src="https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark" height="150px" width="400px">](https://github-readme-stats.vercel.app/api?username=rubenhortas&count_private=true&show_icons=true&theme=dark) [<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark" height="150px" width="330px">](https://github-readme-stats.vercel.app/api/top-langs/?username=rubenhortas&layout=compact&theme=dark)
-
-![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left}
-![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left}
+![visitors](https://visitor-badge.laobi.icu/badge?page_id=rubenhortas){: .left }
+![GitHub followers](https://img.shields.io/github/followers/rubenhortas?style=social){: .left }
 ![GitHub User's stars](https://img.shields.io/github/stars/rubenhortas?style=social){: .left }
