@@ -11,9 +11,9 @@ _Connection between computers_
 Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
 We connect very frequently from **computer1** to **computer2** using SSH.
 As we connect very frequently, entering the password every time we connect becomes a repetitive task and a waste of time.
-In order to be able to connect between them in a comfortable and secure way, we can do it using RSA keys, instead using a password.
+In order to be able to connect between them without password, in a comfortable and secure way, we can do it using RSA keys instead.
 
-To be able to connect via SSH using the RSA keys, instead of having to enter the password:
+To be able to connect via SSH using the RSA keys instead password:
 
 We generate the public and private RSA keys on **computer1**:
 
