@@ -5,7 +5,7 @@ categories: [hardening, ssh]
 tags: [hardening, ssh, rsa, network]
 img_path: /assets/img/posts/
 ---
-![Connection between computers](sshrsa.png){: width="288" height="127" }
+![Connection between computers](sshrsa.png){: width="280" }
 _Connection between computers_
 
 Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
