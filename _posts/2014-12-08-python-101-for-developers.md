@@ -1,8 +1,8 @@
 ---
 title: Python 101 for developers
 date: 2014-12-08 00:00:01 +0000
-categories: [personal, talk]
-tags: [personal, talk, python]
+categories: [personal, talks]
+tags: [personal, talks, python]
 ---
 
 [Coruña Developers](https://www.facebook.com/groups/CorunaDevelopers) ([@CorunaDev](https://twitter.com/corunadev)) is an initiative that has just emerged in A Coruña and aims to be a meeting point for developers. A place where you can talk, discuss and, above all, learn from other developers with more experience in other areas.
