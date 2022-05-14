@@ -5,7 +5,7 @@ categories: [personal, mentions]
 tags: [personal, mentions]
 ---
 
-I am pleased to announce that, as of today, [I'm in La brecha](http://psi-udc.blogspot.com/2011/02/bloqueos-internet-que-hacemos.html) with my post [saltarse el bloqueo a internet (es)](http://rubenhortas.blogspot.com/2011/02/saltarse-el-bloqueo-internet.html). 
+I'm pleased to announce that, as of today, [I'm in La brecha](http://psi-udc.blogspot.com/2011/02/bloqueos-internet-que-hacemos.html) with my post [saltarse el bloqueo a internet (es)](http://rubenhortas.blogspot.com/2011/02/saltarse-el-bloqueo-internet.html). 
 
 [La brecha](http://psi-udc.blogspot.com/2012/02/en-la-brecha.html?m=0) is a new section on the [psi-udc blog](http://psi-udc.blogspot.com/?m=0), managed by Nino, one of my "top 3 teachers", both for his knowledge, his way of teaching, and as a person.
 

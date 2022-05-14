@@ -5,7 +5,7 @@ categories: [personal, mentions]
 tags: [personal, mentions, wifi, security]
 ---
 
-I am pleased to announce that, again, [I'm in La brecha](http://psi-udc.blogspot.com/2011/02/bloqueos-internet-que-hacemos.html).
+I'm pleased to announce that, again, [I'm in La brecha](http://psi-udc.blogspot.com/2011/02/bloqueos-internet-que-hacemos.html).
 This time with my _PFC_ (Proyecto Final de Carrera or Final Career Project) "Sistema de monitorización de redes WI-FI" (WI-FI network monitoring system).
 
 A job that integrates both the world of systems and software development in a totally friendly environment for monitoring and detecting anomalies in WIFI networks.
