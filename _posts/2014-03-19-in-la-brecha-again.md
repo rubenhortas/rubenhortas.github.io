@@ -4,7 +4,6 @@ date: 2014-03-13 00:00:01 +0000
 categories: [personal, mentions]
 tags: [personal, mentions, wifi, security]
 ---
-
 I'm pleased to announce that, again, [I'm in La brecha](http://psi-udc.blogspot.com/2011/02/bloqueos-internet-que-hacemos.html).
 This time with my _PFC_ (Proyecto Final de Carrera or Final Career Project) "Sistema de monitorización de redes WI-FI" (WI-FI network monitoring system).
 

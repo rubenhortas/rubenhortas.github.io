@@ -4,7 +4,6 @@ date: 2014-12-08 00:00:01 +0000
 categories: [personal, talks]
 tags: [personal, talks, python]
 ---
-
 [Coruña Developers](https://www.facebook.com/groups/CorunaDevelopers) ([@CorunaDev](https://twitter.com/corunadev)) is an initiative that has just emerged in A Coruña and aims to be a meeting point for developers. A place where you can talk, discuss and, above all, learn from other developers with more experience in other areas.
 
 Last Friday I had the opportunity to inaugurate the talks with "[Python 101 for developers](https://github.com/rubenhortas/python101)". The talk is an introduction to Python, skipping basic things, emphasizing, above all, the differences, advantages and disadvantages that Python presents with respect to other programming languages. Leaving for the end certain annotations that I considered necessary, although I could not go deeper into them due to the extension of the topics to which they refer.
