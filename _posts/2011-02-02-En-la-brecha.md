@@ -2,7 +2,7 @@
 title: En la brecha
 date: 2011-02-12 00:00:01 +0000
 categories: [personal, mentions]
-tags: [personal, mentions]
+tags: [personal, mentions, security]
 ---
 
 I'm pleased to announce that, as of today, [I'm in La brecha](http://psi-udc.blogspot.com/2011/02/bloqueos-internet-que-hacemos.html) with my post [saltarse el bloqueo a internet (es)](http://rubenhortas.blogspot.com/2011/02/saltarse-el-bloqueo-internet.html). 

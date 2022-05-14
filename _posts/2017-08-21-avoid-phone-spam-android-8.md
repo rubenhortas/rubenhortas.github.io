@@ -8,7 +8,7 @@ img_path: /assets/img/posts/
 
 How to prevent unwanted calls on an android 8 phone without having to install any application:
 
-The first thing is create a contact in which we will store the numbers that we want to block (yes, I will use the original name "*SPAM*" for the contact).
+The first thing is create a contact in which we will store the numbers that we want to block (yes, I will use the original name "**SPAM**" for the contact).
 Then we will add the numbers we want to block to the contact:
 ![Spam contact](android8SpamContact.jpeg){: width="250" }
 _Contact SPAM_
