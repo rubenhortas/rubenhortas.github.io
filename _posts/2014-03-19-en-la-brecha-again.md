@@ -10,6 +10,6 @@ This time with my _PFC_ (Proyecto Final de Carrera or Final Career Project) "Sis
 
 A job that integrates both the world of systems and software development in a totally friendly environment for monitoring and detecting anomalies in WIFI networks.
 
-My most sincere thanks to [Nino](linkedin.com/in/antonino-santos-del-riego-8b6975108) and [Fran](linkedin.com/in/francisco-javier-novoa-de-manuel-62517b29) for the work done and for being the best director and the best tutor I could have had.
+My most sincere thanks to [Nino](https://www.linkedin.com/in/antonino-santos-del-riego-8b6975108) and [Fran](https://www.linkedin.com/in/francisco-javier-novoa-de-manuel-62517b29) for the work done and for being the best director and the best tutor I could have had.
 
 _Enjoy! ;)_
