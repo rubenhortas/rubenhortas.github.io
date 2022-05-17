@@ -1,8 +1,8 @@
 ---
-title: Prevent phone spam on android 8
+title: Title
 date: 2022-05-01 00:00:01 +0000
-categories: [android, spam]
-tags: [android, spam]
+categories: [categories]
+tags: [tags]
 img_path: /assets/img/posts/
 ---
 
