@@ -34,7 +34,7 @@ Lastly I change a few things to optmize performance and have a lighter gnu/linux
 	# systemctl disable service-name
 	```
 
-	We also can use the text-based console tool **sysv-rc-conf** to disable (or enable) services for each runlevel.  
-	(Remember that debian does not make any difference between runlevels 2-5)
+	We also can use the text-based console tool **sysv-rc-conf** to disable (or enable) services for each runlevel
+	(remember that debian does not make any difference between runlevels 2-5).
 
 _Enjoy! ;)_
