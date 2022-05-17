@@ -9,7 +9,7 @@ img_path: /assets/img/posts/
 I did a a simple widget to show the IP of an interface in the awesome window manager wibar.  
 
 ## Screenshots
-![Awesome IP widget](awesome-ip-widget-screenshot.jpeg){: .keft }
+![Awesome IP widget](awesome-ip-widget-screenshot.jpeg)
 _Awesome ip widget_
 
 _Enjoy! ;)_
