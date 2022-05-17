@@ -12,11 +12,11 @@ It's also a good widget to see the IP of your VPN interface (and) if the interfa
 
 ## Screenshots
 - With target on  
-![Target on](awesome-htb-widget-target_on_screenshot.jpg)
+![Target on](awesome-htb-widget-target_on_screenshot.jpg){: .left }
 _Awesome htb widget with target on_
 
 - With target off  
-![Target off](awesome-htb-widget-target_off_screenshot.jpg)
+![Target off](awesome-htb-widget-target_off_screenshot.jpg){: .left }
 _Awesome htb widget with target off_
 
 If the VPN interface is down the widget is not shown.
