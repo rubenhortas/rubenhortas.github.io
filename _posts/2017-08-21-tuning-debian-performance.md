@@ -25,7 +25,7 @@ Lastly I change a few things to optmize performance and have a lighter gnu/linux
 	
 	```console
 	# swapoff -a
- 	```
+	```
 
 - Disable unused services  
 	If we are using systemd we can disable services on boot by running:
