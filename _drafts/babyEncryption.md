@@ -8,8 +8,8 @@ tags: [hack the box, challenge, crypto, htb, babyencryption]
 > You are after an organised crime group which is responsible for the illegal weapon market in your country. As a secret agent, you have infiltrated the group enough to be included in meetings with clients. During the last negotiation, you found one of the confidential messages for the customer. It contains crucial information about the delivery. Do you think you can decrypt it?
 
 When we extract the BabyEncryption.zip file we found two files:
-- msg.enc Is the confidential message that you found during the last negotiation and you have to decrypt it.
-- chall.py The algorithm used for the organised crime group to encrypt their messages
+- msg.enc → Is the confidential message that you found during the last negotiation and you have to decrypt it.
+- chall.py → The algorithm used for the organised crime group to encrypt their messages
 
 We'll take a look at the chall.py script:
 
@@ -36,7 +36,7 @@ To get the message decrypted the first thing I did is revert the hexadecimal enc
 
 Then, since we have the function used to encrypt, I did a dictionary containing every ascii value and its encrypted value using the encryption function.  
 
-Lastly, I went through the bytes object searching the unencrypted value of every encrypted character in the dictionary and concatenating the obtained values in a string.
+Lastly, I went through the bytes object searching the unencrypted value of every encrypted character in the dictionary and concatenating the obtained values in a string that will be the flag.
 
 To do this I did a self-explanatory python script that you can see here: [BabyDecryption.py]()
 
