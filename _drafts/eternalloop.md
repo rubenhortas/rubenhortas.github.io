@@ -8,9 +8,8 @@ img_path: /assets/img/posts/
 
 >Can you find a way out of this loop?
 
-If we extract the Eternal Loop.zip file we found the 37366.zip file.  
-37366.zip file is password protected and contains the 5900.zip file...  
-We don't know the 37366.zip password... We'll try with 5900... It works!  
+If we extract the Eternal Loop.zip file we found the 37366.zip file. 37366.zip file is password protected and contains the 5900.zip file.  
+We don't know the 37366.zip password. We'll try with 5900... It works! Now we know that the zip file will be the name of the inner file.  
 
 Ok, the challenge now is unzip the files until we get the last file. We can do this by hand, but, **spoiler alert**: There will be 501 zips!  
 To do this I did a self-explained python script that you can see here: [EternalLoop.py]()
@@ -62,14 +61,14 @@ And we can export the tables data to csv files following the next steps:
 .mode csv
 ```
 
-And the, for each table:
+- And export the data for each table:
 
 ```console
 .output data.csv
 select * from table;
 ```
 
-Now we can grep the csv files looking for the flag.
+Now we can grep the csv files looking for the flag.  
 To speed this step up I will tell you that the flag is in the employees table, in the email field for the employee wiht id 69.
 
 ```console
