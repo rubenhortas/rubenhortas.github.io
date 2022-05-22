@@ -8,13 +8,18 @@ tags: [hack the box, challenge, crypto, htb, xorxorxor, xor, kpa]
 >Who needs AES when you have XOR?
 
 When we extract the xorxorxor.zip file we find two files:
-- challenge.py The python script used to encrypt and decrypt with the xor function
-- output.txt The flag in hexadecimal
+- challenge.py → The python script used to encrypt and decrypt with the xor function
+- output.txt → The flag in hexadecimal
 
 If we take a look at the challenge.py script we can see that the key used to encrypt/decrypt is a 4 bytes random key, so every time that we encrypt/decrypt the key will change.
 
 ```python
 self.key = os.urandom(4)
+```
+Also we can see that the flag is encoded in hexadecimal
+
+```python
+print ('Flag:', crypto.encrypt(flag).hex())
 ```
 
 Once we have the hexadecimal string converted to text the challenge is get the key used to encrypt the plain text flag.
