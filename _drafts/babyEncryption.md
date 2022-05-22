@@ -32,7 +32,7 @@ f.close()
 We can't import MSG because it's not a python standard library and we don't have the MSG library.
 And we can see that, after encrypt the messages, the message is written in hexadecimal. So, we know that the string contained in msg.enc is in hexadecimal. Now we have to reverse the encryption.  
 
-To get the message decrypted the first thing I did is revert the hexadecimal encoding converting the string content in msg.enc from hexadecimal to a bytes object.  
+To break the encryption the first thing I did is revert the hexadecimal encoding converting the string content in msg.enc from hexadecimal to a bytes object.  
 
 Then, since we have the function used to encrypt, I did a dictionary containing every ascii value and its encrypted value using the encryption function.  
 
