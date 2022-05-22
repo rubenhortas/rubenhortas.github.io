@@ -8,11 +8,11 @@ img_path: /assets/img/posts/
 
 >Can you find a way out of this loop?
 
-If we extract the Eternal Loop.zip file we found the 37366.zip file.
-37366.zip file is password protected and contains the 5900.zip file...
-We don't know the 37366.zip password... We'll try with 5900... It works!
-Ok, the challenge now is unzip the files recursively until we get the last file.
-We can do this by hand, but, spoiler alert: There will be  501 zips!
+If we extract the Eternal Loop.zip file we found the 37366.zip file.  
+37366.zip file is password protected and contains the 5900.zip file...  
+We don't know the 37366.zip password... We'll try with 5900... It works!  
+
+Ok, the challenge now is unzip the files until we get the last file. We can do this by hand, but, **spoiler alert**: There will be 501 zips!  
 To do this I did a self-explained python script that you can see here: [EternalLoop.py]()
 
 Once we have the last file, surprise, is password protected. 
@@ -33,9 +33,9 @@ john --wordlist=/usr/share/wordlist/rockyou.txt 6969.hash
 ![bruteforcing with john](eternalloop_john.png)
 _bruteforcing with john_ 
 
-Now we get the password, so we can extract the 6969.zip file.
+We get the password, so we can extract the 6969.zip file.
 
-Now we have a DoNotTouch file. The file is binary and, if we apply the file command to see what type of file it is we can see that is a SQlite 3.x database.
+Once extracted we have a DoNotTouch file. The file is binary and, if we apply the file command to see what type of file it is, we can see that is a SQlite 3.x database.
 
 ![file command](eternalloop_file.png)
 _file command_
@@ -54,9 +54,17 @@ Once the database is open we can list the tables with the command .tables
 
 And we can export the tables data to csv files following the next steps:
 
+- Configure to display headers
+- Set the output mode
+
 ```console
 .headers on
 .mode csv
+```
+
+And the, for each table:
+
+```console
 .output data.csv
 select * from table;
 ```
