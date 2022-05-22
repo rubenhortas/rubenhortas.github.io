@@ -26,6 +26,6 @@ used to encrypt. Once we get the key we can get the initial plain text string on
 String ⊕ Key = Ciphertext → Ciphertext ⊕ Key = String
 
 I wrotte a little pyhton script to show how this attack works and I added it to my collection of python examples.
-You can take a look at the example here: [https://github.com/rubenhortas/python_examples/blob/master/Xor/XorKpa.py](https://github.com/rubenhortas/python_examples/blob/master/Xor/XorKpa.py)
+You can take a look at the example here: [XorKpa.py](https://github.com/rubenhortas/python_examples/blob/master/Xor/XorKpa.py)
 
 _Enjoy! ;)_
