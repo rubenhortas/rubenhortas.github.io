@@ -13,7 +13,7 @@ Lastly I change a few things to optmize performance and have a lighter gnu/linux
 - Don't install any display manager (kdm, gdm, xdm, ldm...)
 - Install a windows manager instead a desktop environment (my personal prefference now is awesomewm)
 - Reduce swap consumption or disable swap  
-	We can edit the swappiness file tat controls the trend kernel to swapping (default is 60)
+	We can edit the swappiness file that controls the trend kernel to swapping (default is 60)
 	(This is my choice for systems where I have swap partitions, desktop, laptops...)
 
 	```console
