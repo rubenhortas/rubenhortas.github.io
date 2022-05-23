@@ -12,4 +12,6 @@ I did a a simple widget to show the IP of an interface in the awesome window man
 ![Awesome IP widget](awesome-ip-widget-screenshot.jpeg)
 _Awesome ip widget_
 
+You can take a look at the widget here: [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
+
 _Enjoy! ;)_
