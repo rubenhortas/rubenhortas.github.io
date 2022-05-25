@@ -26,7 +26,7 @@ title: rubenhortas@blog             # the main title
 tagline: Learning everyday   # it will display as the sub-title
 
 description: >-                        # used by seo meta and the atom feed
-  Rubén Hortas' personal blog. A blog about programming (or coding), operating systems, cybersecurity, hacking and computer stuff ;)
+  Rubén Hortas' blog. Learning everyday.
 
 # fill in the protocol & hostname for your site, e.g., 'https://username.github.io'
 url: 'https://rubenhortas.github.io'
