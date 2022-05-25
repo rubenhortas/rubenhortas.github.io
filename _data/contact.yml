@@ -1,9 +1,9 @@
 #  The contact options.
 
   type: linkedin
-  icon: 'fab fa-linkedin'   # icons powered by <https://fontawesome.com/>
+  icon: 'fab fa-linkedin'
   url:  'https://www.linkedin.com/in/rubenhortas' 
-
+-
   type: github
   icon: 'fab fa-github'
 -
