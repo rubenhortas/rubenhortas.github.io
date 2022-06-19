@@ -9,7 +9,7 @@ Sometimes firewalls time out idle sessions after a certain period of time.
 We can avoid have our SSH sessions killed with a few options to kee alive ssh sesions.  
 We can configure the keep alive on the server side or on the client side.  
 
-On the client side:
+* On the client side:  
 We need to edit the ~/.ssh/config file and add or uncomment the following lines:
 
 ```shell
@@ -17,7 +17,7 @@ ServerAliveInterval 300
 ServerAliveCountMax 2
 ```
 
-On the server side:
+* On the server side:  
 We need to edit the /etc/ssh/sshd_config file and add or uncomment the following lines:
 
 ```shell
