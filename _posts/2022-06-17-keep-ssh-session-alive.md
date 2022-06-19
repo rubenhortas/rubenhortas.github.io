@@ -6,7 +6,7 @@ tags: [ssh, howto]
 ---
 
 Sometimes firewalls time out idle sessions after a certain period of time.  
-We can avoid have our SSH sessions killed with a few options to kee alive ssh sesions.  
+We can avoid have our SSH sessions killed with a few options to keep alive ssh sesions.  
 We can configure the keep alive on the server side or on the client side.  
 
 * On the client side:  
