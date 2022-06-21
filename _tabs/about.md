@@ -10,7 +10,7 @@ order: 4
 - 🌱 I’m always learning about programming. 
 - 🔒 I'm now learning (again, a bit) about cybersecurity.
 - 📚 I have some [licenses and certifications](https://github.com/rubenhortas/certifications "licenses and certifications") too.
-- 📫 You can reach me at linkedin or at rubenhortas@gmail.com
+- 📫 You can reach me by [linkedin](https://www.linkedin.com/in/rubenhortas) or at rubenhortas@gmail.com
 
 You can know more about me visiting my profiles on social networks:
 
