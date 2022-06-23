@@ -27,4 +27,6 @@ ClientAliveCountMax 2
 
 Finally we need to restart our sshd server.
 
+Thanks to [Rodrigo Rega](https://rodrigorega.es/)!
+
 _Enjoy! ;)_
