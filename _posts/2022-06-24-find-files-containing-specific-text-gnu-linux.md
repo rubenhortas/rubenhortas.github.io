@@ -10,7 +10,7 @@ Sometimes we need to find all files containing a specific text withing the files
 We can achieve this with grep and a few paramters:
 
 ```shell
-grep -irnw /path -e 'pattern'
+grep -irnwl /path -e 'pattern'
 ```
 
 * -i ignore case
@@ -23,7 +23,7 @@ grep -irnw /path -e 'pattern'
 If we want to find several words we can do it using several -e options:
 
 ```shell
-grep -irnw /path -e 'pattern1' -e 'pattern2'
+grep -irnwl /path -e 'pattern1' -e 'pattern2'
 ```
 
 Or using the -E (extended regular expression) and separating the words with the vertical bar:
