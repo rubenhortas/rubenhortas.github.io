@@ -20,13 +20,13 @@ grep -irnwl /path -e 'pattern'
 * -l give the file name
 * -e searched pattern
 
-If we want to find several words we can do it using several -e options:
+If we want to find several words we can do it using several -e options and arguments:
 
 ```shell
 grep -irnwl /path -e 'pattern1' -e 'pattern2'
 ```
 
-Or using the -E (extended regular expression) and separating the words with the vertical bar:
+Or using the -E (extended regular expression) option and separating the words with the vertical bar:
 
 ```shell
 grep -irnwE 'pattern1|pattern2' /path
