@@ -7,7 +7,7 @@ img_path: /assets/img/posts/
 ---
 
 Sometimes we need to find all files containing a specific text withing the files, not in the file name.
-We can achieve this with grep and a few paramters:
+We can achieve this with grep and a few parameters:
 
 ```shell
 grep -irnwl /path -e 'pattern'
