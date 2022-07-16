@@ -10,13 +10,10 @@ Although the Packaging Python Projects tutorial is very detailed in who to packa
 
 First of all, if we want made our application available as a command-line tool we need to define an [entry point]((https://packaging.python.org/en/latest/specifications/entry-points) in our *pyproject.toml*:
 
----
-**NOTE**
-
+```
 [project.scripts]
-*projectname* = "*projectname*.*projectname*:main"
-
----
+projectname* = "*projectname*.*projectname*:main"
+```
 
 ## Creating accounts
 
@@ -51,9 +48,7 @@ We'll need to create a PyPi API token to securely upload our project. We can cre
 
 To avoid having to copy and paste the token every time you upload, we can create a $HOME/.pypirc file:
 
----
-**NOTE**
-
+```
 [distutils]
   index-servers =
     testpypi
@@ -67,8 +62,7 @@ To avoid having to copy and paste the token every time you upload, we can create
   repository = https://test.pypi.org/legacy/
   username = __token__
   password = *pypi-token*
-
----
+```
 
 ## Upload the package to testpypi
 
