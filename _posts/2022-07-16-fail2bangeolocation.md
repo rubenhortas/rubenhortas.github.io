@@ -26,4 +26,4 @@ _fail2bangeolocation output grouped by country and city_
 
 You can take a look at the application here: [fail2bangeolocation](https://github.com/rubenhortas/fail2bangeolocation)
 
-Enjoy! ;)_
+_Enjoy! ;)_
