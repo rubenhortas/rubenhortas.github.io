@@ -3,7 +3,6 @@ title: Upload a package to PyPi
 date: 2022-07-22 00:00:01 +0000
 categories: [python3, pypi]
 tags: [python3, pypi]
-img_path: /assets/img/posts/
 ---
 
 Although the Packaging Python Projects tutorial is very detailed in who to package a Python Project, I encountered some difficulties at the time of do it. So I'm going to leave here a summary and some notes to my future me ;)
