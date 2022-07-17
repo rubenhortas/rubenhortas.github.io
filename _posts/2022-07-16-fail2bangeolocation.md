@@ -6,10 +6,10 @@ tags: [personal, developments, fail2bangeolocation, fail2ban, geolocation]
 img_path: /assets/img/posts/
 ---
 
-I have an old raspberry pi running some applications 24/7 and with (very protected) remote access enabled.  
+I have an old raspberry pi running some services 24/7 and with (very protected) remote access enabled.  
 For some reason the raspberry receives a big number of bruteforce attacks trying to log in.  
 To know from which locations I was being attacked the most I did a python application to geolocate the failed attempts registered by fail2ban.  
-I learned many things developing this application, the most remarkable for me it was the process of packaging the application in order to upload it to *PyPI*.
+I learned many things developing this application. The most remarkable, for me, it was the process of packaging the application in order to upload it to *PyPI*.
 
 The application is called [**fail2bangeolocation**](https://github.com/rubenhortas/fail2bangeolocation), and you can install it via *pip*.
 
