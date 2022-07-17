@@ -1,11 +1,11 @@
 ---
-title: Upload a package to PyPi
+title: Upload a package to PyPI
 date: 2022-07-22 00:00:01 +0000
 categories: [python3, pypi]
 tags: [python3, pypi]
 ---
 
-Although the Packaging Python Projects tutorial is very detailed in who to package a Python Project, I encountered some difficulties at the time of do it. So I'm going to leave here a summary and some notes to my future me ;)
+Although the [Packaging Python Projects tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) is very detailed in how to package a Python Project, I encountered some difficulties at the time of do it, so I'm going to leave here a summary and some notes to my future me ;)
 
 First of all, if we want made our application available as a command-line tool we need to define an [entry point]((https://packaging.python.org/en/latest/specifications/entry-points) in our *pyproject.toml*:
 
@@ -35,7 +35,7 @@ python3 -m pip install --upgrade twine
 
 ## Build
 
-Run this command from the same directory where pyproject.toml is located:
+Run this command from the same directory where *pyproject.toml* is located:
 
 ```shell
 python3 -m build
@@ -43,7 +43,7 @@ python3 -m build
 
 ## Configure the access to [test.pypy.org](https://test.pypi.org)
 
-We'll need to create a PyPi API token to securely upload our project. We can create one at [https://test.pypi.org/manage/account/#api-tokens](https://test.pypi.org/manage/account/#api-tokens)
+We'll need to create a PyPI API token to securely upload our project. We can create one at [https://test.pypi.org/manage/account/#api-tokens](https://test.pypi.org/manage/account/#api-tokens)
 
 To avoid having to copy and paste the token every time you upload, we can create a $HOME/.pypirc file:
 
@@ -77,7 +77,7 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ *projectname*
 
 If everything went well...
 
-## Upload the package to PyPi
+## Upload the package to PyPI
 
 ```shell
 python3 -m twine upload dist/*
