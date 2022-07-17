@@ -1,6 +1,6 @@
 ---
 title: Upload a package to PyPi
-date: 2022-07-16 00:00:01 +0000
+date: 2022-07-22 00:00:01 +0000
 categories: [python3, pypi]
 tags: [python3, pypi]
 img_path: /assets/img/posts/
