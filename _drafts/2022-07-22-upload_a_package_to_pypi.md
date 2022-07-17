@@ -78,7 +78,7 @@ python3 -m pip install --index-url https://test.pypi.org/simple/ *projectname*
 
 If everything went well...
 
-## Upload de package to PyPi
+## Upload the package to PyPi
 
 ```shell
 python3 -m twine upload dist/*
