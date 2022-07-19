@@ -25,17 +25,20 @@ When pasting some text that you have copied to the clipboard some applications k
 
 To remove formatting when pasting use the shortcut: **ctrl+shift+v**
 
-## Snip&Sketch
+## "Snipping tool" and/or "Snip and sketch"
 
-Snip&Sketch is the integrated and most direct way to take a screenshot on Windows 10.
+"Snipping tool" was being abandoned in 2018 replaced by "Snip and sketch". However, "Snipping tool" still works and Microsoft merged both apps into a redesigned "Snipping tool" on Windows 11.  
+"Snipping tool" and "Snip and sketch" are the native and most direct way to take a custom screenshot on Windows 10.  
+With these applications you can take a rectangular, free form or full screen capture and you can customize, annotate and share you screenshot.
 
-You can take a rectangular, free form or full screen capture and you can customize, annotate and share you screenshot.
-
-To use Snip&Sketch use the shortcut: **win+shift+s**
+To use "Snipping tool" press the win key and type "*Snipping*", select it, and press enter.  
+To use "Snip and sketch":
+	* Press the win key and type "*Snip*", select it, and press enter
+	* Use the shortcut: **win+shift+s**
 
 ## Bonus: Flameshot
 
-[Flameshot](https://flameshot.org/) is my preferred way to do take an screenshot (on windows and gnu/linux). Sadly, in certain contexts, does not work and you have to go back to Snip&Sketch :(
+[Flameshot](https://flameshot.org/) is my preferred way to do take an screenshot (on Windows and GNU/linux). Sadly, in certain contexts, it's easier go back to "Snip and sketch" :(
 
 As they say in [their web](https://flameshot.org/): [Flameshot](https://flameshot.org/) is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time.
 
