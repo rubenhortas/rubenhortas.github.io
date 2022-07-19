@@ -4,8 +4,6 @@ icon: fas fa-info-circle
 order: 4
 ---
 
-## 👋 Hi! About me:
-
 - 💻 I’m currently working as a software engineer, mainly with .net, sql and android technologies.
 - 🌱 I’m always learning about programming and computer related stuff. 
 - 🔒 I'm now learning (again, a bit) about cybersecurity.
