@@ -7,7 +7,7 @@ tags: [python3, pypi]
 
 Although the [Packaging Python Projects tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) is very detailed in how to package a Python Project, I encountered some difficulties at the time of do it, so I'm going to leave here a summary and some notes to my future me ;)
 
-First of all, if we want made our application available as a command-line tool we need to define an [entry point]((https://packaging.python.org/en/latest/specifications/entry-points) in our *pyproject.toml*:
+First of all, if we want made our application available as a command-line tool we need to define an [entry point](https://packaging.python.org/en/latest/specifications/entry-points) in our *pyproject.toml*:
 
 ```
 [project.scripts]
