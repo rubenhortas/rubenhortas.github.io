@@ -23,7 +23,7 @@ We well need register two accounts:
 
 ## Update the tools
 
-We well need to have isntalled the last version of *build* and *twine*:
+We well need to have installed the last version of *build* and *twine*:
 
 ```shell
 python3 -m pip install --upgrade build
@@ -86,7 +86,7 @@ python3 -m twine upload dist/*
 ## Check package installation
 
 ```shell
-python3 install *projectname*
+pip3 install *projectname*
 ```
 
 Sources: 
