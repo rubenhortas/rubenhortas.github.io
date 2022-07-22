@@ -91,8 +91,8 @@ pip3 install *projectname*
 
 Sources: 
 
-*[Packaging Python Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects)  
-*[Entry points specification](https://packaging.python.org/en/latest/specifications/entry-points)  
-*[Metadata Hatch](https://hatch.pypa.io/latest/config/metadata)
+* [Packaging Python Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects)  
+* [Entry points specification](https://packaging.python.org/en/latest/specifications/entry-points)  
+* [Metadata Hatch](https://hatch.pypa.io/latest/config/metadata)
 
 _Enjoy! ;)_
