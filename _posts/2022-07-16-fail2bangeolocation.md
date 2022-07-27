@@ -17,11 +17,11 @@ With [**fail2bangeolocation**](https://github.com/rubenhortas/fail2bangeolocatio
 
 ## Screenshots
 - Output grouped by country  
-![Output grouped by country](https://github.com/rubenhortas/fail2bangeolocation/blob/main/screenshots/screenshot_grouped_by_country.png)
+![Output grouped by country](fail2bangeolocation_screenshot_grouped_by_country.png)
 _fail2bangeolocation output grouped by country_
 
 - Output grouped by country and city  
-![Output grouped by country and city](https://github.com/rubenhortas/fail2bangeolocation/blob/main/screenshots/screenshot_grouped_by_country_and_city.png)
+![Output grouped by country and city](fail2bangeolocation_screenshot_grouped_by_country_and_city.png)
 _fail2bangeolocation output grouped by country and city_
 
 You can take a look at the application here: [**fail2bangeolocation**](https://github.com/rubenhortas/fail2bangeolocation)
