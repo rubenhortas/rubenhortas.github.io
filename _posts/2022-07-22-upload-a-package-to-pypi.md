@@ -11,7 +11,7 @@ First of all, if we want made our application available as a command-line tool, 
 
 ```
 [project.scripts]
-projectname* = "*projectname*.*projectname*:main"
+projectname = "projectname.projectname:main"
 ```
 
 ## Creating accounts
@@ -51,16 +51,16 @@ To avoid having to copy and paste the token every time you upload, we can create
 [distutils]
   index-servers =
     testpypi
-    *projectname*
+    projectname
 
 [testpypi]
   username = __token__
-  password = *pypi-token*
+  password = pypi-token
 
 [fail2bangeolocation]
   repository = https://test.pypi.org/legacy/
   username = __token__
-  password = *pypi-token*
+  password = pypi-token
 ```
 
 ## Uploading the package to testpypi
@@ -72,7 +72,7 @@ python3 -m twine upload --repository testpypi dist/*
 ## Checking test package installation
 
 ```shell
-python3 -m pip install --index-url https://test.pypi.org/simple/ *projectname*
+python3 -m pip install --index-url https://test.pypi.org/simple/ projectname
 ```
 
 If everything went well...
@@ -86,7 +86,7 @@ python3 -m twine upload dist/*
 ## Checking package installation
 
 ```shell
-pip3 install *projectname*
+pip3 install projectname
 ```
 
 Sources: 
