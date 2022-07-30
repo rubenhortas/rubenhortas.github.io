@@ -21,6 +21,6 @@ _Awesome htb widget with target off_
 
 If the VPN interface is down the widget is not shown.
 
-You can take a look at the widget here: [awesome htb widget](https://github.com/rubenhortas/awesome-htb-widget)
+You can take a look at the widget source code in [https://github.com/rubenhortas/awesome-htb-widget](https://github.com/rubenhortas/awesome-htb-widget)
 
 _Enjoy! ;)_

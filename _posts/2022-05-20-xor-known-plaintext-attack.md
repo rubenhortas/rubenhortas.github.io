@@ -20,12 +20,12 @@ It's also trivial to flip arbitrary bits in the decrypted plaintext by manipulat
 
 ## Known-plaintext attack explained
 
-If we can guess, or we know, the initial plain text string (or at leas a part of it) and we know the result ciphertext we can guess the key 
+If we can guess, or we know, the initial plain text string (or at least a part of it) and we know the result ciphertext we can guess the key 
 used to encrypt. Once we get the key we can get the initial plain text string only reapplying the XOR function with the guessed key to the ciphertext:  
 
 String ⊕ Key = Ciphertext → Ciphertext ⊕ Key = String
 
 I wrotte a little pyhton script to show how this attack works and I added it to my collection of python examples.
-You can take a look at the example here: [xor_kpa.py](https://github.com/rubenhortas/python_examples/blob/master/cryptography/xor_kpa.py)
+You can take a look at the example in [https://github.com/rubenhortas/python_examples/blob/master/cryptography/xor_kpa.py](https://github.com/rubenhortas/python_examples/blob/master/cryptography/xor_kpa.py)
 
 _Enjoy! ;)_

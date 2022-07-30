@@ -21,7 +21,6 @@ Lastly I change a few things to optmize performance and have a lighter gnu/linux
 	```
 
 	We can disable the swapping with **swapoff**  
-	(This is my choice for systems where I don't have swap partitions as virtual machines)
 	
 	```console
 	# swapoff -a
