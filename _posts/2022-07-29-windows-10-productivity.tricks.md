@@ -33,8 +33,8 @@ With these applications you can take a rectangular, free form or full screen cap
 
 To use "Snipping tool" press the win key and type "*Snipping*", select it, and press enter.  
 To use "Snip and sketch":  
-	* Press the win key and type "*Snip*", select it, and press enter
-	* Use the shortcut: **win+shift+s**
+ * Press the win key and type "*Snip*", select it, and press enter
+ * Use the shortcut: **win+shift+s**
 
 ## Bonus: Flameshot
 
