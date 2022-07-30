@@ -1,5 +1,5 @@
 ---
-title: Windows10 productivity tricks
+title: Windows 10 productivity tricks
 date: 2022-07-29 00:00:01 +0000
 categories: [windows10, productivity]
 tags: [windows , windows10, productivity]
