@@ -32,7 +32,7 @@ To remove formatting when pasting use the shortcut: **ctrl+shift+v**
 With these applications you can take a rectangular, free form or full screen capture and you can customize, annotate and share you screenshot.
 
 To use "Snipping tool" press the win key and type "*Snipping*", select it, and press enter.  
-To use "Snip and sketch":
+To use "Snip and sketch":  
 	* Press the win key and type "*Snip*", select it, and press enter
 	* Use the shortcut: **win+shift+s**
 
