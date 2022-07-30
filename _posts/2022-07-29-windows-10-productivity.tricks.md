@@ -38,7 +38,7 @@ To use "Snip and sketch":
 
 ## Bonus: Flameshot
 
-[Flameshot](https://flameshot.org/) is my preferred way to do take an screenshot (on Windows and GNU/linux). Sadly, in certain contexts, it's easier go back to "Snip and sketch" :(
+[Flameshot](https://flameshot.org/) is my preferred way to do take an screenshot (on Windows and GNU/Linux). Sadly, in certain contexts, it's easier go back to "Snip and sketch" :(
 
 As they say in [their web](https://flameshot.org/): [Flameshot](https://flameshot.org/) is a free and open-source, cross-platform tool to take screenshots with many built-in features to save you time.
 
