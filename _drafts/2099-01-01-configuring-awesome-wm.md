@@ -36,7 +36,7 @@ In this section we will edit the ~/.config/awesome/rc.lua file.
 I only use the maximized layout, so in the section /usr/share/awesome/themes/default/theme.lua I comment all the others
 
 
-```
+```lua
  awful.layout.layouts = {
      -- awful.layout.suit.floating,
      -- awful.layout.suit.tile,
@@ -63,7 +63,7 @@ I only use the maximized layout, so in the section /usr/share/awesome/themes/def
 In this section we will configure the number of tags we want and their text.
 I only use 4 tags, and, really, I change the numbers for [hack nerd font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip) characters.
 
-```
+```lua
 awful.tag({ "1", "2", "3", "4"}, s, awful.layout.layouts[1])
 ```
 
@@ -71,7 +71,7 @@ awful.tag({ "1", "2", "3", "4"}, s, awful.layout.layouts[1])
 
 I don't use the menu bar from the wibar, but I left it in the mouse, so I comment in the left widgets section:
 
-```
+```lua
 { -- Left widgets
     layout = wibox.layout.fixed.horizontal,
     --mylauncher,
@@ -84,11 +84,11 @@ I don't use the menu bar from the wibar, but I left it in the mouse, so I commen
 First of all, we will comment all the widgets that will not use, then we can add ours.
 I don't need to see the keyboard layour nor the layout box used (I only used maximized), so I comment them:
 
-```
+```lua
 { -- Right widgets
      layout = wibox.layout.fixed.horizontal,
      -- mykeyboardlayout,
-     wibox.widget.systray(),
+     -- wibox.widget.systray(),
      mytextclock,
      -- s.mylayoutbox,
 },
@@ -100,11 +100,28 @@ I don't need to see the keyboard layour nor the layout box used (I only used max
 One of the advantages to use a tiling window manager is have our custom keybindings, so I always add a few. 
 For example, if we want a key binding to firefox, we will edit the {{{ Key bindings section and add:
 
-```
+```lua
 awful.key({ modkey }, "f", function() awful.util.spawn("firefox") end,
           {description = "firefox", group = "applications"})
 ```
 * Be careful in this step. The previous entry has to end with a colon, and the last entry in this section has to end without colon.
+
+## Configuring the screens
+
+I have problems with the resolution of one of my screens, to solve it i need to add the next line:
+
+```lua
+awful.spawn("xrandr --output DVI-I-1 1680x1050 --output DVI-I-2 1680x1050")
+```
+
+## Removing gnome-terminal (and others) gaps 
+For some reason, gnome-terminal in maximized modes has gaps at the right and bottom. To remove then I add the "size_hints_honor = false" to the rules
+
+```lua
+{ rule_any = {type = { "normal", "dialog" }
+  }, properties = { titlebars_enabled =  false, size_hints_honor = false }
+},     
+```
 
 # Configuring our theme
 
@@ -114,27 +131,32 @@ In this section we will edit the our theme file, in my case: ~/.config/awesome/t
 
 I find the default font a bit small, so I set one a little bit bigger:
 
-```
+```lua
 theme.font = "sans 12"
 ```
 
+## Taglist font
+I like to see the taglists very big, so I set them font to one very bigger:
+
+```lua
+theme.taglist_font="Hack Nerd Font Mono 16"
+```
 
 ## Wallpaper
 
 We can set our wallpaper: 
 
-```
+```lua
 theme.wallpaper = themes_path.."ruben/background.jpg"
 
 ```
 
 If we don't have our wallpaper on the themes path, we can set it with adding its absolute path:
 
-```
+```lua
 theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 
 ```
-
 
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with a backup, we can always go back in case something goes wrong.
 
