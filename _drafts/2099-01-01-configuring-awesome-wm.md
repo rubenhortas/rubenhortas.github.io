@@ -89,14 +89,14 @@ I don't use the menu bar from the wibar, but I left it in the mouse, so I commen
 
 ## Right widgets
 First of all, we will comment all the widgets that will not use, then we can add ours.
-I don't need any of the default widgets , so I comment them:
+I only want to keep the clock widget, so I comment the others:
 
 ```lua
 { -- Right widgets
      layout = wibox.layout.fixed.horizontal,
      -- mykeyboardlayout,
      -- wibox.widget.systray(),
-     -- mytextclock,
+     mytextclock,
      -- s.mylayoutbox,
 },
 
@@ -168,6 +168,6 @@ I always install the following:
 
 # Backup and clean
 
-When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with a backup, we can always go back in case something goes wrong.
+When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
 
 _Enjoy! ;)_
