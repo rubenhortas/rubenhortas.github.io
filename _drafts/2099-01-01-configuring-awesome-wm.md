@@ -32,6 +32,13 @@ $ sudo cp /usr/share/awesome/themes/default/theme.lua ~/.config/awesome/themes/r
 
 In this section we will edit the ~/.config/awesome/rc.lua file.
 
+## Setting the theme
+We need to pass our theme path to the beautitul.init:
+
+```lua
+beautiful.init("/home/ruben/.config/awesome/themes/ruben/theme.lua")
+```
+
 ## Window layouts
 I only use the maximized layout, so in the section /usr/share/awesome/themes/default/theme.lua I comment all the others
 
@@ -82,20 +89,22 @@ I don't use the menu bar from the wibar, but I left it in the mouse, so I commen
 
 ## Right widgets
 First of all, we will comment all the widgets that will not use, then we can add ours.
-I don't need to see the keyboard layour nor the layout box used (I only used maximized), so I comment them:
+I don't need any of the default widgets , so I comment them:
 
 ```lua
 { -- Right widgets
      layout = wibox.layout.fixed.horizontal,
      -- mykeyboardlayout,
      -- wibox.widget.systray(),
-     mytextclock,
+     -- mytextclock,
      -- s.mylayoutbox,
 },
 
 ```
 
 ## Custom key bindings
+
+First of all I change the Mod4+j and Mod4+k keybinndings, is more intiutive this way for me.
 
 One of the advantages to use a tiling window manager is have our custom keybindings, so I always add a few. 
 For example, if we want a key binding to firefox, we will edit the {{{ Key bindings section and add:
@@ -106,16 +115,8 @@ awful.key({ modkey }, "f", function() awful.util.spawn("firefox") end,
 ```
 * Be careful in this step. The previous entry has to end with a colon, and the last entry in this section has to end without colon.
 
-## Configuring the screens
-
-I have problems with the resolution of one of my screens, to solve it i need to add the next line:
-
-```lua
-awful.spawn("xrandr --output DVI-I-1 1680x1050 --output DVI-I-2 1680x1050")
-```
-
-## Removing gnome-terminal (and others) gaps 
-For some reason, gnome-terminal in maximized modes has gaps at the right and bottom. To remove then I add the "size_hints_honor = false" to the rules
+## Removing gaps 
+For some reason, some windows, in maximized mode, have gaps at the right and bottom. To remove the gaps I add the "size_hints_honor = false" to the rules
 
 ```lua
 { rule_any = {type = { "normal", "dialog" }
@@ -132,14 +133,14 @@ In this section we will edit the our theme file, in my case: ~/.config/awesome/t
 I find the default font a bit small, so I set one a little bit bigger:
 
 ```lua
-theme.font = "sans 12"
+theme.font = "Hack Nerd Font Mono Regular 9"
 ```
 
 ## Taglist font
 I like to see the taglists very big, so I set them font to one very bigger:
 
 ```lua
-theme.taglist_font="Hack Nerd Font Mono 16"
+theme.taglist_font="Hack Nerd Font Mono Regular 16"
 ```
 
 ## Wallpaper
