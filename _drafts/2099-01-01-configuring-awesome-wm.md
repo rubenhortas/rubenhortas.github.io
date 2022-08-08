@@ -161,6 +161,10 @@ theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 # Widgets
 
 We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
+I always install the following:
+  * cpu_widget
+  * ram_widget
+  * fs_widget
 
 # Backup and clean
 
