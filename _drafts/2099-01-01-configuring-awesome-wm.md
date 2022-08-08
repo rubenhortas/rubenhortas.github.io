@@ -158,6 +158,11 @@ If we don't have our wallpaper on the themes path, we can set it with adding its
 theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 
 ```
+# Widgets
+
+We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
+
+# Backup and clean
 
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with a backup, we can always go back in case something goes wrong.
 
