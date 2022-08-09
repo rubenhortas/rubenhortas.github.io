@@ -72,7 +72,7 @@ awful.tag({ "1", "2" }, s, awful.layout.layouts[1])
 ```
 
 ## Menu bar launcher
-I don't use the menu bar from the wibar, neither in the mouse, I prefer the Super+p shortcut. So I comment the awesome menu sections:
+I don't use the menu bar from the wibar, neither in the mouse (I prefer the Super+p or Super+r shortcuts), so I comment the awesome menu sections:
 
 ```lua
 -- {{{ Menu
@@ -148,7 +148,7 @@ I don't use the menu bar from the wibar, neither in the mouse, I prefer the Supe
 ```
 
 ## Right widgets
-First of all, we will comment all the widgets that will not use, later we can add ours.
+In this section we will comment all the widgets that will not use, later we can add ours.
 I only want to keep the clock widget, so I comment the others:
 
 ```lua
