@@ -166,6 +166,14 @@ I always install the following:
   * ram_widget
   * fs_widget
 
+# GTK applications  with dark theme
+For personal reasons I usually work with dark themes, but awesome does not have one, it's not its job.  
+If you, as me, want applications in dark mode and you have installed gtk applications, you only have to modify the settings.ini files contained in the gtk-*.*/ directories under ~./config and set:
+
+```
+gtk-application-prefer-dark-theme=1
+```
+
 # Backup and clean
 
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
