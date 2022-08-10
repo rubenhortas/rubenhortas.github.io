@@ -173,6 +173,16 @@ awful.key({ modkey }, "f", function() awful.util.spawn("firefox") end,
 ```
 * Be careful in this step. The previous entry has to end with a colon, and the last entry in this section has to end without colon.
 
+## Mapping applications to screen tags
+
+If we want an application always running in a screen tag, we only have to set a rule.  
+For example, if we want that MPlayer runs always in the tag 1 of screen 2:
+
+```lua
+{ rule = { class = "MPlayer" },
+  properties = { screen = 2, tag = "1" } },
+```
+
 ## Removing gaps 
 For some reason, some windows, in maximized mode, have gaps at the right and bottom. To remove the gaps I add the "size_hints_honor = false" to the rules
 
