@@ -230,6 +230,10 @@ I always install the following widgets:
   * ram_widget
   * fs_widget
 
+You also may find interesting my own awesome widgets:
+  * [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
+  * [awesome htb widget](https://github.com/rubenhortas/awesome-htb-widget)
+
 # GTK applications  with dark theme
 For personal reasons I usually work with dark themes, but awesome does not have one, is not its job.  
 If you, as me, want applications in dark mode and you have installed gtk applications, you only have to modify the settings.ini files contained in the gtk-\*.\*/ directories under ~./config and set:
