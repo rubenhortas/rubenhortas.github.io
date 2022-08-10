@@ -245,8 +245,9 @@ gtk-application-prefer-dark-theme=1
 # Backup and clean
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
 
-# Recomended readings
+# Further readings
 * [My first awesome](https://awesomewm.org/doc/api/documentation/07-my-first-awesome.md.html)
 * [awesome - ArchWiki](https://wiki.archlinux.org/title/awesome)
+* [awesome recipes](https://awesomewm.org/recipes/)
 
 _Enjoy! ;)_
