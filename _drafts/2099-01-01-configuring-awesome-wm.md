@@ -242,6 +242,22 @@ If you, as me, want applications in dark mode and you have installed gtk applica
 gtk-application-prefer-dark-theme=1
 ```
 
+# Default browser
+If we have many browsers installed and we want to use one of them as default browser, for instance firefox, we will find that some applications will open the links in another browser.
+To solve this we will need to set the default browser, system-wide and user-specific. For instance, in debian:
+
+## System-wide
+
+```shell
+$ sudo update-alternatives --config x-www-browser
+```
+
+## User-specific
+
+```shell
+$ xdg-settings set default-web-browser firefox-esr.desktop
+```
+
 # Backup and clean
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
 
