@@ -7,7 +7,7 @@ tags: [screen, resolution, howtos, gnu/linux]
 
 Lately I'm having problems with mi secondary screen. For some reason it loses its resolution and I have to add it manually.
 
-To add a resolution manually in GNU/Linux we nedd:
+To add a resolution manually in GNU/Linux we need:
 
 * Generate a modeline for our resolution
 
@@ -46,7 +46,7 @@ DVI-I-2 connected 1680x1050+1680+0 (normal left inverted right x axis y axis) 64
 ...
 ```
 
-Our screens are DVI-I-1 and DVI-I-2. In this case I'll add the resolution to DVI-I-2.
+Our screens are DVI-I-1 and DVI-I-2. In this case we will add the resolution to DVI-I-2.
 
 * Add it to our screen
 
