@@ -75,8 +75,6 @@ awful.tag({ "1", "2" }, s, awful.layout.layouts[1])
 I don't use the menu bar from the wibar, neither in the mouse (I prefer the Super+p or Super+r shortcuts), so I comment the awesome menu sections:
 
 ```lua
--- {{{ Menu
--- Create a launcher widget and a main menu
 --myawesomemenu = {
 --   { "hotkeys", function() hotkeys_popup.show_help(nil, awful.screen.focused()) end },
 --   { "manual", terminal .. " -e man awesome" },
@@ -144,7 +142,6 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the Supe
 --        awful.mouse.client.resize(c)
 --    end)
 --)
-
 ```
 
 ## Right widgets
