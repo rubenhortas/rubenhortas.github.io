@@ -1,8 +1,8 @@
 ---
 title: Start a program automatically on Windows 10
 date: 2022-08-19 00:00:01 +0000
-categories: [windows10, administration]
-tags: [windows , windows10, administration]
+categories: [windows10, howtos]
+tags: [windows, windows10, administration, howtos]
 ---
 
 Usually, the ideal is to have the minimum programs running at startup on windows, but sometimes we need to add some program to the startup.
