@@ -160,7 +160,7 @@ I only want to keep the clock widget, so I comment the others:
 First of all I change the Super+j and Super+k keybinndings, is more intiutive this way for me.
 
 One of the advantages to use a tiling window manager is have our custom shortcuts, so I always add a few. 
-For example, if we want a shortcut to firefox, we will edit the {{{ Key bindings }}} section and add:
+For example, if we want a shortcut to firefox, we will edit the Key bindings section and add:
 
 ```lua
 awful.key({ modkey }, "f", function() awful.util.spawn("firefox") end,
