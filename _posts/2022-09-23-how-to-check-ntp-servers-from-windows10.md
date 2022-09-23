@@ -6,7 +6,7 @@ tags: [windows, windows10, ntp, sntp, nis, time, howtos]
 ---
 
 Sometimes we need to retrieve the date from a NTP [Network Time Protocol](https://es.wikipedia.org/wiki/Network_Time_Protocol) 
-server to leave it recorded somewhere.
+server to record it somewhere.
 
 The first thing is to know if the server is working and reacheable from our computer (yep, firewalls still works).
 Then we can check the returned date format to adapt to our needs.
