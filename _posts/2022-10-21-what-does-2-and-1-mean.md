@@ -1,6 +1,6 @@
 ---
 title: What does "2>&1" mean?
-date: 2022-10-22 00:00:01 +0000
+date: 2022-10-21 00:00:01 +0000
 categories: [gnu/linux, bash]
 tags: [gnu/linux, unix, bash, shell] 
 ---
