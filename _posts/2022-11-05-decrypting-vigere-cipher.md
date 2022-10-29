@@ -9,7 +9,7 @@ In my free time I like to play around in [CTF (Capture The Flag or Wargames)](ht
 
 One of the platforms in which I play and learn (when I can) is [OverTheWire](https://overthewire.org). 
 [OverTheWire](https://overthewire.org) does not need registration and is one of the old good Wargames classics. 
-In [OverTheWire](https://overthewire.org) you can learn about many topics at different levels (from 0, or almost).
+In [OverTheWire](https://overthewire.org) you can learn about many topics at different levels (from zero to hero, or almost).
 The bad part of being online for so long is that there are a lot of walkthroughs out there.
 The good part of being online for so long is that there are a lot of walkthroughs out there.
 
@@ -29,12 +29,12 @@ But the purpose of this kind of challenges is to learn, not to get the key and r
 So I got curious and I started to research...
 
 After a while I found a series of great videos in the youtube channel [Theoretically](https://www.youtube.com/user/ddxfraxinusdne):
-* [Vigenere Cipher - Encryption](https://www.youtube.com/watch?v=izFivfLjD5E)
-  This video is an introduction to the Vigenere Cipher.
-* [Vigenere Cipher - Decryption (Known Key)](https://www.youtube.com/watch?v=oHcJ4QLiiP8)
-  This video shows how to decrypt the ciphertext with a known key.
-* [Vigenere Cipher - Decryption (Unknown Key)](https://www.youtube.com/watch?v=LaWp_Kq0cKs)
-  This video shows how to find the key length (I didn't know at the time, but it would be useful for the [Krypton Level 5](https://overthewire.org/wargames/krypton/krypton5.html)) and explains how to find the key.
+* [Vigenere Cipher - Encryption](https://www.youtube.com/watch?v=izFivfLjD5E)  
+  This video is an introduction to the Vigenere Cipher.  
+* [Vigenere Cipher - Decryption (Known Key)](https://www.youtube.com/watch?v=oHcJ4QLiiP8)  
+  This video shows how to decrypt the ciphertext with a known key.  
+* [Vigenere Cipher - Decryption (Unknown Key)](https://www.youtube.com/watch?v=LaWp_Kq0cKs)  
+  This video shows how to find the key length (I didn't know at the time, but this part would be useful for the [Krypton Level 5](https://overthewire.org/wargames/krypton/krypton5.html)) and explains how to find the key.
 
 [@Theoretically](https://www.youtube.com/user/ddxfraxinusdne) explains very well and uses very simple examples so that people understands the concepts easily.
 As the method seemed simple, I decided to give it a try and I started to coding a python script.
@@ -51,20 +51,20 @@ Once started I found some blanks that I had to fill/solve in order to break the 
 * Finding the key shifts  
   In [@Theoretically](https://www.youtube.com/user/ddxfraxinusdne)'s example the characters of the ciphertext (ct) match the plaintext (pt) alphabet characters (A,B,C and a,b,c).
   What do we do when some characters do not appear in our frecuency analysys? We skip them or we add them? Are they important?  
-  Later I would find that, **in order to perform the rotations to find the key shifts we will need a full (sorted in alphabetical order) alphabet**.  
+  Later I would find that, **in order to perform the rotations to find the key shifts we will need a full (sorted in alphabetical order) alphabet**.
   So, once we have our ciphertext (ct) frecuency analysis, we need to complete the alphabet and assign a frecuency of 0 to the missing characters.
 
 [Krypton Level 5](https://overthewire.org/wargames/krypton/krypton5.html)
 
 * What is the best way to get the rotations with most coincidences to get the shift length?  
-  I solved it calculating the median of the values of the rotation (directly with numpy).  
+  I solved it calculating the median of the values of the rotation (directly with numpy).
   It is the best idea I came up with.
 
 * How to discard the false positives finding the key length?  
   Trying to finding the key length I found some false positives. But after a few debugging and thinking I found that was a logic error in programming.
 
-I'm sure that I'm forgetting some doubts that arose while solving this challenge, but I think that these were the most important ones.
-Answering these questions was a processs that involved more research and a programming method basedn on trial and error that involved a lot of debugging and thinking.
+I'm sure that I'm forgetting some doubts that arose while solving this game levels, but I think that these were the most important ones.
+Answering these questions was a processs that involved more research and a programming method based on trial and error that involved a lot of debugging and thinking.
 
 Was it worth it?
 
