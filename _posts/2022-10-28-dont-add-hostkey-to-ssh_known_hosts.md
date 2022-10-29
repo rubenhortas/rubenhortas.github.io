@@ -17,7 +17,7 @@ Of course, there are some situatons for which the public key change is legit, bu
 Altough **using the known_hosts file is the right way to ensure the identity of the remote host and secure our connection**, there are some situations where we may prefer not to add the host to the kwnown_hosts file.
 We may prefer not to add it for **privacy reasons** or, for example, if we regularly play [cybersecurity capture the flag games (or ctfs)](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)) (even if using a virtual machine) we will end with a lot of useless entries on our known_hosts file.
 
-We can avoid add the public key of the new host to the known_hosts file for a single session using "-o "UserKnownHostsFile=/dev/null""
+We can avoid add the public key of the new host to the known_hosts file for a single session using: -o "UserKnownHostsFile=/dev/null"
 
 ```shell
 ssh user@newhost -o "UserKnownHostsFile=/dev/null"
@@ -26,7 +26,8 @@ ssh user@newhost -o "UserKnownHostsFile=/dev/null"
 But, if we want to avoid add the public keys of new hosts permanently we should update our ssh config (~/.ssh/config to do it at user level or /etc/ssh/ssh_config to do it at system level) and add or comment the following lines:
 
 ```
-# We can specify the hosts from which the public keys will not be saved with a regex. If you are going to use this option use the strictest regex you can.
+# We can specify the hosts from which the public keys will not be saved with a regex. 
+# If you are going to use this option use the strictest regex you can.
 # If you want to avoid adding any public key of any host you can skip the Host line
 Host *.mydomain.com
   StrictHostKeyChecking no
