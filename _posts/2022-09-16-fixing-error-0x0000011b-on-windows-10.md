@@ -1,7 +1,7 @@
 ---
 title: Fixing error 0x0000011b on Windows 10
 date: 2022-09-16 00:00:01 +0000
-categories: [windows10, howtos]
+categories: [howtos, windows10]
 tags: [windows, windows10, error, howtos, printer]
 ---
 

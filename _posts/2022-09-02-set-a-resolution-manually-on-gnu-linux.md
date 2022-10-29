@@ -1,7 +1,7 @@
 ---
 title: Set a resolution manually in GNU/Linux
 date: 2022-09-02 00:00:01 +0000
-categories: [gnu/linux, howtos]
+categories: [howtos, gnu/linux]
 tags: [screen, resolution, howtos, gnu/linux]
 ---
 

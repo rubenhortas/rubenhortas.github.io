@@ -1,7 +1,7 @@
 ---
 title: Python charset detection
 date: 2022-06-10 00:00:01 +0000
-categories: [python]
+categories: [howtos, python]
 tags: [python, charset]
 ---
 

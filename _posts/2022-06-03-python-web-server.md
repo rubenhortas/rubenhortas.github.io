@@ -1,7 +1,7 @@
 ---
 title: Python web server
 date: 2022-06-03 00:00:01 +0000
-categories: [python]
+categories: [howtos, python]
 tags: [python, web, server]
 ---
 

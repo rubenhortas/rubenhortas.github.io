@@ -1,7 +1,7 @@
 ---
 title: Find files containing specific text on GNU/Linux
 date: 2022-06-24 00:00:01 +0000
-categories: [gnu/linux, howtos]
+categories: [howtos, grep]
 tags: [gnu/linux, grep, howtos]
 img_path: /assets/img/posts/
 ---

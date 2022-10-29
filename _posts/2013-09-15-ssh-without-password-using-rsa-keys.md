@@ -2,7 +2,7 @@
 title: SSH without password, using RSA keys
 date: 2013-09-15 00:00:01 +0000
 categories: [hardening, ssh]
-tags: [hardening, ssh, rsa, network]
+tags: [hardening, security, ssh, rsa, network]
 img_path: /assets/img/posts/
 ---
 Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
