@@ -7,7 +7,7 @@ tags: [cryptography, vigenere, overthewire, krypton, personal, developments]
 
 In my free time I like to play around in [CTF (Capture The Flag or Wargames)](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)) platforms, learning a bit and, whith a bit of luck, solving some level or challenge.
 
-One of the platforms in which I play and learn, when I can, is [OverTheWire](https://overthewire.org). 
+One of the platforms in which I play and learn (when I can) is [OverTheWire](https://overthewire.org). 
 [OverTheWire](https://overthewire.org) does not need registration and is one of the old good Wargames classics. 
 In [OverTheWire](https://overthewire.org) you can learn about many topics at different levels (from 0, or almost).
 The bad part of being online for so long is that there are a lot of walkthroughs out there.
@@ -64,11 +64,11 @@ Once started I found some blanks that I had to fill/solve in order to break the 
   Trying to finding the key length I found some false positives. But after a few debugging and thinking I found that was a logic error in programming.
 
 I'm sure that I'm forgetting some doubts that arose while solving this challenge, but I think that these were the most important ones.
-Answering these questions was a processs that involved more research and a trial and error method programming that involved a lot of debugging and thinking.
+Answering these questions was a processs that involved more research and a programming method basedn on trial and error that involved a lot of debugging and thinking.
 
 Was it worth it?
 
-I'd like to think so. In the process of solving these challenges I learned a few things, for example:
+I'd like to think so. In the process of solving these challenges I was very entertained and I learned a few things, for example:
 
 * I learned how to works the process to break a [Vigenere Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher) through this method.
 * I learned about other methods to break a [Vigenere Cipher](https://en.wikipedia.org/wiki/Vigen%C3%A8re_cipher), to find the key length and to find the key.
