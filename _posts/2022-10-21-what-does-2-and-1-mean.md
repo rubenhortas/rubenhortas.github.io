@@ -1,8 +1,8 @@
 ---
 title: What does "2>&1" mean?
 date: 2022-10-21 00:00:01 +0000
-categories: [gnu/linux, bash]
-tags: [gnu/linux, unix, bash, shell] 
+categories: [bash]
+tags: [bash] 
 ---
 
 Sometimes we met with shell commands that includes the "2>&1" string at the end.
