@@ -15,7 +15,7 @@ When we connect to a known host via ssh the system checks the public key of the 
 Of course, there are some situatons for which the public key change is legit, but it is our responsability to check it with the server's administrator (or sysadmin).
 
 Altough **using the known_hosts file is the right way to ensure the identity of the remote host and secure our connection**, there are some situations where we may prefer not to add the host to the kwnown_hosts file.
-We may prefer not to add it for **privacy reasons** or, for example, if we regularly play [cybersecurity capture the flag games (or ctfs)](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)) (even if using a virtual machine) we will end with a lot of useless entries on our known_hosts file.
+We may prefer not to add it for **privacy reasons** or, for example, if we regularly play [cybersecurity capture the flag games (ctfs or wargames)](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)) (even if using a virtual machine) we will end with a lot of useless entries on our known_hosts file.
 
 We can avoid add the public key of the new host to the known_hosts file for a single session using: -o "UserKnownHostsFile=/dev/null"
 
