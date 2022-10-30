@@ -1,5 +1,5 @@
 ---
-title: Don't add hostkey to shh known_hosts 
+title: Don't add host key to shh known_hosts 
 date: 2022-10-28 00:00:01 +0000
 categories: [privacy, ssh]
 tags: [ssh, privacy, known_hosts] 
