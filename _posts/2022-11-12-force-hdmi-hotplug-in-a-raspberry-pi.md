@@ -21,7 +21,7 @@ With a screen connected to our Raspberry Pi we will execute:
 $ tvservice -s
 ``` 
 
-Based on the information returned to us we can configure our values.
+Based on the information returned to us we can set our values.
 For example, if or output was:
 
 ```shell
@@ -34,7 +34,7 @@ Based on our output, our values will be:
   
 _*We also can find (or check) our configuration values at [Raspberry Pi documentation video options](https://www.raspberrypi.com/documentation/computers/config_txt.html#video-options)_
   
-Now we will need to edit the /boot/config.txt file (as root) and uncomment and configure the following values:
+Now we will need to edit the /boot/config.txt file (as root) and uncomment and set the following values:
 
 ```shell
 hdmi_force_hotplug=1
