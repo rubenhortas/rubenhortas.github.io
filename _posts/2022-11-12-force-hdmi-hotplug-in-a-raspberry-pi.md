@@ -32,7 +32,7 @@ Based on our output, our values will be:
   - hdmi_group=1 # CEA 
   - hdmi_mode=31 # (CEA) = (31) = 1080p = 1920x1080, 16:9, 50Hz
   
-__*We also can find (or check) our configuration values at [Raspberry Pi documentation video options](https://www.raspberrypi.com/documentation/computers/config_txt.html#video-options)__
+_*We also can find (or check) our configuration values at [Raspberry Pi documentation video options](https://www.raspberrypi.com/documentation/computers/config_txt.html#video-options)_
   
 Now we will need to edit the /boot/config.txt file (as root) and uncomment and configure the following values:
 
