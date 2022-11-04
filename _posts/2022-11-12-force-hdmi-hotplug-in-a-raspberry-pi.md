@@ -12,7 +12,7 @@ In this case you will need to restart your Raspberry Pi to be able to see it on 
 How can we avoid this?
 
 We can force a HDMI hotplug on our Raspberri Pi.
-In other words, we can configure our Raspberry Pi so that it activates the HDMI regardless of whether it has a screen connected.
+In other words: we can configure our Raspberry Pi so that it activates the HDMI regardless of whether it has a screen connected.
 
 To force the HDMI hotplug the first thing we will need is to known our HDMI mode and group.
 With a screen connected to our Raspberry Pi we will execute:
