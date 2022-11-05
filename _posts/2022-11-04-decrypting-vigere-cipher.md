@@ -64,7 +64,7 @@ Once started I found some blanks that I had to fill/solve in order to break the 
   Trying to finding the key length I found some false positives. But after a few debugging and thinking I found that was a logic error in programming.
 
 I'm sure that I'm forgetting some doubts that arose while solving this game levels, but I think that these were the most important ones.
-Answering these questions was a processs that involved more research and a programming method based on trial and error that involved a lot of debugging and thinking.
+Answering these questions was a processs that involved more research and a programming method based on trial and error with a lot of debugging and thinking.
 
 Was it worth it?
 
