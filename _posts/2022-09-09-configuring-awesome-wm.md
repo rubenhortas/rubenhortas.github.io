@@ -224,6 +224,7 @@ I always install the following widgets:
   * cpu_widget
   * ram_widget
   * fs_widget
+  * logout-menu-widget
 
 You also may find interesting my own awesome widgets:
   * [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
