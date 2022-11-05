@@ -1,6 +1,6 @@
 ---
 title: Force HDMI hotplug in a Raspberry Pi
-date: 2022-11-12 00:00:01 +0000
+date: 2022-11-11 00:00:01 +0000
 categories: [howtos, raspberry pi]
 tags: [howtos, raspberry pi, hdmi] 
 ---
