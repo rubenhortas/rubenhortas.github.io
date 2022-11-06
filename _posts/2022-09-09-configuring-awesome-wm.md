@@ -1,7 +1,7 @@
 ---
 title: Configuring awesome window manager
 date: 2022-09-09 00:00:01 +0000
-categories: [howtos, awesome]
+categories: [awesome, configuration]
 tags: [awesomewm, howtos, gnu/linux]
 ---
 
