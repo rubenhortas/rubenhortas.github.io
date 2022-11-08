@@ -261,6 +261,6 @@ When we have awesome running configured to our liking, we can make a backup of o
 * [My first awesome](https://awesomewm.org/doc/api/documentation/07-my-first-awesome.md.html)
 * [awesome - ArchWiki](https://wiki.archlinux.org/title/awesome)
 * [awesome recipes](https://awesomewm.org/recipes/)
-* [Debian Wiki - awesome](http://Wiki.debian.org/awesome)
+* [Debian Wiki - Awesome](https://wiki.debian.org/Awesome)
 
 _Enjoy! ;)_
