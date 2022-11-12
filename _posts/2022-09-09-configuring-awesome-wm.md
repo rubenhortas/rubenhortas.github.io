@@ -220,11 +220,32 @@ theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 # Widgets
 
 We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
-I usually install the following widgets:
-  * cpu_widget
-  * ram_widget
-  * fs_widget
+I usually install the following widget:
   * logout-menu-widget
+  
+## Custom widgets
+
+I want to see the CPU and memory (RAM) usage, so I added a couple of custom widgets based on vicious to do it.
+To do this, after the section:
+
+```lua
+ -- Create a tasklist widget
+    s.mytasklist = awful.widget.tasklist(s, awful.widget.tasklist.filter.currenttags, tasklist_buttons)
+```
+
+I add my two custom widgets:
+
+```lua
+ -- CPU widget
+    cpuwidget = wibox.widget.textbox()
+    vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1%", 2)
+      
+ -- MEM widget
+    memwidget = wibox.widget.textbox()
+    vicious.register(memwidget, vicious.widgets.mem, " MEM: $1%", 2)
+```
+
+And then I add the two custom widgets to the wibos on the positions that I want.
 
 ## Configuring the textclock format:
 
