@@ -244,10 +244,12 @@ I add my two custom widgets:
 ```lua
  -- CPU widget
     cpuwidget = wibox.widget.textbox()
+    cpuwidget.forced_width=65
     vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1%", 2)
       
  -- MEM widget
     memwidget = wibox.widget.textbox()
+    memwidget.forced_width=65
     vicious.register(memwidget, vicious.widgets.mem, " MEM: $1%", 2)
 ```
 
