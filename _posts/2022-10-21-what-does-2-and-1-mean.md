@@ -14,13 +14,14 @@ So, what does "2>&1" mean?
 
 How 2>&1 works?
 
+The standard input (stdin) is the file descriptor 0.  
 The standard output (stdout) is the file descriptor 1.  
 The standard error (stderr) is the file descriptor 2.
 
 ">" is the unix file redirection operator. 
 ">" is used to redirect the contents of a command or file to another by overwritting it.
 
-If we want to redirect the standard error (stderr) to the standard output (stdout) we could think of doing:
+If we want to redirect the standard error (stderr, 2) to the standard output (stdout, 1) we could think of doing:
 
 ```shell
 command 2>1
