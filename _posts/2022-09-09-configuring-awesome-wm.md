@@ -220,11 +220,19 @@ theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 # Widgets
 
 We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
-I always install the following widgets:
+I usually install the following widgets:
   * cpu_widget
   * ram_widget
   * fs_widget
   * logout-menu-widget
+
+## Configuring the textclock format:
+
+I only want to see the hour and the minutes. If you, as me, want another time format you only need to pass the date format to the textclock() function:
+
+```lua
+mytextclock = wibox.widget.textclock(" %H:%M ")
+```
 
 You also may find interesting my own awesome widgets:
   * [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
