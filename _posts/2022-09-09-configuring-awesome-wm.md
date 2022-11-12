@@ -234,6 +234,9 @@ I only want to see the hour and the minutes. If you, as me, want another time fo
 mytextclock = wibox.widget.textclock(" %H:%M ")
 ```
 
+> The formats are the same as in the linux date command 
+{: .prompt-info}
+
 You also may find interesting my own awesome widgets:
   * [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
   * [awesome htb widget](https://github.com/rubenhortas/awesome-htb-widget)
