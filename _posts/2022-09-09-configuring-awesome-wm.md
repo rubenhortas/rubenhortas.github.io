@@ -226,7 +226,13 @@ I usually install the following widget:
 ## Custom widgets
 
 I want to see the CPU and memory (RAM) usage, so I add a couple of custom widgets based on vicious to do it.
-To do this, after the section:
+To do this, as these widgets are based on vicious I have to add the following line at the beginning of the rc.lua file:
+
+```lua
+local vicious = require("vicious")
+```
+
+Then, after the following section of the rc.lua file
 
 ```lua
  -- Create a tasklist widget
