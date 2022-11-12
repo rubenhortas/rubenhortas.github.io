@@ -225,7 +225,7 @@ I usually install the following widget:
   
 ## Custom widgets
 
-I want to see the CPU and memory (RAM) usage, so I added a couple of custom widgets based on vicious to do it.
+I want to see the CPU and memory (RAM) usage, so I add a couple of custom widgets based on vicious to do it.
 To do this, after the section:
 
 ```lua
@@ -247,7 +247,7 @@ I add my two custom widgets:
 
 And then I add the two custom widgets to the wibos on the positions that I want.
 
-## Configuring the textclock format:
+## Configuring the clock (mytextclock or textclock) format:
 
 I only want to see the hour and the minutes. If you, as me, want another time format you only need to pass the date format to the textclock() function:
 
@@ -257,6 +257,8 @@ mytextclock = wibox.widget.textclock(" %H:%M ")
 
 > The formats are the same as in the linux date command 
 {: .prompt-info}
+
+## My own widgets (ip and hackthebox)
 
 You also may find interesting my own awesome widgets:
   * [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
