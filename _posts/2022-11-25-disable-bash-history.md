@@ -19,9 +19,31 @@ We can delete the current stored history with
 history -c
 ```
 
-# How to disable history
+# Do not record some commands
 
-To permanently disable the history we need to edit our ~/.bashrc file and add the next line:
+If we don't want to keep track of certain commands, for example ls and cd, we can edit our ~/.bashrc file and add the following line:
+
+```
+HISTIGNORE='ls*:cd*'
+``` 
+
+# Do not record some commands at will
+
+We can omit any command lines which begin with a space in our history editing our ~/.bashrc file and adding the following line:
+
+```
+HISTCONTROL=ignorespace'
+```
+
+# How to permanently disable history
+
+To permanently disable the history we need to edit our ~/.bashrc file and set the HISTSIZE variable to 0:
+
+```
+HISTSIZE=0
+```
+
+Or we can edit our ~/.bashrc file and add the next line:
 
 ```bash
 set +o history
@@ -40,6 +62,18 @@ Finally, we will delete our .bash_history file
 
 ```shell
 rm ~/.bash_history
+```
+
+> Don't forget the history of the root account!
+{: prompt-warning}
+
+# When we can't edit ~/.bashrc nor ~/.bash_logout files: SIGKILL
+
+Even though we can't edit ~/.bashrc nor ~/.bash_logout files, there's ways to avoid to keep our commands logged into history.  
+Sending SIGKILL to our shell's PID will kill our shell without being able to do anythin (such as save the history).
+
+```shell
+kill -9 shell_pid
 ```
 
 _Enjoy! ;)_
