@@ -2,7 +2,7 @@
 title: Complete shutdown on windows 10
 date: 2022-11-25 00:00:01 +0000
 categories: [windows10, administration]
-tags: [windows10, administration, shutdown]
+tags: [windows10, administration, shutdown, howtos, administration]
 ---
 
 Sometimes I feel like the last person in the world to know things.

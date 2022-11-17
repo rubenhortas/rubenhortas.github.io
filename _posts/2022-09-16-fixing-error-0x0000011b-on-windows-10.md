@@ -1,8 +1,8 @@
 ---
 title: Fixing error 0x0000011b on Windows 10
 date: 2022-09-16 00:00:01 +0000
-categories: [howtos, windows10]
-tags: [windows, windows10, error, howtos, printer]
+categories: [windows10, administration]
+tags: [windows, windows10, error, howtos, printer, administration]
 ---
 
 A few days ago, as a personal favor, I had to configure some network printers between some Windows 10 computers. 

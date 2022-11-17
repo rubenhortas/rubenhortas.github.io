@@ -1,7 +1,7 @@
 ---
 title: Start a program automatically on Windows 10
 date: 2022-08-19 00:00:01 +0000
-categories: [howtos, windows10]
+categories: [windows10, administration]
 tags: [windows, windows10, administration, howtos]
 ---
 

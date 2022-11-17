@@ -1,7 +1,7 @@
 ---
 title: Disable hibernation on Windows10
 date: 2022-08-05 00:00:01 +0000
-categories: [howtos, windows10]
+categories: [windows10, administration]
 tags: [windows, windows10, administration, howtos]
 ---
 
