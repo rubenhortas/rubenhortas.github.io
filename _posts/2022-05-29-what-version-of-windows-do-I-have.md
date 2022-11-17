@@ -1,7 +1,7 @@
 ﻿---
 title: What version of windows do I have?
 date: 2022-05-29 00:00:01 +0000
-categories: [howtos, windows]
+categories: [windows, administration]
 tags: [windows, version]
 ---
 

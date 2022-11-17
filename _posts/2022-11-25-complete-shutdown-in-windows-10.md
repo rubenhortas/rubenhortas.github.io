@@ -1,56 +1,37 @@
 ---
-title: Fixing awesome logout-menu-widget
-date: 2022-11-18 00:00:01 +0000
-categories: [awesome, widget]
-tags: [awesome, widget, logout-menu-widget, howtos]
+title: Complete shutdown on windows 10
+date: 2022-11-25 00:00:01 +0000
+categories: [windows10, administration]
+tags: [windows, windows10, administration, shutdown, howtos, administration]
 ---
 
-I like to have installed the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) from [Pavel Makhov](https://pavelmakhov.com/) ([@streetturtle](https://github.com/streetturtle))in awesome. 
-I like to can shutdown my machine with a pair of clicks.
-But, it turns out that the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) does not work for me out of the box.
-It's just a configuration problem, and to solve it I have to change a couple of lines in the widget source code (logout-menu.lua file).
+Sometimes I feel like the last person in the world to know things.
+This is one of this times...
 
-## Fixing the icon
+Windows 10 it was released on 2015, and I still discovered these days that doesn't shut down completelly.
 
-The first problem that arises is that the icon does not appear.
-It's just a path problem.
-I have my widgets under a widget directory, so I have to change the path in the following line:
+By default, when you choose the option "shut down" in Windows 10, Windows 10 doesn't shut down completelly. 
+Windows 10 is doing a partial hibernation through a feature called "fast startup".
 
-```lua
-local ICON_DIR = HOME .. '/.config/awesome/awesome-wm-widgets/logout-menu-widget/icons/'
-```
+Fast startup is a hybrid shutdown. 
+With Fast startup the computer, instead of shutting down completely, enters a sleep state that will allow it to boot faster the next time.
 
-And set my personal path:
+The problem, apart from the power consumption, is that a shutdown, a reboot and starting from a suspended session do not perform the same tasks.
 
-```lua
-local ICON_DIR = HOME .. '/.config/awesome/widgets/logout-menu-widget/icons/'
-```
 
-## Fixing the shutdown
+## How to completelly shut down Windows 10
 
-I don't have the shutdown alias defined for my user, so the shutdown option does not work.
-And the "now" argument does not work with my version of shutdown.
-To fix this (without have to add a new alias) I change the command in the following line:
+There are two ways to completely turn off the computer:
+ 
+* Windows menu > hold the shift key while you click on "shut down"
+* Disable Fast startup: Settings > System > Power Options > Choose what the power > Change settings that are currently unavailable > (Uncheck) Turn on fast startup (recommended)
 
-```lua
-local onpoweroff = args.onpoweroff or function() awful.spawn.with_shell("shutdown now") end
-```
+If you want to know a little more about how shut down and reboot works and its differences, I recommend you the following videos from [Dave's garage](https://www.youtube.com/c/DavesGarage)
+* [The Windows Triple Fault: plus Restarting vs Rebooting - Why it Matters!](https://www.youtube.com/watch?v=E8gOW0hFoJ0)
+* [You're Doing it Wrong: Rebooting! Find out why!](https://www.youtube.com/watch?v=lUIhzACQDAc)
+* [Why Does Rebooting Fix Everything? Ask a Microsoft Engineer!](https://www.youtube.com/watch?v=9IPP39OF78M)
 
-And set the absolute path for the shutdown binary and the options to shutdown the system immediately:
-
-```lua
-local onpoweroff = args.onpoweroff or function() awful.spawn.with_shell("/sbin/shutdown -h now") end
-```
-
-## Disabling options
-
-Since I am already editing the file, and since I never use the suspend option, I take this oportuntity to disable the suspend option.
-To do this i comment the following line:
-
-```lua
--- { name = 'Suspend', icon_name = 'moon.svg', command = onsuspend },
-```
-
-And my widget is ready.
+[David Plummer](https://en.wikipedia.org/wiki/David_Plummer_(programmer)) it was a microsoft engineer that creates the Task Manager for Windows, the zip file support for Windows and many other software products.
+He has a very interesting youtube channel.
 
 _Enjoy! ;)_
