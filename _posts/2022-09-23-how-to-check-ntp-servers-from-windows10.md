@@ -1,7 +1,7 @@
 ---
 title: How to check NTP servers from Windows 10
 date: 2022-09-23 00:00:01 +0000
-categories: [howtos, windows10]
+categories: [windows10, administration]
 tags: [windows, windows10, ntp, sntp, nis, time, howtos]
 ---
 
