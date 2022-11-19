@@ -113,6 +113,6 @@ Some of them more complicated, others more refinated and others are meant for ot
 My personal choice, when I'm using bash, is a balance between usability and security, so I choose fully disable the root history and delete the user history on close the terminal and the session.
 This way, the root will never have history (and it's not a problem if we are using sudo) and the user will have a terminal and session history.
 This means that the user (I mean we) will be able to repeat commands in a session using the arrow up, for example, thus facilitating its work.
-This choice it's something like the zsh default behaviour.
+This choice it's something like the zsh default behavior.
 
 _Enjoy! ;)_
