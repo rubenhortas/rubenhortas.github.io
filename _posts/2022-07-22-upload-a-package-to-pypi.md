@@ -1,7 +1,7 @@
 ---
 title: Upload a package to PyPI
 date: 2022-07-22 00:00:01 +0000
-categories: [howtos, pypi]
+categories: [python, pypi]
 tags: [howtos, python, pypi]
 ---
 

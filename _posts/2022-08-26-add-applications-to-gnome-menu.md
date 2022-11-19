@@ -1,8 +1,8 @@
 ---
 title: Add applications to gnome menu
 date: 2022-08-26 00:00:01 +0000
-categories: [howtos, gnome]
-tags: [gnome, howtos, gnu/linux]
+categories: [unix, gnome]
+tags: [gnome, howtos, gnu/linux, configuration]
 ---
 
 When we install applications from outside the repositories these applications are not added automatically to the gnome menu.  
