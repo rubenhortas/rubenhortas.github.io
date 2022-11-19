@@ -1,7 +1,7 @@
 ---
 title: Get brightness keys working on GNU/Linux
 date: 2015-07-24 00:00:01 +0000
-categories: [howtos, gnu/linux]
+categories: [gnu/linux, howtos]
 tags: [gnu/linux, howtos, xdotool]
 ---
 

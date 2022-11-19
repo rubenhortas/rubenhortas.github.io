@@ -2,7 +2,7 @@
 title: Prevent phone spam on android 8
 date: 2017-08-21 00:00:01 +0000
 categories: [android, spam]
-tags: [android, spam]
+tags: [android, spam, howtos]
 img_path: /assets/img/posts/
 ---
 How to prevent unwanted calls and SMS on an android 8 phone without having to install any application?
