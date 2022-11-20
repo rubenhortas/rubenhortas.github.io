@@ -1,5 +1,5 @@
 ---
-title: Hack The Box: Eternal Loop (Misc Challenge) owned!
+title: Hack The Box - Eternal Loop (Misc Challenge) owned!
 date: 2022-05-07 00:00:01 +0000
 categories: [hack the box, owned]
 tags: [hack the box, challenge, owned]

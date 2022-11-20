@@ -1,5 +1,5 @@
 ---
-title: Hack The Box: Baby Time Capsule (Crypto Challenge) owned!
+title: Hack The Box - Baby Time Capsule (Crypto Challenge) owned!
 date: 2022-09-29 00:00:01 +0000
 categories: [hack the box, owned]
 tags: [hack the box, challenge, owned]

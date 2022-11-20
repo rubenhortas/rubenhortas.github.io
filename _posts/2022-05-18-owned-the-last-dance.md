@@ -1,5 +1,5 @@
 ---
-title: Hack The Box: The Last Dance (Crypto Challenge) owned!
+title: Hack The Box - The Last Dance (Crypto Challenge) owned!
 date: 2022-05-18 00:00:01 +0000
 categories: [hack the box, owned]
 tags: [hack the box, challenge, owned]
