@@ -75,11 +75,11 @@ rm ~/.bash_history
 
 # Clear the history when closing the terminal
 
-If we want to keep our terminal history and clear it when whe close the terminal, we can trap the sginal that the terminal sends to the sell.
-To do this we need to edit our ~/.bashrc file and add the following line:
+If we want to keep our terminal history and clear it when whe close the terminal, we can trap the sginal that the terminal sends to the shell.
+To do this we need to edit our ~/.bashrc file and add the following line at the end:
 
 ```shell
-trap 'unset HISTFILE; exit' SIGHUP
+trap 'unset HISTFILE; exit' EXIT
 ```
 
 # Clear the history on log out
@@ -89,6 +89,7 @@ If we want to delete our history when logging out, we can edit our ~/.bash_logou
 ```shell
 rm ~/.bash_history
 ```
+
 > The ~/.bash_history contains commands that are executed when logging out.
 {: prompt-info}
 
@@ -106,13 +107,13 @@ kill -9 $SHELL_PID
 
 # My personal choice
 
-As we can see, there are a lot of aproximations to solve this problem.
+As we can see, there are a lot of ways to solve this problem.
 Keep it for sure that there are more that aren't mentioned here... 
 Some of them more complicated, others more refinated and others are meant for other purposes...
 
-My personal choice, when I'm using bash, is a balance between usability and security, so I choose fully disable the root history and delete the user history on close the terminal (and the session if necessary).
-This way, the root will never have history (and it's not a problem if we are using sudo) and the user will have a terminal and session history.
-This means that the user (I mean we) will be able to repeat commands in a session using the arrow up, for example, thus facilitating its work.
+My personal choice, when I'm using bash, is a balance between usability and security, so I choose fully disable the root history, keep a [relative] low HISTSIZE for the user and delete the user history when close the terminal (and the session if necessary).
+This way, the root will never have history (it's not a problem if we use sudo) and the user will have a temporary terminal and/or session history.
+This means that the user (I mean we) will be able to repeat commands in a session using the history (or the up arrow key) facilitating its work.
 This choice it's something like the zsh default behavior.
 
 _Enjoy! ;)_
