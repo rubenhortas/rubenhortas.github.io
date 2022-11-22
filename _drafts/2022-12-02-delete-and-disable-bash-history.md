@@ -75,7 +75,7 @@ rm ~/.bash_history
 
 # Clear the history when closing the terminal
 
-If we want to keep our terminal history and clear it when whe close the terminal, we can trap the sginal the signal that the terminal sends to the she sell.
+If we want to keep our terminal history and clear it when whe close the terminal, we can trap the sginal that the terminal sends to the sell.
 To do this we need to edit our ~/.bashrc file and add the following line:
 
 ```shell
