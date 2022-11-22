@@ -6,15 +6,15 @@ tags: [awesome, widget, logout-menu-widget, howtos]
 ---
 
 I like to have installed the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) from [Pavel Makhov](https://pavelmakhov.com/) ([@streetturtle](https://github.com/streetturtle))in awesome. 
-I like to can shutdown my machine with a pair of clicks.
+I like to can shut down my machine with a pair of clicks.
 But, it turns out that the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) does not work for me out of the box.
-It's just a configuration problem, and to solve it I have to change a couple of lines in the widget source code (logout-menu.lua file).
+It's just a configuration problem, and, to solve it, I have to change a couple of lines in the widget source code (logout-menu.lua file).
 
 ## Fixing the icon
 
 The first problem that arises is that the icon does not appear.
 It's just a path problem.
-I have my widgets under a widget directory, so I have to change the path in the following line:
+I have my widgets under a /widget directory, so I have to change the path in the following line:
 
 ```lua
 local ICON_DIR = HOME .. '/.config/awesome/awesome-wm-widgets/logout-menu-widget/icons/'
