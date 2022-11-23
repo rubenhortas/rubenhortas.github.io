@@ -73,7 +73,7 @@ rm ~/.bash_history
 > The ~/.bash_logout contains commands that are executed when logging out.
 {: prompt-info}
 
-## Deleting the history
+## Delete the history
 
 If we have disabled our history, we will delete our ~/.bash_history file to delete all the commands that have been registered until now:
 
@@ -86,9 +86,9 @@ rm ~/.bash_history
 
 # Without having permissions to edit ~/.bashrc
 
-## Disablig the history by unsetting the history shell variable
+## Disabling the history unsetting the history shell variable
 
-We can disable our history for our current session by unsetting the history shell variable executing the following command:
+We can disable our history for our current session unsetting the history shell variable executing the following command:
 
 ```shell
 set +o history
@@ -105,7 +105,7 @@ Sending SIGKILL to our shell's PID will kill our shell without being able to do 
 kill -9 $$
 ```
 
->$$ expands to the PID of the shell process executing the command
+>$$ expands to the PID of the shell process executing the command.
 {: prompt-info}
 
 # My personal choice
@@ -117,6 +117,6 @@ Some of them are variations, others are more easy or more complicated, others mo
 My personal choice, when I'm using bash, it's what I believe a balance between usability and security. So I choose fully disable the root history, keeping a (relativelly) low HISTSIZE for the user and deleting the user history when closing the terminal (and the session if necessary).
 This way, the root will never have history (it's not a problem if we use sudo) and the user will have a temporary terminal and/or session history.
 This means that the user (I mean we) will be able to repeat commands in a session using the history (or the up arrow key) facilitating its work.
-This choice it's something like the zsh default behavior.
+This choice it's something similar to the zsh default behavior.
 
 _Enjoy! ;)_
