@@ -5,16 +5,16 @@ categories: [windows10, administration]
 tags: [windows, windows10, administration, shutdown, howtos, administration]
 ---
 
-Sometimes I feel like the last person in the world to know things.
+Sometimes I feel like the last person in the world to find out things.
 This is one of this times...
 
-Windows 10 it was released on 2015, and I still discovered these days that doesn't shut down completelly.
+Windows 10 it was released on 2015, and I still discovered these days that windows doesn't shut down completelly.
 
 By default, when you choose the option "shut down" in Windows 10, Windows 10 doesn't shut down completelly. 
 Windows 10 is doing a partial hibernation through a feature called "fast startup".
 
 Fast startup is a hybrid shutdown. 
-With fast startup, the computer, instead of shutting down completely, enters in a sleep state that will allow it to boot faster the next time.
+With fast startup, the computer, instead of shutting down completely, the computer enters in a sleep state that will allow it to boot faster the next time.
 
 The problem, besides the power consumption, is that a shutdown, a reboot and starting from a suspended state do not perform the same tasks.
 
