@@ -19,7 +19,9 @@ We can clear the current stored history with:
 history -c
 ```
 
-# Ignore some commands
+# Having permissions to edit ~/.bashrc and/or ~/.bash_logout
+
+## Ignore some commands
 
 If we don't want to keep track of certain commands, for example ls and cd, we can edit our ~/.bashrc file and add the following line:
 
@@ -27,28 +29,15 @@ If we don't want to keep track of certain commands, for example ls and cd, we ca
 HISTIGNORE='ls*:cd*'
 ```
 
-# Ignore some commands at will
+## Ignore some commands at will
 
 We can omit record any command lines which begin with a space in our history editing our ~/.bashrc file and adding the following line:
 
 ```
-HISTCONTROL=ignorespace'
+HISTCONTROL='ignorespace'
 ```
 
-# Disable the history by unsetting the history shell variable
-
-We can disable our history for our current session by unsetting the history shell variable executing the following command:
-
-```shell
-set +o history
-```
-
-We can execute this command in a terminal or we can append it to our ~/.bashrc file.
-
-> Use this method is a good solution when we can't edit our ~/.bashrc file
-{: prompt-info}
-
-# Disable history permanently
+## Disable history permanently
 
 To permanently disable the history we need to edit our ~/.bashrc file and set the HISTSIZE variable to 0:
 
@@ -62,7 +51,7 @@ Now, we need to reload our bash settings:
 source ~/.bashrc
 ```
 
-# Deleting the history
+## Deleting the history
 
 If we have disabled our history, we will delete our ~/.bash_history file to delete all the commands that have been registered:
 
@@ -70,10 +59,7 @@ If we have disabled our history, we will delete our ~/.bash_history file to dele
 rm ~/.bash_history
 ```
 
-> Don't forget the history of the root account!
-{: prompt-warning}
-
-# Clear the history when closing the terminal
+## Clear the history when closing the terminal
 
 If we want to keep our terminal history and clear it when whe close the terminal, we can trap the sginal that the terminal sends to the shell.
 To do this we need to edit our ~/.bashrc file and add the following line at the end:
@@ -82,7 +68,7 @@ To do this we need to edit our ~/.bashrc file and add the following line at the 
 trap 'unset HISTFILE; exit' EXIT
 ```
 
-# Clear the history on log out
+## Clear the history on log out
 
 If we want to delete our history when logging out, we can edit our ~/.bash_logout file and add the following command:
 
@@ -90,30 +76,47 @@ If we want to delete our history when logging out, we can edit our ~/.bash_logou
 rm ~/.bash_history
 ```
 
-> The ~/.bash_history contains commands that are executed when logging out.
+> The ~/.bash_logout contains commands that are executed when logging out.
 {: prompt-info}
 
-# Running a terminal without history
+# Without having permissions to edit ~/.bashrc
 
-If we are using a GUI, we can run a free-history terminal, or something like that.
-We can open a terminal, and once we have finished, we can send it a SIGKILL signal, avoiding to keep our commands logged in the history.
+## Disablig the history by unsetting the history shell variable
+
+We can disable our history for our current session by unsetting the history shell variable executing the following command:
 
 ```shell
-kill -9 $SHELL_PID
+set +o history
 ```
 
-> Sending SIGKILL to our shell's PID will kill our shell without being able to do anything (such as save the history or execute ~/.bash_logout).
+We could also append this command to our ~/.bashrc file, but don't have much sense since, if we can edit our ~/.bashrc we can set the HISTSIZE to 0.
+
+> This method is a good solution when we can't edit our ~/.bashrc file
+{: prompt-info}
+
+## SIGKILL
+
+Sending SIGKILL to our shell's PID will kill our shell without being able to do anything (such as save the history or execute ~/.bash_logout).
+
+```shell
+kill -9 $$
+```
+
+>$$ expands to the PID of the shell process executing the command
 {: prompt-info}
 
 # My personal choice
 
 As we can see, there are a lot of ways to solve this problem.
 Keep it for sure that there are more that aren't mentioned here... 
-Some of them more complicated, others more refinated and others are meant for other purposes...
+Some of them are variations, others are more easy or more complicated, others more refinated and others are meant for other purposes...
 
-My personal choice, when I'm using bash, is a balance between usability and security, so I choose fully disable the root history, keep a [relative] low HISTSIZE for the user and delete the user history when close the terminal (and the session if necessary).
+My personal choice, when I'm using bash, it's what I believe a balance between usability and security. So I choose fully disable the root history, keeping a (relativelly) low HISTSIZE for the user and deleting the user history when closing the terminal (and the session if necessary).
 This way, the root will never have history (it's not a problem if we use sudo) and the user will have a temporary terminal and/or session history.
 This means that the user (I mean we) will be able to repeat commands in a session using the history (or the up arrow key) facilitating its work.
 This choice it's something like the zsh default behavior.
+
+> Don't forget the history for the root account!
+{: prompt-warning}
 
 _Enjoy! ;)_
