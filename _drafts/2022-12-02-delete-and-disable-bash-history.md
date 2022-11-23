@@ -6,10 +6,9 @@ tags: [privacy, bash, history]
 ---
 
 Bash history is a log of the commands we have executed in bash.
-By default it stores the last 1000 commands.
-It stores our commands in the ~/.bash_history file.
+By default it stores the last 1000 commands in the ~/.bash_history file.
 
-There is situations on which we don't want to keep a record of our commands and we can delete and/or disable the bash history.
+There is situations on which we don't want to keep a record of our commands, and we can avoid, delete and/or disable the bash history.
 
 # How to clear the history 
 
@@ -23,25 +22,28 @@ history -c
 
 ## Ignore some commands
 
-If we don't want to keep track of certain commands, for example ls and cd, we can edit our ~/.bashrc file and add the following line:
+If we don't want to keep track of certain commands, for example "ls" and "cd", we can edit our ~/.bashrc file and add the following line:
 
-```shell
+```
 HISTIGNORE='ls*:cd*'
 ```
 
 ## Ignore some commands at will
 
-We can omit record any command lines which begin with a space in our history editing our ~/.bashrc file and adding the following line:
+We can omit record any command lines which begin with a space in our history editing our ~/.bashrc file and adding the "ignorespace" option to the HISTCONTROL variable:
 
 ```
 HISTCONTROL='ignorespace'
 ```
 
-## Disable history permanently
+>If HISTCONTROL value is "ignoreboth" means that "ignorespace" and "ignoredups" (ignore duplicated entries) are enabled.
+{: prompt-info}
+
+## Disabling the history permanently
 
 To permanently disable the history we need to edit our ~/.bashrc file and set the HISTSIZE variable to 0:
 
-```shell
+```
 HISTSIZE=0
 ```
 
@@ -51,15 +53,7 @@ Now, we need to reload our bash settings:
 source ~/.bashrc
 ```
 
-## Deleting the history
-
-If we have disabled our history, we will delete our ~/.bash_history file to delete all the commands that have been registered:
-
-```shell
-rm ~/.bash_history
-```
-
-## Clear the history when closing the terminal
+## Clearing the history when closing the terminal
 
 If we want to keep our terminal history and clear it when whe close the terminal, we can trap the sginal that the terminal sends to the shell.
 To do this we need to edit our ~/.bashrc file and add the following line at the end:
@@ -79,6 +73,17 @@ rm ~/.bash_history
 > The ~/.bash_logout contains commands that are executed when logging out.
 {: prompt-info}
 
+## Deleting the history
+
+If we have disabled our history, we will delete our ~/.bash_history file to delete all the commands that have been registered until now:
+
+```shell
+rm ~/.bash_history
+```
+
+> Don't forget the history for the root account!
+{: prompt-warning}
+
 # Without having permissions to edit ~/.bashrc
 
 ## Disablig the history by unsetting the history shell variable
@@ -89,9 +94,7 @@ We can disable our history for our current session by unsetting the history shel
 set +o history
 ```
 
-We could also append this command to our ~/.bashrc file, but don't have much sense since, if we can edit our ~/.bashrc we can set the HISTSIZE to 0.
-
-> This method is a good solution when we can't edit our ~/.bashrc file
+> We could also append this command to our ~/.bashrc file, but don't have much sense since, if we can edit our ~/.bashrc we can set the HISTSIZE to 0.
 {: prompt-info}
 
 ## SIGKILL
@@ -115,8 +118,5 @@ My personal choice, when I'm using bash, it's what I believe a balance between u
 This way, the root will never have history (it's not a problem if we use sudo) and the user will have a temporary terminal and/or session history.
 This means that the user (I mean we) will be able to repeat commands in a session using the history (or the up arrow key) facilitating its work.
 This choice it's something like the zsh default behavior.
-
-> Don't forget the history for the root account!
-{: prompt-warning}
 
 _Enjoy! ;)_
