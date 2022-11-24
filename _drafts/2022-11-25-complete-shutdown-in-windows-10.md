@@ -14,7 +14,7 @@ By default, when you choose the option "shut down" in Windows 10, Windows 10 doe
 Windows 10 is doing a partial hibernation through a feature called "fast startup".
 
 Fast startup is a hybrid shutdown. 
-With fast startup, the computer, instead of shutting down completely, the computer enters in a sleep state that will allow it to boot faster the next time.
+With fast startup enabled, instead of shutting down completely, the computer enters in a sleep state that will allow it to boot faster the next time.
 
 The problem, besides the power consumption, is that a shutdown, a reboot and starting from a suspended state do not perform the same tasks.
 
@@ -23,7 +23,7 @@ The problem, besides the power consumption, is that a shutdown, a reboot and sta
 There are two ways to completely turn off the computer:
  
 * Windows menu > hold the shift key while you click on "shut down"
-* Disable Fast startup: Settings > System > Power Options > Choose what the power > Change settings that are currently unavailable > (Uncheck) Turn on fast startup (recommended)
+* Disabling fast startup: Settings > System > Power Options > Choose what the power > Change settings that are currently unavailable > (Uncheck) Turn on fast startup (recommended)
 
 If you want to know a little more about how shut down and reboot works, and its differences, I recommend you the following videos from [Dave's garage](https://www.youtube.com/c/DavesGarage):
 * [The Windows Triple Fault: plus Restarting vs Rebooting - Why it Matters!](https://www.youtube.com/watch?v=E8gOW0hFoJ0)

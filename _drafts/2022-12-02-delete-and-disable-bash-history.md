@@ -81,9 +81,6 @@ If we have disabled our history, we will delete our ~/.bash_history file to dele
 rm ~/.bash_history
 ```
 
-> Don't forget the history for the root account!
-{: prompt-warning}
-
 # Without having permissions to edit ~/.bashrc
 
 ## Disabling the history unsetting the history shell variable
@@ -118,5 +115,8 @@ My personal choice, when I'm using bash, it's what I believe a balance between u
 This way, the root will never have history (it's not a problem if we use sudo) and the user will have a temporary terminal and/or session history.
 This means that the user (I mean we) will be able to repeat commands in a session using the history (or the up arrow key) facilitating its work.
 This choice it's something similar to the zsh default behavior.
+
+> Don't forget the history for the root account!
+{: prompt-warning}
 
 _Enjoy! ;)_
