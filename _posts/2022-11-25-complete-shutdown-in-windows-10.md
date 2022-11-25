@@ -23,7 +23,7 @@ The problem, besides the power consumption, is that a shutdown, a reboot and sta
 There are two ways to completely turn off the computer:
  
 * Windows menu > hold the shift key while you click on "shut down"
-* Disabling fast startup: Settings > System > Power Options > Choose what the power > Change settings that are currently unavailable > (Uncheck) Turn on fast startup (recommended)
+* Disabling fast startup: Settings > System > Power Options > Choose what the power buttons do > Change settings that are currently unavailable > (Uncheck) Turn on fast startup (recommended)
 
 If you want to know a little more about how shut down and reboot works, and its differences, I recommend you the following videos from [Dave's garage](https://www.youtube.com/c/DavesGarage):
 * [The Windows Triple Fault: plus Restarting vs Rebooting - Why it Matters!](https://www.youtube.com/watch?v=E8gOW0hFoJ0)
