@@ -91,7 +91,7 @@ We can disable our history for our current session unsetting the history shell v
 set +o history
 ```
 
-> We could also append this command to our ~/.bashrc file, but don't have much sense since, if we can edit our ~/.bashrc we can set the HISTSIZE to 0.
+> We could also append this command to our ~/.bashrc file, but don't have much sense, since if we can edit our ~/.bashrc, we can set the HISTSIZE to 0.
 {: .prompt-info}
 
 ## SIGKILL
