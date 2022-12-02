@@ -37,7 +37,7 @@ HISTCONTROL='ignorespace'
 ```
 
 >If HISTCONTROL value is "ignoreboth" means that "ignorespace" and "ignoredups" (ignore duplicated entries) are enabled.
-{: prompt-info}
+{: .prompt-info}
 
 ## Disabling the history permanently
 
@@ -71,7 +71,7 @@ rm ~/.bash_history
 ```
 
 > The ~/.bash_logout contains commands that are executed when logging out.
-{: prompt-info}
+{: .prompt-info}
 
 ## Delete the history
 
@@ -92,7 +92,7 @@ set +o history
 ```
 
 > We could also append this command to our ~/.bashrc file, but don't have much sense since, if we can edit our ~/.bashrc we can set the HISTSIZE to 0.
-{: prompt-info}
+{: .prompt-info}
 
 ## SIGKILL
 
@@ -103,7 +103,7 @@ kill -9 $$
 ```
 
 >$$ expands to the PID of the shell process executing the command.
-{: prompt-info}
+{: .prompt-info}
 
 # My personal choice
 
@@ -117,6 +117,6 @@ This means that the user (I mean we) will be able to repeat commands in a sessio
 This choice it's something similar to the zsh default behavior.
 
 > Don't forget the history for the root account!
-{: prompt-warning}
+{: .prompt-warning }
 
 _Enjoy! ;)_
