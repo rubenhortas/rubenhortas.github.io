@@ -32,11 +32,11 @@ If you want to enable [DNS-over-HTTPS (DoH)](https://en.wikipedia.org/wiki/DNS_o
 
 # DoH providers
 
-Although you can add your preferred server, Firefox provides [DNS-over-HTTPS (DoH)](https://en.wikipedia.org/wiki/DNS_over_HTTPS) by default through:
+Although you can add your preferred server, Firefox provides [DoH](https://en.wikipedia.org/wiki/DNS_over_HTTPS) by default through:
 * [Cloudflare](https://www.cloudflare.com)
 * [NextDNS](https://nextdns.io/)
 
-Other [DNS-over-HTTPS (DoH)](https://en.wikipedia.org/wiki/DNS_over_HTTPS) providers:
+Other [DoH](https://en.wikipedia.org/wiki/DNS_over_HTTPS) providers:
 * [Google public DNS](https://developers.google.com/speed/public-dns/)
 * [Quad9](https://www.quad9.net/)
 * [CleanBrowsing](https://cleanbrowsing.org/)
