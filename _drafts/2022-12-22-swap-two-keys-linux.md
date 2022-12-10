@@ -15,7 +15,7 @@ This means that the windows key is an essential key, and one of the most used ke
 So, I needed to remap my keboard and swap the win key and the left alt key.
 Fortunately, it's an easy fix, and with setxkbmap, we can swap this two keys executing the following command:
 
-``shell
+```shell
 setxkbmap -option altwin:swap_lalt_lwin
 ```
 
