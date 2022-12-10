@@ -5,6 +5,8 @@ categories: [privacy, firefox]
 tags: [privacy, firefox, doh, dns, https]
 ---
 
+# DoH
+
 When you type a web address or domain name into your address bar (example: [www.mozilla.org](http://www.mozilla.org)), your browser sends a request over the Internet to look up the IP address for that website.
 Traditionally, this request is sent to servers over a plain text connection.
 This connection is not encrypted, making it easy for third-parties to see what website you’re about to access.
@@ -24,7 +26,21 @@ We also have to keep in mind that our browsing information could be leaked in ma
 
 As always, I leave the decission to activate [DoH](https://en.wikipedia.org/wiki/DNS_over_HTTPS) up to you.
 
+# How to enable DoH in Firefox
+
 If you want to enable [DNS-over-HTTPS (DoH)](https://en.wikipedia.org/wiki/DNS_over_HTTPS) in firefox, there is a step by step howto on [mozilla's support page](https://support.mozilla.org): [Firefox DNS-over-HTTPS](https://support.mozilla.org/en-US/kb/firefox-dns-over-https)
 
+# DoH providers
+
+Although you can add your preferred server, Firefox provides [DNS-over-HTTPS (DoH)](https://en.wikipedia.org/wiki/DNS_over_HTTPS) by default through:
+* [Cloudflare](https://www.cloudflare.com)
+* [NextDNS](https://nextdns.io/)
+
+Other [DNS-over-HTTPS (DoH)](https://en.wikipedia.org/wiki/DNS_over_HTTPS) providers:
+* [Google public DNS](https://developers.google.com/speed/public-dns/)
+* [Quad9](https://www.quad9.net/)
+* [CleanBrowsing](https://cleanbrowsing.org/)
+
+*Thanks to [Rodrigo Rega](https://rodrigorega.es/) for the tips! ;)*
 
 _Enjoy! ;)_
