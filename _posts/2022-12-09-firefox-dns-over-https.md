@@ -5,7 +5,7 @@ categories: [privacy, firefox]
 tags: [privacy, firefox, doh, dns, https]
 ---
 
-When you type a web address or domain name into your address bar (example: [www.mozilla.org](www.mozilla.org)), your browser sends a request over the Internet to look up the IP address for that website.
+When you type a web address or domain name into your address bar (example: [www.mozilla.org](http://www.mozilla.org)), your browser sends a request over the Internet to look up the IP address for that website.
 Traditionally, this request is sent to servers over a plain text connection.
 This connection is not encrypted, making it easy for third-parties to see what website you’re about to access.
 
