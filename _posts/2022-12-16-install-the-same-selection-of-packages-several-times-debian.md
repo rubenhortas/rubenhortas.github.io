@@ -15,7 +15,8 @@ First, we save the list of installed packages on the computer:
 $ dpkg --get-selections > pkg-list
 ```
 
-Next, If we want to install these packages in another computer,we transfer the pkg-list file onto the computers we want to update:
+Next, If we want to install these packages in another computer,we transfer the pkg-list file onto the computers we want to update.
+And, in the other computer:
 
 # Update dpkg's database of known packages.  
 Record the list of available packages in the dpkg database:
