@@ -1,6 +1,6 @@
 ---
 title: Install the same selection of packages several times on Debian
-date: 2022-12-15 00:00:01 +0000
+date: 2022-12-16 00:00:01 +0000
 categories: [debian, administration]
 tags: [debian, administration, apt, packages]
 ---

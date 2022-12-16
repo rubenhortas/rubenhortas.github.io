@@ -1,6 +1,6 @@
 ---
 title: Swap two keys in GNU/Linux
-date: 2022-12-22 00:00:01 +0000
+date: 2022-12-23 00:00:01 +0000
 categories: [debian, administration]
 tags: [debian, administration, setxkbmap, keyboard]
 ---
