@@ -4,7 +4,7 @@ date: 2022-12-17 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, misc, htb, misdirection]
 img_path: /assets/img/posts/
---
+---
 
 >During an assessment of a unix system the HTB team found a suspicious directory. They looked at everything within but couldn't find any files with malicious intent.
 
