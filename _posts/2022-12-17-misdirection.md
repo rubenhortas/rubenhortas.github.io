@@ -21,5 +21,4 @@ When we get the flag string we'll see that is encoded in base64 so we'll need to
 
 We can solve it by hand but, to automate it, I did a self-explained python script that you can see at [secret_finder.py](https://github.com/rubenhortas/hackthebox/blob/main/misDirection/secret_finder.py)
 
-
 _Enjoy! ;)_
