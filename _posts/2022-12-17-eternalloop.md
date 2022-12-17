@@ -1,4 +1,4 @@
-----
+---
 title: Hack the box Eternal Loop
 date: 2022-12-17 00:00:01 +0000
 categories: [hack the box, challenge]
@@ -9,7 +9,7 @@ img_path: /assets/img/posts/
 >Can you find a way out of this loop?
 
 If we extract the Eternal Loop.zip file we found the 37366.zip file. This file is password protected and contains the 5900.zip file.  
-We don't know the 37366.zip password. We'll try with 5900... It works!  
+We don't know the 37366.zip password... We'll try with 5900... It works!  
 Now we know that the zip file will be the name of the inner file.  
 
 Ok, the challenge now is unzip the files until we get the last file. We can do this by hand, but, **spoiler alert**: There will be 501 zips!  

@@ -20,6 +20,6 @@ Let's suppose that, if the subfolder it's not empty, the subfolder name will be 
 When we get the flag string we'll see that is encoded in base64 so we'll need to decode it to get the flag.
 
 We can solve it by hand but, to automate it, I did a self-explained python script that you can see at [secret_finder.py](https://github.com/rubenhortas/hackthebox/blob/main/misDirection/secret_finder.py)
-_Source: [The Debian administrator's handbook - 6.2. aptitude, apt-get, and apt Commands](https://debian-handbook.info/browse/stable/sect.apt-get.html#sect.apt.install)_
+
 
 _Enjoy! ;)_
