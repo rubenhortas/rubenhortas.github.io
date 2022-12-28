@@ -1,5 +1,5 @@
 ---
-title: Hack the box Eternal Loop
+title: Hack the box Eternal Loop solution
 date: 2022-12-17 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, misc, htb, Eternal loop, john, zip2john, rockyou, sqlite, sqlite3]
