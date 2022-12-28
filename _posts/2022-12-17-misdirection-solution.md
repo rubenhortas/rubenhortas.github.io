@@ -1,7 +1,7 @@
 ---
 title: Hack the box misDIRection solution
 date: 2022-12-17 00:00:01 +0000
-categories: [hack the box, challenge]
+categories: [hack the box, challenge solution]
 tags: [hack the box, challenge, misc, htb, misdirection]
 img_path: /assets/img/posts/
 ---
