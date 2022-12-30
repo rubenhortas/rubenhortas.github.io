@@ -13,7 +13,7 @@ We don't know the 37366.zip password... We'll try with 5900... It works!
 Now we know that the zip file will be the name of the inner file.  
 
 Ok, the challenge now is unzip the files until we get the last file. We can do this by hand, but, **spoiler alert**: There will be 501 zips!  
-To do this I did a self-explained python script that you can see here: [EternalLoop.py](https://github.com/rubenhortas/hackthebox/blob/main/eternalLoop/eternal_loop.py)
+To do this I did a self-explained python script that you can see here: [eternal_loop.py](https://github.com/rubenhortas/hackthebox/blob/main/eternalLoop/eternal_loop.py)
 
 Once we have the last file, surprise, is password protected. 
 This time we have not clue what the password might be, so we'll bruteforce it.
