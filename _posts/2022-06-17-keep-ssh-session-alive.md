@@ -1,7 +1,7 @@
 ---
 title: Keep alive ssh sessions
 date: 2022-06-17 00:00:01 +0000
-categories: [ssh, configuration]
+categories: [gnu/linux, ssh]
 tags: [ssh, howtos, configuration, howtos]
 ---
 
