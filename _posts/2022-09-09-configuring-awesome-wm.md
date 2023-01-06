@@ -39,11 +39,12 @@ beautiful.init("/home/ruben/.config/awesome/themes/ruben/theme.lua")
 ```
 
 ## Window layouts
-I only use the maximized layout, so in the section /usr/share/awesome/themes/default/theme.lua I comment all the others:
+Mostly, I only use the maximized layout, but I leave the floating layout for applications that starts with a login dialog, the calculator, and so. 
+So in the section /usr/share/awesome/themes/default/theme.lua I comment all the others:
 
 ```lua
  awful.layout.layouts = {
-     -- awful.layout.suit.floating,
+     awful.layout.suit.floating,
      -- awful.layout.suit.tile,
      -- awful.layout.suit.tile.left,
      -- awful.layout.suit.tile.bottom,
@@ -52,7 +53,7 @@ I only use the maximized layout, so in the section /usr/share/awesome/themes/def
      -- awful.layout.suit.fair.horizontal,
      -- awful.layout.suit.spiral,
      -- awful.layout.suit.spiral.dwindle,
-      awful.layout.suit.max,
+     awful.layout.suit.max,
      -- awful.layout.suit.max.fullscreen,
      -- awful.layout.suit.magnifier,
      -- awful.layout.suit.corner.nw,
