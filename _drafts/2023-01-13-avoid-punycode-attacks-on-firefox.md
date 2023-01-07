@@ -1,9 +1,7 @@
---e
-t Mozilla wiki page summarising the current anti-phishing implementations and possible plans for the futureitle: Avoid punycode attacks on firefox
+---
 date: 2023-01-13 00:00:01 +0000
 categories: [hardening, firefox]
 tags: [hardening, firefox, punycode]
-img_path: /assets/img/posts/
 ---
 
  # What is punycode?
@@ -16,9 +14,9 @@ the [punycode][1] syntax is a method of encoding string containign Unicode chara
 In other words, [punycode][1] is a method to convert words that can't be written in ASCII (because they use Unicode characters) into ASCII encoding words for use as domain names.
 For example: 
 
-| UTF8                   | Punycode                           | 
-----------------------------------------------------------------
-| rubénhortas.github.io  | https://xn--rubnhortas-d7a.github.io
+| UTF8                   | Punycode                             | 
+-------------------------|--------------------------------------|
+| rubénhortas.github.io  | https://xn--rubnhortas-d7a.github.io |
 
 
 # What is a punycode attack?
@@ -46,6 +44,7 @@ The point is that, with my system configuration, in Firefox I'm unable to distin
 {: .prompt-info}
 
 Although I understand the need and utility of [punycode][1] I don't need this behaviour, and I want it off to reduce my expousure to [homograph attacks][2]. 
+
 To force Firefox to display punycode names we should open the about:config tab and set
 
 ```
