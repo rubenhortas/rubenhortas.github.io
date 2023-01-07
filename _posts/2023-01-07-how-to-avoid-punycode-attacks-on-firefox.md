@@ -1,4 +1,5 @@
 ---
+title: How to avoid punycode attacks on firefox
 date: 2023-01-07 00:00:01 +0000
 categories: [hardening, firefox]
 tags: [hardening, firefox, punycode]
