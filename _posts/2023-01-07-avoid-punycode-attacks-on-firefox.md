@@ -1,5 +1,5 @@
 ---
-date: 2023-01-13 00:00:01 +0000
+date: 2023-01-07 00:00:01 +0000
 categories: [hardening, firefox]
 tags: [hardening, firefox, punycode]
 ---
@@ -36,7 +36,7 @@ The Unicode consortium provides a long list of confusable glyphs: [confusableWho
 This bug was reported to Chrome and Firefox on January 20, 2017.
 And was fixed in the Chrome trunk on March 24.
 
-Mozilla has a wiki page explaining how Firefox decides whether to display a given IDN label (a domain name is made up of one or more labels, separated by dots) in its Unicode (i.e. normal) or punycode (i.e. gobbledigook) form: [Mozilla IDN Display Algorithm](https://wiki.mozilla.org/IDN_Display_Algorithm).
+Mozilla has a wiki page explaining how Firefox decides whether to display a given IDN label (a domain name is made up of one or more labels, separated by dots) in its Unicode or punycode form: [Mozilla IDN Display Algorithm](https://wiki.mozilla.org/IDN_Display_Algorithm).
 
 The point is that, with my system configuration, in Firefox I'm unable to distinguish the real [https://www.apple.com](https://www.apple.com) from the Xudong Zheng example [https://www.аррӏе.com/](https://www.аррӏе.com/). While chrome and chromium shows [https://www.xn--80ak6aa92e.com/](https://www.xn--80ak6aa92e.com/) instead [https://www.аррӏе.com/](https://www.аррӏе.com/).
 
