@@ -6,4 +6,4 @@ tags: [draft] # TAG names should always be lowercase
 img_path: /assets/img/posts/
 ---
 
-_Enjoy! ;)_
+*Enjoy! ;)*
