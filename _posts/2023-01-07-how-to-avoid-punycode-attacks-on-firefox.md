@@ -5,7 +5,7 @@ categories: [hardening, firefox]
 tags: [hardening, firefox, punycode]
 ---
 
- # What is punycode?
+# What is punycode?
 
 [Punycode][1] is a representation of Unicode with the limited ASCII character subset used for Internet hostnames.
 Using [punycode][1] host names containing Unicode characters are transcoded to a subset of ASCII consisting of letters, digits and hypens, which is called LHD (Letter Digit Hypen) subset.
