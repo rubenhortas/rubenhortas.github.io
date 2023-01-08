@@ -1,5 +1,5 @@
 ---
-title: What does "2&gt;&amp;1" mean?
+title: Redirect stderr to stdout
 date: 2022-10-21 00:00:01 +0000
 categories: [unix, bash]
 tags: [unix bash] 
