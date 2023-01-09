@@ -41,7 +41,7 @@ And, if we want to discard the exit of the command we can send it to the "bitbuc
 command > /dev/null  2>&1
 ```
 
-> /dev/null is a pseudo device (or virtual device) file in GNU/Linux. 
+> /dev/null is a pseudo device (or virtual device) file in GNU/Linux.   
 > /dev/null works like a black hole, as soon as any data is written to /dev/null the data is deleted.
 {: .prompt-info}
 
