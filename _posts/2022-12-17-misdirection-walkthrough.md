@@ -1,5 +1,5 @@
 ---
-title: Hack the box misDIRection solution
+title: Hack the box misDIRection walkthrough
 date: 2022-12-17 00:00:01 +0000
 categories: [hack the box, challenge solution]
 tags: [hack the box, challenge, misc, htb, misdirection]
