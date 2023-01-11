@@ -35,10 +35,16 @@ But this will redirect the standard error (stderr) to a file named 1.
 command 2>&1
 ```
 
-And, if we want to discard the exit of the command we can send it to the "bitbucket" (also known as /dev/null):
+And, if we want to discard all the command exit (stdin and stdout) we can send it to the "bitbucket" (also known as /dev/null):
 
 ```shell
 command > /dev/null  2>&1
+```
+
+Although, if we want to discard all the command exit (stdin and stdout), another way (and, inmho, the most correct way) would be:
+
+```shell
+command &>/dev/null
 ```
 
 > /dev/null is a pseudo device (or virtual device) file in GNU/Linux.   
