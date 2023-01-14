@@ -30,7 +30,7 @@ $ sudo cp /usr/share/awesome/themes/default/theme.lua ~/.config/awesome/themes/r
 In this section we will edit the ~/.config/awesome/rc.lua file.
 
 ## Setting the theme
-We need to set our theme path as the parameter passed to beautitul.init:
+We need to set our theme path as the parameter passed to beautiful.init:
 
 ```lua
 beautiful.init("/home/ruben/.config/awesome/themes/ruben/theme.lua")
