@@ -165,7 +165,9 @@ For example, if we want a shortcut to firefox, we will edit the Key bindings sec
 awful.key({ modkey }, "f", function() awful.util.spawn("firefox") end,
           {description = "firefox", group = "internet"})
 ```
-* Be careful in this step. The previous entry has to end with a colon, and the last entry in this section has to end without colon.
+
+> Be careful in this step. The previous entry has to end with a colon, and the last entry in this section has to end without colon.
+{: .prompt-warning }
 
 ## Mapping applications to screen tags
 
