@@ -16,9 +16,7 @@ So where do we start to configure it?
 We will store our configuration file and theme under the .config/ folder in our /home
 
 ```shell
-$ mkdir ~/.config/awesome    
-$ mkdir ~/.config/awesome/themes
-$ mkdir ~/.config/awesome/themes/ruben
+$ mkdir -p ~/.config/awesome/themes/ruben
 ```
 
 Now, we will copy the default awesome configuration file and theme to edit them and configure to our liking.
