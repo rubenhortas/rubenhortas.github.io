@@ -9,7 +9,7 @@ tags: [hardening, firefox, punycode]
 
 [Punycode][1] is a representation of Unicode with the limited ASCII character subset used for Internet hostnames.
 Using [punycode][1] host names containing Unicode characters are transcoded to a subset of ASCII consisting of letters, digits and hypens, which is called LHD (Letter Digit Hypen) subset.
-The DNS (Domain Name System) standars recommend the use of the LDH subset of ASCII.
+The DNS (Domain Name System) standards recommend the use of the LDH subset of ASCII.
 the [punycode][1] syntax is a method of encoding string containign Unicode characters into the LDH subset of ASCII.
  
 In other words, [punycode][1] is a method to convert words that can't be written in ASCII (because they use Unicode characters) into ASCII encoding words for use as domain names.
@@ -23,7 +23,7 @@ For example:
 # What is a punycode attack?
 
 A punycode attack is a type of [homograph attack][2].
-Some unicode characters are very similiar to ASCCI characters, making them difficult to distinguish with the naked eye. 
+Some unicode characters are very similiar to ASCII characters, making them difficult to distinguish with the naked eye. 
 
 As the security researcher Xudong Zheng demonstrates on his post [Phishing with Unicode Domains](https://www.xudongz.com/blog/2017/idn-phishing/) it's possible to register domains such as "xn–pple-43d.com", which is equivalent to "аpple.com". 
 It may not be obvious at first glance, but "аpple.com" uses the Cyrillic "а" (U+0430) rather than the ASCII "a" (U+0061).
