@@ -1,7 +1,7 @@
 ---
 title: fail2bangeolocation
 date: 2022-07-16 00:00:01 +0000
-categories: [personal, developments]
+categories: [personal, portfolio]
 tags: [personal, developments, fail2bangeolocation, fail2ban, geolocation]
 img_path: /assets/img/posts/
 ---

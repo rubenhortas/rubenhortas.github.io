@@ -1,7 +1,7 @@
 ---
 title: Awesome IP widget
 date: 2022-04-30 00:00:01 +0000
-categories: [personal, developments]
+categories: [personal, portfolio]
 tags: [awesomewm, widgets, personal, developments]
 img_path: /assets/img/posts/
 ---
