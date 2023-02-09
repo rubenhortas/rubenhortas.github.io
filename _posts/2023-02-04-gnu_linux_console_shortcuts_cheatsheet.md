@@ -37,4 +37,7 @@ Some useful shortcuts to speed up our console use.
 
 `[CTRL] + l` Clear the terminal.
 
+> There are many more shortcuts (and they are console dependent). I only put the most useful for me.
+{: .prompt-info}
+
 *Enjoy! ;)*

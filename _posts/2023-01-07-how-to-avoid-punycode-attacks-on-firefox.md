@@ -19,7 +19,6 @@ For example:
 -------------------------|--------------------------------------|
 | rubénhortas.github.io  | https://xn--rubnhortas-d7a.github.io |
 
-
 # What is a punycode attack?
 
 A punycode attack is a type of [homograph attack][2].
