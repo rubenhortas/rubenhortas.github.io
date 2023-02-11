@@ -21,7 +21,7 @@ Useful shortcuts for Windows 10 and 11
 * `[WIN] + [TAB]` Open task list.
 * `[SHIFT] + [DEL]` Delete selected item without sending it to the trash.
 
-> I only put the most useful shortcuts for me. If you want to know more windows shortcuts you can start reding [Keyboard shortcuts in Windows]("https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec").
+> I only put the most useful shortcuts for me. If you want to know more windows shortcuts you can start reding [Keyboard shortcuts in Windows](https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec).
 {: .prompt-info}
 
 *Enjoy! ;)*
