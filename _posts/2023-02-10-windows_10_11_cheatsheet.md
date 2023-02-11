@@ -10,6 +10,7 @@ Useful shortcuts for Windows 10 and 11
 * `[WIN] + d` Hide apps and show desktop or vice versa.
 * `[WIN] + e` Open file explorer.
 * `[WIN] + l` Lock session.
+* `[WIN] + r` Show the run box.
 * `[WIN] + t` Cycle through the apps in the task list.
 * `[WIN] + v` Show clipboard history.
 * `[WIN] + x` Open the right click options of the Start menu.
@@ -20,7 +21,7 @@ Useful shortcuts for Windows 10 and 11
 * `[WIN] + [TAB]` Open task list.
 * `[SHIFT] + [DEL]` Delete selected item without sending it to the trash.
 
-> There are many more shortcuts. I only put the most useful for me.
+> I only put the most useful shortcuts for me. If you want to know more windows shortcuts you can start reding [Keyboard shortcuts in Windows]("https://support.microsoft.com/en-us/windows/keyboard-shortcuts-in-windows-dcc61a57-8ff0-cffe-9796-cb9706c75eec").
 {: .prompt-info}
 
 *Enjoy! ;)*
