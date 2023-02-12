@@ -9,4 +9,6 @@ img_path: /assets/img/posts/
 ![Challenge results](owned-eternal-loop.png){: width="700" height="600" .shadow}
 _Eternal Loop has been Pwned_
 
+You can read how I solved it in: [Hack the box Eternal Loop walkthrough](https://rubenhortas.github.io/posts/eternalloop-walkthrough/)
+
 _Enjoy! ;)_
