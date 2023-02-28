@@ -2,7 +2,7 @@
 title: XOR known-plaintext attack
 date: 2022-05-20 00:00:01 +0000
 categories: [cryptography, xor]
-tags: [vulnerabilities, xor, security, personal]
+tags: [cryptography, xor, security, vulnerabilities]
 img_path: /assets/img/posts/
 ---
 

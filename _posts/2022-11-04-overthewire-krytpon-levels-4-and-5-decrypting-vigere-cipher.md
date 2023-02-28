@@ -1,8 +1,8 @@
 ---
-title: Decrypting vigenere cipher
+title: Overthewire krypton levels 4 and 5: decrypting vigenere cipher
 date: 2022-11-04 00:00:01 +0000
-categories: [cryptography, vigenere]
-tags: [cryptography, vigenere, overthewire, krypton, personal, developments] 
+categories: [overthewire, krypton]
+tags: [overthewire, krypton, cryptography, vigenere, developments] 
 ---
 
 In my free time I like to play around in [CTF (Capture The Flag or Wargames)](https://en.wikipedia.org/wiki/Capture_the_flag_(cybersecurity)) platforms, learning a bit and, whith a bit of luck, solving some level or challenge.
@@ -76,4 +76,4 @@ I'd like to think so. In the process of solving these challenges I was very ente
 
 To solve the [Krypton](https://overthewire.org/wargames/krypton/) [Level 4](https://overthewire.org/wargames/krypton/krypton4.html) and [Krypton Level 5](https://overthewire.org/wargames/krypton/krypton5.html) I did a python script that you can see at [vigenere_decrypter.py](https://github.com/rubenhortas/python_examples/blob/master/cryptography/vigenere_decrypter.py)
 
-_Enjoy! ;)_
+*Enjoy! ;)*
