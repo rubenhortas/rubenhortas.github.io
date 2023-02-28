@@ -1,5 +1,5 @@
 ---
-title: Overthewire krypton level 6: LFSR
+title: Overthewire krypton level 6 LFSR
 date: 2023-03-03 00:00:01 +0000
 categories: [overthewire, krypton] 
 tags: [overthewire, krypton, lfsr, cryptography]

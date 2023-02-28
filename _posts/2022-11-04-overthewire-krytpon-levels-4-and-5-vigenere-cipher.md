@@ -1,5 +1,5 @@
 ---
-title: Overthewire krypton levels 4 and 5: decrypting vigenere cipher
+title: Overthewire krypton levels 4 and 5 Vigenere cipher
 date: 2022-11-04 00:00:01 +0000
 categories: [overthewire, krypton]
 tags: [overthewire, krypton, cryptography, vigenere, developments] 
