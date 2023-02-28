@@ -145,8 +145,8 @@ And our key is... **An empty file. FAIL!**
 Ok, that doesn't seem to work with numbers, so let's try with letters:
 
 ```shell
-krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('A'*50)" > /tmp/rhrubenhortas/as_pt.txt
-krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 /tmp/rh/as_pt.txt /tmp/rubenhortas/as_ct.txt
+krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('A'*50)" > /tmp/rubenhortas/as_pt.txt
+krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 /tmp/rubenhortas/as_pt.txt /tmp/rubenhortas/as_ct.txt
 krypton6@bandit:/tmp/rubenhortas$ cat as_pt.txt 
 AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
 krypton6@bandit:/tmp/rubenhortas$ cat as_ct.txt 
@@ -154,8 +154,8 @@ EICTDGYIYZKTHNSIRFXYCPFUEOCKRNEICTDGYIYZKTHNSIRFXY
 ```
 
 ```shell
-krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('B'*50)" > /tmp/rhrubenhortas/bs_pt.txt
-krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 /tmp/rh/bs_pt.txt /tmp/rubenhortas/bs_ct.txt
+krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('B'*50)" > /tmp/rubenhortas/bs_pt.txt
+krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 /tmp/rubenhortas/bs_pt.txt /tmp/rubenhortas/bs_ct.txt
 krypton6@bandit:/tmp/rubenhortas$ cat bs_pt.txt 
 BBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBBB
 krypton6@bandit:/tmp/rubenhortas$ cat bs_ct.txt 
@@ -163,8 +163,8 @@ FJDUEHZJZALUIOTJSGYZDQGVFPDLSOFJDUEHZJZALUIOTJSGYZ
 ```
 
 ```shell
-krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('C'*50)" > /tmp/rhrubenhortas/cs_pt.txt
-krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 /tmp/rh/cs_pt.txt /tmp/rubenhortas/cs_ct.txt
+krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('C'*50)" > /tmp/rubenhortas/cs_pt.txt
+krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 /tmp/rubenhortas/cs_pt.txt /tmp/rubenhortas/cs_ct.txt
 krypton6@bandit:/tmp/rubenhortas$ cat cs_pt.txt 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
 krypton6@bandit:/tmp/rubenhortas$ cat cs_ct.txt 
@@ -174,11 +174,11 @@ GKEVFIAKABMVJPUKTHZAERHWGQEMTPGKEVFIAKABMVJPUKTHZA
 We can see some curious things:
 
 * If we encrypt the same input (or plaintext) many times we'll see the same output (or ciphertext) → We can forget about the random part for the key
-* The ciphertext will be repeated from the 30th character → The key will have a max length of 30 characters
-   For example, the `as_ciphertext.txt`: 
-   **EICTDGYIYZKTHNSIRFXYCPFUEOCKRN**EICTDGYIYZKTHNSIRFXY →
-   → EICTDGYIYZKTHNSIRFXYCPFUEOCKRN
-   → EICTDGYIYZKTHNSIRFXY
+* The ciphertext will be repeated from the 30th character → The key will have a max length of 30 characters  
+   For example, the `as_ciphertext.txt`:  
+   **EICTDGYIYZKTHNSIRFXYCPFUEOCKRN**EICTDGYIYZKTHNSIRFXY →  
+   → EICTDGYIYZKTHNSIRFXYCPFUEOCKRN  
+   → EICTDGYIYZKTHNSIRFXY  
    
    So, we can short our plaintexts and ciphertext to 30, to make our work easier:
    
@@ -221,7 +221,7 @@ the output (or ciphertext) will also increased by one character.
    
 So, we can asume that the difference between the plaintext and the ciphertext will be constant.
 
-I think, at this point we can solve this challenge with [linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis), [differential cryptanalisys](https://en.wikipedia.org/wiki/Differential_cryptanalysis)differencial or [Berlekamp–Massey algorithm](https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm)...
+I think, at this point we can solve this challenge with [linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis), [differential cryptanalisys](https://en.wikipedia.org/wiki/Differential_cryptanalysis) or [Berlekamp–Massey algorithm](https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm)...
 I don't know for sure.
 I was researching (and reading algebraic theories beyond my means) when I did another test that gave me a clue to find a easier solution:
 
