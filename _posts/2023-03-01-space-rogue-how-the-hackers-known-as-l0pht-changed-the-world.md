@@ -20,7 +20,7 @@ The fact is that on the front and back covers this binary code appears:
 1100001000000111000001110010011000010110001101110100011010010110001101100001011011000010000001110011011010010110111001100011011001010010000000110001001110010011100100110010
 ```
 
-After reading the book, and knowing (a bit) Space Rogue and the l0pht, people, it could not be simple gibberish.
+After reading the book, and knowing (a bit) about [Space Rogue](https://en.wikipedia.org/wiki/Cris_Thomas) and the [l0pht](https://en.wikipedia.org/wiki/L0pht) people, it could not be simple gibberish.
 So, I took a while and started to transcribe and decipher it, and the result is:
 
 ```
