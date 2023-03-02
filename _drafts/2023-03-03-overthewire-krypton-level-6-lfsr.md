@@ -90,17 +90,22 @@ There is a pattern!
 
 > 8 bit LFSR
 
-* 8 bit [LFSR (Linear Feedback Shift Register)](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)  
-  [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)  is used as a pseudo-random number generator for use in stream ciphers, but, as the register has a fine number of pssible states **it must eventually enter a repeating cycle**.
-  This means that the numbers generated are periodic. A maximum-lenght LFSR will produce an m-secuence, so a 8 bit LFSR will produce a 8 bit sequence.
-  The most commonly used linear function of single bits is exclusive-or (XOR ⊕).
-  Thus, an [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) is most often a shift register whose input bit is driven by the XOR of some bits of the overall shift register value.
-  
-  >Given a stretch of known plaintext and corresponding ciphertext, an attacker can intercept and recover a stretch of LFSR output stream used in the system described, and from that stretch of the output stream can construct an LFSR of minimal size that simulates the intended receiver by using the Berlekamp-Massey algorithm. This LFSR can then be fed the intercepted stretch of output stream to recover the remaining plaintext.
-
 ### [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
 
-[LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) work by feeding on their own output.
+>[LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) is used as a pseudo-random number generator for use in stream ciphers, 
+but, as the register has a fine number of pssible states **it must eventually enter a repeating cycle**.
+>This means that **the numbers generated are periodic**. 
+>A maximum-lenght LFSR will produce an m-secuence, so **a 8 bit LFSR will produce a 8 bit sequence**.
+**The most commonly used linear function of single bits is exclusive-or (XOR ⊕)**.
+>Thus, an [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) is most often a shift register whose input bit 
+is driven by the XOR of some bits of the overall shift register value.
+  
+>Given a stretch of known plaintext and corresponding ciphertext, an attacker can intercept and recover a stretch of LFSR output stream 
+used in the system described, and from that stretch of the output stream can construct an LFSR of minimal size that simulates 
+the intended receiver by using the Berlekamp-Massey algorithm. This LFSR can then be fed the intercepted stretch of output stream 
+to recover the remaining plaintext.
+
+[LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) works by feeding on their own output.
 They are constructed in a way that makes them endlessly cycle through a pattern of values while outputting that seemingly random pattern.
 
 There's a very graphic and good explanation about how a [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) works in [Random Numbers with LFSR (Linear Feedback Shift Register) - Computerphile](https://www.youtube.com/watch?v=Ks1pw1X22y4).
