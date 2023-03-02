@@ -85,15 +85,20 @@ then a further xor will produce the plaintext once again**.
 
 * It's a symmetric cipher
 * It's a block cipher → Block ciphers use a fixed key to perform substituion and transposition ciphers on each block discretely
-* It's a stream cipher where the "random" key byte (k) is xor'd with the plain text (pt) to produce the ciphertext (ct) → k ⊕ pt = ct
-* k is a **"random"** keystream.
-* If the random keystream (k) can be replicated at the recieving end, then a further xor will produce the plaintext once again 
-→ k ⊕ pt = ct → pt ⊕ ct = k
+* It's a stream cipher where the "random" key byte (k) is xor'd with the plain text (pt) to produce the ciphertext (ct)
+  ``` 
+  k ⊕ pt = ct
+  ```
+* k is a **"*random*"** keystream.
+* If the random keystream (k) can be replicated at the recieving end, then a further xor will produce the plaintext once again
+  ``` 
+  k ⊕ pt = ct → pt ⊕ ct = k
+  ```
 * We will working with bytes.
 * `encrypt6` will read the keyfile and encrypt any message using the **key** ***AND*** a **"*random*"** number.
-* We have to perfom a [known ciphertext attack](https://en.wikipedia.org/wiki/Ciphertext-only_attack) 
+* We have to perfom a [known ciphertext attack](https://en.wikipedia.org/wiki/Ciphertext-only_attack)
 * The random number generator is weak.
-* The password for Krypton Level 7 is encrypted with ***encrypt6***.
+* The password for Krypton Level 7 is encrypted with `encrypt6`.
 
 # What can we learn from the clues?
 
@@ -172,7 +177,7 @@ And our key is... An empty file! **FAIL 1!**
 
 ## Fail 2
 
-Ok, encrypt6 doesn't seem to work with numbers, so let's try with letters:
+Ok, `encrypt6` doesn't seem to work with numbers, so let's try with letters...
 
 ```shell
 krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('A'*50)" > as_pt.txt
@@ -205,7 +210,6 @@ We can see some curious things:
 
 * If we encrypt the same input (or plaintext) many times we'll see the same output (or ciphertext) → We can forget about the random part 
 for the key
-
 * The ciphertext will be repeated from the 30th character → The key will have a max length of 30 characters  
    For example, the `as_ciphertext.txt`:  
    **EICTDGYIYZKTHNSIRFXYCPFUEOCKRN**EICTDGYIYZKTHNSIRFXY →  
@@ -219,7 +223,6 @@ for the key
    | AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | EICTDGYIYZKTHNSIRFXYCPFUEOCKRN |
    | BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB | FJDUEHZJZALUIOTJSGYZDQGVFPDLSO |
    | CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | GKEVFIAKABMVJPUKTHZAERHWGQEMTP |
-   
 * The ciphertext has the same length than the plaintext → Our ciphertext has 15 characters, so we need, at least, a 15 characters key.
 
 The first thing is to get the keys for our three ciphers and compare if they are the same.
