@@ -191,7 +191,7 @@ FJDUEHZJZALUIOTJSGYZDQGVFPDLSOFJDUEHZJZALUIOTJSGYZ
 ```
 
 ```shell
-krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('C'*50)" > /tmp/rubenhortas/cs_pt.txt
+krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('C'*50)" > cs_pt.txt
 krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 cs_pt.txt cs_ct.txt
 krypton6@bandit:/tmp/rubenhortas$ cat cs_pt.txt 
 CCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCCC
@@ -204,7 +204,7 @@ We can see some curious things:
 * If we encrypt the same input (or plaintext) many times we'll see the same output (or ciphertext) → We can forget about the random part 
 for the key
 * The ciphertext will be repeated from the 30th character → The key will have a max length of 30 characters  
-   For example, the `as_ciphertext.txt`:  
+   For example, the `as_ct.txt`:  
    **EICTDGYIYZKTHNSIRFXYCPFUEOCKRN**EICTDGYIYZKTHNSIRFXY →  
    → EICTDGYIYZKTHNSIRFXYCPFUEOCKRN  
    → EICTDGYIYZKTHNSIRFXY  
