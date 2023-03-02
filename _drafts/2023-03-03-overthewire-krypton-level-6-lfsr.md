@@ -98,14 +98,16 @@ There is a pattern!
   
   >Given a stretch of known plaintext and corresponding ciphertext, an attacker can intercept and recover a stretch of LFSR output stream used in the system described, and from that stretch of the output stream can construct an LFSR of minimal size that simulates the intended receiver by using the Berlekamp-Massey algorithm. This LFSR can then be fed the intercepted stretch of output stream to recover the remaining plaintext.
 
-# [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
+### [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register)
 
 [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) work by feeding on their own output.
 They are constructed in a way that makes them endlessly cycle through a pattern of values while outputting that seemingly random pattern.
 
 There's a very graphic and good explanation about how a [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) works in [Random Numbers with LFSR (Linear Feedback Shift Register) - Computerphile](https://www.youtube.com/watch?v=Ks1pw1X22y4).
 
-# Krypton level 6 solution
+# The journey to solution
+
+## Fail 1
 
 From the properties of XOR we know that:
 
@@ -123,8 +125,8 @@ Because:
 
 | p | 0 | p⊕0 |
 |---|---|-----|
-| 0 | 0 | 0   |
-| 1 | 0 | 1   |
+| 0 | 0 | 0    |
+| 1 | 0 | 1    |
 
 So, If we put a bunch of zeros as entry, we'll get the key directly:
 
@@ -141,6 +143,8 @@ krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 zeros_pt.txt zeros_
 ```
 
 And our key is... **An empty file. FAIL!**
+
+## Fail 2
 
 Ok, that doesn't seem to work with numbers, so let's try with letters:
 
@@ -182,11 +186,11 @@ We can see some curious things:
    
    So, we can short our plaintexts and ciphertext to 30, to make our work easier:
    
-   | Plaintext                      | Ciphertext                     |
-   |--------------------------------|--------------------------------|
-   | AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | EICTDGYIYZKTHNSIRFXYCPFUEOCKRN |
-   | BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB | FJDUEHZJZALUIOTJSGYZDQGVFPDLSO |
-   | CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | GKEVFIAKABMVJPUKTHZAERHWGQEMTP |
+    | Plaintext                       | Ciphertext                      |
+    |--------------------------------|--------------------------------|
+    | AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | EICTDGYIYZKTHNSIRFXYCPFUEOCKRN |
+    | BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB | FJDUEHZJZALUIOTJSGYZDQGVFPDLSO |
+    | CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | GKEVFIAKABMVJPUKTHZAERHWGQEMTP |
    
 * The ciphertext has the same length than the plaintext → Our ciphertext has 15 characters, so we need, at least, a 15 characters key.
 
@@ -207,17 +211,19 @@ cs_key: b'\x04\x08\x06\x15\x05\n\x02\x08\x02\x01\x0e\x15\t\x13\x16\x08\x17\x0b\x
 
 Ok, the keys are different... **FAIL 2!**
 
+# Solution
+
 So now, we know that the function is deterministic, it always will give the same output (or ciphertext) for a given input (or plaintext). 
 The key will depend on the input (or the plaintext).
 
 I we take a closer look to the plaintexts and the ciphertext we can see that when we increment by one character our input (or plaintext),
 the output (or ciphertext) will also increased by one character.
 
-   | Plaintext                      | Ciphertext                     |
-   |--------------------------------|--------------------------------|
-   | AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | EICTDGYIYZKTHNSIRFXYCPFUEOCKRN |
-   | BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB | FJDUEHZJZALUIOTJSGYZDQGVFPDLSO |
-   | CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | GKEVFIAKABMVJPUKTHZAERHWGQEMTP |
+    | Plaintext                       | Ciphertext                      |
+    |--------------------------------|--------------------------------|
+    | AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | EICTDGYIYZKTHNSIRFXYCPFUEOCKRN |
+    | BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB | FJDUEHZJZALUIOTJSGYZDQGVFPDLSO |
+    | CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | GKEVFIAKABMVJPUKTHZAERHWGQEMTP |
    
 So, we can asume that the difference between the plaintext and the ciphertext will be constant.
 
@@ -234,39 +240,39 @@ krypton6@bandit:/tmp/rubenhortas$ cat abc_ct.txt
 EJE
 ```
 
-We can see that when encripting a plaintext character in a certain position, it always give the same encrypted character in the same position...
+We can see that when encripting a plaintext character in a certain position, it always give the same exact encrypted character in the same exact position...
 
-So I did a 26x30 matrix encrypting every alphabet character 30 times (the length of the LFSR period).
-And the plaintext password for the krypton7 level will be the result of find the plaintext character corresponding to the encrypted character in our matrix:
+So I did a 26x30 matrix encrypting every english alphabet character 30 times (the length of the LFSR period).
+And the plaintext password for the krypton7 level will be the result of find the plaintext character corresponding to the encrypted character in the corresponding position in our matrix:
 
-|     |  P  |  N  | U   |  K  |  L  |  Y  |  L  |  W  |  R  |  Q  |  K  |  G  |  K  |  B  |  E  |      ...      |
-|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|-----|---------------|
-|**A**|  E  |  I  |  C  |  T  |  D  |  G  |  Y  |  I  |  Y  |  Z  |**K**|  T  |  H  |  N  |  S  |IRFXYCPFUEOCKRN|
-|  B  |  F  |  J  |  D  |  U  |  E  |  H  |  Z  |  J  |  Z  |  A  |  L  |  U  |  I  |  O  |  T  |JSGYZDQGVFPDLSO|
-|  C  |  G  |  K  |  E  |  V  |  F  |  I  |  A  |  K  |  A  |  B  |  M  |  V  |  J  |  P  |  U  |KTHZAERHWGQEMTP|
-|**D**|  H  |  L  |  F  |  W  |  G  |  J  |  B  |  L  |  B  |  C  |  N  |  W  |**K**|  Q  |  V  |LUIABFSIXHRFNUQ|
-|  E  |  I  |  M  |  G  |  X  |  H  |  K  |  C  |  M  |  C  |  D  |  O  |  X  |  L  |  R  |  W  |MVJBCGTJYISGOVR|
-|**F**|  J  |**N**|  H  |  Y  |  I  |  L  |  D  |  N  |  D  |  E  |  P  |  Y  |  M  |  S  |  X  |NWKCDHUKZJTHPWS|
-|  G  |  K  |  O  |  I  |  Z  |  J  |  M  |  E  |  O  |  E  |  F  |  Q  |  Z  |  N  |  T  |  Y  |OXLDEIVLAKUIQXT|
-|  H  |  L  |  P  |  J  |  A  |  K  |  N  |  F  |  P  |  F  |  G  |  R  |  A  |  O  |  U  |  Z  |PYMEFJWMBLVJRYU|
-|**I**|  M  |  Q  |  K  |  B  |**L**|  O  |  G  |  Q  |  G  |  H  |  S  |  B  |  P  |  V  |  A  |QZNFGKXNCMWKSZV|
-|  J  |  N  |  R  |  L  |  C  |  M  |  P  |  H  |  R  |  H  |  I  |  T  |  C  |  Q  |  W  |  B  |RAOGHLYODNXLTAW|
-|  K  |  O  |  S  |  M  |  D  |  N  |  Q  |  I  |  S  |  I  |  J  |  U  |  D  |  R  |  X  |  C  |SBPHIMZPEOYMUBX|
-|**L**|**P**|  T  |  N  |  E  |  O  |  R  |  J  |  T  |  J  |  K  |  V  |  E  |  S  |  Y  |  D  |TCQIJNAQFPZNVCY|
-|**M**|  Q  |  U  |  O  |  F  |  P  |  S  |  K  |  U  |  K  |  L  |  W  |  F  |  T  |  Z  |**E**|UDRJKOBRGQAOWDZ|
-|**N**|  R  |  V  |  P  |  G  |  Q  |  T  |**L**|  V  |  L  |  M  |  X  |**G**|  U  |  A  |  F  |VESKLPCSHRBPXEA|
-|**O**|  S  |  W  |  Q  |  H  |  R  |  U  |  M  |**W**|  M  |  N  |  Y  |  H  |  V  |**B**|  G  |WFTLMQDTISCQYFB|
-|  P  |  T  |  X  |  R  |  I  |  S  |  V  |  N  |  X  |  N  |  O  |  Z  |  I  |  W  |  C  |  H  |XGUMNREUJTDRZGC|
-|  Q  |  U  |  Y  |  S  |  J  |  T  |  W  |  O  |  Y  |  O  |  P  |  A  |  J  |  X  |  D  |  I  |YHVNOSFVKUESAHD|
-|**R**|  V  |  Z  |  T  |**K**|  U  |  X  |  P  |  Z  |  P  |**Q**|  B  |  K  |  Y  |  E  |  J  |ZIWOPTGWLVFTBIE|
-|**S**|  W  |  A  |**U**|  L  |  V  |**Y**|  Q  |  A  |  Q  |  R  |  C  |  L  |  Z  |  F  |  K  |AJXPQUHXMWGUCJF|
-|**T**|  X  |  B  |  V  |  M  |  W  |  Z  |  R  |  B  |**R**|  S  |  D  |  M  |  A  |  G  |  L  |BKYQRVIYNXHVDKG|
-|  U  |  Y  |  C  |  W  |  N  |  X  |  A  |  S  |  C  |  S  |  T  |  E  |  N  |  B  |  H  |  M  |CLZRSWJZOYIWELH|
-|  V  |  Z  |  D  |  X  |  O  |  Y  |  B  |  T  |  D  |  T  |  U  |  F  |  O  |  C  |  I  |  N  |DMASTXKAPZJXFMI|
-|  W  |  A  |  E  |  Y  |  P  |  Z  |  C  |  U  |  E  |  U  |  V  |  G  |  P  |  D  |  J  |  O  |ENBTUYLBQAKYGNJ|
-|  X  |  B  |  F  |  Z  |  Q  |  A  |  D  |  V  |  F  |  V  |  W  |  H  |  Q  |  E  |  K  |  P  |FOCUVZMCRBLZHOK|
-|  Y  |  C  |  G  |  A  |  R  |  B  |  E  |  W  |  G  |  W  |  X  |  I  |  R  |  F  |  L  |  Q  |GPDVWANDSCMAIPL|
-|  Z  |  D  |  H  |  B  |  S  |  C  |  F  |  X  |  H  |  X  |  Y  |  J  |  S  |  G  |  M  |  R  |HQEWXBOETDNBJQM|
+|       |   P   |   N   |   U   |   K   |   L   |   Y   |   L   |   W   |   R   |   Q   |   K   |   G   |   K   |   B   |   E   |      ...      |
+|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|-------|---------------|
+|**(A)**|   E   |   I   |   C   |   T   |   D   |   G   |   Y   |   I   |   Y   |   Z   |**(K)**|   T   |   H   |   N   |   S   |IRFXYCPFUEOCKRN|
+|   B   |   F   |   J   |   D   |   U   |   E   |   H   |   Z   |   J   |   Z   |   A   |   L   |   U   |   I   |   O   |   T   |JSGYZDQGVFPDLSO|
+|   C   |   G   |   K   |   E   |   V   |   F   |   I   |   A   |   K   |   A   |   B   |   M   |   V   |   J   |   P   |   U   |KTHZAERHWGQEMTP|
+|**(D)**|   H   |   L   |   F   |   W   |   G   |   J   |   B   |   L   |   B   |   C   |   N   |   W   |**(K)**|   Q   |   V   |LUIABFSIXHRFNUQ|
+|   E   |   I   |   M   |   G   |   X   |   H   |   K   |   C   |   M   |   C   |   D   |   O   |   X   |   L   |   R   |   W   |MVJBCGTJYISGOVR|
+|**(F)**|   J   |**(N)**|   H   |   Y   |   I   |   L   |   D   |   N   |   D   |   E   |   P   |   Y   |   M   |   S   |   X   |NWKCDHUKZJTHPWS|
+|   G   |   K   |   O   |   I   |   Z   |   J   |   M   |   E   |   O   |   E   |   F   |   Q   |   Z   |   N   |   T   |   Y   |OXLDEIVLAKUIQXT|
+|   H   |   L   |   P   |   J   |   A   |   K   |   N   |   F   |   P   |   F   |   G   |   R   |   A   |   O   |   U   |   Z   |PYMEFJWMBLVJRYU|
+|**(I)**|   M   |   Q   |   K   |   B   |**(L)**|   O   |   G   |   Q   |   G   |   H   |   S   |   B   |   P   |   V   |   A   |QZNFGKXNCMWKSZV|
+|   J   |   N   |   R   |   L   |   C   |   M   |   P   |   H   |   R   |   H   |   I   |   T   |   C   |   Q   |   W   |   B   |RAOGHLYODNXLTAW|
+|   K   |   O   |   S   |   M   |   D   |   N   |   Q   |   I   |   S   |   I   |   J   |   U   |   D   |   R   |   X   |   C   |SBPHIMZPEOYMUBX|
+|**(L)**|**(P)**|   T   |   N   |   E   |   O   |   R   |   J   |   T   |   J   |   K   |   V   |   E   |   S   |   Y   |   D   |TCQIJNAQFPZNVCY|
+|**(M)**|   Q   |   U   |   O   |   F   |   P   |   S   |   K   |   U   |   K   |   L   |   W   |   F   |   T   |   Z   |**(E)**|UDRJKOBRGQAOWDZ|
+|**(N)**|   R   |   V   |   P   |   G   |   Q   |   T   |**(L)**|   V   |   L   |   M   |   X   |**(G)**|   U   |   A   |   F   |VESKLPCSHRBPXEA|
+|**(O)**|   S   |   W   |   Q   |   H   |   R   |   U   |   M   |**(W)**|   M   |   N   |   Y   |   H   |   V   |**(B)**|   G   |WFTLMQDTISCQYFB|
+|   P   |   T   |   X   |   R   |   I   |   S   |   V   |   N   |   X   |   N   |   O   |   Z   |   I   |   W   |   C   |   H   |XGUMNREUJTDRZGC|
+|   Q   |   U   |   Y   |   S   |   J   |   T   |   W   |   O   |   Y   |   O   |   P   |   A   |   J   |   X   |   D   |   I   |YHVNOSFVKUESAHD|
+|**(R)**|   V   |   Z   |   T   |**(K)**|   U   |   X   |   P   |   Z   |   P   |**(Q)**|   B   |   K   |   Y   |   E   |   J   |ZIWOPTGWLVFTBIE|
+|**(S)**|   W   |   A   |**(U)**|   L   |   V   |**(Y)**|   Q   |   A   |   Q   |   R   |   C   |   L   |   Z   |   F   |   K   |AJXPQUHXMWGUCJF|
+|**(T)**|   X   |   B   |   V   |   M   |   W   |   Z   |   R   |   B   |**(R)**|   S   |   D   |   M   |   A   |   G   |   L   |BKYQRVIYNXHVDKG|
+|   U   |   Y   |   C   |   W   |   N   |   X   |   A   |   S   |   C   |   S   |   T   |   E   |   N   |   B   |   H   |   M   |CLZRSWJZOYIWELH|
+|   V   |   Z   |   D   |   X   |   O   |   Y   |   B   |   T   |   D   |   T   |   U   |   F   |   O   |   C   |   I   |   N   |DMASTXKAPZJXFMI|
+|   W   |   A   |   E   |   Y   |   P   |   Z   |   C   |   U   |   E   |   U   |   V   |   G   |   P   |   D   |   J   |   O   |ENBTUYLBQAKYGNJ|
+|   X   |   B   |   F   |   Z   |   Q   |   A   |   D   |   V   |   F   |   V   |   W   |   H   |   Q   |   E   |   K   |   P   |FOCUVZMCRBLZHOK|
+|   Y   |   C   |   G   |   A   |   R   |   B   |   E   |   W   |   G   |   W   |   X   |   I   |   R   |   F   |   L   |   Q   |GPDVWANDSCMAIPL|
+|   Z   |   D   |   H   |   B   |   S   |   C   |   F   |   X   |   H   |   X   |   Y   |   J   |   S   |   G   |   M   |   R   |HQEWXBOETDNBJQM|
  
 And we got our password for the krypton level 7!
 
