@@ -12,7 +12,7 @@ I did a [walkthrough about Kripton Level 4 and Krypton Level 5](https://rubenhor
 
 At this point, the only level that I had to solve was the [Krypton Level 6](https://overthewire.org/wargames/krypton/krypton6.html).
 This level consists in break a [stream cipher](https://en.wikipedia.org/wiki/Stream_cipher).
-And, as the statement warns "*The challenge here is not simple*".
+And, as the statement warns, "*The challenge here is not simple*".
 
 # Level Info
 
@@ -271,9 +271,9 @@ exact position...
 
 | Plaintext | Ciphertext |
 |-----------|------------|
-| A         | **(E)**    |
-| B**(B)**  | F**(J)**   |
-| CC**(C)** | GK**(E)**  |
+| A         | E          |
+| B         | FJ         |
+| CCC       | GKE        |
 | ABC       | EJE        |
 
 So I did a 26x30 matrix encrypting every english alphabet character 30 times 
