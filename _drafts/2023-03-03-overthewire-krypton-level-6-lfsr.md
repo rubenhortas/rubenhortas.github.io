@@ -312,7 +312,7 @@ in the corresponding position in our matrix:
  
 And we got our password for the Krypton Level 7!
 
-Well, it may be not the most orthodoxal solution, and maybe, some day, I'll try to solve it by 
+Well, it may be not the most orthodox solution, and, maybe, some day, I'll try to solve it by 
 [linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis), 
 [differential cryptanalisys](https://en.wikipedia.org/wiki/Differential_cryptanalysis) 
 or [Berlekamp–Massey algorithm](https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm), but it's a solution :P
