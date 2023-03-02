@@ -115,7 +115,8 @@ There is a pattern!
 but, as the register has a fine number of pssible states **it must eventually enter a repeating cycle**.
 This means that **the numbers generated are periodic**. 
 
-* A maximum-length LFSR will produce an m-secuence, so **a 8 bit LFSR will produce a 8 bit sequence**.
+* A maximum-length [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) will produce an m-secuence, 
+so **a 8 bit [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) will produce a 8 bit sequence**.
 * **The most commonly used linear function of single bits is exclusive-or (XOR ⊕)**.
 
 >Thus, an [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) is most often a shift register whose input bit 
@@ -138,15 +139,11 @@ in [Random Numbers with LFSR (Linear Feedback Shift Register) - Computerphile](h
 
 From the properties of XOR we know that:
 
-```
-plaintext ⊕ key = ciphertext → ciphertext ⊕ key = plaintext
-```
+`plaintext ⊕ key = ciphertext → ciphertext ⊕ key = plaintext`
 
 And we know that:
 
-```
-p ⊕ 0 = p
-```
+`p ⊕ 0 = p`
 
 Because:
 
@@ -212,7 +209,7 @@ for the key
    → EICTDGYIYZKTHNSIRFXYCPFUEOCKRN  
    → EICTDGYIYZKTHNSIRFXY  
    
-   So, we can short our plaintexts and ciphertext to 30, to make our work easier:
+   So, we can short our plaintexts and ciphertexts to 30, to make our work easier:
    
    | Plaintext                      | Ciphertext                     |
    |--------------------------------|--------------------------------|
@@ -269,7 +266,7 @@ krypton6@bandit:/tmp/rubenhortas$ cat abc_ct.txt
 EJE
 ```
 
-We can see that when encripting a plaintext character in a certain position, it always give the same exact encrypted character in the same 
+We can see that when encrypting a plaintext character in a certain position, it always give the same exact encrypted character in the same 
 exact position...
 
 | Plaintext | Ciphertext |
@@ -279,7 +276,8 @@ exact position...
 | CC**(C)** | GK**(E)**  |
 | ABC       | EJE        |
 
-So I did a 26x30 matrix encrypting every english alphabet character 30 times (the length of the LFSR period).
+So I did a 26x30 matrix encrypting every english alphabet character 30 times 
+(the length of the [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) period).
 And the plaintext password for the Krypton Level 7 will be the result of find the plaintext character corresponding to the encrypted character 
 in the corresponding position in our matrix:
 
