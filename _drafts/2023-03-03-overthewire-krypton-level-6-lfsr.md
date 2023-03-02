@@ -157,7 +157,7 @@ So, If we put a bunch of zeros as input, we'll get the key directly:
 ```
 plaintext ⊕ key = ciphertext →
         0 ⊕ key = ciphertext →
-        0 ⊕ key = key → key  = ciphertext
+        0 ⊕ key = key        → key = ciphertext
 ```
 
 ```shell
