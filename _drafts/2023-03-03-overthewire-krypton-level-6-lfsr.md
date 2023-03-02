@@ -114,8 +114,9 @@ There is a pattern!
 but, as the register has a fine number of pssible states **it must eventually enter a repeating cycle**.
 This means that **the numbers generated are periodic**. 
 
->A maximum-lenght LFSR will produce an m-secuence, so **a 8 bit LFSR will produce a 8 bit sequence**.
-**The most commonly used linear function of single bits is exclusive-or (XOR ⊕)**.
+* A maximum-length LFSR will produce an m-secuence, so **a 8 bit LFSR will produce a 8 bit sequence**.
+* **The most commonly used linear function of single bits is exclusive-or (XOR ⊕)**.
+
 >Thus, an [LFSR](https://en.wikipedia.org/wiki/Linear-feedback_shift_register) is most often a shift register whose input bit 
 is driven by the XOR of some bits of the overall shift register value.
   
@@ -153,7 +154,7 @@ Because:
 | 0 | 0 | 0   |
 | 1 | 0 | 1   |
 
-So, If we put a bunch of zeros as entry, we'll get the key directly:
+So, If we put a bunch of zeros as input, we'll get the key directly:
 
 ```
 plaintext ⊕ key = ciphertext →
@@ -167,7 +168,7 @@ krypton6@bandit:/tmp/rubenhortas$ python3 -c "print('0'*50)" > zeros_pt.txt
 krypton6@bandit:/tmp/rubenhortas$ /krypton/krypton6/encrypt6 zeros_pt.txt zeros_ct.txt
 ```
 
-And our key is... An empty file! **FAIL!**
+And our key is... An empty file! **FAIL 1!**
 
 ## Fail 2
 
@@ -313,5 +314,10 @@ in the corresponding position in our matrix:
 |   Z   |   D   |   H   |   B   |   S   |   C   |   F   |   X   |   H   |   X   |   Y   |   J   |   S   |   G   |   M   |   R   |HQEWXBOETDNBJQM|
  
 And we got our password for the Krypton Level 7!
+
+Well, it may be not the most orthodoxal solution, and maybe, some day, I'll try to solve it by 
+[linear cryptanalysis](https://en.wikipedia.org/wiki/Linear_cryptanalysis), 
+[differential cryptanalisys](https://en.wikipedia.org/wiki/Differential_cryptanalysis) 
+or [Berlekamp–Massey algorithm](https://en.wikipedia.org/wiki/Berlekamp%E2%80%93Massey_algorithm), but it's a solution :P
 
 *Enjoy! ;)*
