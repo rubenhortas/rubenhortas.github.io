@@ -86,14 +86,10 @@ then a further xor will produce the plaintext once again**.
 * It's a symmetric cipher
 * It's a block cipher → Block ciphers use a fixed key to perform substituion and transposition ciphers on each block discretely
 * It's a stream cipher where the "random" key byte (k) is xor'd with the plain text (pt) to produce the ciphertext (ct)
-  ``` 
-  k ⊕ pt = ct
-  ```
+  `k ⊕ pt = ct`
 * k is a **"*random*"** keystream.
 * If the random keystream (k) can be replicated at the recieving end, then a further xor will produce the plaintext once again
-  ``` 
-  k ⊕ pt = ct → pt ⊕ ct = k
-  ```
+  ` k ⊕ pt = ct → pt ⊕ ct = k`
 * We will working with bytes.
 * `encrypt6` will read the keyfile and encrypt any message using the **key** ***AND*** a **"*random*"** number.
 * We have to perfom a [known ciphertext attack](https://en.wikipedia.org/wiki/Ciphertext-only_attack)
