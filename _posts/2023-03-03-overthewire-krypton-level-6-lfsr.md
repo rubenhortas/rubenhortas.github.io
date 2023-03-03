@@ -53,10 +53,10 @@ or swapping of bytes.
 >  
 >**Symmetric ciphers come in two flavours: block and stream**.  
 >  
->Until now, **we have been playing with classical ciphers, approximating ‘block’ ciphers**. A block cipher is done in **fixed size blocks** 
+>Until now, we have been playing with classical ciphers, approximating ‘block’ ciphers. A block cipher is done in fixed size blocks 
 (suprise!). 
 >For example, in the previous paragraphs we discussed breaking text and keys into 256 byte blocks, and working on those blocks.
->**Block ciphers use a fixed key to perform substituion and transposition ciphers on each block discretely**.  
+>Block ciphers use a fixed key to perform substituion and transposition ciphers on each block discretely.  
 >  
 >**Its time to employ a stream cipher**. A stream cipher attempts to create an on-the-fly **‘random’ keystream to encrypt the incoming plaintext 
 one byte at a time**.
@@ -84,7 +84,6 @@ then a further xor will produce the plaintext once again**.
 # What do we know so far about this level?
 
 * It's a symmetric cipher
-* It's a block cipher → Block ciphers use a fixed key to perform substituion and transposition ciphers on each block discretely
 * It's a stream cipher where the "random" key byte (k) is xor'd with the plain text (pt) to produce the ciphertext (ct):  
   `k ⊕ pt = ct`
 * k is a **"*random*"** keystream.
