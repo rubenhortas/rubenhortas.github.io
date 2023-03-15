@@ -116,16 +116,18 @@ $ sudo smartctl -l selftest /dev/sdb
 > The disk should be umounted to be able to run fsck
 {: .prompt-warning}
 
-## Checking the disk (again...)
+## Check the disk partitions
+
+Let's say we want repair our `/dev/sdb1` partition.
 
 Sometimes the disk is marked as clean, but we know for sure that the disk has some damage, because we had errors using it.
-So, we can force a check on the disk:
+So, we can force a check on the partition:
 
 ```
-$ sudo fsck -f /dev/sdb
+$ sudo fsck -f /dev/sdb1
 ```
 
-Don't worry, this test is immediate ;)
+Don't worry, this test is fast ;)
 
 ## Fix the disk automatically
 
@@ -134,11 +136,11 @@ We can do this in two ways:
 
 * Automatic repair (no questions):
   ```
-  $ sudo fsck -p /dev/sdb
+  $ sudo fsck -p /dev/sdb1
   ```
 * Assume "yes" to all questions:
   ```
-  $ sudo fsck -y /dev/sdb
+  $ sudo fsck -y /dev/sdb1
   ```
   
 *Enjoy! ;)*
