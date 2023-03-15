@@ -13,11 +13,14 @@ Also, unless it is your main HDD, you can continue working while the disk is bei
 
 How can we check and fix our HDD in GNU/linux?
 
-# Prepairing the disk
+# Preparing the disk
 
 First of all is know the device assigned to the disk we want to check.
 You can know the device assigned using `fdisk -l` or `lsblk`.
 Let's say our disk is `/dev/sdb`.
+
+> The disk should be umounted to be able to run smartctl
+{: .prompt-warning}
 
 # Check hard drive health using smartctl
 
@@ -58,14 +61,22 @@ There's a lot of info displayed, but we should pay special attention to the next
 
 If the `RAW_VALUE` is greater than 0 for any of these fields, we should backup our files (if necessary) and we should fix the disk later.
 
-## Test the disk
+## Estimate the test time
 
-The smartctl utility can perform a variety of tests:
+The `smartctl` utility can perform a variety of tests:
 
-* short: Checks the most common problems that could be found on a storage device. Should take a few minutes.
+* offline: A short foreground test of less than two minutes. 
+* short: Runs SMART Short Self Test (usually under ten minutes).
 * long: A more accurate version of the “short” test. Could take a few hours.
 * conveyance (ATA devices only): Checks for possible damages occurred during the transportation of the device. Should take a few minutes.
-* select (ATA devices only): Checks only the specified range of LBAs (Logical Block Addresses).
+
+And we can known the estimated duration of the tests executing:
+
+```
+$ sudo smartctl -c /dev/sdb
+```
+
+## Test the disk
 
 I prefer to run the long test as it will give us a better overall disk health.
 
@@ -91,15 +102,43 @@ After the time specified by `smartctl` we can check the test results:
 $ sudo smartctl -a /dev/sdb
 ```
 
+or
+
+```
+$ sudo smartctl -l selftest /dev/sdb
+```
+
 # Fix the disk using fsck
 
-When you write to a defective sector, the hard disk will attempt to re-map the affected sector. 
-The original content of the sector will be lost by this procedure.
+`fsck` (File System Consistency Check) comes by default on GNU/Linux distributions.
+`fsck` is used to check for filesystem errors, fix them and generate reports.
+
+> The disk should be umounted to be able to run fsck
+{: .prompt-warning}
+
+## Checking the disk (again...)
+
+Sometimes the disk is marked as clean, but we know for sure that the disk has some damage, because we had errors using it.
+So, we can force a check on the disk:
 
 ```
-$ sudo fdisk -lu /dev/sdb
+$ sudo fsck -f /dev/sdb
 ```
 
-*The Current_Pending_Sector counter will be reduced in subsequent tests.*
+Don't worry, this test is immediate ;)
 
+## Fix the disk automatically
+
+The most confortable wat to repair the this is do it in "autopilot mode" or automatically.
+We can do this in two ways:
+
+* Automatic repair (no questions):
+  ```
+  $ sudo fsck -p /dev/sdb
+  ```
+* Assume "yes" to all questions:
+  ```
+  $ sudo fsck -y /dev/sdb
+  ```
+  
 *Enjoy! ;)*
