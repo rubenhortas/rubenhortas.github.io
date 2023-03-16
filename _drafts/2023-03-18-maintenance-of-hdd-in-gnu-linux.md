@@ -54,7 +54,7 @@ $ sudo smartctl -a /dev/sda
 ```
 
 There's a lot of info displayed, but we should pay special attention to the next fields:
-* Reallocated Sectors Count: The raw value represents a count of the bad sectors that have been found and remapped.
+* Reallocated_Sector_Ct (Reallocated Sectors Count): The raw value represents a count of the bad sectors that have been found and remapped.
 * Power_On_Hours: Count of hours in power-on state. It's not useful to check for errors, but it's useful to get an idea of the hours of life that the disk has left.
 * Reported_Uncorrect: Reported Uncorrectable Errors. The count of errors that could not be recovered using hardware.
 * Current_Pending_Sector: Count of "unstable" sectors (waiting to be remapped, because of unrecoverable read errors).
@@ -65,10 +65,10 @@ If the `RAW_VALUE` is greater than 0 for any of these fields, we should backup o
 
 The `smartctl` utility can perform a variety of tests:
 
-* offline: A short foreground test of less than two minutes. 
-* short: Runs SMART Short Self Test (usually under ten minutes).
-* long: A more accurate version of the “short” test. Could take a few hours.
-* conveyance (ATA devices only): Checks for possible damages occurred during the transportation of the device. Should take a few minutes.
+* **offline**: A short foreground test of less than two minutes. 
+* **short**: Runs SMART Short Self Test (usually under ten minutes).
+* **long**: A more accurate version of the “short” test. Could take a few hours.
+* **conveyance**: Checks for possible damages occurred during the transportation of the device. Should take a few minutes.
 
 And we can known the estimated duration of the tests executing:
 
@@ -102,21 +102,15 @@ After the time specified by `smartctl` we can check the test results:
 $ sudo smartctl -a /dev/sdb
 ```
 
-or
-
-```
-$ sudo smartctl -l selftest /dev/sdb
-```
-
-# Fix the disk using fsck
+# Fix the filesystem using fsck
 
 `fsck` (File System Consistency Check) comes by default on GNU/Linux distributions.
-`fsck` is used to check for filesystem errors, fix them and generate reports.
+`fsck` is used to check to check and, optionally, repair one or more Linux filesystems.
 
 > The disk should be umounted to be able to run fsck
 {: .prompt-warning}
 
-## Check the disk partitions
+## Check the partitions
 
 Let's say we want repair our `/dev/sdb1` partition.
 
@@ -129,7 +123,7 @@ $ sudo fsck -f /dev/sdb1
 
 Don't worry, this test is fast ;)
 
-## Fix the disk automatically
+## Fix the filesystem automatically
 
 The most confortable wat to repair the this is do it in "autopilot mode" or automatically.
 We can do this in two ways:
