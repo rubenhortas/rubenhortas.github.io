@@ -215,6 +215,8 @@ for the key
    | AAAAAAAAAAAAAAAAAAAAAAAAAAAAAA | EICTDGYIYZKTHNSIRFXYCPFUEOCKRN |
    | BBBBBBBBBBBBBBBBBBBBBBBBBBBBBB | FJDUEHZJZALUIOTJSGYZDQGVFPDLSO |
    | CCCCCCCCCCCCCCCCCCCCCCCCCCCCCC | GKEVFIAKABMVJPUKTHZAERHWGQEMTP |
+   
+   At this point I think the LFSR isn't well tapped and it's not giving a maximum cycle and period.
 * The ciphertext has the same length than the plaintext → Our ciphertext has 15 characters, so we need, at least, a 15 characters key.
 
 The first thing is to get the keys for our three ciphers and compare if they are the same.
