@@ -1,6 +1,6 @@
 ---
 title: Maintenance of HDD in GNU/Linux
-date: 2023-03-18 00:00:01 +0000
+date: 2023-03-17 00:00:01 +0000
 categories: [gnu/linux, sysadmin]
 tags: [gnu/linux, hdd, smartmontools, smartctl, fsck]
 ---
