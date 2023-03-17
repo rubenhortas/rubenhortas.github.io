@@ -5,6 +5,9 @@ categories: [gnu/linux, sysadmin]
 tags: [gnu/linux, hdd, smartmontools, smartctl, fsck]
 ---
 
+A hard disk drive (HDD) can suffer several types of failures: logical failures, mechanical failures or firmware failures.
+Since we cannot avoid mechanical or firmware failures, we will try to avoid (or minimize) logical failures.
+
 It's a good practice to check the health of your HDD (Hard Disk Drives) from time to time and repair them if neccesary.
 It will avoid a lot of data loss and headaches.
 
