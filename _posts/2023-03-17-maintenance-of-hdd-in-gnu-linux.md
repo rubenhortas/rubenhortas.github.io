@@ -99,10 +99,16 @@ And, we can always cancel the test execution:
 Use smartctl -X to abort test.
 ```
 
-After the time specified by `smartctl` we can check the test results:
+After the time specified by `smartctl` we can check the test results with:
 
 ```
 $ sudo smartctl -a /dev/sdb
+```
+
+or 
+
+```
+$ sudo smartctl -l selftest /dev/sdb
 ```
 
 # Fix the filesystem using fsck
