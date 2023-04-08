@@ -16,14 +16,17 @@ Also, unless it is your main HDD, you can continue working while the disk is bei
 
 How can we check and fix our HDD in GNU/linux?
 
-# Preparing the disk
+# Umounting the disk
 
 First of all is know the device assigned to the disk we want to check.
 You can know the device assigned using `fdisk -l` or `lsblk`.
 Let's say our disk is `/dev/sdb`.
 
-> The disk should be umounted to be able to run smartctl
-{: .prompt-warning}
+As the disk should be umounted to be able to run fsck, now, we need to umount it:
+
+```
+$ sudo umount /dev/sdb
+```
 
 # Check hard drive health using smartctl
 
@@ -113,11 +116,11 @@ $ sudo smartctl -l selftest /dev/sdb
 
 # Fix the filesystem using fsck
 
-`fsck` (File System Consistency Check) comes by default on GNU/Linux distributions.
-`fsck` is used to check to check and, optionally, repair one or more Linux filesystems.
-
 > The disk should be umounted to be able to run fsck
 {: .prompt-warning}
+
+`fsck` (File System Consistency Check) comes by default on GNU/Linux distributions.
+`fsck` is used to check to check and, optionally, repair one or more Linux filesystems.
 
 ## Check the partitions
 
