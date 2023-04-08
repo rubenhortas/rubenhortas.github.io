@@ -16,7 +16,7 @@ Since we cannot avoid firmware failures, we will try to avoid (or minimize) bit 
 Transistors in the flash storage device hold charge which represents data.
 This charge gradually leaks over time, leading to accumulation of logical errors (also known as "bit rot" or "bit fading").
 The only thing we can do to avoid this is plug in periodically our disk or flash drives.
-The paper, from 2015, ["Data Retention in MLC NAND Flash Memory: Characterization, Optimization, and Recovery"](https://people.inf.ethz.ch/omutlu/pub/flash-memory-data-retention_hpca15.pdf) from [Carnegie Mellon University](https://en.wikipedia.org/wiki/Carnegie_Mellon_University) states "**today's flash devices, which do not require flash refresh, have a typical retention age of 1 year at room temperature**".
+The paper, from 2015, ["Data Retention in MLC NAND Flash Memory: Characterization, Optimization, and Recovery"](https://people.inf.ethz.ch/omutlu/pub/flash-memory-data-retention_hpca15.pdf) from [Carnegie Mellon University](https://en.wikipedia.org/wiki/Carnegie_Mellon_University) states "*today's flash devices, which do not require flash refresh, have a typical retention age of 1 year at room temperature*".
 
 # Logical failures
 
