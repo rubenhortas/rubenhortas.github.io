@@ -38,7 +38,7 @@ Let's say our partition is still `/dev/sdb1`:
 $ sudo fsck -fccky /dev/sdb1
 ```
 
-Combining `-k` with `-cc` option, any existing bad blocks in the bad blocks list ara preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
+Combining `-k` with `-cc` option, any existing bad blocks in the bad blocks list are preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
 Besides, with `-cc` option the bad block scan will be done using a non-destructive read-write test.
 
 *Enjoy! ;)*
