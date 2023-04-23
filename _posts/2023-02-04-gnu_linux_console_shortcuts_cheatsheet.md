@@ -19,8 +19,8 @@ Some useful shortcuts to speed up our console use.
 * `[CTRL] + SHIFT + c` Copy.
 * `[CTRL] + SHIFT + v` Paste.
 
-* `[ALT] + d` Delete the word until the end of the word.
-* `[ALT] + [BACKSPACE]` Delete the word until the start of the word.
+* `[ALT] + d` Delete until the end of the word.
+* `[ALT] + [BACKSPACE]` Delete until the start of the word.
 * `[ALT] + t` Switch current word with previous word.
 * `[ALT] + l/u` Change the next word to lowercase/uppercase.
 * `[ALT] + .` Show the last word of the last used command.
