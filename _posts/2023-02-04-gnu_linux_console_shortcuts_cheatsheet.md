@@ -1,7 +1,7 @@
 ---
 title: GNU/Linux console shortcuts cheatsheet
 date: 2023-02-04 00:00:01 +0000
-categories: [gnu/linux, cheatsheets]
+categories: [cheatsheets, gnu/linux]
 tags: [gnu/linux, console, cheatsheet]
 ---
 
