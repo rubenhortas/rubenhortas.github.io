@@ -7,35 +7,51 @@ tags: [gnu/linux, console, cheatsheet]
 
 Some useful shortcuts to speed up our console use.
 
-# Typing 
+# Editing
 
-* `[TAB]` Autocomplete.
-* `[CTRL] + a` Move the cursor to the beginning of the current line.
-* `[CTRL] + e`  Move the cursor to the end of the current line.
-* `[CTRL] + [←] / [→]` Jump at the beginning of the current/previous word.
-* `[ALT] + b / f` Jump backward/forward one word.
-* `[CTRL] + u` Erase everything from the current position of the cursor to the beginning of the line.
-* `[CTRL] + k` Erase everything from the current position of the cursor to the end of the line.
-* `[CTRL] + w` Erase the word preceding the cursor position.
+* `[TAB]` or `[CTRL] + i` Autocomplete.
 
-# Tasks and processes
+* `[CTRL] + u` Delete everything from the cursor position to the beginning of the line.
+* `[CTRL] + k` Delete everything from the cursor position to the end of the line.
+* `[CTRL] + w` Delete the word before the cursor.
+* `[CTRL] + d` Delete the character following the cursor.
+* `[CTRL] + h` Delete the character before the cursor.
+* `[CTRL] + SHIFT + c` Copy.
+* `[CTRL] + SHIFT + v` Paste.
 
-* `[CTRL] + c` Sends SIGINT signal to the current task/process.
-* `[CTRL] + d` Close STDIN pipe
-* `[CTRL] + z` Sends the SIGTSTP signal to the current process.
+* `[ALT] + d` Delete the word until the end of the word.
+* `[ALT] + [BACKSPACE]` Delete the workd until the start of the word.
+* `[ALT] + t` Switch current word with previous word.
+* `[ALT] + l/u` Change the next word to lowercase/uppercase.
+* `[ALT] + .` Show the last word of the last used command.
 
 # History
 
 * `[CTRL] + r` Search through command history for commands that match our search patterns.
+* `[↑]` or `[CTRL] + p` Previous command.
+* `[↓]` or `[CTRL] + n` Next command.
 
-# Zoom
+# Navigation
 
-* `[CTRL] + [+]` Zoom in.
-* `[CTRL] + [-]` Zoom out.
+* `[CTRL] + a` Move the cursor to the beginning of the current line.
+* `[CTRL] + e` Move the cursor to the end of the current line.
+* `[CTRL] + b/f` Jump backward/forward one character.
+* `[CTRL] + [←]/[→]` Jump at the beginning of the current/previous word.
+
+* `[ALT] + b/f` Jump backward/forward one word.
+
+# Tasks and processes
+
+* `[CTRL] + s` Stop command output to the screen.
+* `[CTRL] + c` Sends SIGINT signal to the current task/process.
+* `[CTRL] + d` Close STDIN pipe
+* `[CTRL] + z` Sends the SIGTSTP signal to the current process. Supend current command and send it to background.
+* `[CTRL] + q` Resume suspended command.
 
 # Misc
 
 * `[CTRL] + l` Clear the terminal.
+* `[CTRL] + [+]/[-]` Zoom in/out.
 
 > There are many more shortcuts (and they are console dependent). I only put the most useful for me.
 {: .prompt-info}
