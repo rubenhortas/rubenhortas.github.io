@@ -169,17 +169,17 @@ Ok, as this part it's a simpe XOR between THIS_MSB and 0x0D, what does THIS_MSB 
 
 Let's see it in action:
 
-```
+<pre>
 pt = char = 'A' = 0100 **0001**
 
-    0000 **0100** char >> 4 → SWAP!
+    0000 <b>0100</b> char >> 4 → SWAP!
 AND 0000 1111 15 *
     ---------
     0000 0100 (char >>4) & 15 = THIS_MSB
 XOR 0000 1101 0x0D
     ---------
     0000 1001 THIS_MSB ⊕ 0x0D = left XOR
-```
+</pre>
 
 _*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
 
@@ -204,19 +204,19 @@ bitlst(THIS_LSB, 4) = bitext(char, 0, 4) =
 
 Let's see it in action:
 
-```
+<pre>
 pt = char = 'A' = 0100 0001
 
     0100 0001 char
 AND 0000 1111 15 *
     ---------
-    0000 **0001** char & 15 = THIS_LSB
+    0000 <b>0001</b> char & 15 = THIS_LSB
 
-    **0001** 0000 bitlst(THIS_LSB) = THIS_LSB << 4  # SWAP!
+    <b>0001</b> 0000 bitlst(THIS_LSB) = THIS_LSB << 4  # SWAP!
 XOR 1011 0000 0xB0
     ---------
     1010 0000 bitlst(THIS_LSB) ⊕ 0xB0 = right XOR
-```
+</pre>
 
 _*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
 
