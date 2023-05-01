@@ -11,7 +11,7 @@ When we extract the LunaCrypt.zip file we found two files:
 - LunaCrypt.py → The script used for the encryption
 - output.txt → The encrypted flag
 
-We have to look at the code for decrypt the message.
+We have to look at the code to decrypt the message.
 
 # Analyzing LunaCrypt.py
 
@@ -91,7 +91,7 @@ pt ⊕ key = ct → ct ⊕ key = pt
 
 ## Reversing the EncryptCharacter() function
 
-Since there can be several flags active at the same time and the encryption functions are applied in order, the only thing we need to do is to reverse the order of the functions applied:
+Since there can be several flags active at the same time, and the encryption functions are applied in order, the only thing we need to do is to reverse the order of the functions applied:
 
 ```python
 def DecryptCharacter(char, flag):
@@ -254,6 +254,7 @@ XOR 0000 1101 0x0D
 ```
 
 Finally, we need to reverse the swapping to make the four least significant bits of the ct becomes again the four most significant bits of the pt:
+
 ```
 0100 0000 pt upper bits without swapping << 4 = pt upper bits
 ```
