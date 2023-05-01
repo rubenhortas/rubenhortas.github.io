@@ -57,7 +57,7 @@ def EncryptCharacter(char):
 
 We can see that the first thing done is a character validation:
 
-```
+```python
 strbyt = lambda x, y=0: ord(x[y])
 
 def ValidateChar(char):
@@ -181,7 +181,7 @@ XOR 0000 1101 0x0D
     0000 1001 THIS_MSB ⊕ 0x0D = left XOR
 ```
 
-__*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part__
+_*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
 
 ### Right XOR: bitxor(bitlst(THIS_LSB, 4), 0xB0))
 
@@ -218,7 +218,7 @@ XOR 1011 0000 0xB0
     1010 0000 bitlst(THIS_LSB) ⊕ 0xB0 = right XOR
 ```
 
-__*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part__
+_*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
 
 
 ### ct = chr(OR[XOR(THIS_MSB, 0x0D), XOR(bitlst(THIS_LSB, 4), 0xB0)])
