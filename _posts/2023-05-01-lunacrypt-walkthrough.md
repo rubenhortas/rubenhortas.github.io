@@ -113,7 +113,7 @@ def DecryptCharacter(char, flag):
 
 ## Reversing XorBy3E, XorBy6B and NegateChar
 
-As these functions are only xorings (remember the XOR properties: pt ⊕ key = ct → ct ⊕ key = pt) and a negation, the inverse of these functions are the same functions.
+As these functions are only xorings (remember the XOR properties: `pt ⊕ key = ct → ct ⊕ key = pt`) and a negation, the inverse of these functions are the same functions.
 
 ## Reversing ESwapChar() function
 This is the tricky part of the challenge.
@@ -173,12 +173,12 @@ Let's see it in action:
 pt = char = 'A' = 0100 **0001**
 
     0000 **0100** char >> 4 → SWAP!
-AND 0000 1111 15 *
-    ---------
-    0000 0100 (char >>4) & 15 = THIS_MSB
-XOR 0000 1101 0x0D
-    ---------
-    0000 1001 THIS_MSB ⊕ 0x0D = left XOR
+AND 0000   1111   15*
+    -------------
+    0000   0100   (char >>4) & 15 = THIS_MSB
+XOR 0000   1101   0x0D
+    -------------
+    0000   1001   THIS_MSB ⊕ 0x0D = left XOR
 ```
 
 _*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
@@ -207,15 +207,15 @@ Let's see it in action:
 ```
 pt = char = 'A' = 0100 0001
 
-    0100 0001 char
-AND 0000 1111 15 *
-    ---------
+    0100   0001   char
+AND 0000   1111   15 *
+    -------------
     0000 **0001** char & 15 = THIS_LSB
 
     **0001** 0000 bitlst(THIS_LSB) = THIS_LSB << 4  # SWAP!
-XOR 1011 0000 0xB0
-    ---------
-    1010 0000 bitlst(THIS_LSB) ⊕ 0xB0 = right XOR
+XOR   1011   0000 0xB0
+    -------------
+      1010   0000 bitlst(THIS_LSB) ⊕ 0xB0 = right XOR
 ```
 
 _*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
@@ -226,7 +226,7 @@ _*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least signifi
 ```
 ct = chr(OR[XOR(THIS_MSB, 0x0D), XOR(bitlst(THIS_LSB, 4), 0xB0)])
    = chr(OR[XOR(THIS_MSB, 0x0D), XOR(bitlst(THIS_LSB, 4), 0xB0)])
-   = chr(OR(left XOR, right XOR) 
+   = chr(OR(left XOR, right XOR)) 
 ```
 
 ```
@@ -250,7 +250,7 @@ Now, we need to reverse the XOR with 0x0D, in order to do this (and by the prope
     0000 1001 ct masked
 XOR 0000 1101 0x0D
     ---------
-	0000 0100 pt upper bits without swapping
+	 0000 0100 pt upper bits without swapping
 ```
 
 Finally, we need to reverse the swapping to make the four least significant bits of the ct becomes again the four most significant bits of the pt:
@@ -273,7 +273,7 @@ Now, we need to reverse the XOR with 0xB0, in order to do this (and by the prope
     1010 0000 ct masked
 XOR 1011 0000 0xB0
     ---------
-	0001 0000 pt lower bits without swapping  # = bitlst(THIS_LSB, 4) = THIS_LSB << 4
+	 0001 0000 pt lower bits without swapping  # = bitlst(THIS_LSB, 4) = THIS_LSB << 4
 ```
 
 Finally, we need to reverse the swapping to make the four most significant bits of the ct becomes again the four least significant bits of the pt:
