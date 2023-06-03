@@ -79,7 +79,7 @@ We need to keep this in mind in order to reverse this part.
 
 ## Reading the output
 
-As the output is written by pairs of numbers, and the first number is the encrypted character and the second number is the encrypted flag we can read the output and separate the encrypted characters and the encrypted flags.
+As the output is written by pairs of numbers, and the first number is the encrypted character, and the second number is the encrypted flag, we can read the output and separate the encrypted characters and the encrypted flags.
 
 ## Decrypting the flags
 
@@ -152,7 +152,7 @@ Let's simplify the encrypt function a bit:
 
 We can see that the operation is a chr() applied over an OR between two XORs, so we'll need to start by reversing the two XORs.
 
-### Left XOR: bitxor(THIS_MSB, 0x0D)
+### Left XOR: XOR(THIS_MSB, 0x0D)
 
 Ok, as this part it's a simpe XOR between THIS_MSB and 0x0D, what does THIS_MSB do?
 
@@ -183,7 +183,7 @@ XOR 0000   1101   0x0D
 
 _*As (0&0) = 0 and (0&1) = 1 and we are working only with the four least significant bits, this function does nothing and we can skip it to reverse this part_
 
-### Right XOR: bitxor(bitlst(THIS_LSB, 4), 0xB0))
+### Right XOR: XOR(bitlst(THIS_LSB, 4), 0xB0))
 
 This part it's another simple XOR between bitlst(THIS_LSB, 4) and 0xB0. So, what does bitlst(THIS_LSB, 4) do?
 
@@ -236,7 +236,7 @@ OR 1010 0000 right XOR
    1010 1001 ct = ©
 ```
 
-### Reversing the Left XOR: bitxor(THIS_MSB, 0x0D)
+### Reversing the Left XOR: XOR(THIS_MSB, 0x0D)
 
 We part from ct = 1010 1001, and we know that the Left XOR give rise to the four least significant bits of the encrypted character (ct), so, first, we will clear the four most significant bits of the ct:
 
@@ -244,13 +244,13 @@ We part from ct = 1010 1001, and we know that the Left XOR give rise to the four
 0000 1001 ct masked  # Four most significant bits cleared
 ```
 
-Now, we need to reverse the XOR with 0x0D, in order to do this (and by the properties of XOR: pt ⊕ key = ct → ct ⊕ key = pt) we only need to XOR it with 0x0D again:
+Now, we need to reverse the XOR with 0x0D, in order to do this (and by the properties of XOR: `pt ⊕ key = ct → ct ⊕ key = pt`) we only need to XOR it with 0x0D again:
 
 ```
     0000 1001 ct masked
 XOR 0000 1101 0x0D
     ---------
-	 0000 0100 pt upper bits without swapping
+    0000 0100 pt upper bits without swapping
 ```
 
 Finally, we need to reverse the swapping to make the four least significant bits of the ct becomes again the four most significant bits of the pt:
@@ -259,7 +259,7 @@ Finally, we need to reverse the swapping to make the four least significant bits
 0100 0000 pt upper bits without swapping << 4 = pt upper bits
 ```
 
-### Reversing the Right XOR: bitxor(bitlst(THIS_LSB, 4), 0xB0))
+### Reversing the Right XOR: XOR(bitlst(THIS_LSB, 4), 0xB0))
 
 We part from ct = 1010 1001, and we know that the Right XOR give rise to the four most significant bits of the encrypted character (ct), so, first, we will clear the four least significant bits of the ct:
 
@@ -267,13 +267,13 @@ We part from ct = 1010 1001, and we know that the Right XOR give rise to the fou
 1010 0000 ct masked (four least significant bits cleared)
 ```
 
-Now, we need to reverse the XOR with 0xB0, in order to do this (and by the properties of XOR: pt ⊕ key = ct → ct ⊕ key = pt) we only need to XOR it with 0xB0 again:
+Now, we need to reverse the XOR with 0xB0, in order to do this (and by the properties of XOR: `pt ⊕ key = ct → ct ⊕ key = pt`) we only need to XOR it with 0xB0 again:
 
 ```
     1010 0000 ct masked
 XOR 1011 0000 0xB0
     ---------
-	 0001 0000 pt lower bits without swapping  # = bitlst(THIS_LSB, 4) = THIS_LSB << 4
+    0001 0000 pt lower bits without swapping  # = bitlst(THIS_LSB, 4) = THIS_LSB << 4
 ```
 
 Finally, we need to reverse the swapping to make the four most significant bits of the ct becomes again the four least significant bits of the pt:
@@ -327,4 +327,3 @@ def InvertESwapChar(ct):
 To solve this challenge, I did a python script that you can see at: [luna_decrypt.py](https://github.com/rubenhortas/hackthebox/blob/main/lunaCrypt/luna_decrypt.py)
 
 _Enjoy! ;)_
-
