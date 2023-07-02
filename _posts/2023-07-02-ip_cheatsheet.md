@@ -6,10 +6,11 @@ tags: [cheatsheet, gnux/linux, ip]
 ---
 
 I'm an old school guy. 
-I lerned to use `ifconfig`in the old timems and whith `ifconfig`I continue until today.
+I learned to use `ifconfig`in the old times and with `ifconfig`I continue until today.
 
 But, for a while, there is a new contender `ip`. 
 `ip` is a network tool called to replace `ipconfig`, is installed on all modern gnu/linux distributions, and it's more powerful than `ipconfig`.
+
 So, it's time to learn `ip`, and, to do it, what better way to do it than by keeping a cheeatsheet with the most used commands? 
 
 # Syntax
