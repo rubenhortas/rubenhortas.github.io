@@ -2,7 +2,7 @@
 title: Hack the box Eternal Loop walkthrough
 date: 2022-12-17 00:00:01 +0000
 categories: [hack the box, walkthrough]
-tags: [hack the box, challenge, misc, htb, Eternal loop, john, zip2john, rockyou, sqlite, sqlite3]
+tags: [hack the box, challenge, misc, htb, Eternal loop, john, zip2john, rockyou, sqlite, sqlite3, walkthrough]
 img_path: /assets/img/posts/
 ---
 

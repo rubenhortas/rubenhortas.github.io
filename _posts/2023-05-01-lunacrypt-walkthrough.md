@@ -2,7 +2,7 @@
 title: Hack the box LunaCrypt walkthrough
 date: 2023-05-01 00:00:01 +0000
 categories: [hack the box, walkthrough]
-tags: [hack the box, challenge, crypto, htb, LunaCrypt]
+tags: [hack the box, challenge, crypto, htb, LunaCrypt, walkthrough]
 ---
 
 >Our astronaut gained access to a key satellite and intercepted an encrypted message. The forensics team also recovered a file that looks like a custom encryption protocol. We're sure that these two elements are linked. Please can you help us reveal the contents of the secret message?
