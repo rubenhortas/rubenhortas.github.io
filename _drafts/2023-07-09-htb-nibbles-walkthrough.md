@@ -110,7 +110,7 @@ _admin.php_
 Unfortunately we don't have valid credentials, and the blog has bruteforcing protection.
 
 If we browse the other paths, we can found a `users.xml` file in `/nibleblog/content/private/`.
-Here, we can found our valid admin user:
+Here, we can found our valid admin user name:
 
 ```xml
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
@@ -127,7 +127,22 @@ Here, we can found our valid admin user:
 </users>
 ```
 
+Now, we have a valid admin user name, but we don't have a password...
+
+In the `/nibbleblog/content/private/` directory we can found another interesting file: `config.xml`.
+If we check the `config.xml` file, we will not find any password, but we found three mentions of `nibbles`, one in the notification mail address...
+
+```xml
+<name type="string">Nibbles</name>
+<notification_email_to type="string">admin@nibbles.com</notification_email_to>
+<seo_site_title type="string">Nibbles - Yum yum</seo_site_title>
+```
+
 # Foothold
+
+At this point, with the brute force option ruled out, we should have to take a leap of faith.
+We will try `nibbles` as the admin account password.
+
 
 # Privilege escalation
 
