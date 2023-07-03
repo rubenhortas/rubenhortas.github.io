@@ -12,6 +12,7 @@ img_path: /assets/img/posts
 > In this article we are going to assume the following IP addresses:
 >
 >Local machine (attacker): 10.0.0.1
+>
 >Target machine (victim): 10.0.0.2
 {: .prompt-info}
 
@@ -112,7 +113,8 @@ XXXX/XX/XX XX:XX:XX Starting gobuster in directory enumeration mode
 
 If we check the `README`file we can see the nibbles blog version in use
 
-```====== Nibbleblog ======
+```
+====== Nibbleblog ======
 Version: v4.0.3
 Codename: Coffee
 Release date: 2014-04-01
