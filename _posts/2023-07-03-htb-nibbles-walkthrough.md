@@ -62,7 +62,7 @@ If we browse to the /nibbleblog directory we will guess that it is a nibble blog
 
 ## Technologies in use
 
-We can identify the technologies used with `whatweb`
+We can identify the technologies used with `whatweb`:
 
 ```
 http://10.0.0.2/nibbleblog [301 Moved Permanently] Apache[2.4.18], Country[RESERVED][ZZ], HTTPServer[Ubuntu Linux][Apache/2.4.18 (Ubuntu)], IP[10.0.0.2], RedirectLocation[http://10.0.0.2/nibbleblog/], Title[301 Moved Permanently]
