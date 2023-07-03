@@ -1,5 +1,5 @@
 ---
-title: hack the box Nibbles walkthrough 
+title: Hack the box Nibbles walkthrough 
 date: 2023-07-03 00:00:01 +0000
 categories: [hack the box, walkthrough]
 tags: [hack the box, walkthrough, htb, nibbles, nibbleblog, privilege escalation, world-writable file, sudoers misconfiguration, eJPT]
