@@ -189,7 +189,7 @@ So, we can upload a PHP snippet code to verify that we can upload files and if t
 We create a file `ce_test.php` with the following content:
 
 ```php
-So, we can upload a PHP snipet code to check the file upload and if can be use to code execution.
+S<?php system('id'); ?>
 ```
 
 Leaving aside a bunch of errors, it seems that the file has been uploaded.
