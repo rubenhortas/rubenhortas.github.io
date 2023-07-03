@@ -6,7 +6,7 @@ tags: [hack the box, walkthrough, htb, nibbles, nibbleblog, privilege escalation
 img_path: /assets/img/posts
 ---
 
-![nibbles](htb-nibles-desc.png)
+![nibbles](htb-nibbles-desc.png)
 *nibbles*
 
 > In this article we are going to assume the following IP addresses:
