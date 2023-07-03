@@ -26,7 +26,7 @@ Things we know about the target machine:
 
 From this information we can assume that the target machine will be a GNU/Linux host with a running web server with two attack vectors (a world writable file and a misconfigured sudo).
 
-# Enumeration
+## Enumeration
 
 We are going to scan the target machine to see if our suspicions are confirmed.
 
@@ -44,7 +44,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 We can see that we were right.
 The target machine is a GNU/Linux host (Ubuntu), has a web service running on port 80 (Apache 2.4.18) and, moreover, has a ssh service running on port 22.
 
-## Web footprinting
+### Web footprinting
 
 If we open the target in our browser, shows us a simple `Hello world!` message.
 But, if we check the page source code, we can see an interesting comment:
@@ -60,7 +60,7 @@ If we browse to the /nibbleblog directory we will guess that it is a nibble blog
 ![/nibbles directory](htb-nibbles-nibbles-directory.png)
 */nibles_directory*
 
-## Technologies in use
+### Technologies in use
 
 We can identify the technologies used with `whatweb`:
 
@@ -70,7 +70,7 @@ http://10.0.0.2/nibbleblog/ [200 OK] Apache[2.4.18], Cookies[PHPSESSID], Country
 
 ```
 
-## Directory enumeration
+### Directory enumeration
 
 As `/nibbleblog` is hidden, let's see if there are more directories hidden.
 For this we are going to use `gobuster`:
@@ -109,7 +109,7 @@ XXXX/XX/XX XX:XX:XX Starting gobuster in directory enumeration mode
 ===============================================================
 ```
 
-### README
+#### README
 
 If we check the `README`file we can see the nibbles blog version in use
 
@@ -133,7 +133,7 @@ Nibbleblog 4.0.3 - Arbitrary File Upload (Metasploit)                           
 Shellcodes: No Results
 ```
 
-### admin.php
+#### admin.php
 
 We can see that there is an `admin.php` page...
 
@@ -162,7 +162,7 @@ Here, we can found our valid admin user name:
 
 Now, we have a valid admin user name, but we don't have a password...
 
-### config.xml
+#### config.xml
 
 In the `/nibbleblog/content/private/` directory we can found another interesting file: `config.xml`.
 If we check the `config.xml` file, we will not find any password, but we found three mentions of `nibbles`, one in the notification mail address...
@@ -173,7 +173,7 @@ If we check the `config.xml` file, we will not find any password, but we found t
 <seo_site_title type="string">Nibbles - Yum yum</seo_site_title>
 ```
 
-# Foothold
+## Foothold
 
 At this point, with the brute force option ruled out, we should have to take a leap of faith.
 We will try `nibbles` as the admin account password.
@@ -272,7 +272,7 @@ Archive:  personal.zip
 The `monitor.sh` file is a bash script and is world-writable.
 This box has a **world-writable file explotation** and we can run this script as root without password.
 
-# Privilege escalation
+## Privilege escalation
 
 As `monitor.sh` is world-writable, we can append a reverse shell one-liner to the end of `monitor.sh` file and, when we run it, we will have a reverse shell as root.
 
