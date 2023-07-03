@@ -224,7 +224,7 @@ Now, we have a reverse shell.
 The shell we have is not fully interactive, so we will upgrade our shell to a nicer shell.
 We will use a python one-liner to spawn a pseudo terminal:
 
-```python
+```
 $ python 3 -c 'import pty; pty.spawn("/bin/bash")'
 ```
 
@@ -252,7 +252,7 @@ User nibbler may run the following commands on Nibbles:
 
 We can execute `/home/nibbler/personal/stuff/monitor.sh` as root without password.
 
-If we navigate to our home '/home/nibbler` we can see two files:
+If we navigate to our home `/home/nibbler` we can see two files:
 
 * `personal.zip`
 * `user.txt` (Our first flag)
