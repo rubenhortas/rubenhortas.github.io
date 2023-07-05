@@ -50,10 +50,10 @@ If we take a look at the source code we can see a lot of references to `http://g
 So we will fixt it adding `10.0.0.2` as `gettingstarted.htb` to our `/etc/hosts`:
 
 ```
-sudo echo `10.0.0.2 gettingstarted.htb` >> /etc/hosts
+$ sudo echo `10.0.0.2 gettingstarted.htb` >> /etc/hosts
 ```
 
-If we reaload, the page will look much better:
+If we reload, the page will look much better:
 
 ![welcome screen fixed](htb-getting-started-welcome-screen-fixed.png)
 *Welcome screen fixed*
@@ -114,7 +114,7 @@ If we browse to the `/admin` directory (`http://gettingstarted.htb/admin`) we wi
 
 ## /data/users/admin.xml
 
-if we browse to the `/data/users` directory (`http://gettingstarted.htb/data/users`) we will find an `admin.xml` file with the admin account information:
+If we browse to the `/data/users` directory (`http://gettingstarted.htb/data/users`) we will find an `admin.xml` file with the admin account information:
 
 ```xml
 <item>
@@ -211,7 +211,7 @@ $ curl http://gettingstarted.htb/theme/Innovation/template.php
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
-Now we have a RCE (remote code execution) and we need to take advantage of this RCE (remote code execution) to convert it in a remote shell.
+Now we have a RCE (remote code execution) and we need to take advantage of this RCE to convert it in a remote shell.
 
 We will edit again the `template.php` file.
 But, this time, we will append the following bash one-liner reverse shell to the beginning:

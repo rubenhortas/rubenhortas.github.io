@@ -294,6 +294,6 @@ And we execute the `monitor.sh` script as sudo in the target (victim) host:
 $ sudo /home/nibbler/personal/stuff/monitor.sh
 ```
 
-Now, we are root and we can get the root flag stored in `/root.txt`
+Now, we are root and we can get the root flag stored in `/root/root.txt`
 
 *Enjoy! ;)*
