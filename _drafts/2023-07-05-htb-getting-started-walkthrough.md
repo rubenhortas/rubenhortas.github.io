@@ -107,5 +107,15 @@ XXXX/XX/XX 13:31:37 Starting gobuster in directory enumeration mode
 /theme                (Status: 301) [Size: 324] [--> http://gettingstarted.htb/theme/]
 ```
 
+We can see a few interesting directories, among which stand out `/admin`.
+
+### /admin
+
+If we brose to the `/admin` directory (`http://gettingstarted.hbt/admin`) we will find a login form:
+
+![Admin login form]("htb-getting-started-admin-login-form.png")
+*Admin login form*
+
+If we  try a few very basic login/password combinations we will end up hitting with `admin/admin`...
 
 *Enjoy! ;)*
