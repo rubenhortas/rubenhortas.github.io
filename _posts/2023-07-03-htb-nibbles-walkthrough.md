@@ -9,7 +9,7 @@ img_path: /assets/img/posts
 ![nibbles](htb-nibbles-desc.png)
 *nibbles*
 
-> In this article we are going to assume the following IP addresses:
+>In this article we are going to assume the following IP addresses:
 >
 >Local machine (attacker): 10.0.0.1
 >
@@ -42,9 +42,9 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
 We can see that we were right.
-The target machine is a GNU/Linux host (Ubuntu), has a web service running on port 80 (Apache 2.4.18) and, moreover, has a ssh service running on port 22.
+The target machine is a GNU/Linux host (Ubuntu), has a web service (Apache 2.4.18) running on port 80 and, moreover, has a ssh service (OpenSSH 7.2p2) running on port 22.
 
-## Web footprinting
+# Web footprinting
 
 If we open the target in our browser, shows us a simple `Hello world!` message.
 But, if we check the page source code, we can see an interesting comment:
