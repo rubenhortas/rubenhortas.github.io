@@ -1,5 +1,5 @@
 ---
-title: Hack the box Getting started walkthroug
+title: Hack the box Getting started walkthrough
 date: 2023-07-05 00:00:01 +0000
 categories: [hack the box, walkthrough]
 tags: [hack the box, walkthrough, htb, getting started, getsimple, privilege escalation, privilege escalation, sudoers misconfiguration]
