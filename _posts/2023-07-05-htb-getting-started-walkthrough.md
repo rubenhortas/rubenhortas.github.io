@@ -36,7 +36,7 @@ We can see that the target is a GNU/Linux (Ubuntu) host with a SSH server (OpenS
 
 # Web footprinting
 
-If we browse the target, we sill se a `GetSimple` welcome screen
+If we browse to the target, we sill se a `GetSimple` welcome screen
 
 ![welcome screen](htb-getting-started-welcome-screen.png)
 *Welcome screen*
@@ -229,7 +229,7 @@ We need to start a netcat listener on our host (the attacker):
 $ nc -lvnp 1234
 ```
 
-We have to curl or browse the `template.php` file (`http://gettingstarted.htb/theme/Innovation/template.php`), again, to execute the reverse shell.
+We have to curl or browse to he `template.php` file (`http://gettingstarted.htb/theme/Innovation/template.php`), again, to execute the reverse shell.
 Now, we have a working reverse shell.
 
 ```

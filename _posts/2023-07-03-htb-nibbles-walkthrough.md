@@ -142,7 +142,7 @@ We can see that there is an `admin.php` page...
 
 Unfortunately we don't have valid credentials, and the blog has bruteforcing protection.
 
-If we browse the other paths, we can found a `users.xml` file in `/nibleblog/content/private/`.
+If we browse to the other paths, we can found a `users.xml` file in `/nibleblog/content/private/`.
 Here, we can found our valid admin user name:
 
 ```xml
@@ -218,7 +218,7 @@ Now we need to start a netcat listener on our host (the attacker):
 $ nc -lvnp 1234
 ```
 
-We need `curl` or browse our `image.php` file to execute the reverse shell.
+We need `curl` or browse to our `image.php` file to execute the reverse shell.
 Now, we have a reverse shell.
 
 The shell we have is not fully interactive, so we will upgrade our shell to a nicer shell.
