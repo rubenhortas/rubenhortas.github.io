@@ -11,9 +11,9 @@ img_path: /assets/img/posts/
 
 >In this article we are going to assume the folling ip addresses:
 >
->Local machine (attacker): 10.0.0.1
+>Local machine (attacker, localhost): 10.0.0.1
 >
->Target machine (victim): 10.0.0.2
+>Target machine (victim, Getting started box): 10.0.0.2
 {: .prompt-info}
 
 This will be a black-box approach, because we don't have any information about the target.

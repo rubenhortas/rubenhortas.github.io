@@ -6,14 +6,14 @@ tags: [hack the box, walkthrough, htb, nibbles, nibbleblog, privilege escalation
 img_path: /assets/img/posts
 ---
 
-![nibbles](htb-nibbles-desc.png)
-*nibbles*
+![Nibbles](htb-nibbles-desc.png)
+*Nibbles*
 
 >In this article we are going to assume the following IP addresses:
 >
->Local machine (attacker): 10.0.0.1
+>Local machine (attacker, localhost): 10.0.0.1
 >
->Target machine (victim): 10.0.0.2
+>Target machine (victim, Nibbles box): 10.0.0.2
 {: .prompt-info}
 
 As this is a retired machine, this will be a grey-box approach, because we have some information about the target.
