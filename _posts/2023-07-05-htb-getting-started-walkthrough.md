@@ -50,7 +50,7 @@ If we take a look at the source code we can see a lot of references to `http://g
 So we will fixt it adding `10.0.0.2` as `gettingstarted.htb` to our `/etc/hosts`:
 
 ```
-$ sudo echo `10.0.0.2 gettingstarted.htb` >> /etc/hosts
+$ echo "10.0.0.2 gettingstarted.htb" | sudo tee -a /etc/hosts
 ```
 
 If we reload, the page will look much better:

