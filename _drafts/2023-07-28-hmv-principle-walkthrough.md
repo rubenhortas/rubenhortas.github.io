@@ -252,6 +252,17 @@ And, now, we will upload a new php file, but, this time, we will upload a bash o
 
 Once our file is uploaded we got shell!
 
+We will upgrade our tty:
+
+```
+$ script /dev/null -c bash
+Ctrl+Z
+$ stty raw -echo; fg
+$ reset
+$ export TERM=xterm
+$ export SHELL=bash
+```
+
 ```
 $ whoami
 www-data
@@ -485,7 +496,7 @@ We need to know the machine architecture to know what `chisel` binary upload:
 
 ```
 talos@principle:~/.ssh$ uname -a
-Linux Principle 6.1.0-9-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08) x86_64 GNU/Linux
+Linux principle 6.1.0-9-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.27-1 (2023-05-08) x86_64 GNU/Linux
 ```
 
 We already knew that it was a linux machine, and now, we also know that it has an amd64 architecture, so we need to upload the linux_amd64 binary.
@@ -637,6 +648,10 @@ $ sudo /usr/bin/python3 /opt/reviewer.py
 ```
 
 And we can read our last flag!
+
+```
+root@principle:/opt# cat /root/flag.txt
+```
 
 *Enjoy! ;)*
 
