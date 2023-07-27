@@ -275,7 +275,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 
 As the `www-data` user is not very useful to us, we need to find a way to pivot to side-pivot to another, more useful, user.
 
-We find other users in this machinne.
+We find other users in this machine.
 
 ```
 $ cat /etc/passwd
@@ -349,7 +349,7 @@ I left you a file with the name of one of the 12 Gods of Olympus, out of the eye
 The tool I left you is still your ally. Good luck to you.
 ```
 
-A few gods later...
+A few gods (in a couple of languages) later...
 
 ```
 $ find / -iname *afrodita*  2>/dev/null
