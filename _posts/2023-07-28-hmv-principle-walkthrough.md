@@ -6,7 +6,7 @@ tags: [hackmyvm, walkthrough, hmv, virtualhost, form abuse, rbash escape, find a
 img_path: /assets/img/posts/
 ---
 
-![Principle](hmv-hmv-principle-logo.png)
+![Principle](hmv-principle-logo.png)
 *HMV Principle*
 
 Lastly I've been acting (gladly) as beta tester for my friend [Kaian][1].
@@ -203,7 +203,7 @@ If we browse to `http://hellfire.t4l0s.hmv/upload.php` we have a web from which 
 
 We can upload images, so we have to find out if we can exploit this page to gain access to the box.
 
-![image uploaded](hmv-principle-automata-image-uploaded.png)
+![image uploaded](hmv-principle-image-uploaded.png)
 *image uploaded*
 
 We will try to upload a php file to see if we can do a remote code execution (RCE).
