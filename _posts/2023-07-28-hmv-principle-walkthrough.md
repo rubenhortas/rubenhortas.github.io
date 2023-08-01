@@ -14,7 +14,7 @@ Lastly I've been acting (gladly) as beta tester for my friend [Kaian][1].
 It was a very fun machine and it was a great experience help him to do it.
 I have to say that there is **A LOT** of work behind each one of this little machines.
 
-Although [Principle][2] is an medium level machine (it was going be easy), I have to admit that I learned a few things along the way.
+Although [Principle][2] is an medium level machine (it was meant to be easy), I have to admit that I learned a few things along the way.
 
 And, as I completed the box, I have earned the right to write my walkthrough ;)
 
