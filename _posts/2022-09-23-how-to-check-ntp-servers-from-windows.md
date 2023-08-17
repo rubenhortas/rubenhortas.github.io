@@ -2,7 +2,7 @@
 title: How to check NTP servers from Windows
 date: 2022-09-23 00:00:01 +0000
 categories: [windows, administration]
-tags: [windows, ntp, sntp, nis, time, howtos]
+tags: [windows, administration, ntp, sntp, nis, time, howto]
 ---
 
 Sometimes we need to retrieve the date from a NTP [Network Time Protocol](https://es.wikipedia.org/wiki/Network_Time_Protocol) 

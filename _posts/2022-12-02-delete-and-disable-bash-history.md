@@ -2,7 +2,7 @@
 title: Delete and disable bash history
 date: 2022-12-02 00:00:01 +0000
 categories: [privacy, bash]
-tags: [privacy, bash, history]
+tags: [privacy, bash, history, gnu/linux]
 ---
 
 Bash history is a log of the commands we have executed in bash.

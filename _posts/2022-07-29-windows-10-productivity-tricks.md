@@ -2,7 +2,7 @@
 title: Windows 10 productivity tricks
 date: 2022-07-29 00:00:01 +0000
 categories: [windows10, productivity]
-tags: [windows , windows10, productivity]
+tags: [windows10, productivity, windows]
 ---
 
 I am writting this article as a result of a conversation I recently had with a friend.  

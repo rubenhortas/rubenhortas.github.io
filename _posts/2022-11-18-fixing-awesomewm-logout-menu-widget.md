@@ -1,8 +1,8 @@
 ---
 title: Fixing awesome logout-menu-widget
 date: 2022-11-18 00:00:01 +0000
-categories: [awesome, widget]
-tags: [awesome, widget, logout-menu-widget, howtos]
+categories: [awesomewm, widget]
+tags: [awesomewm, widget, logout-menu-widget, howto]
 ---
 
 I like to have installed the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) from [Pavel Makhov](https://pavelmakhov.com/) ([@streetturtle](https://github.com/streetturtle))in awesome. 

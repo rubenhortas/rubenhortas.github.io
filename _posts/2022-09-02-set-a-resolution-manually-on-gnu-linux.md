@@ -2,7 +2,7 @@
 title: Set a resolution manually in GNU/Linux
 date: 2022-09-02 00:00:01 +0000
 categories: [gnu/linux, howtos]
-tags: [screen, resolution, howtos, gnu/linux]
+tags: [gnu/linux, howto, screen, resolution ]
 ---
 
 Lately I'm having problems with mi secondary screen. For some reason it loses its resolution and I have to add it manually.

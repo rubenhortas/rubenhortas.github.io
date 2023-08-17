@@ -2,7 +2,7 @@
 title: Don't add host key to shh known_hosts 
 date: 2022-10-28 00:00:01 +0000
 categories: [privacy, ssh]
-tags: [ssh, privacy, known_hosts] 
+tags: [privacy, ssh, known_hosts] 
 ---
 
 The known_hosts is a file stored in the user home, in ~/.shh/known_hosts.

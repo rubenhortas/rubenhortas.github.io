@@ -2,7 +2,7 @@
 title: Keep alive ssh sessions
 date: 2022-06-17 00:00:01 +0000
 categories: [gnu/linux, ssh]
-tags: [ssh, howtos, configuration, howtos]
+tags: [gnu/linux, ssh, howto, configuration]
 ---
 
 Sometimes firewalls time out idle sessions after a certain period of time.  

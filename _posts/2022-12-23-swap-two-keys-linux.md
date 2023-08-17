@@ -1,8 +1,8 @@
 ---
 title: Swap two keys in GNU/Linux
 date: 2022-12-23 00:00:01 +0000
-categories: [debian, administration]
-tags: [debian, administration, setxkbmap, keyboard]
+categories: [gnu/linux, administration]
+tags: [gnu/linux, administration, setxkbmap, keyboard]
 ---
 
 I recently had to change my old worn pc105 keyboard.

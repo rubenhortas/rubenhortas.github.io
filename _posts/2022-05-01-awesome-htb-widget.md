@@ -2,7 +2,7 @@
 title: Awesome HTB widget
 date: 2022-05-01 00:00:01 +0000
 categories: [personal, portfolio]
-tags: [awesomewm, widgets, personal, htb, hackthebox, developments]
+tags: [personal, portfolio, awesomewm, widgets, htb, hackthebox, developments]
 img_path: /assets/img/posts/
 ---
 

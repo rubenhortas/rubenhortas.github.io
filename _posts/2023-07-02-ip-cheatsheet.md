@@ -1,8 +1,8 @@
 ---
 title: ip cheatsheet 
 date: 2023-07-2 00:00:01 +0000
-categories: [cheatsheets, gnu/linux]
-tags: [cheatsheet, gnux/linux, ip] 
+categories: [gnu/linux, cheatsheets]
+tags: [gnux/linux, cheatsheet, ip] 
 ---
 
 I'm an old school guy. 

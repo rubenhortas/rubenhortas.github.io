@@ -2,7 +2,7 @@
 title: GIFAR, another steganography trick
 date: 2010-03-29 00:00:01 +0000
 categories: [steganography, gifar]
-tags: [gifar, steganography, cryptography]
+tags: [steganography, gifar, cryptography]
 ---
 Since -relatively- recently, it has become more and more common to find articles about [steganography](https://en.wikipedia.org/wiki/Steganography), until "recently" that great unknown. The vast majority of these articles talk about applications, whether known or new, and how we can hide one type of file inside another.
 

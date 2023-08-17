@@ -1,8 +1,8 @@
 ---
 title: Maintenance of NAND disk in GNU/Linux
 date: 2023-04-08 00:00:01 +0000
-categories: [gnu/linux, sysadmin]
-tags: [gnu/linux, hdd, nand, usb, ssd, fsck]
+categories: [gnu/linux, administration]
+tags: [gnu/linux, administration, hdd, nand, usb, ssd, fsck]
 ---
 
 NAND disk ranges from USB flash drives (thumb drive, memory stick, pendrive, call it what you prefer) to SDD disks.

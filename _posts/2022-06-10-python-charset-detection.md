@@ -2,7 +2,7 @@
 title: Python charset detection
 date: 2022-06-10 00:00:01 +0000
 categories: [programming, python]
-tags: [python, charset, howtos]
+tags: [programming, python, charset, howto]
 ---
 
 We can use the [chardet](https://github.com/chardet/chardet) module to detect the charset (or character encoding) of a file.  

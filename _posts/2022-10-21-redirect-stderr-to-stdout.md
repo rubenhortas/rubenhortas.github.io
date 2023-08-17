@@ -1,8 +1,8 @@
 ---
 title: Redirect stderr to stdout
 date: 2022-10-21 00:00:01 +0000
-categories: [unix, bash]
-tags: [unix bash] 
+categories: [gnu/linux, bash]
+tags: [gnu/linux, bash] 
 ---
 
 Sometimes we met with shell commands that includes the "2>&1" string at the end.

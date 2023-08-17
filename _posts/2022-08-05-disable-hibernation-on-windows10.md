@@ -2,7 +2,7 @@
 title: Disable hibernation on Windows10
 date: 2022-08-05 00:00:01 +0000
 categories: [windows10, administration]
-tags: [windows, windows10, administration, howtos, hibernation]
+tags: [windows10, administration, windows, howto, hibernation]
 ---
 
 Hibernate is a power option that will allow you to turn off your computer but save all the work you had open for when it is turned on again. The downside is that hibernation uses some storage space on your computer. 

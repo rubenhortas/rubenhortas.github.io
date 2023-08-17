@@ -1,8 +1,8 @@
 ---
 title: Maintenance of HDD in GNU/Linux
 date: 2023-03-17 00:00:01 +0000
-categories: [gnu/linux, sysadmin]
-tags: [gnu/linux, hdd, smartmontools, smartctl, fsck]
+categories: [gnu/linux, administration]
+tags: [gnu/linux, administration, hdd, smartmontools, smartctl, fsck]
 ---
 
 A hard disk drive (HDD) can suffer several types of failures: logical failures, mechanical failures or firmware failures.

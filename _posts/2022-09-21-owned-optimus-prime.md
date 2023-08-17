@@ -2,7 +2,7 @@
 title: Hack The Box - Optimus Prime (Crypto Challenge) owned!
 date: 2022-09-21 00:00:01 +0000
 categories: [hack the box, owned]
-tags: [hack the box, challenge, owned]
+tags: [hack the box, owned, challenge]
 img_path: /assets/img/posts/
 ---
 

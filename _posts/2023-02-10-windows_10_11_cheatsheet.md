@@ -1,7 +1,7 @@
 ---
 title: Windows 10 and 11 cheatsheet
 date: 2023-02-10 00:00:01 +0000
-categories: [cheatsheets, windows]
+categories: [windows, cheatsheets]
 tags: [windows, windows10, windows11, cheatsheet]
 ---
 

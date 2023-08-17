@@ -2,7 +2,7 @@
 title: netselect-apt
 date: 2022-08-12 00:00:01 +0000
 categories: [debian, administration]
-tags: [gnu/linux , debian, administration]
+tags: [debian, administration, gnu/linux]
 ---
 
 netselect-apt is a script to create an apt sources.list file automatically by downloading the list of Debian mirrors and choosing the fastest.

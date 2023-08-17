@@ -2,7 +2,7 @@
 title: Force HDMI hotplug in a Raspberry Pi
 date: 2022-11-11 00:00:01 +0000
 categories: [raspberry pi, howtos]
-tags: [howtos, raspberry pi, hdmi] 
+tags: [raspberry pi, howto, hdmi] 
 ---
 
 The HDMI output of the Raspberry Pi is only activated if a screen is connected and powered up before the Raspberry Pi is started up.

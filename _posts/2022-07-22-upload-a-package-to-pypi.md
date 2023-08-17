@@ -2,7 +2,7 @@
 title: Upload a package to PyPI
 date: 2022-07-22 00:00:01 +0000
 categories: [programming, python]
-tags: [howtos, python, pypi]
+tags: [programming, python, pypi, howto]
 ---
 
 Although the [Packaging Python Projects tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) is very detailed in how to package a Python Project, I encountered some difficulties at the time of do it, so I'm going to leave here a summary and some notes to my future me ;)
