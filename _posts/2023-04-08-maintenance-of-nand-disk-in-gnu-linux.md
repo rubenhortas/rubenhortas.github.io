@@ -46,7 +46,7 @@ Besides, with `-cc` option the bad block scan will be done using a non-destructi
 To see the blocks marked as bad in a ext2/ext3/ext4 filesystem we have to use `dumpe2fs`:
 
 ```
-dumpe2fs -b /dev/sdb1
+$ sudo dumpe2fs -b /dev/sdb1
 ```
 
 *Enjoy! ;)*
