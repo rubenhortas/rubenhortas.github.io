@@ -177,7 +177,7 @@ If we browse to our new domain we have a new web.
 If we check the source code, the only interesting thing that we found is this comment:
 
 ``` html
-<! You're on the right track, he's getting angry! ->
+<!- You're on the right track, he's getting angry! ->
 ```
 
 ## Directory enumeration
@@ -231,7 +231,7 @@ We will modify the upload request, and we will change the `Content-Type` from `a
 Once our RCE (Remote Code Execution) test is uploaded we can see that we can perform a RCE:
 
 ```
-$ curl "http://hellfire.t4l0s.hmv/archivos/rcetest.php" 
+$ curl "http://hellfire.t4l0s.hmv/archivos/rctest.php" 
 uid=33(www-data) gid=33(www-data) groups=33(www-data)
 ```
 
