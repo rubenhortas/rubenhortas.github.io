@@ -8,3 +8,5 @@ img_path: /assets/img/posts/
 
 ![Completed Linux Fundamentals](htba-completed-linux-fundamentals.png){: width="700" height="600" .shadow}
 _Completed Linux Fundamentals_
+
+[Completed Linux Fundamentals achievement](https://academy.hackthebox.com/achievement/636614/18)
