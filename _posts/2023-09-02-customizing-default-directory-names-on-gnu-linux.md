@@ -5,7 +5,7 @@ categories: [gnu/linux, administration]
 tags: [gnu/linux, administration, directories, xdg]
 ---
 
-Sometimes we don't like default named directories as "Desktop" or "Downloads" and we prefer lowercase namings as "desktop" or "downloads", name them in another language, or simply give them another name.
+Sometimes we don't like default named directories as "Desktop" or "Downloads" and we prefer lowercase namings as "desktop" or "downloads", name them in another language, or, simply, give them another name.
 Some applications create default named directories and it's a pain to have duplicated directories and have to delete them later.
 Lucky for us, we can change this behavior only editing the `/etc/xdg/user-dirs.defaults` file.
 
