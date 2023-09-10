@@ -1,6 +1,6 @@
 ---
 title: Hack The Box Academy - Completed Web Requests
-date: 2022-10-10 00:00:01 +0000
+date: 2022-09-10 00:00:01 +0000
 categories: [hack the box, academy]
 tags: [hack the box, academy]
 img_path: /assets/img/posts/
