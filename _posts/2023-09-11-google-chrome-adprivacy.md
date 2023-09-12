@@ -33,6 +33,6 @@ So, if you want to disable (or enable) "Ad topics" and/or "Site-suggested adds" 
 
 You can also access this settings typing [chrome://settings/adPrivacy](chrome://settings/adPrivacy) in the address bar.
 
-[^1]: You can find how "Ad topics" and "Site-suggested ads" work in more depth in the "Learn more" section of each functionality.
+[^1]: You can find how "Ad topics" and "Site-suggested ads" work in more depth, in Google Chrome settings, in the "Learn more" section of each functionality.
 
 *Enjoy! ;)*
