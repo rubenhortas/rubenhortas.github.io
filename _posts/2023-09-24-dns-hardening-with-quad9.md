@@ -1,6 +1,6 @@
 ---
 title: DNS hardening with Quad9
-date: 2023-09-25 00:00:01 +0000
+date: 2023-09-24 00:00:01 +0000
 categories: [hardening, dns]
 tags: [hardening, dns, quad9]
 ---
