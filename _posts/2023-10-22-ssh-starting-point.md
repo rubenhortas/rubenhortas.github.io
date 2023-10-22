@@ -53,7 +53,7 @@ $bin -A BAD_FLAGS -p tcp --tcp-flags ALL ALL -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
 
-# Syn flood
+# SYN flood
 $bin -A INPUT  -p tcp --tcp-flags ALL SYN --m hashlimit --hashlimit-name port_scanners --hashlimit-above 1/second --hashlimit-mode srcip -j DROP
 $bin -A INPUT  -p tcp --tcp-flags ALL NONE -j DROP
 $bin -A INPUT  -m conntrack --ctstate INVALID -j DROP
@@ -112,7 +112,6 @@ $bin -A INPUT  -i lo -j ACCEPT
 $bin -A OUTPUT -o lo -j ACCEPT
 
 # DNS
-# test: # tcpdump -q -n not src net 192.168.1.0/24 and port 53
 $bin -A INPUT  -p udp --sport 53 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p udp --dport 53 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
@@ -123,7 +122,6 @@ $bin -A OUTPUT -p tcp --sport ssh -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp --dport ssh -j DROP
 
 # NTP
-# test: $ntpdate -q pool.ntp.org
 $bin -A INPUT  -p udp --sport 123 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p udp --dport 123 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
