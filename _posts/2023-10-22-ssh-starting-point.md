@@ -55,7 +55,7 @@ $bin -A BAD_FLAGS -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
 
 # SYN flood
-$bin -A INPUT  -p tcp --tcp-flags ALL SYN --m hashlimit --hashlimit-name port_scanners --hashlimit-above 1/second --hashlimit-mode srcip -j DROP
+$bin -A INPUT  -p tcp --tcp-flags ALL SYN -m hashlimit --hashlimit-name port_scanners --hashlimit-above 1/second --hashlimit-mode srcip -j DROP
 $bin -A INPUT  -p tcp --tcp-flags ALL NONE -j DROP
 $bin -A INPUT  -m conntrack --ctstate INVALID -j DROP
 ## Drop Packet fragments
