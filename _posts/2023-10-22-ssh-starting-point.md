@@ -115,10 +115,10 @@ $bin -A INPUT  -i lo -j ACCEPT
 $bin -A OUTPUT -o lo -j ACCEPT
 
 # DNS
-$bin -A INPUT  -p tcp --sport 53 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp --dport 53 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-$bin -A INPUT  -p udp --sport 53 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p udp --dport 53 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A INPUT  -p tcp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A INPUT  -p udp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p udp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
 # SSH
 $bin -A INPUT  -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
