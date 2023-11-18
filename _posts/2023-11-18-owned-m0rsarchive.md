@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - Diagnostic owned!
+title: Hack The Box - M0rsarchive owned!
 date: 2023-11-18 00:00:01 +0000
 categories: [hack the box, owned]
 tags: [hack the box, owned, challenge]
