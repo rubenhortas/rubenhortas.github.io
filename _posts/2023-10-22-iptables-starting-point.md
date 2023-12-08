@@ -1,8 +1,8 @@
 ---
 title: iptables starting point
 date: 2023-10-22 00:00:01 +0000
-categories: [gnu/linux, ssh]
-tags: [gnu/linux, ssh, hardening]
+categories: [hardening, gnu/linux]
+tags: [hardening, gnu/linux]
 ---
 
 All our computers should be using a firewall.
