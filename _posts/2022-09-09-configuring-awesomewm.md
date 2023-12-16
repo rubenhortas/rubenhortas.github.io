@@ -12,7 +12,7 @@ Awesome comes complete with its own status bar and can handle a lot of things by
 
 So where do we start to configure it?
 
-# Preparing the configuration files
+## Preparing the configuration files
 We will store our configuration file and theme under the .config/ folder in our /home
 
 ```shell
@@ -26,7 +26,7 @@ $ sudo cp /etc/xdg/awesome/rc.lua ~/.config/awesome
 $ sudo cp /usr/share/awesome/themes/default/theme.lua ~/.config/awesome/themes/ruben
 ```
 
-# Configuring awesome
+## Configuring awesome
 In this section we will edit the ~/.config/awesome/rc.lua file.
 
 ## Setting the theme
@@ -36,9 +36,12 @@ We need to set our theme path as the parameter passed to beautiful.init:
 beautiful.init("/home/ruben/.config/awesome/themes/ruben/theme.lua")
 ```
 
-## Window layouts
+## Customizing our environment
+To do this, wi will edit our `~/.config/awesome/rc.lua` file, and we will configure a few sections.
+
+### Window layouts
 Mostly, I only use the maximized layout, but I leave the floating layout for applications that starts with a login dialog, the calculator, and so. 
-So in the section /usr/share/awesome/themes/default/theme.lua I comment all the others:
+So in the next section I comment all the others:
 
 ```lua
  awful.layout.layouts = {
@@ -62,7 +65,7 @@ So in the section /usr/share/awesome/themes/default/theme.lua I comment all the 
 
 ```
 
-## Tags
+### Tags
 In this section we will configure the number of tags we want and their text.
 I only use 2 tags in each screen, and, really, I change the numbers for [hack nerd font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip) characters.
 
@@ -70,8 +73,8 @@ I only use 2 tags in each screen, and, really, I change the numbers for [hack ne
 awful.tag({ "1", "2" }, s, awful.layout.layouts[1])
 ```
 
-## Menu bar launcher
-I don't use the menu bar from the wibar, neither in the mouse (I prefer the Super+p or Super+r shortcuts), so I comment the awesome menu sections:
+### Menu bar launcher
+I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Super+p` or `Super+r` shortcuts), so I comment the awesome menu sections:
 
 ```lua
 --myawesomemenu = {
@@ -81,7 +84,7 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the Supe
 --   { "restart", awesome.restart },
 --   { "quit", function() awesome.quit() end },
 --}
- 
+
 -- local menu_awesome = { "awesome", myawesomemenu, beautiful.awesome_icon }
 -- local menu_terminal = { "open terminal", terminal }
 
@@ -99,10 +102,10 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the Supe
 --                }
 --    })
 --end
- 
+
 --mylauncher = awful.widget.launcher({ image = beautiful.awesome_icon,
 --                                     menu = mymainmenu })
- 
+
 -- Menubar configuration
 --menubar.utils.terminal = terminal -- Set the terminal for applications that require it
 -- }}}
@@ -141,7 +144,7 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the Supe
 --)
 ```
 
-## Right widgets
+### Right widgets
 In this section we will comment all the widgets that will not use, later we can add ours.
 I only want to keep the clock widget, so I comment the others:
 
@@ -155,10 +158,10 @@ I only want to keep the clock widget, so I comment the others:
 },
 ```
 
-## Custom key bindings
-First of all I change the Super+j and Super+k keybinndings, is more intiutive this way for me.
+### Custom key bindings
+First of all I interchange the `Super+j` and `Super+k` keybinndings, is more intiutive this way for me.
 
-One of the advantages to use a tiling window manager is have our custom shortcuts, so I always add a few. 
+One of the advantages to use a tiling window manager is have our custom shortcuts, so I always add a few.
 For example, if we want a shortcut to firefox, we will edit the Key bindings section and add:
 
 ```lua
@@ -169,9 +172,9 @@ awful.key({ modkey }, "f", function() awful.util.spawn("firefox") end,
 > Be careful in this step. The previous entry has to end with a colon, and the last entry in this section has to end without colon.
 {: .prompt-warning }
 
-## Mapping applications to screen tags
+### Mapping applications to screen tags
 
-If we want an application always running in a screen tag, we only have to set a rule.  
+If we want an application always running in a screen tag, we only have to set a rule.
 For example, if we want that MPlayer runs always in the tag 1 of screen 2:
 
 ```lua
@@ -179,33 +182,33 @@ For example, if we want that MPlayer runs always in the tag 1 of screen 2:
   properties = { screen = 2, tag = "1" } },
 ```
 
-## Removing gaps 
-For some reason, some windows, in maximized mode, have gaps at the right and bottom. To remove the gaps I add the "size_hints_honor = false" to the rules
+### Removing gaps
+For some reason, some windows, in maximized mode, have gaps at the right and bottom. To remove the gaps I add the `size_hints_honor = false` to the rules
 
 ```lua
 { rule_any = {type = { "normal", "dialog" }
   }, properties = { titlebars_enabled =  false, size_hints_honor = false }
-},     
+},
 ```
 
-# Configuring our theme
-In this section we will edit the our theme file, in my case: ~/.config/awesome/themes/ruben/theme.lua
+## Configuring our theme
+In this section we will edit the our theme file, in my case: `~/.config/awesome/themes/ruben/theme.lua`
 
-## Font
+#### Font
 I find the default font a bit small, so I change it and set one a little bit bigger:
 
 ```lua
 theme.font = "Hack Nerd Font Mono Regular 9"
 ```
 
-## Taglist font
+#### Taglist font
 I like to see the taglists very big, so I set their font to one bigger:
 
 ```lua
 theme.taglist_font="Hack Nerd Font Mono Regular 16"
 ```
 
-## Wallpaper
+#### Wallpaper
 We can set our wallpaper editing the theme.wallpaper value:
 
 ```lua
@@ -218,13 +221,13 @@ If we don't have our wallpaper on the themes_path, we can set it with adding its
 theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 ```
 
-# Widgets
+## Widgets
 
 We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
 I usually install the following widget:
   * logout-menu-widget
-  
-## Custom widgets
+
+### Custom widgets
 
 I want to see the CPU and memory (RAM) usage, so I add a couple of custom widgets based on vicious to do it.
 To do this, as these widgets are based on vicious I have to add the following line at the beginning of the rc.lua file:
@@ -247,7 +250,7 @@ I add my two custom widgets:
     cpuwidget = wibox.widget.textbox()
     cpuwidget.forced_width=65
     vicious.register(cpuwidget, vicious.widgets.cpu, " CPU: $1%", 2)
-      
+
  -- MEM widget
     memwidget = wibox.widget.textbox()
     memwidget.forced_width=65
@@ -256,7 +259,7 @@ I add my two custom widgets:
 
 And then I add the two custom widgets to the wibos on the positions that I want.
 
-## Configuring the clock (mytextclock or textclock) format:
+### Configuring the clock (mytextclock or textclock) format:
 
 I only want to see the hour and the minutes. If you, as me, want another time format you only need to pass the date format to the textclock() function:
 
@@ -267,7 +270,7 @@ mytextclock = wibox.widget.textclock(" %H:%M ")
 > The formats are the same as in the linux date command 
 {: .prompt-info}
 
-## My own widgets (ip and hackthebox)
+### My own widgets (ip and hackthebox)
 
 You also may find interesting my own awesome widgets:
   * [awesome ip widget](https://github.com/rubenhortas/awesome-ip-widget)
@@ -281,23 +284,23 @@ If you, as me, want applications in dark mode and you have installed gtk applica
 gtk-application-prefer-dark-theme=1
 ```
 
-# Default browser
+## Default browser
 If we have many browsers installed and we want to use one of them as default browser, for instance firefox, we will find that some applications will open the links in another browser.
 To solve this we will need to set the default browser, system-wide and user-specific. For instance, in debian:
 
-## System-wide
+### System-wide
 
 ```shell
 $ sudo update-alternatives --config x-www-browser
 ```
 
-## User-specific
+### User-specific
 
 ```shell
 $ xdg-settings set default-web-browser firefox-esr.desktop
 ```
 
-# Backup and clean
+## Backup and clean
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
 
 # Further readings
