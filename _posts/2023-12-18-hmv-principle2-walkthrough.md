@@ -11,7 +11,7 @@ img_path: /assets/img/posts/
 
 I was back to acting last beta tester for my friend [Kaian][1].
 I have dedicated the last few days to solve [Kaian][1]'s last machine: [Principle 2][2] for HackMyVM.
-I really, admire **A LOT** al the work behind each of one of these boxes.
+I really, admire **A LOT** all the work behind each of one of these boxes.
 Again, it was a very fun machine and it was a great experience help him, but, this time I have to admit that was a little more complicated.
 This time it was a medium level machine, and to solve [Principle 2][2], I had to learn a few new tricks.
 
