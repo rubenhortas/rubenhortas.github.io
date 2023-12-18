@@ -30,7 +30,7 @@ And, as always, once completed the box, it's time to write my walkthough.
 
 >Take a snapshot of the machine just after a fresh install.
 >You may need it later.
-{: .prompt-info}
+{: .prompt-warning}
 
 ## Enumeration
 
