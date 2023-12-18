@@ -127,7 +127,7 @@ $ ls -la /tmp | grep backups
 drwxr--r-- 2 54 backup 28672 Nov 28 19:00 backups
 ```
 
-We can read the files inside `/backups` because the lack of permissions.
+We can't read the files inside `/backups` because the lack of permissions.
 But, we can see that the owner of `/backups` is the user with UID 54, so we can impersonate that user by creating a new one with this UID:
 
 ```
