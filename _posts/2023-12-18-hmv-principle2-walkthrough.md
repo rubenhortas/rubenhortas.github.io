@@ -167,7 +167,7 @@ $ enum4linux -a 10.0.0.2
 We can see that we can read in `/public`, and we found the user `hermanubis` and we can't read (or write) in `/hermanubis`.
 Let's mount them and take a look:
 
-#### public
+#### /public
 
 ```
 $ sudo mount -t cifs //10.0.0.2/public /tmp/public
@@ -227,7 +227,9 @@ AMYNTAS:        But what does this tell us about the nature of the universe, whi
 STRATON:        That is the next question we must undertake to answer. We begin with the self because that is what determines our existence as individuals; but the self cannot exist without that which surrounds it. The citizen lives within the city; and the city lives within the cosmos. So now we must apply the principle we have discovered to the wider world, and ask: if man is like a machine, could it be that the universe is similar in nature? And if so, what follows from that fact?
 ```
 
-#### hermanubis
+#### /hermanubis
+
+Let's mount `/hermanubis` now:
 
 ```
 sudo mount -t cifs //10.0.0.2/hermanubis /tmp/hermanubis -o username=hermanubis
