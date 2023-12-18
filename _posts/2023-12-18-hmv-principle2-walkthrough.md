@@ -576,7 +576,7 @@ cat /root/root.txt > /home/melville/root_flag.txt
 
 Now, we logout, we login again as `melville` and we will get the root flag waiting for us in our `home`!
 
-__Enjoy! ;)_
+_Enjoy! ;)_
 
 [1]: https://kaianperez.github.io
 [2]: https://hackmyvm.eu/machines/machine.php?vm=Principle2
