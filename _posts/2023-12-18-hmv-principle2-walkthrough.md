@@ -1,7 +1,7 @@
 ---
-title: HMV Principle 2 walkthrough
+title: Hack My VM Principle 2 walkthrough
 date: 2023-12-18 00:00:01 +0000
-categories: [hackmyvm, walkthrough]
+categories: [hackmyvm, vm]
 tags: [hackmyvm, walkthrough, hmv, principle, rpc, nfs, user impersonation, steganography, path traversal, lfi, log poisoning, reverse proxy, chisel, hydra, binary hijack]
 img_path: /assets/img/posts/
 ---

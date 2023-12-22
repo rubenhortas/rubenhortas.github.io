@@ -1,7 +1,7 @@
 ---
 title: Hack the box LunaCrypt walkthrough
 date: 2023-05-01 00:00:01 +0000
-categories: [hack the box, walkthrough]
+categories: [hack the box, challenge]
 tags: [hack the box, walkthrough, challenge, crypto, htb, LunaCrypt]
 ---
 

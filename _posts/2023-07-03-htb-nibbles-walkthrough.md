@@ -1,7 +1,7 @@
 ---
 title: Hack the box Nibbles walkthrough 
 date: 2023-07-03 00:00:01 +0000
-categories: [hack the box, walkthrough]
+categories: [hack the box, machine]
 tags: [hack the box, walkthrough, htb, nibbles, nibbleblog, privilege escalation, world-writable file, sudoers misconfiguration, eJPT]
 img_path: /assets/img/posts
 ---

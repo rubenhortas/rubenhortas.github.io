@@ -1,7 +1,7 @@
 ---
 title: Hack the box Getting started walkthrough
 date: 2023-07-05 00:00:01 +0000
-categories: [hack the box, walkthrough]
+categories: [hack the box, machine]
 tags: [hack the box, walkthrough, htb, getting started, getsimple, privilege escalation, sudoers misconfiguration]
 img_path: /assets/img/posts/
 ---
