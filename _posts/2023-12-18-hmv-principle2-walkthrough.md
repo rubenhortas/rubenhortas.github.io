@@ -328,9 +328,9 @@ http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....
 http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//var/log/nginx/error.log
 ```
 
-### Log poisoning
-
 As the `access.log` and `error.log` files are publicly accessible, we will try a log poisoning:
+
+### Log poisoning
 
 >This is the most tricky point.
 >If you do not get the log poisoning on the first attempt because it's sent or write in a wrong format, php will be interpreted loading the logs, but will throw errors, so the poisoning (and future poisonings) won't work.
@@ -361,7 +361,7 @@ First, we get our terminal size, in the host:
 
 ```
 $ stty size
-56 205
+56 256
 ```
 
 Now, we treat our new tty in [Principle 2][2]:
