@@ -9,4 +9,8 @@ img_path: /assets/img/posts/
 ![Challenge results](owned-rlotto.png){: width="700" height="600" .shadow}
 _RLotto has been Pwned_
 
+## Walkthrough
+
+You can take a look at the script I used to solve it: [lotto_seer.py](https://github.com/rubenhortas/hackthebox/blob/main/rLotto/lotto_seer.py)
+
 _Enjoy! ;)_
