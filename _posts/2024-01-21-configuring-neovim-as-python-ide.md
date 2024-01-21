@@ -1,25 +1,25 @@
 ---
-title: Configuring neovim as Python IDE
+title: Configuring Neovim as Python IDE
 date: 2024-01-21 00:00:01 +0000
 categories: [programming, ide]
-tags: [programming, ide, python, neovim]
+tags: [programming, ide, python, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
 I have to admit it, [Neo]vim is my editor for everything.
-I started using vim in college, and we have been together since those, but, since a time ago, now as its fork neovim.
-Do I have to edit a file? Neovim.
-Do I have to do a bash script? Neovim.
-Do I have to do a little python script? Neovim.
+I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).
+Do I have to edit a file? [Neovim](https://neovim.io).
+Do I have to do a bash script? [Neovim](https://neovim.io).
+Do I have to do a little python script? [Neovim](https://neovim.io).
 
-Vim and neovim are very lightweight, very powerful.
-Vim comes installed in (almost) every linux distro, and they are very convenient to use via ssh.
+[Vim](https://www.vim.org) and [Neovim](https://neovim.io) are very lightweight, very powerful.
+[Vim](https://www.vim.org) comes installed in (almost) every linux distro, and they are very convenient to use via ssh.
 
 Although for medium or large python projects my favorite IDE is [Pycharm](https://www.jetbrains.com/pycharm/) (I really love [Pycharm](https://www.jetbrains.com/pycharm/)), for small and fast (or no so fast scripts) I preffer neovim or vim, depends on which one is installed.
 
 The point is that, while I was coding some python scripts, above all using new libraries, I missed some features provided by a IDE.
 Features I was used to in [Pycharm](https://www.jetbrains.com/pycharm/), as autocomplete and linting (analze source code to flag programming errors, bugs, stylistic errors).
-So, I decided it was time to configure Neovim to improve the experience with python.
+So, I decided it was time to configure [Neovim](https://neovim.io) to improve my python experience.
 
 ## Base configuration
 
@@ -52,7 +52,7 @@ set hlsearch incsearch          "highlight all pervious search pattern with incs
 
 In my base configuration I usually add the [Vim Better Whitespace Plugin](https://github.com/ntpeters/vim-better-whitespace) (I'll talk about it later), but I keep the option "list" handy (but commented).
 The "list" option, by default, show tabs as ">", trailing spaces as "-" and non-breakable space characters as "+".
-Works for me, but can be customized.
+This default cnfiguration works for me, but can be customized.
 
 ## Plugin manager
 
@@ -88,13 +88,13 @@ mkdir `/home/rubenhortas/.config/nvim/plugins`
 ## pylsp
 
 In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
-The Language Server Protocol (LSP) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
+The [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
 
 ```
 pipx install python-lsp-server[all]`
 ```
 
-For Neovim to load `pylsp` when we are working on a python file we need to create a directory, a couple files and add a little configuration to our `init.vim` file.
+For [Neovim](https://neovim.io) to load `pylsp` when we are working on a python file we need to create a directory, a couple files and add a little configuration to our `init.vim` file.
 
 The directory:
 
@@ -223,12 +223,10 @@ EOF
 ```
 
 > Replace the plugins directory in the first line with your own.
-> Replace the 'YOUR_LSP_SERVER' value with 'pylsp', our Language Server Protocol (LSP).
+> Replace the 'YOUR_LSP_SERVER' value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
 {: .prompt-warning}
 
 ### nvim-lspconfig
-
-Configs for the Nvim LSP client.
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
 
@@ -260,6 +258,7 @@ call plug#begin('/home/rubenhortas/.config/nvim/plugins')
 Plug 'nvim-lua/completion-nvim'
 
 call plug#end()
+```
 
 ### Install the plugins
 
@@ -268,5 +267,7 @@ To install the plugins we open nvim and run:
 `:PlugInstall`
 
 And, thats all!
+
+Now you can start to using [Neovim](https://neovim.io) as your Python IDE.
 
 _Enjoy! ;)_
