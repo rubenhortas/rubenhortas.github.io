@@ -223,7 +223,8 @@ EOF
 ```
 
 > Replace the plugins directory in the first line with your own.
-> Replace the 'YOUR_LSP_SERVER' value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
+>
+> Also, replace the 'YOUR_LSP_SERVER' value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
 {: .prompt-warning}
 
 ## nvim-lspconfig
