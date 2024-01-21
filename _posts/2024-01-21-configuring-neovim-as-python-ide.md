@@ -226,7 +226,7 @@ EOF
 > Replace the 'YOUR_LSP_SERVER' value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
 {: .prompt-warning}
 
-### nvim-lspconfig
+## nvim-lspconfig
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
 
@@ -239,7 +239,7 @@ Plug 'nvim-lua/completion-nvim'
 call plug#end()
 ```
 
-### Vim Better Whitespace
+## Vim Better Whitespace
 
 This plugin causes all trailing whitespace characters to be highlighted.
 Whitespace for the current line will not be highlighted while in insert mode.
@@ -260,7 +260,7 @@ Plug 'nvim-lua/completion-nvim'
 call plug#end()
 ```
 
-### Install the plugins
+## Install the plugins
 
 To install the plugins we open nvim and run:
 
