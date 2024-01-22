@@ -7,18 +7,18 @@ img_path: /assets/img/posts/
 ---
 
 I have to admit it, [Neo]vim is my editor for everything.
-I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).
-Do I have to edit a file? [Neovim](https://neovim.io).
-Do I have to do a bash script? [Neovim](https://neovim.io).
-Do I have to do a little python script? [Neovim](https://neovim.io).
+I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).  
+Do I have to edit a file? [Neovim](https://neovim.io).  
+Do I have to do a bash script? [Neovim](https://neovim.io).  
+Do I have to do a little python script? [Neovim](https://neovim.io).  
 
-[Vim](https://www.vim.org) and [Neovim](https://neovim.io) are very lightweight, very powerful.
+[Vim](https://www.vim.org) and [Neovim](https://neovim.io) are very lightweight and very powerful.
 [Vim](https://www.vim.org) comes installed in (almost) every linux distro, and they are very convenient to use via ssh.
 
 Although for medium or large python projects my favorite IDE is [Pycharm](https://www.jetbrains.com/pycharm/) (I really love [Pycharm](https://www.jetbrains.com/pycharm/)), for small and fast (or no so fast scripts) I preffer neovim or vim, depends on which one is installed.
 
 The point is that, while I was coding some python scripts, above all using new libraries, I missed some features provided by a IDE.
-Features I was used to in [Pycharm](https://www.jetbrains.com/pycharm/), as autocomplete and linting (analze source code to flag programming errors, bugs, stylistic errors).
+Features I was used to in [Pycharm](https://www.jetbrains.com/pycharm/), as autocomplete and linting (analzing source code to flag programming errors, bugs, stylistic errors, etc.).
 So, I decided it was time to configure [Neovim](https://neovim.io) to improve my python experience.
 
 ## Base configuration
@@ -46,17 +46,15 @@ set softtabstop=4               "setting tab to 4 columns
 set showmatch                   "display matching bracket or parenthesis
 set hlsearch incsearch          "highlight all pervious search pattern with incsearch
 "set list                        "show all whitespaces
-"set belloff                     "for vim
-"set background=dark             "for vim
 ```
 
 In my base configuration I usually add the [Vim Better Whitespace Plugin](https://github.com/ntpeters/vim-better-whitespace) (I'll talk about it later), but I keep the option "list" handy (but commented).
 The "list" option, by default, show tabs as ">", trailing spaces as "-" and non-breakable space characters as "+".
-This default cnfiguration works for me, but can be customized.
+This default configuration works for me, but can be customized.
 
 ## Plugin manager
 
-As plugin manager, my choice is [vim-plug[(https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
+As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
 
 Unix/linux:
 
@@ -91,7 +89,7 @@ In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspcon
 The [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
 
 ```
-pipx install python-lsp-server[all]`
+pipx install 'python-lsp-server[all]'
 ```
 
 For [Neovim](https://neovim.io) to load `pylsp` when we are working on a python file we need to create a directory, a couple files and add a little configuration to our `init.vim` file.
@@ -102,7 +100,7 @@ The directory:
 mkdir /home/rubenhortas/.config/nvim/lua
 ```
 
-The first file:
+The first file (`lua_config.lua`):
 
 ```
 echo "`call plug#begin('/home/rubenhortas/.config/nvim/plugins')`" > /home/rubenhortas/.config/nvim/lua/lua_config.lua
@@ -110,7 +108,7 @@ echo "`call plug#begin('/home/rubenhortas/.config/nvim/plugins')`" > /home/ruben
 
 Now, we need to create the file `/home/rubenhortas/.config/nvim/lua/lsp_config.lua`, and add the following lines:
 
-```
+```lua
 local lsp = require('lspconfig')
 local completion = require('completion')
 
@@ -224,7 +222,7 @@ EOF
 
 > Replace the plugins directory in the first line with your own.
 >
-> Also, replace the 'YOUR_LSP_SERVER' value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
+> Also, replace the *'YOUR_LSP_SERVER'* value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
 {: .prompt-warning}
 
 ## nvim-lspconfig
@@ -267,8 +265,14 @@ To install the plugins we open nvim and run:
 
 `:PlugInstall`
 
-And, thats all!
+And, thats all. Now you can start to using [Neovim](https://neovim.io) as your Python IDE!
 
-Now you can start to using [Neovim](https://neovim.io) as your Python IDE.
+## Screenshots
 
-_Enjoy! ;)_
+![Example of autocompletion](vim_python_ide_1.png)
+*Example of autocompletion*
+
+![Example of linting errors and trailing whitespaces](vim_python_ide_2.png)
+*Example of linting errors and trailing whitespaces*
+
+*Enjoy! ;)*
