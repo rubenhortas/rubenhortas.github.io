@@ -29,7 +29,7 @@ This configuration will be the base to which I will add the python configuration
 
 `~/.config/nvim/init.vim`:
 
-```
+```lua
 syntax on                       "syntax highlighting
 filetype plugin indent on       "file type detection
 set number                      "display line number
@@ -58,7 +58,7 @@ As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#
 
 Unix/linux:
 
-```
+```bash
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
@@ -79,7 +79,7 @@ I install three plugins:
 We need to create the directory where we will install the plugins.
 I install my plugins in `/home/rubenhortas/.config/nvim/plugins`, so:
 
-```
+```bash
 mkdir `/home/rubenhortas/.config/nvim/plugins`
 ```
 
@@ -88,7 +88,7 @@ mkdir `/home/rubenhortas/.config/nvim/plugins`
 In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
 The [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
 
-```
+```bash
 pipx install 'python-lsp-server[all]'
 ```
 
@@ -96,13 +96,13 @@ For [Neovim](https://neovim.io) to load `pylsp` when we are working on a python 
 
 The directory:
 
-```
+```bash
 mkdir /home/rubenhortas/.config/nvim/lua
 ```
 
 The first file (`lua_config.lua`):
 
-```
+```bash
 echo "`call plug#begin('/home/rubenhortas/.config/nvim/plugins')`" > /home/rubenhortas/.config/nvim/lua/lua_config.lua
 ```
 
@@ -123,7 +123,7 @@ lsp.pylsp.setup{on_attach=custom_attach}
 
 Now, we edit our `init.vim` file to append the following lines:
 
-```
+```lua
 " neovim LSP Configuration
 lua require('lua_config')
 ```
@@ -133,7 +133,7 @@ lua require('lua_config')
 A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 To install it we need to add the following to our `init.vim` file:
 
-```
+```lua
 call plug#begin('/home/rubenhortas/.config/nvim/plugins')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
@@ -229,7 +229,7 @@ EOF
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
 
-```
+```lua
 call plug#begin('/home/rubenhortas/.config/nvim/plugins')
 ...
 
@@ -250,7 +250,7 @@ But, I like it, and the `:StripWhitespace` function is very useful.
 
 To install it we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
 
-```
+```lua
 call plug#begin('/home/rubenhortas/.config/nvim/plugins')
 ...
 
