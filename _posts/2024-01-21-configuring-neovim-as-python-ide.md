@@ -265,7 +265,7 @@ To install the plugins we open nvim and run:
 
 `:PlugInstall`
 
-And, thats all. Now you can start to using [Neovim](https://neovim.io) as your Python IDE!
+And, that's all. Now you can start to using [Neovim](https://neovim.io) as your Python IDE!
 
 ## Screenshots
 
