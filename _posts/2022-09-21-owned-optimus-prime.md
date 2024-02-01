@@ -10,6 +10,6 @@ img_path: /assets/img/posts/
 _Optimus Prime has been Pwned_
 
 ## Walkthrough
-You can take a look at the script I used to solve it: [Decrypticon.py](https://github.com/rubenhortas/hackthebox/blob/main/optimusPrime/Decrypticon.py) 
+You can take a look at the script I used to solve it: [decrypticon.py](https://github.com/rubenhortas/hackthebox/blob/main/optimusPrime/Decrypticon.py) 
 
 _Enjoy! ;)_
