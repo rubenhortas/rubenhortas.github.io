@@ -265,6 +265,17 @@ To install the plugins we open nvim and run:
 
 `:PlugInstall`
 
+## Ignoring errors
+
+I find quite annoying the "E501 line too long error".
+I think that 80 (or 100) characters are a little short sometimes for the screens we have today.
+If you, as me, want to ignore this error (and/or others), you can create the file `~/.config/pycodestyle` and specify what errors you want to ignore:
+
+```
+[pycodestyle]
+ignore = E501
+```
+
 And, that's all. Now you can start to using [Neovim](https://neovim.io) as your Python IDE!
 
 ## Screenshots
