@@ -7,6 +7,6 @@ img_path: /assets/img/posts/
 ---
 
 ![Challenge results](htb-triangles-owned.png){: width="700" height="600" .shadow}
-_Bashic Triangles has been Pwned_
+_Triangles has been Pwned_
 
 _Enjoy! ;)_
