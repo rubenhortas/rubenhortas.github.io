@@ -309,4 +309,13 @@ When we have awesome running configured to our liking, we can make a backup of o
 * [awesome recipes](https://awesomewm.org/recipes/)
 * [Debian Wiki - Awesome](https://wiki.debian.org/Awesome)
 
+## Autostart applications
+
+If we want execute applications and/or scripts when our awesome starts, we have to add it at the end of the `~/.config/awesome/rc.lua`, e.g.:
+
+```lua
+-- Autostart
+awful.spawn.with_shell("~/scripts/my_config_script")
+```
+
 _Enjoy! ;)_
