@@ -19,7 +19,7 @@ And, as always, once completed the box, it's time to write my walkthough.
 
 ## Annotations
 
->In this article we are going to asume the following ip addresses:
+>In this article we are going to assume the following ip addresses:
 >
 >Local machine (attacker, local host): 10.0.0.1
 >
