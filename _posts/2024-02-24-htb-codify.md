@@ -1,0 +1,12 @@
+---
+title: Hack the box Codify pwned!
+date: 2024-02-24 00:00:01 +0000
+categories: [hack the box, machine]
+tags: [hack the box]
+img_path: /assets/img/posts/
+---
+
+![CozyHosting](htb-codify-pwned.png)
+*Codify has been Pwned*
+
+*Enjoy! ;)*
