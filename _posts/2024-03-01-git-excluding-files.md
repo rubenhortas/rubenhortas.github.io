@@ -1,6 +1,6 @@
 ﻿---
 title: Excluding local files in git without creating a .gitignore
-date: 2024-02-24 00:00:01 +0000
+date: 2024-03-01 00:00:01 +0000
 categories: [programming, git]
 tags: [programming, git]
 ---
