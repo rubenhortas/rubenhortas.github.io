@@ -6,7 +6,7 @@ tags: [hack the box]
 img_path: /assets/img/posts/
 ---
 
-![CozyHosting](htb-codify-pwned.png)
+![Codify](htb-codify-pwned.png)
 *Codify has been Pwned*
 
 *Enjoy! ;)*

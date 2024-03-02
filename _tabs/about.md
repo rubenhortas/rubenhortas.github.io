@@ -24,7 +24,6 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/Language-Python-informational?&logo=python&logoColor=white&color=%233776AB">](https://en.wikipedia.org/wiki/Python_(programming_language))
 [<img src="https://img.shields.io/badge/Language-GNU/Bash-informational?&logo=gnubash&logoColor=white&color=%234EAA25">](https://en.wikipedia.org/wiki/Bash_(Unix_shell))
 [<img src="https://img.shields.io/badge/Language-C-informational?&logo=c&logoColor=white&color=%23A8B9CC">](https://en.wikipedia.org/wiki/C_(programming_language))
-[<img src="https://img.shields.io/badge/Language-Lua-informational?&logo=lua&logoColor=white&color=%232C2D72">](https://en.wikipedia.org/wiki/Lua_(programming_language))
 
 [<img src="https://img.shields.io/badge/IDE-Visual%20Studio-informational?&logo=visualstudio&logoColor=white&color=%23512BD4">](https://visualstudio.microsoft.com/en/vs/)
 [<img src="https://img.shields.io/badge/IDE-Android%20Studio-informational?&logo=androidstudio&logoColor=white&color=%233DDC84">](https://developer.android.com/studio)
