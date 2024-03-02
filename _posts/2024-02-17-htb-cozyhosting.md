@@ -331,7 +331,7 @@ As we can see in [GTFOBins](https://gtfobins.github.io) we can [exploit ssh](htt
 
 And, now, we can get our system flag!
 
-##Pwned!
+## Pwned!
 
 ![CozyHosting](htb-cozyhosting-pwned.png)
 *CozyHosting has been Pwned*
