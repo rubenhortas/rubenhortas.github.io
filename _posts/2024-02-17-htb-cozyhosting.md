@@ -59,7 +59,7 @@ Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 We can see that there is a web service running on port 80 pointing to `http_//cozyhosting.htb`, so let's start there.
 First of all, we add the machine address to our `/etc/hosts`:
 
-`echo "http://cozyhosting.htb` | sudo tee -a /etc/hosts`
+`echo "http://cozyhosting.htb" | sudo tee -a /etc/hosts`
 
 We browse to `http://cozyhosting.htb` to investigate the web:
 
