@@ -200,7 +200,7 @@ export TERM=xterm-256color
 stty rows 56 columns 209
 ```
 
-We take a look at a new user name:
+We take a look at a new user:
 
 ```
 app@cozyhosting:/app$ id
@@ -221,7 +221,7 @@ app@cozyhosting:/app$ ls -lA /home
 drwxr-x--- 3 josh josh 4096 Aug  8  2023 josh
 ```
 
-We dowload the file, as we don't have permissions to run `netcat` we will start a python web server:
+We download the file, as we don't have permissions to run `netcat` we will start a python web server:
 
 `app@cozyhosting:/app$ python3 -m http.server 12345`
 
