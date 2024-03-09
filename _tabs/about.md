@@ -9,8 +9,8 @@ order: 4
 - 💼 I’m currently working as software engineer, mainly with .net, sql and android technologies.
 - 📚  I’m always learning about programming and computer related stuff.
 - 🔒 I'm now learning (again, a bit) about cybersecurity.
-- :octocat: I have some projects in github: [github.com/rubenhortas](https://github.com/rubenhortas)
-- :octocat: I did  some gists too: [gist.github.com/rubenhortas](https://gist.github.com/rubenhortas/)
+- 📝 I have some projects in github: [github.com/rubenhortas](https://github.com/rubenhortas)
+- 📝 I did  some gists too: [gist.github.com/rubenhortas](https://gist.github.com/rubenhortas/)
 - 📫 You can reach me by [linkedin](https://www.linkedin.com/in/rubenhortas) or at rubenhortas@gmail.com
 
 You can know more about me visiting my profiles on social networks:
