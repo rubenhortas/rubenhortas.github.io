@@ -10,7 +10,7 @@ By default it stores the last 1000 commands in the ~/.bash_history file.
 
 There is situations on which we don't want to keep a record of our commands, and we can avoid, delete and/or disable the bash history.
 
-# How to clear the history 
+# How to clear the history
 
 We can clear the current stored history with:
 
@@ -52,6 +52,12 @@ Now, we need to reload our bash settings:
 ```shell
 source ~/.bashrc
 ```
+
+## Disabling the history permanently, the CTF way
+
+I have seen this solution on quite a few CTFs, consists on redirect the file to `/dev/null`:
+
+`rm .bash_history && ln -s /dev/null .bash_history`
 
 ## Clearing the history when closing the terminal
 
