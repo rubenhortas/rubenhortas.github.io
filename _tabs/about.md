@@ -1,10 +1,8 @@
 ---
-title: About me
+title: 💻 $whoami:
 icon: fas fa-info-circle
 order: 4
 ---
-
-### 💻 $whoami:
 
 - 💼 I’m currently working as software engineer, mainly with .net, sql and android technologies.
 - 📚  I’m always learning about programming and computer related stuff.
@@ -20,7 +18,7 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/Microsoft%20learn-rubenhortas-informational?&logo=microsoft&logoColor=white&color=%23512BD4">](https://docs.microsoft.com/es-es/users/rhortas/)
 [<img src="https://img.shields.io/badge/Hack%20the%20box-Trazi-informational?logo=hackthebox&logoColor=white&color=%239FEF00">](https://app.hackthebox.com/profile/1009738)
 
-### ⚒️ Skills
+## ⚒️ Skills
 [<img src="https://img.shields.io/badge/Language-VB.NET-informational?&logo=.net&logoColor=white&color=%23512BD4">](https://en.wikipedia.org/wiki/Visual_Basic_.NET)
 [<img src="https://img.shields.io/badge/Language-C%23-informational?&logo=csharp&logoColor=white&color=%23512BD4">](https://en.wikipedia.org/wiki/C_Sharp_(programming_language))
 [<img src="https://img.shields.io/badge/Language-Java-informational?&logo=java&logoColor=white&color=%23007396">](https://en.wikipedia.org/wiki/Java_(programming_language))
