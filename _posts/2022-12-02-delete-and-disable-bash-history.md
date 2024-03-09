@@ -14,9 +14,7 @@ There is situations on which we don't want to keep a record of our commands, and
 
 We can clear the current stored history with:
 
-```shell
-history -c
-```
+`history -c`
 
 # Having permissions to edit ~/.bashrc and/or ~/.bash_logout
 
@@ -49,9 +47,7 @@ HISTSIZE=0
 
 Now, we need to reload our bash settings:
 
-```shell
-source ~/.bashrc
-```
+`source ~/.bashrc`
 
 ## Disabling the history permanently, the CTF way
 
@@ -72,9 +68,7 @@ trap 'unset HISTFILE; exit' EXIT
 
 If we want to delete our history when logging out, we can edit our ~/.bash_logout file and add the following command:
 
-```shell
-rm ~/.bash_history
-```
+`rm ~/.bash_history`
 
 > The ~/.bash_logout contains commands that are executed when logging out.
 {: .prompt-info}
@@ -83,9 +77,7 @@ rm ~/.bash_history
 
 If we have disabled our history, we will delete our ~/.bash_history file to delete all the commands that have been registered until now:
 
-```shell
-rm ~/.bash_history
-```
+`rm ~/.bash_history`
 
 # Without having permissions to edit ~/.bashrc
 
@@ -93,9 +85,7 @@ rm ~/.bash_history
 
 We can disable our history for our current session unsetting the history shell variable executing the following command:
 
-```shell
-set +o history
-```
+`set +o history`
 
 > We could also append this command to our ~/.bashrc file, but don't have much sense, since if we can edit our ~/.bashrc, we can set the HISTSIZE to 0.
 {: .prompt-info}
@@ -104,9 +94,7 @@ set +o history
 
 Sending SIGKILL to our shell's PID will kill our shell without being able to do anything (such as save the history or execute ~/.bash_logout).
 
-```shell
-kill -9 $$
-```
+`kill -9 $$`
 
 >$$ expands to the PID of the shell process executing the command.
 {: .prompt-info}
