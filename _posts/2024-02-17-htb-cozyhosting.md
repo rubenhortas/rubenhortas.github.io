@@ -2,7 +2,7 @@
 title: Hack the box CozyHosting pwned!
 date: 2024-02-17 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box]
+tags: [hack the box, machine, spring boot, postgres, sudo proxycommand]
 img_path: /assets/img/posts/
 ---
 
