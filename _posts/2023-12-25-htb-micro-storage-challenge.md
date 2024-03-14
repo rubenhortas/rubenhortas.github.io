@@ -1,6 +1,6 @@
 ---
 title: Hack The Box - Micro Storage owned!
-date: 2023-12-24 00:00:01 +0000
+date: 2023-12-25 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, micro storage]
 img_path: /assets/img/posts/

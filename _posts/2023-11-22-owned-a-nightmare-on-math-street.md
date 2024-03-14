@@ -1,6 +1,6 @@
 ---
 title: Hack The Box - A Nightmare On Math Street owned!
-date: 2023-11-18 00:00:01 +0000
+date: 2023-11-22 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]
 img_path: /assets/img/posts/
