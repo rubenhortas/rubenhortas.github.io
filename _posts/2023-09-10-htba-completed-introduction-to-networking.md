@@ -2,7 +2,7 @@
 title: Hack The Box Academy - Completed Introduction to Networking
 date: 2022-09-10 00:00:01 +0000
 categories: [hack the box, academy]
-tags: [hack the box, academy]
+tags: [hack the box, academy, introduction, networking]
 img_path: /assets/img/posts/
 ---
 

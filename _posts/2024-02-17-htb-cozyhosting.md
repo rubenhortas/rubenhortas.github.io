@@ -2,7 +2,7 @@
 title: Hack the box CozyHosting pwned!
 date: 2024-02-17 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box, machine, spring boot, postgres, sudo proxycommand]
+tags: [hack the box, machine, cozyhosting, spring boot, postgres, sudo proxycommand]
 img_path: /assets/img/posts/
 ---
 
@@ -56,7 +56,7 @@ PORT     STATE SERVICE       VERSION
 Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
 ```
 
-We can see that there is a web service running on port 80 pointing to `http_//cozyhosting.htb`, so let's start there.
+We can see that there is a web service running on port 80 pointing to `http://cozyhosting.htb`, so let's start there.
 First of all, we add the machine address to our `/etc/hosts`:
 
 `echo "http://cozyhosting.htb" | sudo tee -a /etc/hosts`
