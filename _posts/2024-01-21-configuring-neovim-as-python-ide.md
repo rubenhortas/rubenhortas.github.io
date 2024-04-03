@@ -45,7 +45,7 @@ set shiftwidth=4                "setting tab to 4 columns
 set softtabstop=4               "setting tab to 4 columns
 set showmatch                   "display matching bracket or parenthesis
 set hlsearch incsearch          "highlight all pervious search pattern with incsearch
-"set list                        "show all whitespaces
+"set list                        "show all whitespaces (uncomment without Better Whitespace plugin)
 ```
 
 In my base configuration I usually add the [Vim Better Whitespace Plugin](https://github.com/ntpeters/vim-better-whitespace) (I'll talk about it later), but I keep the option "list" handy (but commented).
@@ -60,27 +60,6 @@ Unix/linux:
 
 ```bash
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
-## Plugins
-
-I install three plugins:
-
-* [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-  A completion engine plugin.
-
-* [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-  Configs for the Nvim LSP client.
-
-* [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
-  This plugin highlights all trailing whitespaces. 
-  It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
-
-We need to create the directory where we will install the plugins.
-I install my plugins in `/home/rubenhortas/.config/nvim/plugins`, so:
-
-```bash
-mkdir `/home/rubenhortas/.config/nvim/plugins`
 ```
 
 ## pylsp
@@ -128,7 +107,28 @@ Now, we edit our `init.vim` file to append the following lines:
 lua require('lua_config')
 ```
 
-## nvim-cmp
+## Plugins
+
+I install three plugins:
+
+* [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+  A completion engine plugin.
+
+* [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
+  Configs for the Nvim LSP client.
+
+* [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
+  This plugin highlights all trailing whitespaces. 
+  It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
+
+We need to create the directory where we will install the plugins.
+I install my plugins in `/home/rubenhortas/.config/nvim/plugins`, so:
+
+```bash
+mkdir `/home/rubenhortas/.config/nvim/plugins`
+```
+
+### nvim-cmp
 
 A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 To install it we need to add the following to our `init.vim` file:
@@ -225,7 +225,7 @@ EOF
 > Also, replace the *'YOUR_LSP_SERVER'* value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
 {: .prompt-warning}
 
-## nvim-lspconfig
+### nvim-lspconfig
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
 
@@ -238,7 +238,7 @@ Plug 'nvim-lua/completion-nvim'
 call plug#end()
 ```
 
-## Vim Better Whitespace
+### Vim Better Whitespace
 
 This plugin causes all trailing whitespace characters to be highlighted.
 Whitespace for the current line will not be highlighted while in insert mode.
