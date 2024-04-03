@@ -52,16 +52,6 @@ In my base configuration I usually add the [Vim Better Whitespace Plugin](https:
 The "list" option, by default, show tabs as ">", trailing spaces as "-" and non-breakable space characters as "+".
 This default configuration works for me, but can be customized.
 
-## Plugin manager
-
-As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
-
-Unix/linux:
-
-```bash
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
-
 ## pylsp
 
 In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
@@ -105,6 +95,16 @@ Now, we edit our `init.vim` file to append the following lines:
 ```lua
 " neovim LSP Configuration
 lua require('lua_config')
+```
+
+## Plugin manager
+
+As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
+
+Unix/linux:
+
+```bash
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 ```
 
 ## Plugins
