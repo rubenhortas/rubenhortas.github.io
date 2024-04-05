@@ -40,7 +40,7 @@ If we look for more information about the services running in those ports we wil
 ```
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   256 3eea454bc5d16d6fe2d4d13b0a3da94f (ECDSA)
 |_  256 64cc75de4ae6a5b473eb3f1bcfb4e394 (ED25519)
 80/tcp open  http    nginx 1.18.0 (Ubuntu)
@@ -53,7 +53,7 @@ We add the machine address to our `/etc/hosts`:
 
 `echo "10.10.11.233 analytical.htb" | sudo tee -a /etc/hosts`
 
-Now, we browse to the web to take a look.
+Now, we browse to the web to take a look:
 
 ![Analytics web](htb-analytics-web.png)
 *Analytics web*
@@ -82,8 +82,8 @@ We can see that is using `metabase`, so let's look for vulnerabilities:
 
 `Metabase 0.46.6 - Pre-Auth Remote Code Execution | linux/webapps/51797.py`
 
-Ok, we got one. 
-It's a remote shell, so we will start listening on our side:
+Ok, we got one.
+It's a RCE (Remote Code Execution), so we will start listening on our side to try to get a remote shell:
 
 `nc -lvnp 1234`
 
@@ -131,7 +131,7 @@ _=/bin/printenv
 
 ### metalytics
 
-with our new credentials, we will login through ssh:
+With our new credentials, we will login through ssh:
 
 `ssh metalytics@10.10.11.233`
 
@@ -145,7 +145,7 @@ And, now, we see that with our new user we will not be able to escalate privileg
 metalytics@analytics:~$ id
 uid=1000(metalytics) gid=1000(metalytics) groups=1000(metalytics)
 metalytics@analytics:~$ sudo -l
-[sudo] password for metalytics: 
+[sudo] password for metalytics:
 Sorry, user metalytics may not run sudo on localhost.
 ```
 
@@ -164,7 +164,7 @@ Now that we are root, we can get our system flag:
 
 `cat /root/root.txt`
 
-## Pwned
+## Pwned!
 
 ![Analytics](htb-analytics-pwned.png)
 *Analytics has been Pwned*
