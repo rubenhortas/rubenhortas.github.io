@@ -24,7 +24,7 @@ It provides features like completion and goto definition for many code editors.
 
 `rustup component add rust-src`
 
-Now, we can install `rust-analyzer` via rustup:
+Now, we can install `rust-analyzer` via `rustup`:
 
 `rustup component add rust-analyzer`
 
