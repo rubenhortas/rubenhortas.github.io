@@ -216,7 +216,7 @@ After a while we will have our root password and we can get the system flag:
 
 `root@codify:~# cat /root/root.txt`
 
-## Pwned
+## Pwned!
 
 ![Codify](htb-codify-pwned.png)
 *Codify has been Pwned*
