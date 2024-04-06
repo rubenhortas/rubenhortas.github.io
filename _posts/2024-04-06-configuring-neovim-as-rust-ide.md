@@ -13,7 +13,7 @@ One of my open fronts, in my spare time, is learn Rust, and neovim (in this case
 I have to say that programming in rust using neovim it reminds me of the old days programming in (ANSI) C using vim.
 
 Convert neovim in a Rust IDE it's very fast and very straightforward.
-After installing Rust, we only will need `rust-analyzer` and two vim plugins.
+After installing Rust, we only will need `rust-analyzer` and three vim plugins.
 
 ## rust-analyzer
 
