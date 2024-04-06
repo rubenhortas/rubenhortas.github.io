@@ -1,31 +1,37 @@
 ---
-title: Configuring Neovim as Python IDE
-date: 2024-01-21 00:00:01 +0000
+title: Configuring neovim as Rust IDE
+date: 2024-04-06 00:00:01 +0000
 categories: [programming, ide]
-tags: [programming, ide, python, neovim, nvim]
+tags: [programming, ide, rust, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-I have to admit it, [Neo]vim is my editor for everything.
-I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).  
-Do I have to edit a file? [Neovim](https://neovim.io).  
-Do I have to do a bash script? [Neovim](https://neovim.io).  
-Do I have to do a little python script? [Neovim](https://neovim.io).  
+If you read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/configuring-neovim-as-python-ide/), you already know that one of mi favorite editors is [neo]vim.
+Between other reasons, when I'm using [neo]vim I feel more focused, I don't know why.
 
-[Vim](https://www.vim.org) and [Neovim](https://neovim.io) are very lightweight and very powerful.
-[Vim](https://www.vim.org) comes installed in (almost) every linux distro, and they are very convenient to use via ssh.
+One of my open fronts, in my spare time, is learn Rust, and neovim (in this case) seems a great IDE to do it.
+I have to say that programming in rust using neovim it reminds me of the old days programming in (ANSI) C using vim.
 
-Although for medium or large python projects my favorite IDE is [Pycharm](https://www.jetbrains.com/pycharm/) (I really love [Pycharm](https://www.jetbrains.com/pycharm/)), for small and fast (or no so fast scripts) I preffer neovim or vim, depends on which one is installed.
+Convert neovim in a Rust IDE it's very fast and very straightforward.
+After installing Rust, we only will need `rust-analyzer` and two vim plugins.
 
-The point is that, while I was coding some python scripts, above all using new libraries, I missed some features provided by a IDE.
-Features I was used to in [Pycharm](https://www.jetbrains.com/pycharm/), as autocomplete and linting (analzing source code to flag programming errors, bugs, stylistic errors, etc.).
-So, I decided it was time to configure [Neovim](https://neovim.io) to improve my python experience.
+## rust-analyzer
+
+`rust-analyzer` is an implementation of Language Server Protocol (LSP) for the Rust programming language.
+It provides features like completion and goto definition for many code editors.
+
+`rust-analyzer` needs the sources of the standard library, we can install them via `rustup`:
+
+`rustup component add rust-src`
+
+Now, we can install `rust-analyzer` via rustup:
+
+`rustup component add rust-analyzer`
 
 ## [Neo]vim base configuration
 
-This is my base configuration.
-My configuration for all, in all my computers, no matter the purpose.
-This configuration will be the base to which I will add the python configuration.
+As allways, I'll part from my base configuration.
+This is my configuration for all, in all my computers, no matter the purpose.
 
 `~/.config/nvim/init.vim`:
 
@@ -48,55 +54,6 @@ set hlsearch incsearch          "highlight all pervious search pattern with incs
 "set list                        "show all whitespaces (uncomment without Better Whitespace plugin)
 ```
 
-In my base configuration I usually add the [Vim Better Whitespace Plugin](https://github.com/ntpeters/vim-better-whitespace) (I'll talk about it later), but I keep the option "list" handy (but commented).
-The "list" option, by default, show tabs as ">", trailing spaces as "-" and non-breakable space characters as "+".
-This default configuration works for me, but can be customized.
-
-## pylsp
-
-In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
-The [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
-
-```bash
-pipx install 'python-lsp-server[all]'
-```
-
-For [Neovim](https://neovim.io) to load `pylsp` when we are working on a python file we need to create a directory, a couple files and add a little configuration to our `init.vim` file.
-
-The directory:
-
-```bash
-mkdir /home/rubenhortas/.config/nvim/lua
-```
-
-The first file (`lua_config.lua`):
-
-```bash
-echo "`call plug#begin('/home/rubenhortas/.config/nvim/plugins')`" > /home/rubenhortas/.config/nvim/lua/lua_config.lua
-```
-
-Now, we need to create the file `/home/rubenhortas/.config/nvim/lua/lsp_config.lua`, and add the following lines:
-
-```lua
-local lsp = require('lspconfig')
-local completion = require('completion')
-
-local custom_attach = function()
-    completion.on_attach()
-    -- Python specifically isn't setting omnifunc correctly, ftplugin conflict
-    vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
-end
-
-lsp.pylsp.setup{on_attach=custom_attach}
-```
-
-Now, we edit our `init.vim` file to append the following lines:
-
-```lua
-" neovim LSP Configuration
-lua require('lua_config')
-```
-
 ## [Neo]vim plugin manager
 
 As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
@@ -109,32 +66,84 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 ## Plugins
 
-I install three plugins:
-
-* [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
-  A completion engine plugin.
+I install four plugins:
 
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
   Configs for the Nvim LSP client.
-
+  
+* [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
+  A completion engine plugin.
+  
+* [rust-lang](https://github.com/rust-lang/rust.vim-plug)
+  Provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
+  
 * [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
   This plugin highlights all trailing whitespaces. 
   It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
 
-We need to create the directory where we will install the plugins.
-I install my plugins in `/home/rubenhortas/.config/nvim/plugins`, so:
+### nvim-lspconfig
 
-```bash
-mkdir `/home/rubenhortas/.config/nvim/plugins`
+To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
+
+```lua
+call plug#begin('/home/rubenhortas/.config/nvim/plugins')
+...
+
+Plug 'neovim/nvim-lspconfig'
+
+call plug#end()
+```
+
+We will also pass LSP settings to the server adding:
+
+```
+lua << EOF
+local lspconfig = require'lspconfig'
+
+local on_attach = function(client)
+    require'completion'.on_attach(client)
+end
+
+lspconfig.rust_analyzer.setup({
+    on_attach = on_attach,
+    settings = {
+        ["rust-analyzer"] = {
+            imports = {
+                granularity = {
+                    group = "module",
+                },
+                prefix = "self",
+            },
+            cargo = {
+                buildScripts = {
+                    enable = true,
+                },
+            },
+            procMacro = {
+                enable = true
+            },
+        }
+    }
+})
+EOF
 ```
 
 ### nvim-cmp
+
+> If you already have installed this plugin, you only need to add the set up lspconfig section for `rust_analyzer`:
+```
+  require('lspconfig')['rust_analyzer'].setup {
+    capabilities = capabilities
+  }
+```
+{: .prompt-info}
 
 A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
 To install it we need to add the following to our `init.vim` file:
 
 ```lua
 call plug#begin('/home/rubenhortas/.config/nvim/plugins')
+Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
 Plug 'hrsh7th/cmp-path'
@@ -213,18 +222,13 @@ lua <<EOF
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
   -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['pylsp'].setup {
+  require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
   }
 EOF
 ```
 
-> Replace the plugins directory in the first line with your own.
->
-> Also, replace the *'YOUR_LSP_SERVER'* value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
-{: .prompt-warning}
-
-### nvim-lspconfig
+### rust-lang
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
 
@@ -232,7 +236,7 @@ To install it, we add the plugin to our `init.vim` file, into the `call plug#beg
 call plug#begin('/home/rubenhortas/.config/nvim/plugins')
 ...
 
-Plug 'neovim/nvim-lspconfig'
+Plug 'rust-lang/rust.vim'
 
 call plug#end()
 ```
@@ -258,31 +262,18 @@ Plug 'ntpeters/vim-better-whitespace'
 call plug#end()
 ```
 
-## Installing the plugins
+## Install the plugins
 
 To install the plugins we open nvim and run:
 
 `:PlugInstall`
 
-## Ignoring errors
-
-I find quite annoying the "E501 line too long error".
-I think that 80 (or 100) characters are a little short sometimes for the screens we have today.
-If you, as me, want to ignore this error (and/or others), you can create the file `~/.config/pycodestyle` and specify what errors you want to ignore:
-
-```
-[pycodestyle]
-ignore = E501
-```
-
-And, that's all. Now you can start to using [Neovim](https://neovim.io) as your Python IDE!
-
 ## Screenshots
 
-![Example of autocompletion](vim_python_ide_1.png)
+![Example of autocompletion](vim_rust_ide_1.png)
 *Example of autocompletion*
 
-![Example of linting errors and trailing whitespaces](vim_python_ide_2.png)
+![Example of linting errors and trailing whitespaces](vim_rust_ide_2.png)
 *Example of linting errors and trailing whitespaces*
 
 *Enjoy! ;)*
