@@ -274,6 +274,6 @@ To install the plugins we open nvim and run:
 *Example of autocompletion*
 
 ![Example of linting errors and trailing whitespaces](vim_rust_ide_2.png)
-*Example of linting errors and trailing whitespaces*
+*Example of linting errors*
 
 *Enjoy! ;)*
