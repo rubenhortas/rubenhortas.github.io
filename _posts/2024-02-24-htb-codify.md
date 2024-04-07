@@ -82,7 +82,8 @@ Here, we can see that the editor is using the [vm2 library](https://github.com/p
 ## Foothold
 
 As the editor is using the [vm2 library](https://github.com/patriksimek/vm2), and this project is discontinued due security issues, we let's take advantage of a [sandbox escape PoC in vm2](https://gist.github.com/leesh3288/381b230b04936dd4d74aaf90cc8bb244) to inject a reverse shell in the editor.
-We lisen in our host:
+
+We start a listener in our host:
 
 ```
 nc -lvnp 1234
