@@ -17,7 +17,7 @@ img_path: /assets/img/posts/
 >
 >Local machine (attacker, local host): 10.10.16.96
 >
->Target machine (victim, Devvortex): 10.10.11.239
+>Target machine (victim, Codify): 10.10.11.239
 {: .prompt-info}
 
 ## Enumeration
@@ -137,7 +137,7 @@ hashcat -a 0 -m 3200 hash.txt /opt/SecLists/Passwords/Leaked-Databases/rockyou.t
 
 ### joshua
 
-Now, we have a new user and paswsword, and since seems useless on the web, we will try to connect by `ssh`:
+Now, we have a new user and password, and since seems useless on the web, we will try to connect by `ssh`:
 
 `ssh joshua@10.10.11.239`
 
