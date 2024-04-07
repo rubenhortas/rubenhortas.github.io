@@ -106,7 +106,7 @@ uid=1001(svc) gid=1001(svc) groups=1001(svc)
 ```
 
 After taking a look at the system files, in `/var/www/contact` we can find the sqlite3 database `tickets.db`.
-Inside we will find the hashed password for the user `joshua`:
+Inside the database we will find the hashed password for the user `joshua`:
 
 `sqlite3 tickets.db`
 
