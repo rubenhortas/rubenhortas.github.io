@@ -73,7 +73,7 @@ We add this new host to our `/etc/hosts`:
 
 `echo "10.10.11.242 dev.devvortex.htb" | sudo tee -a /etc/hosts`
 
-And, now, we browse to our new htb-devvortex-web
+And, now, we browse to our new devvortex web
 
 ![dev.devvortex web](htb-devdevvortex-web.png)
 *dev.devortex web*
@@ -85,7 +85,7 @@ Using `wappalyzer` we can see that is a `joomla cms`:
 ![dev.devvortex web info](htb-devdevvortex-web-wappalyzer.png)
 *dev.devortex web info*
 
-We take a look with [joomscan](https://github.com/OWASP/joomscan) and we found that is running a 4.2.6 version and some interesing paths in `robots.txt`:
+We take a look with [joomscan](https://github.com/OWASP/joomscan) and we found that is running a 4.2.6 version and some interesting paths in `robots.txt`:
 
 ```
 [+] Detecting Joomla Version
@@ -133,7 +133,7 @@ searchsploit -p 51334
 File Type: Ruby script, ASCII text
 ```
 
-We can see that the exploit it's a ruby script but with python extension.
+We can see that the exploit it's a ruby script, but, with python extension.
 We copy it to a working folder and we install the gems required by the script:
 
 ```
