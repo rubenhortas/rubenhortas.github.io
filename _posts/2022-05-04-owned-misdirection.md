@@ -9,7 +9,7 @@ img_path: /assets/img/posts/
 ![Challenge results](owned-misdirection.png){: width="700" height="600" .shadow}
 _misDIRection has been Pwned_
 
-##Walkthrough
+## Walkthrough
 You can read how I solved it in: [Hack the box misDIRection walkthrough](https://rubenhortas.github.io/posts/misdirection-walkthrough/)
 
 _Enjoy! ;)_
