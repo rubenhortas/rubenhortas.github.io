@@ -6,6 +6,10 @@ tags: [hack the box, challenge]
 img_path: /assets/img/posts/
 ---
 
+## Description
+
+> A Junior Developer just switched to a new source control platform. Can you find the secret token?
+
 ![Challenge results](owned-illumination.png){: width="700" height="600" .shadow}
 _Illumination has been Pwned_
 
