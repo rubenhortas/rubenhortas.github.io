@@ -6,9 +6,11 @@ tags: [hack the box, challenge, fentastic, moves, fen, chess]
 img_path: /assets/img/posts/
 ---
 
-## Challenge description
+## Description
 
 > Garry told me to catch some fish 20 meters
+
+## Solution
 
 To solve this challenge, I did a python script that you can see at: [deepy_blue](https://github.com/rubenhortas/hackthebox/blob/main/fentasticMoves/deepy_blue.py)
 

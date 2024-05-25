@@ -6,6 +6,10 @@ tags: [hack the box, challenge, quickr]
 img_path: /assets/img/posts/
 ---
 
+## Description
+
+> Let's see if you're a QuickR soldier as you pretend to been
+
 ![Challenge results](htb-quickr-owned.png){: width="700" height="600" .shadow}
 _QuickR has been Pwned_
 

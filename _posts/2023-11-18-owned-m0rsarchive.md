@@ -6,7 +6,11 @@ tags: [hack the box, challenge]
 img_path: /assets/img/posts/
 ---
 
+## Description 
+
 > Just unzip the archive ... several times ...
+
+## Solution
 
 To solve this challenge, I did a python script that you can see at: [m0rsunarchive.py](https://github.com/rubenhortas/hackthebox/blob/main/m0rsarchive/m0rsunarchive.py)
 
