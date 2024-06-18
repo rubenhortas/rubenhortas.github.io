@@ -22,7 +22,9 @@ I decided on iptables due to hardware and software restrictions, and, while I wa
 
 I learned a lot along the way, and that's why I decided to put a configuration file here that I think it's a good starting point to harden our systems.
 
-Here's my iptables starting point (as bash script):
+## Iptables bash script
+
+Here's my iptables starting point rules (as bash script):
 
 ```bash
 #!/usr/bin/env bash
@@ -133,12 +135,19 @@ $bin -A OUTPUT -p udp --dport 123 -m conntrack --ctstate NEW,ESTABLISHED -j ACCE
 # HTTP and HTTPS (Allow outgoing http/s connections)
 $bin -A INPUT  -p tcp -m multiport --sports http,https -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp -m multiport --dports http,https -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+# NFSv4
+$bin -A INPUT  -p tcp --dport 2049 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp --sport 2049 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 ```
+
+## Saving iptables rules
+
+If we don't persist our rules, they will be deleted upon reboot.
+`sudo iptables-save`
 
 If you are going to use this as configuration basis rember a few things:
 * Check the configuration and **set the parameters of your computer** (e.g.: set your computer ip address and the packet limits of the rules).
 * These are basically protection rules and only allows basic common services as DNS, SSH, NTP and HTTP[S]. Below you have to add the rules that allow legitimate services traffic from your host.
-* If you don't persist the rules, they will be deleted upon reboot.
 * Think about your computer needs. Every host has needs and they may not be the same as mine.
 * I set these rules without specify interfaces.In some hosts different interfaces have different needs.
 * In iptables the order of the rules matter.
