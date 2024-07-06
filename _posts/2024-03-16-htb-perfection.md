@@ -22,7 +22,7 @@ img_path: /assets/img/posts/
 
 Let's go look for the open ports in the machine using `nmap`:
 
-`nmap -Pn -n -sS -p- --open -T5 --min-rate 5000 -oN nmap_initial.txt 10.10.11.253'
+`nmap -Pn -n -sS -p- --open -T5 --min-rate 5000 -oN nmap_initial.txt 10.10.11.253`
 
 ```
 PORT   STATE SERVICE
