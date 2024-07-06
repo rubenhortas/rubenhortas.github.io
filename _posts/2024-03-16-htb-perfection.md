@@ -6,7 +6,7 @@ tags: [hack the box, machine, perfection, ruby, ssti, password cracking]
 img_path: /assets/img/posts/
 ---
 
-![Perfection info](htb-headless-info.png)
+![Perfection info](htb-perfection-info.png)
 *Perfection info*
 
 ## Annotations
