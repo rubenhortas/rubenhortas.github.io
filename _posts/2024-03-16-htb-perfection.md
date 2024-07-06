@@ -119,7 +119,7 @@ We send the request and we got shell!
 
 First thing is upgrading the tty to be able to work comfortably:
 
-``
+```
 script /dev/null -c bash
 ctrl+z
 stty raw -echo; fg
