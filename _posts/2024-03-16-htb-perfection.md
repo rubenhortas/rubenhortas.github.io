@@ -107,7 +107,7 @@ Now that we have our payload ready, we will inject it on the request using burp:
 ![Original request](htb-perfection-wgc-request.png)
 *Original request*
 
-![Request payload](htb-perfection-wgc-request-payload.png
+![Request payload](htb-perfection-wgc-request-payload.png)
 *Request payload*
 
 >Note the "1" before the payload
