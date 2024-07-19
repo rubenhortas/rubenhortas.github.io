@@ -1,5 +1,5 @@
 ---
-title: Configuring neovim as Rust IDE
+title: Configuring Neovim as Rust IDE
 date: 2024-04-06 00:00:01 +0000
 categories: [programming, ide]
 tags: [programming, ide, rust, neovim, nvim]
