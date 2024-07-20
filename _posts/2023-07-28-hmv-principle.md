@@ -1,5 +1,5 @@
 ---
-title: Hack My VM - Principle walkthrough
+title: Hack My VM - Principle
 date: 2023-07-28 00:00:01 +0000
 categories: [hackmyvm, vm]
 tags: [hackmyvm, walkthrough, hmv, virtualhost, form abuse, rbash escape, find abuse, cp abuse, sudoers misconfiguration, reverse proxy, chisel, privilege escalation, python library hijacking, principle]
