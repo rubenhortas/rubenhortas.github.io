@@ -9,15 +9,15 @@ Process argument spoofing (command line spoofing or program argument spoofing) i
 With this technique we can hide and/or modify the real arguments of the process.  
 So, we can do things as change the program name, hide the program arguments or show other arguments.  
 
-The arguemnts are only positions in memory, so we can overwrite the process arguments by overwritting the process memory.  
+The arguments are only positions in memory, so we can overwrite the process arguments by overwritting the process memory.  
 Once we have overwritten the memory, the results given by monitoring tools are altered and will show our fake arguments.
 
 ## Why and/or when would we want to do this?  
 
-We may want run a program with a password, a user name and/or a path as arguments and we don't want them to be visible.  
+We may want run a program with a password, a user name and/or a path as arguments and we don't want them to be visible.
+
 Maybe we are doing a CTF challenge (or a pentest) and we are in a scenario when we could use it, together with other techniques, to escalate privileges.
-Maybe we want to run a quickly (and poorly) written program, or, maybe, we are trying to create a new malware and hide it.   
-We'll talk about this later.
+Maybe we want to run a quickly (and poorly) written program, or, maybe, we are trying to create a new malware and hide it. We'll talk about this later.
 
 ## POC full code
 
@@ -28,7 +28,7 @@ You can see the POC full code here: [process_argument_spoofer_linux.c](https://g
 
 We can hide the program arguments overwriting them with nulls (or whitespaces):
 
-```C
+```c
 len = strlen(argv[i]);
 memset(argv[i], 0, len); // Overwrite everything with null
 ```
@@ -37,7 +37,7 @@ And, now, we will overwrite the program name, it's not mandatory but it will be 
 We can overwite it with anything, but what if we overwrite it with sometihng like a kernel process?  
 This way our program will have a better chance of going unnoticed.
 
-```C
+```c
 strcpy(argv0, "[kworker fake/1:1-events]"); // Overwrite the program name
 ```
 
