@@ -79,7 +79,7 @@ We can do what we want, all we have to do is modify the code.
 ## Why is it a bad idea?
 
 Hiding (or spoofing) the arguments this way it's fine in certain scenarios, as when we are doing a CTF challenge, but, if your idea is to use it to do a malware, I have bad news for you: this technique is easily discovered by malware detecting tools (sensors, monitors, etc). 
-Also, **program argument spoofing will should never be used in a production environment**, because it's trivial to unmask it using tools as [pspy](pspy: https://github.com/DominicBreuker/pspy):
+Also, **program argument spoofing will should never be used in a production environment**, because it's trivial to unmask it using tools as [pspy](https://github.com/DominicBreuker/pspy):
 
 ```shell
 2024/07/20 00:01:00 CMD: UID=1000  PID=20697  | ./spoofer.out -p myverysecretpassword
