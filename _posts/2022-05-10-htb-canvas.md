@@ -40,7 +40,8 @@ And we get our flag!
 
 ## Pwned
 
-![Challenge results](owned_canvas.png){: width="700" height="600" .shadow}
+![Challenge results](owned-canvas.png)
+
 *Canvas has been Pwned*
 
 *Enjoy! ;)*
