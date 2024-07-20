@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - Don't Overreact (Mobile Challenge) owned!
+title: Hack The Box - Don't Overreact pwned!
 date: 2022-04-17 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]
@@ -7,6 +7,6 @@ img_path: /assets/img/posts/
 ---
 
 ![Challenge results](owned-dont-overreact.png){: width="700" height="600" .shadow}
-_Don't Overreact has been Pwned_
+*Don't Overreact has been Pwned*
 
-_Enjoy! ;)_
+*Enjoy! ;)*

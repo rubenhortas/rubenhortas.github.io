@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - misDIRection (Misc Challenge) owned!
+title: Hack The Box - misDIRection pwned!
 date: 2022-05-04 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, misc, htb, misdirection]
