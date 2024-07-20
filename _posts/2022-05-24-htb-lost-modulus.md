@@ -1,5 +1,5 @@
 ---
-title: Hack the box Lost Modulus
+title: Hack the box Lost Modulus pwned!
 date: 2022-05-24 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, crypto, htb, Lost Modulus, RSA]

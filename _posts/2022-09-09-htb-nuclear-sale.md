@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - Nuclear Sale (Crypto Challenge) owned!
+title: Hack The Box - Nuclear Sale (Crypto Challenge) pwned!
 date: 2022-09-09 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]

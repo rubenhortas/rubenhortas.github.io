@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - RSAisEasy (Crypto Challenge) owned!
+title: Hack The Box - RSAisEasy pwned!
 date: 2022-09-16 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]

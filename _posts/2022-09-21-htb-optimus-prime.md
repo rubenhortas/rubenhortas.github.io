@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - Optimus Prime (Crypto Challenge) owned!
+title: Hack The Box - Optimus Prime pwned!
 date: 2022-09-21 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]

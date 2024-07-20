@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - RLotto (Crypto Challenge) owned!
+title: Hack The Box - RLotto (Crypto Challenge) pwned!
 date: 2022-09-08 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]
