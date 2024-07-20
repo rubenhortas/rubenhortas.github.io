@@ -40,8 +40,6 @@ And we get our flag!
 
 ## Pwned
 
-![Challenge results](owned-canvas.png)
-
 *Canvas has been Pwned*
 
 *Enjoy! ;)*
