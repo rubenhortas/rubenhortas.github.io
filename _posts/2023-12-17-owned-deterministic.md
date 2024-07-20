@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - Deterministic owned!
+title: Hack The Box - Deterministic pwned!
 date: 2023-12-17 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]

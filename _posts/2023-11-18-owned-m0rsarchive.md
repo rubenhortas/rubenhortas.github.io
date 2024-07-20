@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - M0rsarchive owned!
+title: Hack The Box - M0rsarchive pwned!
 date: 2023-11-18 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]

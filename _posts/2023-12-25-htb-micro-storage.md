@@ -1,5 +1,5 @@
 ---
-title: Hack The Box - Micro Storage owned!
+title: Hack The Box - Micro Storage pwned!
 date: 2023-12-25 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, micro storage]
