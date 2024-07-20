@@ -42,7 +42,7 @@ This time I'll use the [hex string converter from codebeautify](https://codebeau
 
 And we get our flag!
 
-![Canvas pwned](owned-canvas.png)
+![Canvas pwned](owned-cat.png)
 *Canvas has been Pwned*
 
 *Enjoy! ;)*
