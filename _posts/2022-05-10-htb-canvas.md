@@ -38,8 +38,7 @@ This time I'll use the [hex string converter from codebeautify](https://codebeau
 
 And we get our flag!
 
-## Pwned
-
+![Canvas pwned](canvas-owned.png)
 *Canvas has been Pwned*
 
 *Enjoy! ;)*
