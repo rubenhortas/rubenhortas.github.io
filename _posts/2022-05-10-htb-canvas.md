@@ -4,7 +4,7 @@ date: 2022-05-01 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, misc, htb, canvas, javascript]
 img_path: /assets/img/posts/
---
+---
 
 ## Challenge description
 
@@ -42,7 +42,7 @@ This time I'll use the [hex string converter from codebeautify](https://codebeau
 
 And we get our flag!
 
-![Canvas pwned](owned-cat.png)
+![Canvas pwned](owned-canvas.png)
 *Canvas has been Pwned*
 
 *Enjoy! ;)*
