@@ -15,7 +15,6 @@ Once we have overwritten the memory, the results given by monitoring tools are a
 ## Why and/or when would we want to do this?  
 
 We may want run a program with a password, a user name and/or a path as arguments and we don't want them to be visible.
-
 Maybe we are doing a CTF challenge (or a pentest) and we are in a scenario when we could use it, together with other techniques, to escalate privileges.
 Maybe we want to run a quickly (and poorly) written program, or, maybe, we are trying to create a new malware and hide it. We'll talk about this later.
 
