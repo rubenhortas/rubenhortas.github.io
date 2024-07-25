@@ -1,6 +1,6 @@
 ---
 title: Hack The Box Academy - Completed Operating System Fundamentals
-date: 2022-06-28 00:00:01 +0000
+date: 2023-06-28 00:00:01 +0000
 categories: [hack the box, academy, operating systems]
 tags: [hack the box, academy]
 img_path: /assets/img/posts/

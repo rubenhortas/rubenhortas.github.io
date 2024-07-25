@@ -1,6 +1,6 @@
 ---
 title: Hack the box - Canvas pwned!
-date: 2022-05-01 00:00:01 +0000
+date: 2022-05-10 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, misc, htb, canvas, javascript]
 img_path: /assets/img/posts/

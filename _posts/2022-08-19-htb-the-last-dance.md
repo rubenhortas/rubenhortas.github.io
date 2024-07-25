@@ -1,6 +1,6 @@
 ---
 title: Hack The Box - The Last Dance pwned!
-date: 2022-05-18 00:00:01 +0000
+date: 2022-08-19 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]
 img_path: /assets/img/posts/

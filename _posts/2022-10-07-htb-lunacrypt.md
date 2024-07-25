@@ -1,6 +1,6 @@
 ---
 title: Hack The Box - LunaCrypt pwned!
-date: 2022-10-08 00:00:01 +0000
+date: 2022-10-07 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, crypto, htb, LunaCrypt]
 img_path: /assets/img/posts/

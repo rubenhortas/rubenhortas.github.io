@@ -1,6 +1,6 @@
 ---
 title: Hack The Box - misDIRection pwned!
-date: 2022-05-04 00:00:01 +0000
+date: 2022-05-05 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge, misc, htb, misdirection]
 img_path: /assets/img/posts/

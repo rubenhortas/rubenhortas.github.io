@@ -1,6 +1,6 @@
 ---
 title: Hack The Box Academy - Completed Linux Fundamentals
-date: 2022-06-23 00:00:01 +0000
+date: 2023-06-23 00:00:01 +0000
 categories: [hack the box, academy]
 tags: [hack the box, academy, linux]
 img_path: /assets/img/posts/

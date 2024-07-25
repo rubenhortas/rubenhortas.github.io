@@ -1,6 +1,6 @@
 ---
 title: Hack The Box - xorxorxor pwned!
-date: 2022-05-11 00:00:01 +0000
+date: 2022-05-12 00:00:01 +0000
 categories: [hack the box, challenge]
 tags: [hack the box, challenge]
 img_path: /assets/img/posts/
