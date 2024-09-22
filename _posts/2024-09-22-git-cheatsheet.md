@@ -21,15 +21,15 @@ There you can find more extensive information about the following commands, and 
 
 >In this cheatseet I will following the next conventions:
 >
-> *[parameter]*: It means that it is an optional parameter.
+> * *[parameter]*: It means that it is an optional parameter.
 >
-> *(parameter1,parameter2)*: It means a group of parameters.
+> * *(parameter1,parameter2)*: It means a group of parameters.
 >
-> *[parameter1|parameter2]*: It means that the are optional and exclusive parameters.
+> * *[parameter1|parameter2]*: It means that the are optional and exclusive parameters.
 >
-> *(parameter1|parameter2)*: It means that the are mandatory and exclusive parameters.
+> * *(parameter1|parameter2)*: It means that the are mandatory and exclusive parameters.
 >
-> $variable: It means that it a variable and should be replaced by your specific value.
+> * $variable: It means that it a variable and should be replaced by your specific value.
 >
 {: .prompt-info}
 
