@@ -26,7 +26,7 @@ But, the zip file will be password protected, and we don't have the password.
 
 # The files
 
-When we extract the `SecretRezipe.zip' file, we found the `misc_secret_rezipe` folder.
+When we extract the `SecretRezipe.zip` file, we found the `misc_secret_rezipe` folder.
 This folder contains a docker container configuration and source files.
 So, this will be a grey box approach.
 And, since the objective is not the web, let's analyze these files.
@@ -63,12 +63,12 @@ If there are no ingredients, nothing will be appended to `data`.
 ```
 
 The content of the `data` variable will be written to the `ingredients.txt` file in a random temporary directory.
-The, the temporary directory will be zipped using the `${PASSWORD}` constant as password.
+The the temporary directory will be zipped using the `${PASSWORD}` constant as password.
 And, finally, the zipped file will be sent.
 
 ## config.js
 
-```javscript
+```javascript
 try {
      var FLAG = fs.readFileSync("/flag.txt")
 } catch (e) {
