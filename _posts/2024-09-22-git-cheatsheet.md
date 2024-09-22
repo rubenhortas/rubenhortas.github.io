@@ -21,15 +21,15 @@ There you can find more extensive information about the following commands, and 
 
 >In this cheatseet I will following the next conventions:
 >
->*[parameter]*: It means that it is an optional parameter.
+> *[parameter]*: It means that it is an optional parameter.
 >
->*(parameter1,parameter2)*: It means a group of parameters.
+> *(parameter1,parameter2)*: It means a group of parameters.
 >
->*[parameter1|parameter2]*: It means that the are optional and exclusive parameters.
+> *[parameter1|parameter2]*: It means that the are optional and exclusive parameters.
 >
->*(parameter1|parameter2)*: It means that the are mandatory and exclusive parameters.
+> *(parameter1|parameter2)*: It means that the are mandatory and exclusive parameters.
 >
->$variable: It means that it a variable and should be replaced by your specific value.
+> $variable: It means that it a variable and should be replaced by your specific value.
 >
 {: .prompt-info}
 
@@ -85,25 +85,29 @@ There you can find more extensive information about the following commands, and 
 >Be careful with `git rebase`
 {: .prompt-info}
 
-## Aliasees
+## Aliases
 
 If you are like me, and you use git a lot from the CLI, you will appreciate the following trick.
 You can create aliases to group several parameters and speed up ypur work:
 
 * `git config --global alias.tree "--graph --decorate --all --oneline"`
 
+Now, you will have available the following command:
+
+`git tree`
+
 # Squashing
 
-Git squash is a technique that consists of taking n number of commits and merge them into a single commit.
+Squashing is a technique that consists of taking n number of commits and merge them into a single commit.
 It's used to keep the history clean. 
 
 1. Start an interactive rebase:
 
-`git rebase -i HEAD~$number_of_commits`
+  `git rebase -i HEAD~$number_of_commits`
 
 2. Mark commits for squashing: 
 
-Change the pick keyword to squash or s before the commits you want to combine.
+  Change the pick keyword to squash or s before the commits you want to combine.
 
 3. Save and exit the editor.
 
