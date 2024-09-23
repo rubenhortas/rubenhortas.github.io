@@ -33,7 +33,7 @@ There you can find more extensive information about the following commands, and 
 >
 {: .prompt-info}
 
-## Set user credentials
+## Configure user settings
 
 * `git config --global user.name $name`
 * `git config --global user.email $mail`
@@ -57,7 +57,7 @@ There you can find more extensive information about the following commands, and 
 * `git revert` Creates a new commit that undoes the changes introduced by another commit.
 
 >Be careful with `git revert`
-{: .prompt-info}
+{: .prompt-warning}
 
 
 ## Stashes
@@ -83,7 +83,7 @@ There you can find more extensive information about the following commands, and 
 * `git branch -d $branch-name` Deletes a branch (only if it's fully merged).
 
 >Be careful with `git rebase`
-{: .prompt-info}
+{: .prompt-warning}
 
 ## Aliases
 
