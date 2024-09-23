@@ -12,7 +12,7 @@ This means tha some actions will behave [slightly] differently between IDEs.
 Some actions will be in some IDEs and not in others, and some actions will not be implemented in any IDE.
 If our IDE does not implment the action/actions we need we will have to resort to the console (or CLI). 
 It is not uncommon to have to resort to the console, especially when things go wrong.
-Since I use git a lot from the CLI, my colleagues often come to me to ask me commands or how to fix some error.
+Since I use git a lot from the CLI, my coworkers often come to me to ask me commands or how to fix some error.
 Over time I have realized that some of these questions are recurring, so I have decided to leave this resume of git commands in form of cheatsheet here.
 
 For me, the best source of git documentation is the official one. 
