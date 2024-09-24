@@ -107,7 +107,7 @@ It's used to keep the history clean.
 
 2. Mark commits for squashing: 
 
-    Change the pick keyword to squash or s before the commits you want to combine.
+    Change the *pick* keyword to *squash* or *s* before the commits you want to combine.
 
 3. Save and exit the editor.
 
