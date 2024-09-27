@@ -50,14 +50,33 @@ There you can find more extensive information about the following commands, and 
 * `git fetch` Retrieves updated branch information from the remote repository without merging them locally.
 * `git pull`Fetches updates from the remote repository and attempts to merge them into the current local branch.
 * `git push` Uploads local commits to the remote repository.
-* `git reset [--hard] [file|commit]` Moves the HEAD pointer to a specific commit (hard removes local changes since then).
 * `git tag [-a|-d] $tag` Creates/deletes a tag for a specific commit.
 * `git blame` Shows who last modified each line of a file.
 * `git cherry pick`Selectively applies a commit from another branch to the current branch.
+
+### Undo changes
+
+* `git checkout [file]` Discard uncommitted changes
+* `git reset [--hard] [file|commit]` Moves the HEAD pointer to a specific commit (hard removes local changes since then).
 * `git revert` Creates a new commit that undoes the changes introduced by another commit.
 
 >Be careful with `git revert`
 {: .prompt-warning}
+
+### Squashing
+
+Squashing is a technique that consists of taking n number of commits and merge them into a single commit.
+It's used to keep the history clean. 
+
+1. Start an interactive rebase:
+
+    `git rebase -i HEAD~$number_of_commits`
+
+2. Mark commits for squashing: 
+
+    Change the *pick* keyword to *squash* or *s* before the commits you want to combine.
+
+3. Save and exit the editor.
 
 
 ## Stashes
@@ -76,7 +95,7 @@ There you can find more extensive information about the following commands, and 
 ## Branches
 
 * `git branch`Lists existing branches.
-* `git branch $branch-name` Creates a new branch.
+* `git branch [-b] $branch-name` Creates a new branch. With `-b` switches to it.
 * `git checkout $branch-name` or `git switch $branch-name` Switches to an existing branch.
 * `git merge` Combines the history of another branch into the current branch.
 * `git rebase` Reapplies commits from a branch on top of another branch (potentially rewriting history).
@@ -85,31 +104,29 @@ There you can find more extensive information about the following commands, and 
 >Be careful with `git rebase`
 {: .prompt-warning}
 
-## Aliases
+### Recover a deleted branch
+
+1. Find the SHA1 for the commit of your deleted branch
+
+    `git reflog`
+
+2. `git checkout $SHA1`
+
+3. `git checkout -b $branch-name`
+
+# Aliases
 
 If you are like me, and you use git a lot from the CLI, you will appreciate the following trick.
 You can create aliases to group several parameters and speed up ypur work:
 
 * `git config --global alias.tree "--graph --decorate --all --oneline"`
+* `git config --global alias.fulltree "log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"`
 
-Now, you will have available the following command:
+Now, you will have available the following commands:
 
 `git tree`
+`git fulltree`
 
-# Squashing
-
-Squashing is a technique that consists of taking n number of commits and merge them into a single commit.
-It's used to keep the history clean. 
-
-1. Start an interactive rebase:
-
-    `git rebase -i HEAD~$number_of_commits`
-
-2. Mark commits for squashing: 
-
-    Change the *pick* keyword to *squash* or *s* before the commits you want to combine.
-
-3. Save and exit the editor.
 
 # Update repositories from a bash script
 
@@ -117,5 +134,10 @@ When I make my backups, I want to save an image of all my repositories with the 
 I run the following command from a bash script (it will work from any directory) to keep my local repositories up-to-date with changes made in remote repositories:
 
 `git -C $repository fetch --all && git branch --all --track`
+
+# Acknowledgments
+
+* [Rodrigo Rega](https://rodrigorega.es)
+    Thanks a lot for the tips! :)
 
 *Enjoy! ;)*
