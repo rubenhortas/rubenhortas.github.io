@@ -137,7 +137,6 @@ I run the following command from a bash script (it will work from any directory)
 
 # Acknowledgments
 
-* [Rodrigo Rega](https://rodrigorega.es)
-    Thanks a lot for the tips! :)
+* [Rodrigo Rega](https://rodrigorega.es) Thanks a lot for the tips! :)
 
 *Enjoy! ;)*
