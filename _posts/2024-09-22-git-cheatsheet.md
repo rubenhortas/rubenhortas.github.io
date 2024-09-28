@@ -101,7 +101,8 @@ It's used to keep the history clean.
 ## Branches
 
 * `git branch`Lists existing branches.
-* `git branch [-b] $branch-name` Creates a new branch. With `-b` switches to it.
+* `git branch $branch-name` Creates a new branch.
+* `git checkout -b $branch-name` Creates a new branch and switches to it.
 * `git push --set upstream $remote-repository $branch-name` Create a local branch remotely.
 * `git checkout $branch-name` or `git switch $branch-name` Switches to an existing branch.
 * `git merge` Combines the history of another branch into the current branch.
