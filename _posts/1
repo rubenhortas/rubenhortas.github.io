@@ -5,22 +5,19 @@ categories: [git, cheatsheets]
 tags: [git, cheatsheets]
 ---
 
-Nowadays, git must be the most widely used source control.
-Although [almost] all IDEs implement it.
+Nowadays, git must be the most widely used source control. 
+Although [almost] all IDEs implement it. 
 Since git is very extensive, each IDE integrates its own set of actions.
-This means tha some actions will behave [slightly] differently between IDEs.
-Some actions will be in some IDEs and not in others, and some actions will not be implemented in any IDE.  
-
-If our IDE does not implment the action/actions we need we will have to resort to the console (or CLI).
-It is not uncommon to have to resort to the console, especially when things go wrong.  
-
+This means tha some actions will behave [slightly] differently between IDEs. 
+Some actions will be in some IDEs and not in others, and some actions will not be implemented in any IDE.
+If our IDE does not implment the action/actions we need we will have to resort to the console (or CLI). 
+It is not uncommon to have to resort to the console, especially when things go wrong.
 Since I use git a lot from the CLI, my coworkers often come to me to ask me commands or how to fix some error.
-Over time I have realized that some of these questions are recurring, so I have decided to leave this resume of git commands in form of cheatsheet here.  
+Over time I have realized that some of these questions are recurring, so I have decided to leave this resume of git commands in form of cheatsheet here.
 
-For me, the best source of git documentation is the official one.  
-In the [git book](https://git-scm.com/book/en/v2) you will find **ALL** about git.  
-There you can find more extensive information about the following commands, and other commands.  
-You also can find all the information in the git manual: `$ man git`.
+For me, the best source of git documentation is the official one. 
+In the [git book](https://git-scm.com/book/en/v2) you will find **ALL** about git. 
+There you can find more extensive information about the following commands, and other commands.
 
 >In this cheatseet I will following the next conventions:
 >
@@ -49,28 +46,18 @@ You also can find all the information in the git manual: `$ man git`.
 ## Changes
 
 * `git add (.|file)` Adds files to the staging area for the next commit.
-* `git rm [-rf] ($file|$directory) Deletes a file or director from the staged area. 
 * `git commit -ma $message` Creates a new commit with a message.
 * `git fetch` Retrieves updated branch information from the remote repository without merging them locally.
 * `git pull`Fetches updates from the remote repository and attempts to merge them into the current local branch.
-* `git checkout $branch -- $file` Gets a file from a branch.
-* `git push [--follow-tags]` Uploads local commits to the remote repository.
+* `git push` Uploads local commits to the remote repository.
+* `git tag [-a|-d] $tag` Creates/deletes a tag for a specific commit.
 * `git blame` Shows who last modified each line of a file.
 * `git cherry pick`Selectively applies a commit from another branch to the current branch.
-
-### Tags
-
-* `git tag [-a|-d] $tag` Creates/deletes a local tag for a specific commit.
-* `git tag -l [$regex]` Lists tags.
-* `git show-ref --tags` Shows commits for all tags.
-* `git rev-list -n1 $tag` Shows which commit has a certain tag.
-* `git push --delete $remote-branch-name $tag` Deletes a remote tag.
 
 ### Undo changes
 
 * `git checkout [file]` Discard uncommitted changes
 * `git reset [--hard] [file|commit]` Moves the HEAD pointer to a specific commit (hard removes local changes since then).
-* `git reset --soft HEAD~1` Undoes the last commit.
 * `git revert` Creates a new commit that undoes the changes introduced by another commit.
 
 >Be careful with `git revert`
@@ -91,23 +78,28 @@ It's used to keep the history clean.
 
 3. Save and exit the editor.
 
+
 ## Stashes
 
-* `git stash list` Temporarily lists uncommitted changes.
-* `git stash push` Temporarily saves uncommitted changes.
-* `git stash pop $stash` Temporarily applies uncommitted changes.
-* `git stash drop $stash` Temporarily discards uncommitted changes.
+* `git stash [list|pop|drop]` Temporarily saves/lists/applies/discards uncommitted changes.
+
+## Repository status
+
+* `git log [--follow $file]`  Shows a history of commits.
+* `git diff` Shows the difference between the working directory and the staging area or between commits.
+* `git checkout` witches to a different branch or file version.
+* `git status` Shows the current state of the working directory.
+* `git show $commit` Displays details about a specific commit.
+* `git reflog` Shows a history of HEAD.
 
 ## Branches
 
 * `git branch`Lists existing branches.
 * `git branch [-b] $branch-name` Creates a new branch. With `-b` switches to it.
-* `git push --set upstream $remote-repository $branch-name` Create a local branch remotely.
 * `git checkout $branch-name` or `git switch $branch-name` Switches to an existing branch.
 * `git merge` Combines the history of another branch into the current branch.
-* `git branch [-d|-D] $branch-name` Deletes a local branch. `-d` deletes the branch if it has already fully merge, `-D` deletes the branch regardless of its merged status.
-* `git branch push -d $remote-branch-name $branch-name` Deletes a remote branch.
 * `git rebase` Reapplies commits from a branch on top of another branch (potentially rewriting history).
+* `git branch -d $branch-name` Deletes a branch (only if it's fully merged).
 
 >Be careful with `git rebase`
 {: .prompt-warning}
@@ -122,22 +114,7 @@ It's used to keep the history clean.
 
 3. `git checkout -b $branch-name`
 
-## Repository status
-
-* `git status` Shows the current state of the working directory.
-* `git show $commit` Displays details about a specific commit
-* `git log [--follow $file]`  Shows a history of commits.
-* `git reflog` Shows a history of HEAD.
-* `git diff` Shows the difference between the working directory and the staging area or between commits.
-* `git diff stash@{0}^! -- [$file]` Compares the changes in the most recent stash entry (stash@{0}) with the current working directory/file.
-* `git diff $branch1 $branch2 -- $file` Compares the file between two branches.
-* `git diff HEAD^ HEAD` Compares the changes between the current commit (HEAD) and its immediate parent commit (HEAD^)..
-
-## Submodules
-
-* `git submodule update --init --remote` Downloads submodules.
-
-## Aliases
+# Aliases
 
 If you are like me, and you use git a lot from the CLI, you will appreciate the following trick.
 You can create aliases to group several parameters and speed up ypur work:
@@ -151,14 +128,14 @@ Now, you will have available the following commands:
 `git fulltree`
 
 
-## Update repositories from a bash script
+# Update repositories from a bash script
 
 When I make my backups, I want to save an image of all my repositories with the latest updates of all its branches.
 I run the following command from a bash script (it will work from any directory) to keep my local repositories up-to-date with changes made in remote repositories:
 
 `git -C $repository fetch --all && git branch --all --track`
 
-# #Acknowledgments
+# Acknowledgments
 
 * [Rodrigo Rega](https://rodrigorega.es) Thanks a lot for the tips and the `fulltree` alias :)
 
