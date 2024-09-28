@@ -114,9 +114,7 @@ It's used to keep the history clean.
 
 ### Recover a deleted branch
 
-1. Find the SHA1 for the commit of your deleted branch
-
-    `git reflog`
+1. Find the SHA1 for the commit of your deleted branch: `git reflog`
 
 2. `git checkout $SHA1`
 
