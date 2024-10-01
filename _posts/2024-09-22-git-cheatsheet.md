@@ -107,7 +107,7 @@ It's used to keep the history clean.
 * `git checkout $branch-name` or `git switch $branch-name` Switches to an existing branch.
 * `git merge` Combines the history of another branch into the current branch.
 * `git branch [-d|-D] $branch-name` Deletes a local branch. `-d` deletes the branch if it has already fully merge, `-D` deletes the branch regardless of its merged status.
-* `git branch push -d $remote-branch-name $branch-name` Deletes a remote branch.
+* `git push $origin --delete $branch-name` Deletes a remote branch.
 * `git rebase` Reapplies commits from a branch on top of another branch (potentially rewriting history).
 
 >Be careful with `git rebase`
