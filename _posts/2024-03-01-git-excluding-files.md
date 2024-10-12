@@ -1,8 +1,8 @@
 ﻿---
 title: Excluding local files in git without creating a .gitignore
 date: 2024-03-01 00:00:01 +0000
-categories: [programming, git]
-tags: [programming, git]
+categories: [git, configuration]
+tags: [git, configuration]
 ---
 
 Let's suppose that you have cloned a git third-party repository and, locally, inside the repository, you have new (and untracked) files.
