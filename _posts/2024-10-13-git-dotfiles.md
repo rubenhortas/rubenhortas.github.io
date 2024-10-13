@@ -8,7 +8,7 @@ tags: [git, dotfiles]
 ## What are dotfiles?
 
 Dotfiles are files where the programs store their configuration.
-Dotfiles are named that way because most of them starts with '.', but nowadays it's common to use this term to refer to any configuration file.
+Dotfiles are named that way because most of them starts with  a dot ".". But, nowadays, it's common to use this term to refer to any configuration file.
 
 When you install a new program, you spent a lot of time reading documentation, trying and setting options, until fits you well.
 Some examples of programs that uses dotfiles are: bash, zsh, git, tmux, vim...
@@ -17,19 +17,23 @@ In addition to these, I like to save another dotfiles (like .xprofile) and anoth
 Saving these dotfiles (or configuration files) will save you a lot of time, and will allow you to mantain a consitency between computers.
 And I love these two things.
 
-Let's say that you uninstalled some of these programs, or you are doing a fresh install of your Operating System, or, maybe, you are installing some of these programs in another computer.
+Let's say that you uninstalled some of these programs, or you are doing a fresh install of your operating system, or, maybe, you are installing some of these programs in another computer.
 After install these programs, you will only have to override their dotfiles (or config files) and everything will be to your liking and the same between systems/computers (if applicable).
 
 I have many computers, all but one, using gnu/linux.
 Of all of them I keep some configs, some scripts or batch files (yep, it's very useful backup these too) and even the wallpaper.
 
-## The all in one approach
+Is true that we can do this with a simple backup in any hard drive, but let's face it, we are programmers and have the dotfiles backuped in a remote (and always available) git server (as github) is very comfortable.
+
+## The "all in one" approach
 
 This was my first approach.
-This approach consists of having one repository with only one branch and structure everything in folders.
+This approach consists of having one repository with only one branch. Then we will structure everything in folders.
 
-Once we had cloned our repository, we will delete our local dotfiles (or config files) and make links to the files in the repository.
+Once we had cloned our repository, we will delete our local dotfiles (or config files) and make symlinks to the files in the repository.
 My choice is to do hard links for files and soft links for the folders, but as you like ;)
+
+We will have something like this:
 
 ```shell
 dotfiles
@@ -99,21 +103,27 @@ It's very easy to keep track of the changes.
 You have the same repository and the same branch in all of your machines.
 
 * Common files are easily synchronized
+
   If we use a `common` directory to store the dotfiles that are the same in all the machines, we can keep our common configurations easily synchronized.
 
 ### Cons
 
 * Fragmentation
+
   Over time we will have fragmented configurations (if we use the common folder).
 In the worst case, we will get rid of the `common` directory.
 
 * Useless configurations
+
   Wether we have it or not the `common` folder, we will have a lot of files (configurations, scripts, wallpapers...) from other computers that will be, mostly, useless for us in this computer.
 
-## The branches approach
+## The "m branches" approach
 
-This is my current approach, it's similar to the latest.
-We will have one repository, but one branch per machine.
+This is my current approach, it's similar to the "all in one" approach.
+We will have one repository, but one branch per machine (that's why the "m" in the name).
+
+Each branch will contain only the dotfiles for one computer.
+We will have something like this:
 
 ```shell
 dotfiles/desktop
@@ -139,21 +149,21 @@ dotfiles/desktop
 
 ### Pros
 
-* We will have only the files related to the current machine
+* We will have only the files related to the current machine.
 
 ### Cons
 
 * Management can get a little complicated
 
-  If we make a change to a file that we want to push to other machines, we will have to do it manually on the other branches.
-If we create a file on one machine that we want to have on other machines, we will have to do it manually or propagate it with git to the other branches.
+  If we make a change to a file that we want to push to other machines, we will have to do it manually on the other branches.  
+  If we create a file on one machine that we want to have on other machines, we will have to do it manually or propagate it with git to the other branches.
 
 * Branch switching
 
   If you change branches, while your aren't in the computer branch, your links will break.
 So, If you need to switch branch, for whatever reason, it's better to clone the repository in another location.
 
-## The StreakyCobra approach
+## The "StreakyCobra" approach
 
 This is the better approach? Why? Look a this name, how can it not be the best with that name?
 
@@ -161,7 +171,7 @@ I saw that approach in a [Hacker news](https://news.ycombinator.com/news) thread
 This was [the response given by the user StreakyCobra](https://news.ycombinator.com/item?id=11071754). 
 
 This is going to be by next method (as soon as I feel like reorganizing some machine).
-This method does not need extra tools or symlinks.
+**This method does not need extra tools or symlinks**.
 
 ### Creating the new repository
 
@@ -171,7 +181,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines
 config config status.showUntrackedFiles not # Do not display untracked files in the status output.
 ```
 
-The creation of the alias `config` avoids interference when we use the `git` command in other repositories.
+>The creation of the alias `config` avoids interference when we use the `git` command in other repositories.
+{: .prompt-info}
 
 ### Usage
 
@@ -186,7 +197,8 @@ config push
 
 ### Cloning the repository in a new machine
 
-As the normal cloning will fail if the home directory is not empty, we will have to cloning the repository into a temporary and then delete this repository.
+The normal cloning will fail if the home directory is not empty.
+When we will clone the repository in a new machine, we will have to clone the repository into a temporary directory and then delete this directory.
 
 ```shell
 git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
@@ -202,6 +214,6 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 ### Cons
 
-* When we clone it in a new machine we have to clone it in a temporary repository and then delete it. Is it really a con?
+* We will have to delete a (temporary) directory. Is it really a con?
 
 *Enjoy! ;)*
