@@ -171,22 +171,60 @@ I saw that approach in a [Hacker news](https://news.ycombinator.com/news) thread
 This was [the response given by the user StreakyCobra](https://news.ycombinator.com/item?id=11071754). 
 
 This is going to be by next method (as soon as I feel like reorganizing some machine).
-**This method does not need extra tools or symlinks**.
+This method is similar to the "m-branches", one repository and one branch per machine, with the difference that **this method does not need extra tools or symlinks**.
+So, we will end having something similar to the "m-branches", but more comfortable to manage.
 
-### Creating the new repository
+### Creating the repository
+
+If you don't have the repository yet, you need to create it:
 
 ```shell
 git init --bare $HOME/.myconf # Creates the new repository. Replace with your own path.
-alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines an alias named config that executes git commands using the specified repository.
-config config status.showUntrackedFiles not # Do not display untracked files in the status output.
 ```
 
->The creation of the alias `config` avoids interference when we use the `git` command in other repositories.
+### Cloning the repository
+
+If you have the repository, you have to clone it.
+
+If you have your home directory empty (is not the usual thing), you can clone the repository:
+
+```shell
+ git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME
+```
+
+> --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
+>
+> /path/to/repo: The URL or path to the Git repository that you want to clone.
+>
+> $HOME: This is the path where you want to clone the repository.
 {: .prompt-info}
 
-### Usage
+If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete this directory:
 
-Basically, you have to replace `git` by `config`.
+```shell
+git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
+rm -r $HOME/myconf-tmp/
+```
+
+### Creating the "config" alias
+
+```shell
+alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines an alias named "config" that executes git commands using the specified repository.
+```
+
+> The creation of the alias `config` avoids interference when we use the `git` command in other repositories.
+{: .prompt-info}
+
+
+### Hidding untracked files (in the status output)
+
+```shell
+config config status.showUntrackedFiles not
+```
+
+### Managing files
+
+Any file can be versioned with normal commands, but you have to replace the `git` command by the alias `config`.
 
 ```shell
 config status
@@ -202,8 +240,8 @@ When we will clone the repository in a new machine, we will have to clone the re
 
 ```shell
 git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
-cp ~/myconf-tmp/.gitmodules ~  # If you use Git submodules
-rm -r ~/myconf-tmp/
+cp $HOME/myconf-tmp/.gitmodules $HOME  # If you use Git submodules
+rm -r $HOME/myconf-tmp/
 alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 ```
 
@@ -214,6 +252,7 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 ### Cons
 
+* Needs an alias to do not interfere with the `git` command in other repositories.
 * We will have to delete a (temporary) directory. Is it really a con?
 
 *Enjoy! ;)*
