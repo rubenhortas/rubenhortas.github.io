@@ -23,7 +23,7 @@ After install these programs, you will only have to override their dotfiles (or 
 I have many computers, all but one, using gnu/linux.
 Of all of them I keep some configs, some scripts or batch files (yep, it's very useful backup these too) and even the wallpaper.
 
-Is true that we can do this with a simple backup in any hard drive, but let's face it, we are programmers and have the dotfiles backuped in a remote (and always available) git server (as github) is very comfortable.
+Is true that we can do this with a simple backup in any hard drive, but let's face it, we are programmers, and, have the dotfiles backuped in a remote (and always available) git server (as github) is very comfortable.
 
 ## The "all in one" approach
 
@@ -31,6 +31,7 @@ This was my first approach.
 This approach consists of having one repository with only one branch. Then we will structure everything in folders.
 
 Once we had cloned our repository, we will delete our local dotfiles (or config files) and make symlinks to the files in the repository.
+
 My choice is to do hard links for files and soft links for the folders, but as you like ;)
 
 We will have something like this:
@@ -117,7 +118,7 @@ In the worst case, we will get rid of the `common` directory.
 
   Wether we have it or not the `common` folder, we will have a lot of files (configurations, scripts, wallpapers...) from other computers that will be, mostly, useless for us in this computer.
 
-## The "m branches" approach
+## The "m-branches" approach
 
 This is my current approach, it's similar to the "all in one" approach.
 We will have one repository, but one branch per machine (that's why the "m" in the name).
@@ -192,11 +193,11 @@ If you have your home directory empty (is not the usual thing), you can clone th
  git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME
 ```
 
-> --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
+> * --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
 >
-> /path/to/repo: The URL or path to the Git repository that you want to clone.
+> * /path/to/repo: The URL or path to the Git repository that you want to clone.
 >
-> $HOME: This is the path where you want to clone the repository.
+> * $HOME: This is the path where you want to clone the repository.
 {: .prompt-info}
 
 If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete this directory:
@@ -247,8 +248,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 ### Pros
 
-* No need to create links
-* We will have only the files related to the current machine
+* No need to create symlinks.
+* We will have only the files related to the current machine.
 
 ### Cons
 
