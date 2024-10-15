@@ -64,7 +64,7 @@ You also can find all the information in the git manual: `$ man git`.
 * `git tag -l [$regex]` Lists tags.
 * `git show-ref --tags` Shows commits for all tags.
 * `git rev-list -n1 $tag` Shows which commit has a certain tag.
-* `git push --delete $remote-branch-name $tag` Deletes a remote tag.
+* `git push --delete origin $tag` Deletes a remote tag.
 
 ### Undo changes
 
