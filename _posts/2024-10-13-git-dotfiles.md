@@ -8,22 +8,22 @@ tags: [git, dotfiles]
 ## What are dotfiles?
 
 Dotfiles are files where the programs store their configuration.
-Dotfiles are named that way because most of them starts with  a dot ".". But, nowadays, it's common to use this term to refer to any configuration file.
+Dotfiles are named that way because most of them starts with  a dot ".", although, nowadays, it's common to use this term to refer to any configuration file.
 
-When you install a new program, you spent a lot of time reading documentation, trying and setting options, until fits you well.
+When you install a new program, you spend a lot of time reading documentation and trying and setting options, until fits you well.
 Some examples of programs that uses dotfiles are: bash, zsh, git, tmux, vim...
 In addition to these, I like to save another dotfiles (like .xprofile) and another configuration files (awesomewm, neovim, mplayer, yt-dlp, conky...).
 
-Saving these dotfiles (or configuration files) will save you a lot of time, and will allow you to mantain a consitency between computers.
+Saving these dotfiles (or configuration files) will save you a lot of time, and will allow you to mantain a consistency between computers.
 And I love these two things.
 
 Let's say that you uninstalled some of these programs, or you are doing a fresh install of your operating system, or, maybe, you are installing some of these programs in another computer.
 After install these programs, you will only have to override their dotfiles (or config files) and everything will be to your liking and the same between systems/computers (if applicable).
 
 I have many computers, all but one, using gnu/linux.
-Of all of them I keep some configs, some scripts or batch files (yep, it's very useful backup these too) and even the wallpaper.
+I keep some configs of all of them, some scripts or batch files (yep, it's very useful backup these too) and even the wallpaper.
 
-Is true that we can do this with a simple backup in any hard drive, but let's face it, we are programmers and have the dotfiles backuped in a remote (and always available) git server (as github) is very comfortable.
+Is true that we can do this with a simple backup in any hard drive, but let's face it, we are programmers; and have the dotfiles backuped in a remote (and always available) git server (as github) is very comfortable.
 
 ## The "all in one" approach
 
@@ -31,6 +31,7 @@ This was my first approach.
 This approach consists of having one repository with only one branch. Then we will structure everything in folders.
 
 Once we had cloned our repository, we will delete our local dotfiles (or config files) and make symlinks to the files in the repository.
+
 My choice is to do hard links for files and soft links for the folders, but as you like ;)
 
 We will have something like this:
@@ -104,7 +105,7 @@ You have the same repository and the same branch in all of your machines.
 
 * Common files are easily synchronized
 
-  If we use a `common` directory to store the dotfiles that are the same in all the machines, we can keep our common configurations easily synchronized.
+  If we use a `common` directory to store the dotfiles that are the same in all the machines, we can keep our common configuration files easily synchronized.
 
 ### Cons
 
@@ -115,9 +116,9 @@ In the worst case, we will get rid of the `common` directory.
 
 * Useless configurations
 
-  Wether we have it or not the `common` folder, we will have a lot of files (configurations, scripts, wallpapers...) from other computers that will be, mostly, useless for us in this computer.
+  Wether we have it or not the `common` folder, we will have a lot of files (configurations, scripts, wallpapers...) from other computers that will be, mostly, useless for us in the current computer.
 
-## The "m branches" approach
+## The "m-branches" approach
 
 This is my current approach, it's similar to the "all in one" approach.
 We will have one repository, but one branch per machine (that's why the "m" in the name).
@@ -155,22 +156,23 @@ dotfiles/desktop
 
 * Management can get a little complicated
 
-  If we make a change to a file that we want to push to other machines, we will have to do it manually on the other branches.  
+  If we make a change to a file that we want to push to other machines, we will have to do it manually on the other branches.
+  
   If we create a file on one machine that we want to have on other machines, we will have to do it manually or propagate it with git to the other branches.
 
 * Branch switching
 
-  If you change branches, while your aren't in the computer branch, your links will break.
-So, If you need to switch branch, for whatever reason, it's better to clone the repository in another location.
+  If you change branches, while your aren't in the current computer branch, your links will break.
+So, If you need to switch branch, for whatever reason, it's better to clone the repository (again) in another location.
 
 ## The "StreakyCobra" approach
 
-This is the better approach? Why? Look a this name, how can it not be the best with that name?
+This is the better approach. Why? Look at this name, how can it not be the best with this name?
 
-I saw that approach in a [Hacker news](https://news.ycombinator.com/news) thread: [Ask HN: What do you use to manage dotfiles?](https://news.ycombinator.com/item?id=11070797).
+I saw this method in a [Hacker news](https://news.ycombinator.com/news) thread: [Ask HN: What do you use to manage dotfiles?](https://news.ycombinator.com/item?id=11070797).
 This was [the response given by the user StreakyCobra](https://news.ycombinator.com/item?id=11071754). 
 
-This is going to be by next method (as soon as I feel like reorganizing some machine).
+This is going to be by next system (as soon as I feel like reorganizing some machine).
 This method is similar to the "m-branches", one repository and one branch per machine, with the difference that **this method does not need extra tools or symlinks**.
 So, we will end having something similar to the "m-branches", but more comfortable to manage.
 
@@ -192,14 +194,14 @@ If you have your home directory empty (is not the usual thing), you can clone th
  git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME
 ```
 
-> --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
+> * --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
 >
-> /path/to/repo: The URL or path to the Git repository that you want to clone.
+> * /path/to/repo: The URL or path to the Git repository that you want to clone.
 >
-> $HOME: This is the path where you want to clone the repository.
+> * $HOME: This is the path where you want to clone the repository.
 {: .prompt-info}
 
-If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete this directory:
+If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete the temporary directory:
 
 ```shell
 git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
@@ -216,7 +218,9 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines
 {: .prompt-info}
 
 
-### Hidding untracked files (in the status output)
+### Hidding untracked files
+
+We will hide the untracked files in the status output:
 
 ```shell
 config config status.showUntrackedFiles not
@@ -236,7 +240,7 @@ config push
 ### Cloning the repository in a new machine
 
 The normal cloning will fail if the home directory is not empty.
-When we will clone the repository in a new machine, we will have to clone the repository into a temporary directory and then delete this directory.
+When we will clone the repository in a new machine, we will have to clone the repository into a temporary directory and then delete this temporary directory.
 
 ```shell
 git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
@@ -247,8 +251,8 @@ alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 
 ### Pros
 
-* No need to create links
-* We will have only the files related to the current machine
+* No need to create symlinks.
+* We will have only the files related to the current machine.
 
 ### Cons
 

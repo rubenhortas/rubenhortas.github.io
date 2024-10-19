@@ -38,7 +38,6 @@ You can know more about me visiting my profiles on social networks:
 [<img src="https://img.shields.io/badge/SDK-Android-informational?&logo=android&logoColor=white&color=%233DDC84">](https://es.wikipedia.org/wiki/Android_SDK)
 [<img src="https://img.shields.io/badge/Framework-Xamarin-informational?&logo=xamarin&logoColor=white&color=%23512BD4">](https://es.wikipedia.org/wiki/Xamarin)
 
-[<img src="https://img.shields.io/badge/Version%20Control-TFS-informational?&logo=.net&logoColor=white&color=%23512BD4">](https://en.wikipedia.org/wiki/Azure_DevOps_Server)
 [<img src="https://img.shields.io/badge/Version%20Control-Git-informational?&logo=git&logoColor=white&color=%23F05032">](https://es.wikipedia.org/wiki/Git)
 [<img src="https://img.shields.io/badge/Version%20Control-Github-informational?&logo=github&logoColor=white&color=%23181717">](https://es.wikipedia.org/wiki/GitHub)
 
