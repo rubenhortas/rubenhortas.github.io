@@ -6,7 +6,7 @@ tags: [hack the box, challenge, quickr]
 img_path: /assets/img/posts/
 ---
 
-## challenge description
+## Challenge description
 
 > Let's see if you're a QuickR soldier as you pretend to been
 
