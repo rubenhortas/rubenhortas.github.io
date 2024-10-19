@@ -1,7 +1,7 @@
 ---
 title: Configuring Neovim as Rust IDE
 date: 2024-04-06 00:00:01 +0000
-categories: [programming, rust]
+categories: [neovim, rust]
 tags: [programming, ide, rust, neovim, nvim]
 img_path: /assets/img/posts/
 ---

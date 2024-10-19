@@ -1,7 +1,7 @@
 ---
 title: Configuring Neovim as Python IDE
 date: 2024-01-21 00:00:01 +0000
-categories: [programming, python]
+categories: [neovim, python]
 tags: [programming, ide, python, neovim, nvim]
 img_path: /assets/img/posts/
 ---

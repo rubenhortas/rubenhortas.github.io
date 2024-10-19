@@ -1,8 +1,8 @@
 ---
 title: Python web server
 date: 2022-06-03 00:00:01 +0000
-categories: [programming, python]
-tags: [programming, python, web, server, howto]
+categories: [python, web server]
+tags: [python, web server, web, server, programming, howto]
 ---
 
 If we want to test a web site or share some files with another person we can have a web server running quickly with python only running one command:
