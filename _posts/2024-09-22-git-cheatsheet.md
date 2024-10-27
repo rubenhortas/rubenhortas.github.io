@@ -49,7 +49,7 @@ You also can find all the information in the git manual: `$ man git`.
 ## Changes
 
 * `git add (.|file)` Adds files to the staging area for the next commit.
-* `git rm [-rf] ($file|$directory)` Deletes a file or director from the staged area. 
+* `git rm [-rf] --cached ($file|$directory)` Deletes a file or director from the staged area. 
 * `git commit -ma $message` Creates a new commit with a message.
 * `git fetch` Retrieves updated branch information from the remote repository without merging them locally.
 * `git pull`Fetches updates from the remote repository and attempts to merge them into the current local branch.
