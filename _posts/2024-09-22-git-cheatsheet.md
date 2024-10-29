@@ -110,8 +110,20 @@ It's used to keep the history clean.
 * `git push $origin --delete $branch-name` Deletes a remote branch.
 * `git rebase` Reapplies commits from a branch on top of another branch (potentially rewriting history).
 
->Be careful with `git rebase`
+>Be careful using `git rebase`
 {: .prompt-warning}
+
+### Rename a local branch
+
+`git branch -m $new_name`
+
+### Rename a local and a remote branch
+
+```shell
+git branch -m $new_name # Rename the local branch
+git push origin $new_name # Push the new branch to the remote
+git push origin --delete $old_name # Delete the old remote branch
+```
 
 ### Recover a deleted branch
 
