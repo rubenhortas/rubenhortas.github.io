@@ -6,7 +6,7 @@ tags: [hack the box, challenge]
 img_path: /assets/img/posts/
 ---
 
-![Challenge results](owned-dont-overreact.png){: width="700" height="600" .shadow}
+j
 *Don't Overreact has been Pwned*
 
 *Enjoy! ;)*
