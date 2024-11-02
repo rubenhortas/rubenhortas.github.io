@@ -256,15 +256,16 @@ Publishes the built package to PyPI (production) if the tag starts with v.*
       steps:
       - name: Checkout code
         uses: actions/checkout@v4 # Checkout the code
-  
+ 
+      # I had to escape the brackets in the following block. Replace them if you copy this.
       - name: Create GitHub Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # A temporary token that is automatically generated each time the workflow is run
+          GITHUB_TOKEN: $\{\{ secrets.GITHUB_TOKEN \}\} # A temporary token that is automatically generated each time the workflow is run
         run: >-
           gh release create
-          '\${{ github.ref_name }}'
-          --repo '\${{ github.repository }}'
-          --notes "Release for version \${{ github.ref_name }}"
+          '$\{\{ github.ref_name \}\}'
+          --repo '$\{\{ github.repository \}\}'
+          --notes "Release for version $\{\{ github.ref_name \}\}"
 ```
 
 ## publish.yml workflow TL;DR
