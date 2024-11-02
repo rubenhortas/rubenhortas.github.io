@@ -257,7 +257,7 @@ Publishes the built package to PyPI (production) if the tag starts with v.*
       - name: Checkout code
         uses: actions/checkout@v4 # Checkout the code
  
-      # I had to escape the brackets in the following block. Replace them if you copy this.
+      # I had to escape the braces in the following block. Replace them if you copy this.
       - name: Create GitHub Release
         env:
           GITHUB_TOKEN: $\{\{ secrets.GITHUB_TOKEN \}\} # A temporary token that is automatically generated each time the workflow is run
