@@ -26,29 +26,29 @@ But, after reviewing some workflows in [GitHub](https://github.com) and the [Act
 
 * A package with the required structure
 
-To publish our python package to [pypi.org](https://pypi.org/), we'll need to adhere to a specific project structure.
-The structure can vary a bit, but, there is a basic example of the required structure:
+  To publish our python package to [pypi.org](https://pypi.org/), we'll need to adhere to a specific project structure.
+  The structure can vary a bit, but, there is a basic example of the required structure:
 
-```shell
-/project
-├── LICENSE
-├── pyproject.toml
-├── README.md
-├── requirements.txt
-├── src
-│   ├── project
-│   │   ├── module
-│   │   │   └──...
-│   │   └──...
-│   └──...
-└── tests
-    └──...
-```
+  ```shell
+  /project
+  ├── LICENSE
+  ├── pyproject.toml
+  ├── README.md
+  ├── requirements.txt
+  ├── src
+  │   ├── project
+  │   │   ├── module
+  │   │   │   └──...
+  │   │   └──...
+  │   └──...
+  └── tests
+      └──...
+  ```
 
 * [testpypi.org](https://test.pypi.org/) and [pypi.org](https://pypi.org/) accounts
 
-Having a [testpypi.org](https://test.pypi.org/) it's optional, but it's recomended.
-Uploading the package first to [testpypi.org](https://test.pypi.org/), we can check if there are problems, and we can check how the upload went before going into production (publishing in [pypi.org](https://pypi.org/)).
+  Having a [testpypi.org](https://test.pypi.org/) it's optional, but it's recomended.
+  Uploading the package first to [testpypi.org](https://test.pypi.org/), we can check if there are problems, and we can check how the upload went before going into production (publishing in [pypi.org](https://pypi.org/)).
 
 # Configuring trusted publishing
 
