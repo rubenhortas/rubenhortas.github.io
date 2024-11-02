@@ -3,6 +3,7 @@ title: Upload a package to PyPI automatically with GitHub Actions
 date: 2024-11-02 00:00:01 +0000
 categories: [python, pypi]
 tags: [programming, python, pypi,github,github actions, howto]
+img_path: /assets/img/posts/
 ---
 
 Some time ago, I wrote the post [Upload a package to PyPI](https://rubenhortas.github.io/posts/upload-package-pypi/), but, how everything evolves, this time I decided to evolve and take advantage of all the power of [GitHub Actions](https://docs.github.com/en/actions).
