@@ -130,9 +130,9 @@ Click on "*Add*" and we are done! ;)
 {: .prompt-warning}
 
 GitHub CI/CD workflows are declared in YAML files stored in the `.github/workflows/` directory of our repositories.
-So, we can create a `.github/workflows/publish.yml` file, or, we can create it from the GitHub web interface.
+So, we can create a `.github/workflows/publish.yml` file, or, we can create it from the [GitHub web interface](https://github.com).
 
-To create the action from the GitHub web interface, we go to our repository and select "*Actions*":
+To create the action from the [GitHub web interface](https://github.com), we go to our repository and select "*Actions*":
 
 ![GitHub Actions](fail2bangeolocation-actions.png){: width="700" height="600" .shadow}
 *GitHub actions*
@@ -154,7 +154,7 @@ We write (or paste) our workflow, we commit the changes and we are ready to publ
 > The environment names have to match with the enviroment names we gave them wen we created the trusted-publishers.
 {: .prompt-info}
 
-You can see my workflow here: [fail2bangeolocation publish.yml])https://github.com/rubenhortas/fail2bangeolocation/blob/main/.github/workflows/publish.yml), but I'm going to copy it and explain it (briefly) here below:
+You can see my workflow here: [fail2bangeolocation publish.yml](https://github.com/rubenhortas/fail2bangeolocation/blob/main/.github/workflows/publish.yml), but I'm going to copy it and explain it (briefly) here below:
 
 ```yml
 name: Publish Python distribution 🐍📦
@@ -269,9 +269,9 @@ Publishes the built package to PyPI (production) if the tag starts with v.*
 
 ## publish.yml workflow TL;DR
 
-This workflow automates building, publishing (to TestPyPI and PyPI), and creating a GitHub release for your Python package.
+This workflow automates building, publishing (to [testpypi.org](https://test.pypi.org/) and [pypi.org](https://pypi.org/)), and creating a [GitHub](https://github.com) release for your Python package.
 
-This workflow is triggered when a version tag push is made.
+This workflow is triggered when a version tag is pushed.
 The tag will be a label that match the patterns `test_v*.*.*` or `v*.*.*.`.
 
 This workflow will do a (slightly) different job depending on the type of tag:
@@ -284,18 +284,18 @@ The workflow will build the packages, upload them to [pypi.org](https://pypi.org
 
 ## Why I decided to write my own workflow? 
 
-The reason why I decided to write my own workflow is because the workflows I saw depended on other events, and, usually, they did a lot of work together (as publish to [testpypi.org](https://test.pypi.org/), [pypi.org](https://pypi.org/) and generate the GitHub release at the same time).
-I prefer a slightly more structured workflow based on pushing version tags, and I want to perform slightly different actions based on these tags.
+The reason why I decided to write my own workflow is because the workflows I saw depended on other events, and, usually, they did a lot of work together (as publish to [testpypi.org](https://test.pypi.org/), [pypi.org](https://pypi.org/) and generate the [GitHub](https://github.com) release at the same time).
+I prefer a slightly more structured workflow, based on pushing version tags. And, I want to perform slightly different actions based on these tags.
 
-Publishing the test version first in [testpypi.org](https://test.pypi.org/), let me know if there are any errors and let me know the result of the distribution files.
-Once I have verified that the upload to testpypi is correct, and the distribution files have been checked, I can generate the production version, upload it to [pypi.org](https://pypi.org/) and generate the GitHub release.
+Publishing the test version first in [testpypi.org](https://test.pypi.org/) let me know if there are any errorsm and let me know the result of the distribution files.
+Once I have verified that the upload to [testpypi.org](https://test.pypi.org/) is correct, and the distribution files have been checked, I can generate the production version, upload it to [pypi.org](https://pypi.org/) and generate the [GitHub](https://github.com) release.
 
 ## Why I wanted to publish based on tags?
 
 When you upload a package to [testpypi.org](https://test.pypi.org/) or [pypi.org](https://pypi.org/), you can't repeat versions.
-With this workflow I can create a `dev` branch to add changes and upload test versions to testpypi.org](https://test.pypi.org/).
+With this workflow I can create a `dev` branch to add changes and upload test versions to [testpypi.org](https://test.pypi.org/).
 In case there are errors when uploading to [testpypi.org](https://test.pypi.org/), I can increase the project version, until everything is correct, without affecting the production version number.
-Once everything is correct I can merge the `dev` branch changes into the `main` branch, tag the production version in `main` and the production release will be generated automatically (ideally without errors).
+Once everything is correct I can merge the `dev` branch changes into the `main` branch, tag the production version in `main`, and the production release will be generated automatically (ideally without errors).
 Once the release version is published I will take care of cleaning up the versions in [testpypi.org](https://test.pypi.org/), and, if necessary, in [pypi.org](https://pypi.org/).
 
 *Enjoy! ;)*
