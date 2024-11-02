@@ -262,9 +262,9 @@ Publishes the built package to PyPI (production) if the tag starts with v.*
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # A temporary token that is automatically generated each time the workflow is run
         run: >-
           gh release create
-          '$\{\{ github.ref_name \}\}'
-          --repo '${{ github.repository }}'
-          --notes "Release for version ${{ github.ref_name }}"
+          '\${{ github.ref_name }}'
+          --repo '\${{ github.repository }}'
+          --notes "Release for version \${{ github.ref_name }}"
 ```
 
 ## publish.yml workflow TL;DR
