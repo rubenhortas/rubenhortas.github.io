@@ -81,7 +81,7 @@ Here we will set the owner, the repository name, the workflow name and the envir
 
 * **Owner**: Our github user.
 * **Repository name**: Our github repository name.
-* **Workflow name**: The file name of our (future) workflow, here I will use "**publish.yml**"
+* **Workflow name**: The file name of our (future) workflow, here I will use "**publish.yml**".
 * **Enviromnment name**: The name of the GitHub Actions environment that the workflow will use, here I will use "**testpypi**".
 
 > We have to pay attention to the workflow and environment names.
@@ -115,7 +115,7 @@ Here we will set the owner, the repository name, the workflow name and the envir
 
 * **Owner**: Our github user.
 * **Repository name**: Our github repository name.
-* **Workflow name**: The file name of our (future) workflow, here I will use "**publish.yml**.
+* **Workflow name**: The file name of our (future) workflow, here I will use "**publish.yml**".
 * **Enviromnment name**: The name of the GitHub Actions environment that the workflow will use, here I will use "**pypi**".
 
 > We have to pay attention to the workflow and environment names.
@@ -144,8 +144,8 @@ Now, we will see some suggested actions for our repository, but, this time, we w
 
 In the editor, we have to create a workflow **with a file name that matches the name we gave it when we created the trusted-publishers**:
 
-![GitHub Actions](fail2bangeolocation-actions.png){: width="700" height="600" .shadow}
-*GitHub actions*
+![New workflow](github-actions-new-workflow.png){: width="700" height="600" .shadow}
+*New workflow*
 
 We write (or paste) our workflow, we commit the changes and we are ready to publish!
 
