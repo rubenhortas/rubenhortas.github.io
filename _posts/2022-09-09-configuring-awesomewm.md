@@ -336,4 +336,4 @@ If we want execute applications and/or scripts when our awesome starts, we have 
 awful.spawn.with_shell("~/scripts/my_config_script")
 ```
 
-_Enjoy! ;)_
+*Enjoy! ;)*
