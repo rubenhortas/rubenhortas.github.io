@@ -13,6 +13,7 @@ Awesome comes complete with its own status bar and can handle a lot of things by
 So where do we start to configure it?
 
 ## Preparing the configuration files
+
 We will store our configuration file and theme under the .config/ folder in our /home
 
 ```shell
@@ -27,9 +28,11 @@ $ sudo cp /usr/share/awesome/themes/default/theme.lua ~/.config/awesome/themes/r
 ```
 
 ## Configuring awesome
+
 In this section we will edit the ~/.config/awesome/rc.lua file.
 
 ## Setting the theme
+
 We need to set our theme path as the parameter passed to beautiful.init:
 
 ```lua
@@ -37,9 +40,11 @@ beautiful.init("/home/ruben/.config/awesome/themes/ruben/theme.lua")
 ```
 
 ## Customizing our environment
+
 To do this, wi will edit our `~/.config/awesome/rc.lua` file, and we will configure a few sections.
 
 ### Window layouts
+
 Mostly, I only use the maximized layout, but I leave the floating layout for applications that starts with a login dialog, the calculator, and so. 
 So in the next section I comment all the others:
 
@@ -66,6 +71,7 @@ So in the next section I comment all the others:
 ```
 
 ### Tags
+
 In this section we will configure the number of tags we want and their text.
 I only use 2 tags in each screen, and, really, I change the numbers for [hack nerd font](https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip) characters.
 
@@ -74,6 +80,7 @@ awful.tag({ "1", "2" }, s, awful.layout.layouts[1])
 ```
 
 ### Menu bar launcher
+
 I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Super+p` or `Super+r` shortcuts), so I comment the awesome menu sections:
 
 ```lua
@@ -145,6 +152,7 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Sup
 ```
 
 ### Right widgets
+
 In this section we will comment all the widgets that will not use, later we can add ours.
 I only want to keep the clock widget, so I comment the others:
 
@@ -159,6 +167,7 @@ I only want to keep the clock widget, so I comment the others:
 ```
 
 ### Custom key bindings
+
 First of all I interchange the `Super+j` and `Super+k` keybinndings, is more intiutive this way for me.
 
 One of the advantages to use a tiling window manager is have our custom shortcuts, so I always add a few.
@@ -183,6 +192,7 @@ For example, if we want that MPlayer runs always in the tag 1 of screen 2:
 ```
 
 ### Removing gaps
+
 For some reason, some windows, in maximized mode, have gaps at the right and bottom. To remove the gaps I add the `size_hints_honor = false` to the rules
 
 ```lua
@@ -192,9 +202,11 @@ For some reason, some windows, in maximized mode, have gaps at the right and bot
 ```
 
 ## Configuring our theme
+
 In this section we will edit the our theme file, in my case: `~/.config/awesome/themes/ruben/theme.lua`
 
 #### Font
+
 I find the default font a bit small, so I change it and set one a little bit bigger:
 
 ```lua
@@ -202,6 +214,7 @@ theme.font = "Hack Nerd Font Mono Regular 9"
 ```
 
 #### Taglist font
+
 I like to see the taglists very big, so I set their font to one bigger:
 
 ```lua
@@ -209,6 +222,7 @@ theme.taglist_font="Hack Nerd Font Mono Regular 16"
 ```
 
 #### Wallpaper
+
 We can set our wallpaper editing the theme.wallpaper value:
 
 ```lua
@@ -277,6 +291,7 @@ You also may find interesting my own awesome widgets:
   * [awesome htb widget](https://github.com/rubenhortas/awesome-htb-widget)
 
 # GTK applications  with dark theme
+
 For personal reasons I usually work with dark themes, but awesome does not have one, is not its job.  
 If you, as me, want applications in dark mode and you have installed gtk applications, you only have to modify the settings.ini files contained in the gtk-\*.\*/ directories under ~./config and set:
 
@@ -285,6 +300,7 @@ gtk-application-prefer-dark-theme=1
 ```
 
 ## Default browser
+
 If we have many browsers installed and we want to use one of them as default browser, for instance firefox, we will find that some applications will open the links in another browser.
 To solve this we will need to set the default browser, system-wide and user-specific. For instance, in debian:
 
@@ -301,9 +317,11 @@ $ xdg-settings set default-web-browser firefox-esr.desktop
 ```
 
 ## Backup and clean
+
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
 
 # Further readings
+
 * [My first awesome](https://awesomewm.org/doc/api/documentation/07-my-first-awesome.md.html)
 * [awesome - ArchWiki](https://wiki.archlinux.org/title/awesome)
 * [awesome recipes](https://awesomewm.org/recipes/)
