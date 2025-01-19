@@ -81,7 +81,7 @@ awful.tag({ "1", "2" }, s, awful.layout.layouts[1])
 
 ### Menu bar launcher
 
-I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Super+p` or `Super+r` shortcuts), so I comment the awesome menu sections:
+I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Super+p` or `Super+r` shortcuts), so I comment the following awesome menu sections:
 
 ```lua
 --myawesomemenu = {
@@ -119,15 +119,6 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Sup
 ```
 
 ```lua
-{ -- Left widgets
-    layout = wibox.layout.fixed.horizontal,
-    --mylauncher,
-    s.mytaglist,
-    s.mypromptbox,
-},
-```
-
-```lua
 -- root.buttons(gears.table.join(
 --    awful.button({ }, 3, function () mymainmenu:toggle() end),
 --    awful.button({ }, 4, awful.tag.viewnext),
@@ -149,6 +140,17 @@ I don't use the menu bar from the wibar, neither in the mouse (I prefer the `Sup
 --        awful.mouse.client.resize(c)
 --    end)
 --)
+```
+
+### Left widgets
+
+```lua
+{ -- Left widgets
+    layout = wibox.layout.fixed.horizontal,
+    --mylauncher,
+    s.mytaglist,
+    s.mypromptbox,
+},
 ```
 
 ### Right widgets
@@ -235,7 +237,7 @@ If we don't have our wallpaper on the themes_path, we can set it with adding its
 theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 ```
 
-## Widgets
+## Add widgets
 
 We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
 I usually install the following widget:
