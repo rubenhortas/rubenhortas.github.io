@@ -204,37 +204,38 @@ If you have your home directory empty (is not the usual thing), you can clone th
 If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete the temporary directory:
 
 ```shell
-git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.myconf http://path/to/repo $HOME/myconf-tmp
 rm -r $HOME/myconf-tmp/
 ```
 
-### Creating the "config" alias
+### Creating the "dotfiles" alias
 
 ```shell
-alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines an alias named "config" that executes git commands using the specified repository.
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines an alias named "dotfiles" that executes git commands using the specified repository.
 ```
 
-> The creation of the alias `config` avoids interference when we use the `git` command in other repositories.
+> The creation of the alias `dotfiles` avoids interference when we use the `git` command in other repositories.
+>
+> StreakyCobra uses an alias called `config`. I prefer `dotfiles`, it's more clear for me.
 {: .prompt-info}
-
 
 ### Hidding untracked files
 
 We will hide the untracked files in the status output:
 
 ```shell
-config config status.showUntrackedFiles not
+dotfiles config status.showUntrackedFiles not
 ```
 
 ### Managing files
 
-Any file can be versioned with normal commands, but you have to replace the `git` command by the alias `config`.
+Any file can be versioned with normal commands, but you have to replace the `git` command by the alias `dotfiles`.
 
 ```shell
-config status
-config add .vimrc
-config commit -m "Add vimrc"
-config push
+dotfiles status
+dotfiles add .vimrc
+dotfiles commit -m "Add vimrc"
+dotfiles push
 ```
 
 ### Cloning the repository in a new machine
@@ -243,10 +244,10 @@ The normal cloning will fail if the home directory is not empty.
 When we will clone the repository in a new machine, we will have to clone the repository into a temporary directory and then delete this temporary directory.
 
 ```shell
-git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME/myconf-tmp
-cp $HOME/myconf-tmp/.gitmodules $HOME  # If you use Git submodules
+git clone --separate-git-dir=$HOME/.myconf http://path/to/repo $HOME/myconf-tmp
+cp $HOME/myconf-tmp/.gitmodules $HOME  # If you use git submodules
 rm -r $HOME/myconf-tmp/
-alias config='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
 ```
 
 ### Pros
