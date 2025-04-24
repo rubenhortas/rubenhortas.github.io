@@ -119,7 +119,6 @@ $bin -A INPUT -p tcp --syn -m conntrack --ctstate NEW -m hashlimit --hashlimit-n
 $bin -A INPUT -p udp -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 35/second --hashlimit-mode srcip -j DROP
 
 # DNS
-# test: # tcpdump -q -n not src net 192.168.1.0/24 and port 53
 $bin -A INPUT -p tcp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $bin -A INPUT -p udp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
@@ -128,10 +127,9 @@ $bin -A OUTPUT -p udp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ES
 # SSH
 $bin -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp --sport ssh -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp --dport ssh -j DROP # Deny SSH outgoing connections
+# $bin -A OUTPUT -p tcp --dport ssh -j DROP # Deny SSH outgoing connections
 
 # NTP
-# test: $ntpdate -q pool.ntp.org
 $bin -A INPUT -p udp --sport 123 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p udp --dport 123 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
@@ -143,18 +141,6 @@ $bin -A OUTPUT -p tcp -m multiport --dports http,https -m conntrack --ctstate NE
 # $bin -A INPUT -p tcp --sport 6697 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 # $bin -A OUTPUT -p tcp --dport 6697 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
-# Torrent
-$bin -A INPUT -p tcp -m multiport --dport 55555,55556 -j ACCEPT
-$bin -A OUTPUT -p tcp -m multiport --sport 55555,55556 -j ACCEPT
-$bin -A INPUT -p udp -m multiport --dport 55555,55556 -j ACCEPT
-$bin -A OUTPUT -p udp -m multiport --sport 55555,55556 -j ACCEPT
-
-# Torrent trackers
-$bin -A INPUT -p tcp --sport 2710 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp --dport 2710 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-$bin -A INPUT -p udp -m multiport --sports 80,451,1337,2710,2960,2980,6969,8080 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p udp -m multiport --dports 80,451,1337,2710,2960,2980,6969,8080 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-
 # NFSv4
 $bin -A INPUT -p tcp --dport 2049 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp --sport 2049 -m conntrack --ctstate ESTABLISHED -j ACCEPT
@@ -163,10 +149,23 @@ $bin -A OUTPUT -p tcp --sport 2049 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 ## Saving iptables rules
 
 If we don't persist our rules, they will be deleted upon reboot.
-`sudo iptables-save`
+
+The best and recommended way to make iptables rules persistent is by using the `iptables-persistent` package.  
+
+If we don't have `iptables-persistent` installed, we install it:
+
+`sudo apt install iptables-persistent`
+
+* During the installation, you will be prompted whether to save your current IPv4 and IPv6 rules. Choose "Yes" for both if you have already configured your firewall.
+
+To save our current rulings (if we skipped during installation or we made changes):
+
+`sudo netfilter-persistent save`
+
+* The iptables-persistent service is automatically configured to load the rules from iptables (ipv4) and ip6tables (ipv6) during system startup.
 
 If you are going to use this as configuration basis rember a few things:
-* Check the configuration and **set the parameters of your computer** (e.g.: set your computer ip address and the packet limits of the rules).
+* Check the configuration and **set the parameters of your computer** (e.g.: set your computer ip address, interface[s], and the packet limits of the rules).
 * These are basically protection rules and only allows basic common services as DNS, SSH, NTP and HTTP[S]. Below you have to add the rules that allow legitimate services traffic from your host.
 * Think about your computer needs. Every host has needs and they may not be the same as mine.
 * I set these rules without specify interfaces.In some hosts different interfaces have different needs.
