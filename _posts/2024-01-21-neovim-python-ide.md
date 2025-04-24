@@ -52,6 +52,18 @@ In my base configuration I usually add the [Vim Better Whitespace Plugin](https:
 The "list" option, by default, show tabs as ">", trailing spaces as "-" and non-breakable space characters as "+".
 This default configuration works for me, but can be customized.
 
+## pyright
+
+Pyright is a static type checker for Python created by Microsoft. 
+Pyright goes beyond just checking for syntax errors. 
+Its primary goal is to catch type-related errors in your Python code before you even run it.
+
+Pyright helps us write more maintainable, understandable, and bug-free Python code by leveraging static type checking. 
+
+```bash
+pipx install pyright
+```
+
 ## pylsp
 
 In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
