@@ -181,7 +181,7 @@ So, we will end having something similar to the "m-branches", but more comfortab
 If you don't have the repository yet, you need to create it:
 
 ```shell
-git init --bare $HOME/.myconf # Creates the new repository. Replace with your own path.
+git init --bare $HOME/.git_dotfiles # Creates the new repository. Replace with your own path.
 ```
 
 ### Cloning the repository
@@ -191,10 +191,10 @@ If you have the repository, you have to clone it.
 If you have your home directory empty (is not the usual thing), you can clone the repository:
 
 ```shell
- git clone --separate-git-dir=$HOME/.myconf https://path/to/repo $HOME
+ git clone --separate-git-dir=$HOME/.git_dotfiles https://path/to/repo $HOME
 ```
 
-> * --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
+> * --separate-git-dir=$HOME/.git_dotfiles: This option specifies that the Git repository configuration should be stored in the directory $HOME/.git_dotfiles instead of the usual .git subdirectory within the cloned repository.
 >
 > * /path/to/repo: The URL or path to the Git repository that you want to clone.
 >
@@ -204,14 +204,14 @@ If you have your home directory empty (is not the usual thing), you can clone th
 If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete the temporary directory:
 
 ```shell
-git clone --separate-git-dir=$HOME/.myconf https://path/to/repo $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.git_dotfiles https://path/to/repo $HOME/myconf-tmp
 rm -r $HOME/myconf-tmp/
 ```
 
 ### Creating the "dotfiles" alias
 
 ```shell
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME' # Defines an alias named "dotfiles" that executes git commands using the specified repository.
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME' # Defines an alias named "dotfiles" that executes git commands using the specified repository.
 ```
 
 > The creation of the alias `dotfiles` avoids interference when we use the `git` command in other repositories.
@@ -244,10 +244,10 @@ The normal cloning will fail if the home directory is not empty.
 When we will clone the repository in a new machine, we will have to clone the repository into a temporary directory and then delete this temporary directory.
 
 ```shell
-git clone --separate-git-dir=$HOME/.myconf https://path/to/repo $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.git_dotfiles https://path/to/repo $HOME/myconf-tmp
 cp $HOME/myconf-tmp/.gitmodules $HOME  # If you use git submodules
 rm -r $HOME/myconf-tmp/
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME'
 ```
 
 ### Pros
