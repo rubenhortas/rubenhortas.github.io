@@ -224,7 +224,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME' #
 We will hide the untracked files in the status output:
 
 ```shell
-dotfiles config status.showUntrackedFiles not
+dotfiles config status.showUntrackedFiles no
 ```
 
 ### Managing files
