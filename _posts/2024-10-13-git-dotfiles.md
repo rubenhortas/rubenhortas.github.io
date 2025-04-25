@@ -191,7 +191,7 @@ If you have the repository, you have to clone it.
 If you have your home directory empty (is not the usual thing), you can clone the repository:
 
 ```shell
- git clone --separate-git-dir=$HOME/.myconf /path/to/repo $HOME
+ git clone --separate-git-dir=$HOME/.myconf https://path/to/repo $HOME
 ```
 
 > * --separate-git-dir=$HOME/.myconf: This option specifies that the Git repository configuration should be stored in the directory $HOME/.myconf instead of the usual .git subdirectory within the cloned repository.
@@ -204,7 +204,7 @@ If you have your home directory empty (is not the usual thing), you can clone th
 If you don't have your $HOME directory empty, you will need to clone it in a temporary directory and then delete the temporary directory:
 
 ```shell
-git clone --separate-git-dir=$HOME/.myconf http://path/to/repo $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.myconf https://path/to/repo $HOME/myconf-tmp
 rm -r $HOME/myconf-tmp/
 ```
 
@@ -244,7 +244,7 @@ The normal cloning will fail if the home directory is not empty.
 When we will clone the repository in a new machine, we will have to clone the repository into a temporary directory and then delete this temporary directory.
 
 ```shell
-git clone --separate-git-dir=$HOME/.myconf http://path/to/repo $HOME/myconf-tmp
+git clone --separate-git-dir=$HOME/.myconf https://path/to/repo $HOME/myconf-tmp
 cp $HOME/myconf-tmp/.gitmodules $HOME  # If you use git submodules
 rm -r $HOME/myconf-tmp/
 alias dotfiles='/usr/bin/git --git-dir=$HOME/.myconf/ --work-tree=$HOME'
