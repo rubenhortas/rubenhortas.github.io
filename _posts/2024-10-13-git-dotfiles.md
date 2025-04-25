@@ -210,22 +210,18 @@ rm -r $HOME/myconf-tmp/
 
 ### Creating the "dotfiles" alias
 
+We define an alias named "dotfiles" that executes git commands using the specified repository and hides the untracked files.
+
 ```shell
-alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME' # Defines an alias named "dotfiles" that executes git commands using the specified repository.
+alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME --showUntrackedFiles no'
 ```
+
+To make the alias permanent, we need to add it to our shell's configuration file (`.bashrc`, `.zshrc`, etc).
 
 > The creation of the alias `dotfiles` avoids interference when we use the `git` command in other repositories.
 >
 > StreakyCobra uses an alias called `config`. I prefer `dotfiles`, it's more clear for me.
 {: .prompt-info}
-
-### Hidding untracked files
-
-We will hide the untracked files in the status output:
-
-```shell
-dotfiles config status.showUntrackedFiles no
-```
 
 ### Managing files
 
