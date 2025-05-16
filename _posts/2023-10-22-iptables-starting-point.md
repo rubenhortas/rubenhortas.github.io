@@ -2,7 +2,7 @@
 title: iptables starting point
 date: 2023-10-22 00:00:01 +0000
 categories: [hardening, firewall]
-tags: [hardening, firewall]
+tags: [hardening, firewall, iptables]
 ---
 
 All our computers should be using a firewall.
