@@ -38,15 +38,14 @@ $bin -P FORWARD DROP
 
 # Allow all traffic on the loopback interface (the internal 127.0.0.1 address. Essential for local processes).
 $bin -A INPUT  -i lo -j ACCEPT
-$bin -A INPUT -i lo -j ACCEPT
 $bin -A OUTPUT -o lo -j ACCEPT
+
+# Drop packets with invalid state
+$bin -A INPUT -m conntrack --ctstate INVALID -j DROP
 
 # Allow Established/Related Connections (Crucial for allowing responses)
 $bin -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 $bin -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-
-# Drop packets with invalid state
-$bin -A INPUT -m conntrack --ctstate INVALID -j DROP
 
 # Drop Packet fragments
 $bin -A INPUT -f -j DROP
@@ -64,10 +63,7 @@ $bin -A INPUT -s 192.0.2.0/24 -j DROP
 $bin -A INPUT -s 224.0.0.0/4 -j DROP
 
 # Block incoming traffic coming from the reserved class E
-$bin -A INPUT -s 240.0.0.0/5 -j DROP
-
-# Block incoming traffic coming from the unallocated range
-$bin -A INPUT -s 248.0.0.0/5 -j DROP
+$bin -A INPUT -s 240.0.0.0/4 -j DROP
 
 # Block incoming traffic coming from the loopback and zero addresses
 $bin -A INPUT -s 127.0.0.0/8 -j DROP
@@ -88,17 +84,21 @@ $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,FIN,PSH SYN,FIN,PSH -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,FIN,RST SYN,FIN,RST -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,FIN,RST,PSH SYN,FIN,RST,PSH -j DROP
-$bin -A BAD_FLAGS -p tcp --tcp-flags FIN FIN -m hashlimit --hashlimit-name port_scanners --hashlimit-above 1/second --hashlimit-mode srcip -j DROP
+$bin -A BAD_FLAGS -p tcp --tcp-flags FIN FIN -m hashlimit --hashlimit-above 1/second --hashlimit-mode srcip -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL NONE -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL ALL -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
 
+# Port scanners
+# Drop packages if the connections are too agressive to avoid port scanning.
+$bin -A INPUT -p tcp --syn -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 5/second --hashlimit-mode srcip -j DROP
+$bin -A INPUT -p udp -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 35/second --hashlimit-mode srcip -j DROP
+
 # SYN flood
 $bin -A INPUT -p tcp --syn -m limit --limit 100/second --limit-burst 200 -j ACCEPT
 $bin -A INPUT -p tcp --syn -m connlimit --connlimit-above 30 --connlimit-mask 32 -j REJECT --reject-with tcp-reset
 $bin -A INPUT -p tcp --syn -j DROP
-$bin -A INPUT -p tcp --tcp-flags ALL NONE -j DROP
 
 # ICMP
 # All ICMP responses should be barred except responses to outgoing connections.
@@ -114,11 +114,6 @@ $bin -A ICMP_IN -p icmp --icmp-type 3 -m conntrack --ctstate ESTABLISHED,RELATED
 $bin -A ICMP_IN -p icmp --icmp-type 8 -m conntrack --ctstate NEW -j DROP # Only NEW echo requests are dropped
 $bin -A ICMP_IN -p icmp --icmp-type 11 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 $bin -A ICMP_OUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-
-# Scanners
-# Drop packages if the connections are too agressive to avoid port scanning.
-$bin -A INPUT -p tcp --syn -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 5/second --hashlimit-mode srcip -j DROP
-$bin -A INPUT -p udp -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 35/second --hashlimit-mode srcip -j DROP
 
 # SSH
 $bin -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
