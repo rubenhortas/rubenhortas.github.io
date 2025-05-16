@@ -116,9 +116,10 @@ $bin -A ICMP_IN -p icmp --icmp-type 11 -m conntrack --ctstate ESTABLISHED,RELATE
 $bin -A ICMP_OUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
 # SSH
+# Allow incoming SSH connections
+# Deny outgoing connections is covered by the OUTPUT policy drop
 $bin -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp --sport ssh -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp --dport ssh -j DROP # Deny SSH outgoing connections
 
 # NFSv4
 $bin -A INPUT -p tcp --dport 2049 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
