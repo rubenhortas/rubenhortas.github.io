@@ -84,7 +84,7 @@ $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,RST SYN,RST -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,FIN,PSH SYN,FIN,PSH -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,FIN,RST SYN,FIN,RST -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags SYN,FIN,RST,PSH SYN,FIN,RST,PSH -j DROP
-$bin -A BAD_FLAGS -p tcp --tcp-flags FIN FIN -m hashlimit --hashlimit-above 1/second --hashlimit-mode srcip -j DROP
+$bin -A BAD_FLAGS -p tcp --tcp-flags FIN FIN -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL NONE -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL ALL -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
