@@ -43,12 +43,12 @@ $bin -A OUTPUT -o lo -j ACCEPT
 # Drop packets with invalid state
 $bin -A INPUT -m conntrack --ctstate INVALID -j DROP
 
+# Drop Packet fragments
+$bin -A INPUT -f -j DROP
+
 # Allow Established/Related Connections (Crucial for allowing responses)
 $bin -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 $bin -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-
-# Drop Packet fragments
-$bin -A INPUT -f -j DROP
 
 # Block incoming traffic form the Zeroconf address range.
 # This range is used by hosts that use DHCP to adquire their IP address.
