@@ -130,7 +130,6 @@ $bin -A OUTPUT -p tcp --sport 2049 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 # $bin -A OUTPUT -p tcp --dport 6697 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
 # DNS
-# test: # tcpdump -q -n not src net 192.168.1.0/24 and port 53
 $bin -A INPUT -p tcp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p tcp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 $bin -A INPUT -p udp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
@@ -141,7 +140,6 @@ $bin -A INPUT -p tcp -m multiport --sports http,https -m conntrack --ctstate EST
 $bin -A OUTPUT -p tcp -m multiport --dports http,https -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 
 # NTP
-# test: $ntpdate -q pool.ntp.org
 $bin -A INPUT -p udp --sport 123 -m conntrack --ctstate ESTABLISHED -j ACCEPT
 $bin -A OUTPUT -p udp --dport 123 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 ```
