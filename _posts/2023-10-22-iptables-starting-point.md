@@ -31,6 +31,15 @@ Here's my iptables starting point rules (as bash script):
 
 bin="/sbin/iptables"
 
+#Flush rules
+$bin -P INPUT ACCEPT
+$bin -P FORWARD ACCEPT
+$bin -P OUTPUT ACCEPT
+$bin -t nat -F
+$bin -t mangle -F
+$bin -F
+$bin -X
+
 # Set Default Policies (DROP everything first)
 $bin -P INPUT DROP
 $bin -P OUTPUT DROP
@@ -46,9 +55,6 @@ $bin -A INPUT -m conntrack --ctstate INVALID -j DROP
 # Allow Established/Related Connections (Crucial for allowing responses)
 $bin -A INPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 $bin -A OUTPUT -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
-
-# Drop Packet fragments
-$bin -A INPUT -f -j DROP
 
 # Block incoming traffic form the Zeroconf address range.
 # This range is used by hosts that use DHCP to adquire their IP address.
@@ -76,6 +82,55 @@ $bin -A INPUT -s 0.0.0.0/8 -j DROP
 $bin -A INPUT -s 192.168.1.100 -j DROP
 $bin -A OUTPUT ! -s 192.168.1.100 -j DROP # Deny outgoing traffic that does not have a source address of an interface on the local host.
 
+# Port scanners
+# Drop packages if the connections are too agressive to avoid port scanning.
+$bin -A INPUT -p tcp --syn -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 5/second --hashlimit-mode srcip -j DROP
+$bin -A INPUT -p udp -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 35/second --hashlimit-mode srcip -j DROP
+
+# SSH
+# Allow incoming SSH connections
+# Deny outgoing connections is covered by the OUTPUT policy drop
+$bin -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp --sport ssh -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+# NFSv4
+$bin -A INPUT -p tcp --dport 2049 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp --sport 2049 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+
+# Torrent
+$bin -A INPUT -p tcp -m multiport --dport 55555,55556 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp -m multiport --sport 55555,55556 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A INPUT -p udp -m multiport --dport 55555,55556 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p udp -m multiport --sport 55555,55556 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# Torrent trackers
+$bin -A INPUT -p tcp --sport 2710 -m conntrack --ctstate ESTABLISHED -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp --dport 2710 -m conntrack --ctstate NEW,ESTABLISHED -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A INPUT -p udp -m multiport --sports 80,451,1337,2710,2960,2980,6969,8080 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p udp -m multiport --dports 80,451,1337,2710,2960,2980,6969,8080 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# IRC
+# $bin -A INPUT -p tcp --sport 6697 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+# $bin -A OUTPUT -p tcp --dport 6697 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# DNS
+$bin -A INPUT -p tcp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+$bin -A INPUT -p udp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p udp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# HTTP and HTTPS (Allow outgoing http/s connections)
+$bin -A INPUT -p tcp -m multiport --sports http,https -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p tcp -m multiport --dports http,https -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# NTP
+# test: $ ntpdate -q pool.ntp.org
+$bin -A INPUT -p udp --sport 123 -m conntrack --ctstate ESTABLISHED -j ACCEPT
+$bin -A OUTPUT -p udp --dport 123 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
+
+# Drop Packet fragments
+$bin -A INPUT -f -j DROP
+
 # Bad Flags and other anomalies (Before legitimate traffic)
 $bin -N BAD_FLAGS
 $bin -A INPUT -p tcp -j BAD_FLAGS
@@ -89,11 +144,6 @@ $bin -A BAD_FLAGS -p tcp --tcp-flags ALL NONE -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL ALL -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL FIN,URG,PSH -j DROP
 $bin -A BAD_FLAGS -p tcp --tcp-flags ALL SYN,RST,ACK,FIN,URG -j DROP
-
-# Port scanners
-# Drop packages if the connections are too agressive to avoid port scanning.
-$bin -A INPUT -p tcp --syn -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 5/second --hashlimit-mode srcip -j DROP
-$bin -A INPUT -p udp -m conntrack --ctstate NEW -m hashlimit --hashlimit-name port_scanners --hashlimit-above 35/second --hashlimit-mode srcip -j DROP
 
 # SYN flood
 $bin -A INPUT -p tcp --syn -m limit --limit 100/second --limit-burst 200 -j ACCEPT
@@ -114,41 +164,13 @@ $bin -A ICMP_IN -p icmp --icmp-type 3 -m conntrack --ctstate ESTABLISHED,RELATED
 $bin -A ICMP_IN -p icmp --icmp-type 8 -m conntrack --ctstate NEW -j DROP # Only NEW echo requests are dropped
 $bin -A ICMP_IN -p icmp --icmp-type 11 -m conntrack --ctstate ESTABLISHED,RELATED -j ACCEPT
 $bin -A ICMP_OUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-
-# SSH
-# Allow incoming SSH connections
-# Deny outgoing connections is covered by the OUTPUT policy drop
-$bin -A INPUT -p tcp --dport ssh -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp --sport ssh -m conntrack --ctstate ESTABLISHED -j ACCEPT
-
-# NFSv4
-$bin -A INPUT -p tcp --dport 2049 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp --sport 2049 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-
-# IRC
-# $bin -A INPUT -p tcp --sport 6697 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-# $bin -A OUTPUT -p tcp --dport 6697 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-
-# DNS
-$bin -A INPUT -p tcp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-$bin -A INPUT -p udp -m multiport --sports 53,853 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p udp -m multiport --dports 53,853 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-
-# HTTP and HTTPS (Allow outgoing http/s connections)
-$bin -A INPUT -p tcp -m multiport --sports http,https -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p tcp -m multiport --dports http,https -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
-
-# NTP
-$bin -A INPUT -p udp --sport 123 -m conntrack --ctstate ESTABLISHED -j ACCEPT
-$bin -A OUTPUT -p udp --dport 123 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 ```
 
 ## Saving iptables rules
 
 If we don't persist our rules, they will be deleted upon reboot.
 
-The best and recommended way to make iptables rules persistent is by using the `iptables-persistent` package.  
+The best and recommended way to make iptables rules persistent is by using the `iptables-persistent` package.
 
 If we don't have `iptables-persistent` installed, we install it:
 
