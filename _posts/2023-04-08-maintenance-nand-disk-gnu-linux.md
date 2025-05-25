@@ -41,7 +41,12 @@ $ sudo fsck -fccky /dev/sdb1
 Combining `-k` with `-cc` option, any existing bad blocks in the bad blocks list are preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
 Besides, with `-cc` option the bad block scan will be done using a non-destructive read-write test.
 
-# Print badblock results
+We could have also run badblocks directly:
+```
+$ sudo badblocks -v /dev/sdb1
+```
+
+# Print badblocks results
 
 To see the blocks marked as bad in a ext2/ext3/ext4 filesystem we have to use `dumpe2fs`:
 
