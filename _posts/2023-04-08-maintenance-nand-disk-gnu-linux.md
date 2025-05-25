@@ -43,7 +43,7 @@ Besides, with `-cc` option the bad block scan will be done using a non-destructi
 
 We could have also run badblocks directly:
 ```
-$ sudo badblocks -v /dev/sdb1
+$ sudo badblocks -sv /dev/sdb1
 ```
 
 # Print badblocks results
