@@ -30,12 +30,12 @@ The maintenance process for a SSD disk is the same as in ["Maintenance of HDD in
 But, the maintenance process differs a bit for an USB flash drive.
 In an USB flash drive we won't have S.M.A.R.T. capabilities, so we can skip this step.
 Besides, as a flash drive is not a disk, a flash drive lacks of a reallocator that marks bad sectors and reallocates its data to spare sectors.
-So, the best we can do is rely on badblocks. And, as we will use `fsck`, we will use `badblocks` through the `fsck -cc` option.
+So, the best we can do is rely on badblocks. And, as we will use `e2fsck`, we will use `badblocks` through the `e2fsck -cc` option.
 
 Let's say our partition is still `/dev/sdb1`:
 
 ```
-$ sudo fsck -fccky /dev/sdb1
+$ sudo e2fsck -fccky /dev/sdb1
 ```
 
 Combining `-k` with `-cc` option, any existing bad blocks in the bad blocks list are preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
