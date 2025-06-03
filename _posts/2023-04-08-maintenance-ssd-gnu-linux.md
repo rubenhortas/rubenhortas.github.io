@@ -1,11 +1,11 @@
 ---
-title: Maintenance of NAND disk in GNU/Linux
+title: Maintain NAND flash drives (SSD) in GNU/Linux
 date: 2023-04-08 00:00:01 +0000
 categories: [gnu/linux, administration]
-tags: [gnu/linux, administration, hdd, nand, usb, ssd, fsck]
+tags: [gnu/linux, administration, hdd, nand, usb, ssd, fsck, flash drive]
 ---
 
-NAND disk ranges from USB flash drives (thumb drive, memory stick, pendrive, call it what you prefer) to SDD disks.
+NAND disk ranges from USB flash drives (thumb drive, memory stick, pendrive, call it what you prefer) to SDD (Solid State Drive) disks.
 Both are based on [NAND flash](https://en.wikipedia.org/wiki/Flash_memory#NAND_flash) cells.
 
 As hard disk drives (HDDs), NAND disks can suffer several types of failures: logical failures, firmware failures, and bit rot.
@@ -28,11 +28,24 @@ Before a total disk death from usage occurs, some transistors can die from use c
 
 The maintenance process for a SSD disk is the same as in ["Maintenance of HDD in GNU/Linux"](https://rubenhortas.github.io/posts/maintenance-of-hdd-in-gnu-linux/).
 But, the maintenance process differs a bit for an USB flash drive.
+
+## Umount the disk
+
+First of all is know the device assigned to the disk we want to check.
+We can know the device assigned using `fdisk -l` or `lsblk`.
+Let's say our disk is still `/dev/sdb`.
+
+As the disk should be umounted to be able to run fsck, now, we need to umount it:
+
+```
+$ sudo umount /dev/sdb
+```
+
+## Run badblocks
+
 In an USB flash drive we won't have S.M.A.R.T. capabilities, so we can skip this step.
 Besides, as a flash drive is not a disk, a flash drive lacks of a reallocator that marks bad sectors and reallocates its data to spare sectors.
 So, the best we can do is rely on badblocks. And, as we will use `e2fsck`, we will use `badblocks` through the `e2fsck -cc` option.
-
-Let's say our partition is still `/dev/sdb1`:
 
 ```
 $ sudo e2fsck -fccky /dev/sdb1
@@ -46,7 +59,7 @@ We could have also run badblocks directly:
 $ sudo badblocks -sv /dev/sdb1
 ```
 
-# Print badblocks results
+## Check badblocks results
 
 To see the blocks marked as bad in a ext2/ext3/ext4 filesystem we have to use `dumpe2fs`:
 

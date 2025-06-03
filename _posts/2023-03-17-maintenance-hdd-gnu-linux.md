@@ -1,5 +1,5 @@
 ---
-title: Maintenance of HDD in GNU/Linux
+title: Maintain HDD in GNU/Linux
 date: 2023-03-17 00:00:01 +0000
 categories: [gnu/linux, administration]
 tags: [gnu/linux, administration, hdd, smartmontools, smartctl, fsck]
@@ -16,10 +16,10 @@ Also, unless it is your main HDD, you can continue working while the disk is bei
 
 How can we check and fix our HDD in GNU/linux?
 
-# Umounting the disk
+# Umount the disk
 
 First of all is know the device assigned to the disk we want to check.
-You can know the device assigned using `fdisk -l` or `lsblk`.
+We can know the device assigned using `fdisk -l` or `lsblk`.
 Let's say our disk is `/dev/sdb`.
 
 As the disk should be umounted to be able to run fsck, now, we need to umount it:
