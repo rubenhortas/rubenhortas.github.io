@@ -41,20 +41,25 @@ As the disk should be umounted to be able to run fsck, now, we need to umount it
 $ sudo umount /dev/sdb
 ```
 
-## Run badblocks
+## Check badblocks
 
 In an USB flash drive we won't have S.M.A.R.T. capabilities, so we can skip this step.
 Besides, as a flash drive is not a disk, a flash drive lacks of a reallocator that marks bad sectors and reallocates its data to spare sectors.
-So, the best we can do is rely on badblocks. And, as we will use `e2fsck`, we will use `badblocks` through the `e2fsck -cc` option.
+So, the best we can do is rely on badblocks. And, as we will use `2fsck`, we will use `badblocks` through the `fsck -cc` option.
 
 ```
-$ sudo e2fsck -fccky /dev/sdb1
+$ sudo fsck -fccy /dev/sdb1
 ```
 
-Combining `-k` with `-cc` option, any existing bad blocks in the bad blocks list are preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
+Using the `-cc` option, any existing bad blocks in the bad blocks list are preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
 Besides, with `-cc` option the bad block scan will be done using a non-destructive read-write test.
 
-We could have also run badblocks directly:
+We could have also do it with `e2fsck` or `badblocks` directly:
+
+```
+$ sudo e2fsck  -fccy /dev/sdb1
+```
+
 ```
 $ sudo badblocks -nsv /dev/sdb1
 ```
