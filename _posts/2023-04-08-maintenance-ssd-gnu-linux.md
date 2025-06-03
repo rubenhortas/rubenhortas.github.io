@@ -56,10 +56,10 @@ Besides, with `-cc` option the bad block scan will be done using a non-destructi
 
 We could have also run badblocks directly:
 ```
-$ sudo badblocks -sv /dev/sdb1
+$ sudo badblocks -nsv /dev/sdb1
 ```
 
-## Check badblocks results
+### Check badblocks results
 
 To see the blocks marked as bad in a ext2/ext3/ext4 filesystem we have to use `dumpe2fs`:
 
