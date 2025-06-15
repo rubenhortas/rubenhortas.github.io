@@ -1,9 +1,15 @@
 ---
-title: iptables starting point
+title: iptables essential rules. A starting point to protect your computer
 date: 2023-10-22 00:00:01 +0000
 categories: [hardening, firewall]
 tags: [hardening, firewall, iptables]
 ---
+
+Learn how to configure a firewall with iptables from scratch. 
+Protect your Linux systems from attacks with this essential, basic configuration guide. 
+This guide covers syntax, commands, best practices for a smooth transition, offers a good set of essential rules and includes bash script.
+
+## Why?
 
 All our computers should be using a firewall.
 Especially those that expose services to the internet.
@@ -22,7 +28,12 @@ I decided on iptables due to hardware and software restrictions, and, while I wa
 
 I learned a lot along the way, and that's why I decided to put a configuration file here that I think it's a good starting point to harden our systems.
 
-## Iptables bash script
+## Why not?
+
+[nftables](https://www.nftables.org/) is replacing iptables.
+So, if you are looking for a more modern alternative, I invite you to read my article: [Migrate from iptables to nftables. Boost your linux firewall performance](https://rubenhortas.github.io/posts/migrate-iptables-nftables/).
+
+## Iptables bash script. Basic rules to protect your system
 
 Here's my iptables starting point rules (as bash script):
 
@@ -166,7 +177,7 @@ $bin -A ICMP_IN -p icmp --icmp-type 11 -m conntrack --ctstate ESTABLISHED,RELATE
 $bin -A ICMP_OUT -p icmp --icmp-type 8 -m conntrack --ctstate NEW,ESTABLISHED -j ACCEPT
 ```
 
-## Saving iptables rules
+## Making iptables rules persistent
 
 If we don't persist our rules, they will be deleted upon reboot.
 
@@ -184,7 +195,10 @@ To save our current rulings (if we skipped during installation or we made change
 
 * The iptables-persistent service is automatically configured to load the rules from iptables (ipv4) and ip6tables (ipv6) during system startup.
 
+## Important considerations when using this iptables configuration
+
 If you are going to use this as configuration basis rember a few things:
+
 * Check the configuration and **set the parameters of your computer** (e.g.: set your computer ip address, interface[s], and the packet limits of the rules).
 * These are basically protection rules and only allows basic common services as DNS, SSH, NTP and HTTP[S]. Below you have to add the rules that allow legitimate services traffic from your host.
 * Think about your computer needs. Every host has needs and they may not be the same as mine.
@@ -192,8 +206,6 @@ If you are going to use this as configuration basis rember a few things:
 * In iptables the order of the rules matter.
 * Using the `recent` or `limit`modules instead `hashlimit` could improve the performance.
 * Don't forget about IPv6. These are rules for IPv4, but changing the `$bin` variable to use `ip6tables` could apply to IPv6.
-
-I have to say that **I am no expert, and, therefore, these rules could be improved in many ways** (If this is the case, feel free to contact me and I'll be happy to update this post :) ).
 
 Thanks to [Rodrigo Rega](https://rodrigorega.es/) for the tips and annotations :)
 

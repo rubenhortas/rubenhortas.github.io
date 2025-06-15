@@ -1,25 +1,25 @@
 ﻿---
-title: Migrate from iptables to nftables. Boost your linux firewall performance.
+title: Migrate from iptables to nftables. Boost your linux firewall performance
 date: 2025-06-14 00:00:01 +0000
 categories: [hardening, firewall]
 tags: [hardening, firewall, iptables, nftables]
 ---
 
 Learn the essential steps to migrate your linux firewall configurations from iptables to nftables. 
-This guide covers syntax, commands, best practices for a smooth transition and offers a good starting point.
+This guide covers syntax, commands, best practices for a smooth transition and offers a good set of essential rules.
 
-# Why?
+## Why?
 
-A while back, due to some changes in my home networks, I decided to harden my systems by [implementing firewalls with iptables](https://rubenhortas.github.io/posts/iptables-starting-point/). 
+A while back, due to some changes in my home networks, I decided to harden my systems by implementing firewalls with iptables: [iptables essential rules. A starting point to protect your computer](https://rubenhortas.github.io/posts/iptables-essential-rules/). 
 And, to this day, I'm still very happy with the results. 
 However, as everything changes and evolves, the currently recommended firewall is nftables. 
 So I decided to upgrade myself, my systems, and migrate the firewalls to nftables.
 
-# What is nftables?
-
-nftables is a subsystem of the Linux kernel that provides filtering and classification of network packets/datagrams/frames.
+## What is nftables?
 
 nftables is developed by Netfilter, the same organization that currently maintains iptables.
+
+nftables is a subsystem of the Linux kernel that provides filtering and classification of network packets/datagrams/frames.
 
 nftables was first publicly presented at Netfilter Workshop 2008 by Patrick McHardy from the Netfilter Core Team.
 The first preview release of kernel and userspace implementation was given in March 2009.
@@ -27,12 +27,10 @@ The first preview release of kernel and userspace implementation was given in Ma
 On 16 October 2013, Pablo Neira Ayuso submitted a nftables core pull request to the Linux kernel mainline tree.
 It was merged into the kernel mainline on 19 January 2014, with the release of Linux kernel version 3.13.
 
-nftables replaces the popular {ip,ip6,arp,eb}tables. 
-nftables provides a new in-kernel packet classification framework based on a network-specific Virtual Machine (VM) and a new nft userspace command line tool. 
+nftables replaces the popular {ip,ip6,arp,eb}tablesreuses the existing Netfilter subsystems, and provides a new in-kernel packet classification framework based on a network-specific Virtual Machine (VM) and a new nft userspace command line tool. 
 This VM is able to execute bytecode to inspect a network packet and make decisions about how to handle it.
-nftables, also, reuses the existing Netfilter subsystems.
 
-# Why ntables instead iptables?
+## Why ntables instead iptables?
 
 Iptables is aging very well, but nftables is gaining ground. 
 The Netfilter project and the community are focused in replacing iptables with nftables.
@@ -46,32 +44,32 @@ And, nftables, offers us some advantages over iptables:
 Basically, it avoids duplication of work and inconsistencies, is easier to configure and mantain and is faster.
 I love working less! ;)
 
-# Migrate from iptables to nftables
+## Migrate from iptables to nftables
 
 I'm going to explain how to migrate based on some initial rules that you can see in my post [implementing firewalls with iptables](https://rubenhortas.github.io/posts/iptables-starting-point/).
-If you don't have any initial rules to work from, you will have to manually create your file and you can skip the next sections and jump to "Test your nftables ruleset".
+If you don't have any initial rules to work from, you will have to manually create your file and you can skip the next sections and jump to [Test your nftables ruleset](https://rubenhortas.github.io/posts/migrate-iptables-nftables/#test-your-nftables-ruleset).
 
-## Backup iptables rules 
+### Backup iptables rules 
 
 ```shell
 sudo iptables-save  > /home/rubenhortas/backups/iptables/iptables/iptables_rules_v4~
 sudo ip6tables-save > /home/rubenhortas/backups/iptables/iptables_rules_v6~
 ```
 
-## Install nftables
+### Install nftables
 
 ```shell
 sudo apt install nftables
 ```
 
-## Translate iptables rules to nftables rules
+### Translate iptables rules to nftables rules
 
 ```shell
 sudo iptables-restore-translate -f /home/rubenhortas/backups/iptables/iptables/iptables_rules_v4~ > /home/rubenhortas/backups/nftables_rules_v4.nft
 sudo ip6tables-restore-translate -f /home/rubenhortas/backups/iptables/iptables_rules_v6~ > /home/rubenhortas/backups/nftables_rules_v4.nft
 ```
 
-## Review the rules (Coffee time! :coffee:)
+### Review the rules (Coffee time! ☕)
 
 This is usually where I go to make a cup of coffee, because I spend a lot of time reviewing, sorting and commenting the generated rules ;)
 
@@ -192,7 +190,7 @@ add rule ip filter OUTPUT udp dport 123 ct state new,established counter accept
 
 Now, we can use these rules or we can (manually) create a nftables.conf file.
 
-## Create a nftables.conf (more coffee! :coffee:)
+### Create a nftables.conf (more coffee! ☕☕)
 
 This is often preferred for a cleaner, more organized setup.
 You'll define tables and chains explicitly:
@@ -375,15 +373,15 @@ table inet filter {
 > Adjust IPs and interfaces according to your needs.
 {: .prompt-info}
 
-## Test your nftables ruleset
+### Test your nftables ruleset
 
-### Validate syntax
+#### Validate syntax
 
 `sudo nft -c -f /home/rubenhortas/configs/nftables.conf`
 
 If there's no output, the syntax is correct.
 
-### Test in coward mode
+#### Test in coward mode
 
 `sudo nft -f /home/rubenhortas/configs/nftables.conf && sleep 300 && sudo nft flush ruleset`
 
@@ -393,12 +391,10 @@ Verify the rules with:
 
 `sudo nft list ruleset`
 
-And check your connections.
-
 You have 5 minutes to test your connections.
 You can repeat these steps as many times as you want/need ;)
 
-## Flush iptables rules
+### Flush iptables rules
 
 I flush my iptables and ip6tables at first, to make sure there are no rules in memory:
 
@@ -424,7 +420,7 @@ I flush my iptables and ip6tables at first, to make sure there are no rules in m
 /usr/sbin/ip6tables -X
 ```
 
-## Disable and stop iptables services
+### Disable and stop iptables services
 
 Once we have verified that everything is working correctly, we can disable iptables services:
 
@@ -434,37 +430,39 @@ sudo systemctl disable --now ip6tables
 sudo systemctl disable --now netfilter-persistent # If you use iptables-persistent
 ```
 
-## Uninstall iptables and netfilter-persistent
+### Uninstall iptables and netfilter-persistent
 
 `sudo apt purge iptables netfilter-persistent`
 
-## Delete /etc/iptables
+### Delete /etc/iptables
 
 `sudo rm -rf /etc/iptables`
 
-## Find more iptables files (or folders)
+### Find more iptables files (or folders)
 
 You can also check if there are more iptables files on the system:
 
 `sudo find / \( -path /proc -o -path ./usr \) -iname *ip?tables* 2>/dev/null`
 
-## Copy our nftables.conf to /etc
+### Copy our nftables.conf to /etc
 
 To make the rules persistent, we must save them to a configuration file: `/etc/nftables.conf`.
 The nftables service will start automatically on boot and load the rules from `/etc/nftables.conf`
 
 `sudo cp /home/rubenhortas/configs/nftables.conf /etc/`
 
-## Enable and start nftables service
+### Enable and start nftables service
 
 `sudo systemctl enable --now nftables`
 
-## Reboot and check the nftables rules
+### Reboot and check the nftables rules
 
 After reboot, we can check our nftables rules again to ensure they load correctly and are persisted.
 
-# Sources
+## Sources
 
-[netfilter](https://netfilter.org/projects/nftables/)
+[netfilter/nftables](https://netfilter.org/projects/nftables/)
 [wiki.nftables](https://wiki.nftables.org)
-[Wikipedia Nftables](https://en.wikipedia.org/wiki/Nftables)
+[Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)
+
+As always, thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advice :)
