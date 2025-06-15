@@ -1,11 +1,11 @@
 ﻿---
-title: Migrate from iptables to nftables. Boost your linux firewall performance
+title: Migrate from iptables to nftables. Boost your Linux firewall performance
 date: 2025-06-14 00:00:01 +0000
 categories: [hardening, firewall]
 tags: [hardening, firewall, iptables, nftables]
 ---
 
-Learn the essential steps to migrate your linux firewall configurations from iptables to nftables. 
+Learn the essential steps to migrate your Linux firewall configurations from iptables to nftables. 
 This guide covers syntax, commands, best practices for a smooth transition and offers a good set of essential rules.
 
 ## Why?
@@ -455,7 +455,7 @@ The nftables service will start automatically on boot and load the rules from `/
 
 `sudo systemctl enable --now nftables`
 
-### Reboot and check the nftables rules
+### Reboot and check our nftables rules
 
 After reboot, we can check our nftables rules again to ensure they load correctly and are persisted.
 
