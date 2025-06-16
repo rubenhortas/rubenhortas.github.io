@@ -201,39 +201,102 @@ You'll define tables and chains explicitly:
 # Clear existing rules
 flush ruleset
 
-define INTERFACE_IP = 192.168.1.100
+define INTERFACE_IPV4 = 192.168.1.100
+define INTERFACE_IPV6 = fe80::5d24:374b:e55:c4c8
 define SSH_PORT = 22
 define NFS_PORT = 2049
 define HTTP_PORTS = { 80, 443 }
 define DNS_PORTS = { 53, 853 }
 define NTP_PORT = 123
 
+# Using 'inet' family for rules that apply to both IPv4 and IPv6,
 table inet filter {
-    chain INPUT {
-        type filter hook input priority 0; policy drop;
+    # Blacklisted IP addresses
+    set blacklisted_ipv4_ips {
+        type ipv4_addr; # You might want to make this 'inet_addr' if you'll add IPv6 blacklist entries
+        flags interval;
+        auto-merge;
+        elements = { 169.254.0.0/16, 192.0.2.0/24, 224.0.0.0/4, 240.0.0.0/4, 255.255.255.255, 0.0.0.0/8 }
+    }
 
-        # Allow all traffic on the loopback interface (essential for local processes)
+    set blacklisted_ipv6_ips {
+        type ipv6_addr;
+        flags interval;
+        auto-merge;
+        elements = { fe80::/10, 2001:db8::/32, ff00::/8, ::/128 }
+    }
+
+    # Chain for malformed TCP flags (applicable to both IPv4 and IPv6 within inet table)
+    chain BAD_FLAGS {
+        # Using a single match for common flag combinations
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == syn | rst counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | psh counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst | psh counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == 0x00 counter drop # No flags (NULL scan)
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst | psh | ack | urg counter drop # XMAS scan
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | psh | urg counter drop
+        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst | ack | urg counter drop
+    }
+
+    # ICMP handling for incoming traffic (IPv4 & IPv6 consolidated)
+    chain ICMP_IN {
+        # Allow replies for established/related ICMP sessions
+        icmp type { echo-reply, destination-unreachable, time-exceeded } ct state { related, established } counter accept
+        icmpv6 type { 129, 1, 2, 3, 4 } ct state { related, established } counter accept # echo-reply, dest-unreachable, packet-too-big, time-exceeded, parameter-problem
+
+        # Drop incoming echo-requests (ping) by default
+        icmp type echo-request counter drop
+        icmpv6 type echo-request counter drop
+    }
+
+    # ICMP handling for outgoing traffic (IPv4 & IPv6 consolidated)
+    chain ICMP_OUT {
+        # Allow outgoing echo-requests (ping) and established/related ICMP
+        icmp type echo-request ct state { new, established } counter accept
+        icmpv6 type echo-request ct state { new, established } counter accept
+    }
+
+    chain INPUT {
+        type filter hook input priority 0; policy drop; # Default drop policy for incoming
+
+        # Optimize order for performance:
+        # High-volume, low-risk traffic first.
+        # Specific drops before general accepts.
+
+        # 1. Allow all traffic on the loopback interface (essential for local processes)
         iif "lo" accept
 
-        # Allow Established/Related Connections
+        # 2. Allow Established/Related Connections (VERY IMPORTANT, handles most ongoing traffic)
         ct state { related, established } counter accept
-        
-        # Drop blacklisted IP addresses
-        ip saddr @blacklisted_ips counter drop
 
-        # Spoofing: Deny incoming traffic from own IP
-        ip saddr $INTERFACE_IP counter drop
-
-        # Drop packets with invalid state
+        # 3. Drop packets with invalid state (e.g., malformed, out-of-sync)
         ct state invalid counter drop
 
-        # Port scanners (SYN)
-        # if more than 5 SYN packets are received per second from a single source
-        tcp flags syn limit rate over 5/second burst 5 packets counter drop
+        # 4. Anti-spoofing and blacklisted IPs (fast drops for known bad traffic)
+        # IPv4
+        ip saddr @blacklisted_ipv4_ips counter drop
+        ip saddr $INTERFACE_IPV4 counter drop # Deny incoming traffic from own IP
+        #IPv6
+        ip6 saddr @blacklisted_ipv6_ips counter drop
+        ip6 saddr $INTERFACE_IPV6 counter drop
 
-        # Port scanners (UDP)
-        ip protocol udp ct state new limit rate over 35/second burst 35 packets counter drop
+        # 5. Drop fragmented packets that are clearly invalid or cannot be reassembled
+        ip frag-off != 0 ct state invalid counter drop
 
+        # 6. Basic port scanner protection (SYN floods, UDP scans)
+        tcp flags syn limit rate over 5/second burst 5 packets counter drop # SYN scans
+        meta l4proto udp ct state new limit rate over 35/second burst 35 packets counter drop # UDP scans
+
+        # 7. Jump to BAD_FLAGS chain for detailed TCP flag inspection
+        tcp flags & (fin | syn | rst | psh | ack | urg) != 0x00 jump BAD_FLAGS
+
+        # 8. Jump to ICMP chain
+        meta l4proto { icmp, icmpv6 } counter jump ICMP_IN
+
+        # 9. Whitelist specific services (order by most frequent or most critical for speed)
         # SSH: Allow incoming SSH connections
         tcp dport $SSH_PORT ct state new counter accept
 
@@ -244,127 +307,47 @@ table inet filter {
         ip protocol tcp tcp sport $DNS_PORTS ct state new counter accept
         ip protocol udp udp sport $DNS_PORTS ct state new counter accept
 
-        # HTTP and HTTPS: Allow incoming web traffic responses
-        ip protocol tcp tcp dport $HTTP_PORTS ct state new counter accept
-
-        # NTP: Allow incoming NTP responses
+        # Allow incoming NTP responses
         udp sport $NTP_PORT ct state new counter accept
-        
-        # SYN flood protection
-        # if the rate of SYN packets from a single source exceeds 100 per second
+
+        # 10. SYN flood protection
         tcp flags syn limit rate 100/second burst 200 packets counter accept
-
-        # SYN flood protection: Connection limit per source IP for new SYN packets
         tcp flags syn ct state new limit rate 30/second burst 60 packets counter drop
-        tcp flags syn counter drop # Drop any remaining SYN packets that are not accepted by the limit rules
-
-        # Drop Packet fragments
-        ip frag-off != 0 ct state new counter drop
-
-        # Jump to BAD_FLAGS chain for TCP traffic
-        ip protocol tcp counter jump BAD_FLAGS
-
-        # Jump to ICMP_IN chain for ICMP/ICMPv6 traffic
-        meta l4proto { icmp, icmpv6 } counter jump ICMP_IN
     }
 
     chain FORWARD {
         type filter hook forward priority 0; policy drop;
-        # Add any FORWARDING rules here if this host acts as a router/gateway
     }
 
     chain OUTPUT {
-        type filter hook output priority 0; policy drop;
+        type filter hook output priority 0; policy drop; # Default drop policy for outgoing
 
-        # Allow all traffic on the loopback interface
+        # 1. Allow all traffic on the loopback interface
         oif "lo" accept
 
-        # Allow Established/Related Connections
+        # 2. Allow Established/Related Connections
         ct state { related, established } counter accept
 
-        # Spoofing: Deny outgoing traffic that does not have your system's source address
-        ip saddr != $INTERFACE_IP counter drop
+        # 3. Anti-spoofing for outgoing traffic
+        # Deny outgoing traffic that does not have the source address of the system interface
+        ip saddr != $INTERFACE_IPV4 counter drop
 
-        # NFS: Allow outgoing NFS
-        tcp sport $NFS_PORT ct state new counter accept
+        # Outgoing DNS requests
+        tcp dport $DNS_PORTS ct state new counter accept
+        udp dport $DNS_PORTS ct state new counter accept
 
-        # DNS: Allow outgoing DNS requests
-        ip protocol tcp tcp dport $DNS_PORTS ct state new counter accept
-        ip protocol udp udp dport $DNS_PORTS ct state new counter accept
+        # Outgoing HTTP and HTTPS requests
+        tcp dport $HTTP_PORTS ct state new counter accept
 
-        # HTTP and HTTPS: Allow outgoing web traffic
-        ip protocol tcp tcp dport $HTTP_PORTS ct state new counter accept
-
-        # NTP: Allow outgoing NTP requests
+        # Outgoing NTP requests
         udp dport $NTP_PORT ct state new counter accept
 
-        # Jump to ICMP_OUT chain for ICMP/ICMPv6 traffic
+        # Outgoing NFS (server-side, uses source port)
+        tcp sport $NFS_PORT ct state new counter accept
+        udp sport $NFS_PORT ct state new counter accept
+
+        # 5. Jump to ICMP_OUT chain for ICMP/ICMPv6 traffic
         meta l4proto { icmp, icmpv6 } counter jump ICMP_OUT
-    }
-
-    # Blacklisting IP addresses
-    set blacklisted_ips {
-        type ipv4_addr;
-        flags interval;
-        auto-merge;
-        elements = { 169.254.0.0/16, 192.0.2.0/24, 224.0.0.0/4, 240.0.0.0/4, 255.255.255.255, 0.0.0.0/8 }
-    }
-
-    # Bad flags (and other anomalies)
-    chain BAD_FLAGS {
-        # SYN and FIN set simultaneously (often a scan or malformed packet)
-        tcp flags fin|syn counter drop
-
-        # SYN and RST set simultaneously (unusual, could indicate an old scan or issue)
-        tcp flags syn|rst counter drop
-
-        # SYN, FIN, PSH set (another type of scan)
-        tcp flags fin|syn|psh counter drop
-
-        # SYN, FIN, RST set (highly abnormal)
-        tcp flags fin|syn|rst counter drop
-
-        # SYN, FIN, RST, PSH set (even more abnormal)
-        tcp flags fin|syn|rst|psh counter drop
-
-        # Only FIN set (stealth FIN scan)
-        tcp flags fin counter drop
-
-        # No flags set (NULL scan - all flags are 0x00)
-        tcp flags 0x00 counter drop
-
-        # All standard flags set (FIN, SYN, RST, PSH, ACK, URG - known as an XMAS scan)
-        tcp flags fin|syn|rst|psh|ack|urg counter drop
-
-        # FIN, PSH, URG set (another variation of XMAS scan)
-        tcp flags fin|psh|urg counter drop
-
-        # FIN, SYN, RST, ACK, URG set (very malformed or specific attack attempt)
-        tcp flags fin|syn|rst|ack|urg counter drop
-    }
-
-    # ICMP chains
-    chain ICMP_IN {
-        icmp type echo-reply ct state { related, established } counter accept
-        icmpv6 type echo-reply ct state { related, established } counter accept
-        
-        icmp type destination-unreachable ct state { related, established } counter accept
-        #icmpv6 type dest-unreachable ct state { related, established } counter accept
-        icmpv6 type 1 ct state { related, established } counter accept # Type 1 for dest-unreachable
-        
-        icmpv6 type packet-too-big ct state { related, established } counter accept
-        
-        icmp type time-exceeded ct state { related, established } counter accept
-        icmpv6 type time-exceeded ct state { related, established } counter accept
-        
-        #icmpv6 type param-problem ct state { related, established } counter accept
-        icmpv6 type 4 ct state { related, established } counter accept # Type 4 for param-problem
-
-        icmp type echo-request counter drop
-        icmpv6 type echo-request counter drop
-    }
-    chain ICMP_OUT {
-        icmp type echo-request ct state { new, established } counter accept
     }
 }
 ```
