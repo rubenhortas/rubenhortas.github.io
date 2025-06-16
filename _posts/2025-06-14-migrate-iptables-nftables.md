@@ -202,7 +202,7 @@ You'll define tables and chains explicitly:
 flush ruleset
 
 define INTERFACE_IPV4 = 192.168.1.100
-define INTERFACE_IPV6 = fe80::5d24:374b:e55:c4c8
+define INTERFACE_IPV6 = dead:beef:0000:0000:0000:0000:0000:0001
 define SSH_PORT = 22
 define NFS_PORT = 2049
 define HTTP_PORTS = { 80, 443 }
