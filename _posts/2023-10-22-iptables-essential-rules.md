@@ -31,7 +31,8 @@ I learned a lot along the way, and that's why I decided to put a configuration f
 ## Why not?
 
 [nftables](https://www.nftables.org/) is replacing iptables.
-So, if you are looking for a more modern alternative, I invite you to read my article: [Migrate from iptables to nftables. Boost your linux firewall performance](https://rubenhortas.github.io/posts/migrate-iptables-nftables/).
+Basically, nftables, avoids duplication of work and inconsistencies, is easier to configure and mantain and is faster.
+So, if you are looking for a more comfortable and modern alternative, I invite you to read my article: [Migrate from iptables to nftables. Boost your linux firewall performance](https://rubenhortas.github.io/posts/migrate-iptables-nftables/).
 
 ## Iptables bash script. Basic rules to protect your system
 
