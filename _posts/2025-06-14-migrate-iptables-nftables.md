@@ -46,7 +46,7 @@ I love working less! ;)
 
 ## Migrate from iptables to nftables
 
-I'm going to explain how to migrate based on some initial rules that you can see in my post [implementing firewalls with iptables](https://rubenhortas.github.io/posts/iptables-starting-point/).
+I'm going to explain how to migrate based on some initial rules that you can see in my post [iptables essential rules. A starting point to protect your computer](https://rubenhortas.github.io/posts/iptables-essential-rules/).
 If you don't have any initial rules to work from, you will have to manually create your file and you can skip the next sections and jump to [Test your nftables ruleset](https://rubenhortas.github.io/posts/migrate-iptables-nftables/#test-your-nftables-ruleset).
 
 ### Backup iptables rules 
@@ -382,25 +382,25 @@ You can repeat these steps as many times as you want/need ;)
 I flush my iptables and ip6tables at first, to make sure there are no rules in memory:
 
 ```shell
-/usr/sbin/iptables -P INPUT ACCEPT
-/usr/sbin/iptables -P FORWARD ACCEPT
-/usr/sbin/iptables -P OUTPUT ACCEPT
+iptables -P INPUT ACCEPT
+iptables -P FORWARD ACCEPT
+iptables -P OUTPUT ACCEPT
 
-/usr/sbin/iptables -t nat -F
-/usr/sbin/iptables -t mangle -F
-/usr/sbin/iptables -F
-/usr/sbin/iptables -X
+iptables -t nat -F
+iptables -t mangle -F
+iptables -F
+iptables -X
 ```
 
 ```shell
-/usr/sbin/ip6tables -P INPUT ACCEPT
-/usr/sbin/ip6tables -P FORWARD ACCEPT
-/usr/sbin/ip6tables -P OUTPUT ACCEPT
+ip6tables -P INPUT ACCEPT
+ip6tables -P FORWARD ACCEPT
+ip6tables -P OUTPUT ACCEPT
 
-/usr/sbin/ip6tables -t nat -F
-/usr/sbin/ip6tables -t mangle -F
-/usr/sbin/ip6tables -F
-/usr/sbin/ip6tables -X
+ip6tables -t nat -F
+ip6tables -t mangle -F
+ip6tables -F
+ip6tables -X
 ```
 
 ### Disable and stop iptables services
@@ -444,9 +444,9 @@ After reboot, we can check our nftables rules again to ensure they load correctl
 
 ## Sources
 
-[netfilter/nftables](https://netfilter.org/projects/nftables/)
-[wiki.nftables](https://wiki.nftables.org)
-[Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)
+[netfilter/nftables](https://netfilter.org/projects/nftables/)  
+[wiki.nftables](https://wiki.nftables.org)  
+[Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)  
 
 As always, thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advice :)
 
