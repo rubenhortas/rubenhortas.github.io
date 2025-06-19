@@ -444,9 +444,9 @@ After reboot, we can check our nftables rules again to ensure they load correctl
 
 ## Sources
 
-[netfilter/nftables](https://netfilter.org/projects/nftables/)  
-[wiki.nftables](https://wiki.nftables.org)  
-[Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)  
+* [netfilter/nftables](https://netfilter.org/projects/nftables/)  
+* [wiki.nftables](https://wiki.nftables.org)  
+* [Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)  
 
 As always, thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advice :)
 
