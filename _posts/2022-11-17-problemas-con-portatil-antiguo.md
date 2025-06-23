@@ -5,7 +5,7 @@ categories: [personal, mentions]
 tags: [personal, mentions, debian]
 ---
 
-Today I was mentioned on an article in [Blog de Kaian El desafortunado](https://kaianperez.github.io): [Problemas con portátil antiguo](https://kaianperez.github.io/sistemas/Quebradero-con-portatil/).
+Today I was mentioned on an article in [Blog de Kaian El desafortunado](https://kaianperez.github.io): [Problemas con portátil antiguo](https://kaianperez.github.io/quebradero-con-portatil/).
 
 [Kaian](https://kaianperez.github.io), a great friend of mine IRL, explains how he was able to give a new life to an 16 years old laptop.
 
