@@ -99,7 +99,7 @@ dotfiles
 
 * Very easy to mantain.
 
-  One repository, one branch. 
+  One repository, one branch.
 It's very easy to keep track of the changes.
 You have the same repository and the same branch in all of your machines.
 
@@ -157,7 +157,7 @@ dotfiles/desktop
 * Management can get a little complicated
 
   If we make a change to a file that we want to push to other machines, we will have to do it manually on the other branches.
-  
+
   If we create a file on one machine that we want to have on other machines, we will have to do it manually or propagate it with git to the other branches.
 
 * Branch switching
@@ -170,7 +170,7 @@ So, If you need to switch branch, for whatever reason, it's better to clone the 
 This is the better approach. Why? Look at this name, how can it not be the best with this name?
 
 I saw this method in a [Hacker news](https://news.ycombinator.com/news) thread: [Ask HN: What do you use to manage dotfiles?](https://news.ycombinator.com/item?id=11070797).
-This was [the response given by the user StreakyCobra](https://news.ycombinator.com/item?id=11071754). 
+This was [the response given by the user StreakyCobra](https://news.ycombinator.com/item?id=11071754).
 
 This is going to be by next system (as soon as I feel like reorganizing some machine).
 This method is similar to the "m-branches", one repository and one branch per machine, with the difference that **this method does not need extra tools or symlinks**.
@@ -262,6 +262,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME'
 ### Cons
 
 * Needs an alias to do not interfere with the `git` command in other repositories.
+* We will have to manage the files one by one.
 * We will have to delete a (temporary) directory. Is it really a con?
 
 *Enjoy! ;)*
