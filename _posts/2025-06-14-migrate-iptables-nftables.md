@@ -1,18 +1,18 @@
-﻿---
+---
 title: Migrate from iptables to nftables. Boost your Linux firewall performance
 date: 2025-06-14 00:00:01 +0000
 categories: [hardening, firewall]
 tags: [hardening, firewall, iptables, nftables]
 ---
 
-Learn the essential steps to migrate your Linux firewall configurations from iptables to nftables. 
+Learn the essential steps to migrate your Linux firewall configurations from iptables to nftables.
 This guide covers syntax, commands, best practices for a smooth transition and offers a good set of essential rules.
 
 ## Why?
 
-A while back, due to some changes in my home networks, I decided to harden my systems by implementing firewalls with iptables: [iptables essential rules. A starting point to protect your computer](https://rubenhortas.github.io/posts/iptables-essential-rules/). 
-And, to this day, I'm still very happy with the results. 
-However, as everything changes and evolves, the currently recommended firewall is nftables. 
+A while back, due to some changes in my home networks, I decided to harden my systems by implementing firewalls with iptables: [iptables essential rules. A starting point to protect your computer](https://rubenhortas.github.io/posts/iptables-essential-rules/).
+And, to this day, I'm still very happy with the results.
+However, as everything changes and evolves, the currently recommended firewall is nftables.
 So I decided to upgrade myself, my systems, and migrate the firewalls to nftables.
 
 ## What is nftables?
@@ -27,12 +27,12 @@ The first preview release of kernel and userspace implementation was given in Ma
 On 16 October 2013, Pablo Neira Ayuso submitted a nftables core pull request to the Linux kernel mainline tree.
 It was merged into the kernel mainline on 19 January 2014, with the release of Linux kernel version 3.13.
 
-nftables replaces the popular {ip,ip6,arp,eb}tablesreuses the existing Netfilter subsystems, and provides a new in-kernel packet classification framework based on a network-specific Virtual Machine (VM) and a new nft userspace command line tool. 
+nftables replaces the popular {ip,ip6,arp,eb}tablesreuses the existing Netfilter subsystems, and provides a new in-kernel packet classification framework based on a network-specific Virtual Machine (VM) and a new nft userspace command line tool.
 This VM is able to execute bytecode to inspect a network packet and make decisions about how to handle it.
 
 ## Why ntables instead iptables?
 
-Iptables is aging very well, but nftables is gaining ground. 
+Iptables is aging very well, but nftables is gaining ground.
 The Netfilter project and the community are focused in replacing iptables with nftables.
 And, nftables, offers us some advantages over iptables:
 
@@ -49,7 +49,7 @@ I love working less! ;)
 I'm going to explain how to migrate based on some initial rules that you can see in my post [iptables essential rules. A starting point to protect your computer](https://rubenhortas.github.io/posts/iptables-essential-rules/).
 If you don't have any initial rules to work from, you will have to manually create your file and you can skip the next sections and jump to [Test your nftables ruleset](https://rubenhortas.github.io/posts/migrate-iptables-nftables/#test-your-nftables-ruleset).
 
-### Backup iptables rules 
+### Backup iptables rules
 
 ```shell
 sudo iptables-save  > /home/rubenhortas/backups/iptables/iptables/iptables_rules_v4~
@@ -149,7 +149,7 @@ add rule ip filter INPUT tcp flags syn / fin,syn,rst,ack counter drop
 # ICMP
 # All ICMP responses should be barred except responses to outgoing connections.
 # Allow outbound echo messages and indbound echo reply messages -> Allows the use of ping from the host.
-# Allow time exceeded and destination unreaachable messages inbound -> Allow the use of tools such traceroute. 
+# Allow time exceeded and destination unreaachable messages inbound -> Allow the use of tools such traceroute.
 # Avoids ICMP flood, ICMP smurf, Ping of death, ICMP nuke...
 add chain ip filter ICMP_IN
 add chain ip filter ICMP_OUT
@@ -159,7 +159,7 @@ add rule ip filter ICMP_IN icmp type echo-reply ct state related,established cou
 add rule ip filter ICMP_IN icmp type destination-unreachable ct state related,established counter accept
 add rule ip filter ICMP_IN icmp type echo-request ct state new counter drop
 add rule ip filter ICMP_IN icmp type time-exceeded ct state related,established counter accept
-add rule ip filter ICMP_OUT icmp type echo-request ct state new,established counter accept 
+add rule ip filter ICMP_OUT icmp type echo-request ct state new,established counter accept
 
 # Allow NFS
 add rule ip filter INPUT tcp dport 2049 ct state new,established counter accept
@@ -201,8 +201,12 @@ You'll define tables and chains explicitly:
 # Clear existing rules
 flush ruleset
 
-define INTERFACE_IPV4 = 192.168.1.100
-define INTERFACE_IPV6 = dead:beef:0000:0000:0000:0000:0000:0001
+# Interfaces
+define LAN_INTERFACE = eth0 # Configure!
+define LAN_INTERFACE_IPV4 = @ip addr . $LAN_INTERFACE
+define LAN_INTERFACE_IPV6 = @ip saddr . $LAN_INTERFACE
+
+# Ports
 define SSH_PORT = 22
 define NFS_PORT = 2049
 define HTTP_PORTS = { 80, 443 }
@@ -278,10 +282,11 @@ table inet filter {
         # 4. Anti-spoofing and blacklisted IPs (fast drops for known bad traffic)
         # IPv4
         ip saddr @blacklisted_ipv4_ips counter drop
-        ip saddr $INTERFACE_IPV4 counter drop # Deny incoming traffic from own IP
+        ip saddr $LAN_INTERFACE_IPV4 counter drop # Deny incoming traffic from own IP
+
         #IPv6
         ip6 saddr @blacklisted_ipv6_ips counter drop
-        ip6 saddr $INTERFACE_IPV6 counter drop
+        ip6 saddr $LAN_INTERFACE_IPV6 counter drop
 
         # 5. Drop fragmented packets that are clearly invalid or cannot be reassembled
         ip frag-off != 0 ct state invalid counter drop
@@ -330,7 +335,8 @@ table inet filter {
 
         # 3. Anti-spoofing for outgoing traffic
         # Deny outgoing traffic that does not have the source address of the system interface
-        ip saddr != $INTERFACE_IPV4 counter drop
+        ip saddr != $LAN_INTERFACE_IPV4 counter drop
+        ip6 addr != $LAN_INTERFACE_IPV6 counter drop
 
         # Outgoing DNS requests
         tcp dport $DNS_PORTS ct state new counter accept
@@ -352,7 +358,7 @@ table inet filter {
 }
 ```
 
-> 192.168.1.100 it's the only IP my machine has. 
+> 192.168.1.100 it's the only IP my machine has.
 > Adjust IPs and interfaces according to your needs.
 {: .prompt-info}
 
@@ -444,9 +450,9 @@ After reboot, we can check our nftables rules again to ensure they load correctl
 
 ## Sources
 
-* [netfilter/nftables](https://netfilter.org/projects/nftables/)  
-* [wiki.nftables](https://wiki.nftables.org)  
-* [Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)  
+* [netfilter/nftables](https://netfilter.org/projects/nftables/)
+* [wiki.nftables](https://wiki.nftables.org)
+* [Wikipedia/nftables](https://en.wikipedia.org/wiki/Nftables)
 
 As always, thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advice :)
 
