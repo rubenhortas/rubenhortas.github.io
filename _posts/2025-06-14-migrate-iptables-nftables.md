@@ -280,12 +280,12 @@ table inet filter {
 
         # 4. Anti-spoofing and blacklisted IPs (fast drops for known bad traffic)
         # IPv4
-        ip saddr @blacklisted_ipv4_ips counter drop
+        iif != "lo" ip saddr @blacklisted_ipv4_ips counter drop
         ip saddr $LAN_INTERFACE_IPV4 counter drop # Deny incoming traffic from own IP
 
         #IPv6
         ip6 saddr @blacklisted_ipv6_ips counter drop
-        ip6 saddr $LAN_INTERFACE_IPV6 counter drop
+        iif != "lo" ip6 saddr $LAN_INTERFACE_IPV6 counter drop
 
         # 5. Drop fragmented packets that are clearly invalid or cannot be reassembled
         ip frag-off != 0 ct state invalid counter drop
