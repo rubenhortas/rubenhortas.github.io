@@ -184,7 +184,7 @@ add rule ip filter INPUT udp sport 123 ct state established counter accept
 add rule ip filter OUTPUT udp dport 123 ct state new,established counter accept
 ```
 
-> 192.168.1.100 it's the only IP my machine has.
+> 192.168.1.100 it's the only IP my machine has and I'm not allowing outgoing ssh connections.
 > Adjust according to your needs.
 {: .prompt-info}
 
