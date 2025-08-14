@@ -202,9 +202,8 @@ You'll define tables and chains explicitly:
 flush ruleset
 
 # Interfaces
-define LAN_INTERFACE = eth0 # Configure!
-define LAN_INTERFACE_IPV4 = @ip addr . $LAN_INTERFACE
-define LAN_INTERFACE_IPV6 = @ip saddr . $LAN_INTERFACE
+define LAN_INTERFACE_IPV4 = 192.168.1.100
+define LAN_INTERFACE_IPV6 = dead::beef
 
 # Ports
 define SSH_PORT = 22
