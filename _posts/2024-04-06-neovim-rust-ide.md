@@ -51,6 +51,7 @@ set shiftwidth=4                "setting tab to 4 columns
 set softtabstop=4               "setting tab to 4 columns
 set showmatch                   "display matching bracket or parenthesis
 set hlsearch incsearch          "highlight all pervious search pattern with incsearch
+set clipboard=unnamedplus       "activate the system clipboard
 "set list                        "show all whitespaces (uncomment without Better Whitespace plugin)
 ```
 
@@ -70,15 +71,15 @@ I install four plugins:
 
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
   Configs for the Nvim LSP client.
-  
+
 * [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
   A completion engine plugin.
-  
+
 * [rust-lang](https://github.com/rust-lang/rust.vim-plug)
   Provides Rust file detection, syntax highlighting, formatting, Syntastic integration, and more.
-  
+
 * [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
-  This plugin highlights all trailing whitespaces. 
+  This plugin highlights all trailing whitespaces.
   It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
 
 ### nvim-lspconfig

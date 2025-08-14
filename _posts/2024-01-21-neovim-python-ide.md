@@ -7,10 +7,10 @@ img_path: /assets/img/posts/
 ---
 
 I have to admit it, [Neo]vim is my editor for everything.
-I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).  
-Do I have to edit a file? [Neovim](https://neovim.io).  
-Do I have to do a bash script? [Neovim](https://neovim.io).  
-Do I have to do a little python script? [Neovim](https://neovim.io).  
+I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).
+Do I have to edit a file? [Neovim](https://neovim.io).
+Do I have to do a bash script? [Neovim](https://neovim.io).
+Do I have to do a little python script? [Neovim](https://neovim.io).
 
 [Vim](https://www.vim.org) and [Neovim](https://neovim.io) are very lightweight and very powerful.
 [Vim](https://www.vim.org) comes installed in (almost) every linux distro, and they are very convenient to use via ssh.
@@ -45,6 +45,7 @@ set shiftwidth=4                "setting tab to 4 columns
 set softtabstop=4               "setting tab to 4 columns
 set showmatch                   "display matching bracket or parenthesis
 set hlsearch incsearch          "highlight all pervious search pattern with incsearch
+set clipboard=unnamedplus       "activate the system clipboard
 "set list                        "show all whitespaces (uncomment without Better Whitespace plugin)
 ```
 
@@ -54,11 +55,11 @@ This default configuration works for me, but can be customized.
 
 ## pyright
 
-Pyright is a static type checker for Python created by Microsoft. 
-Pyright goes beyond just checking for syntax errors. 
+Pyright is a static type checker for Python created by Microsoft.
+Pyright goes beyond just checking for syntax errors.
 Its primary goal is to catch type-related errors in your Python code before you even run it.
 
-Pyright helps us write more maintainable, understandable, and bug-free Python code by leveraging static type checking. 
+Pyright helps us write more maintainable, understandable, and bug-free Python code by leveraging static type checking.
 
 ```bash
 pipx install pyright
@@ -130,7 +131,7 @@ I install three plugins:
   Configs for the Nvim LSP client.
 
 * [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
-  This plugin highlights all trailing whitespaces. 
+  This plugin highlights all trailing whitespaces.
   It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
 
 We need to create the directory where we will install the plugins.
