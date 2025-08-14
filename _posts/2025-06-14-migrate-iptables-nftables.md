@@ -215,33 +215,18 @@ define NTP_PORT = 123
 # Using 'inet' family for rules that apply to both IPv4 and IPv6,
 table inet filter {
     # Blacklisted IP addresses
-    set blacklisted_ipv4_ips {
-        type ipv4_addr; # You might want to make this 'inet_addr' if you'll add IPv6 blacklist entries
+    set blacklist_ipv4 {
+        type ipv4_addr;
         flags interval;
         auto-merge;
         elements = { 169.254.0.0/16, 192.0.2.0/24, 224.0.0.0/4, 240.0.0.0/4, 255.255.255.255, 0.0.0.0/8 }
     }
 
-    set blacklisted_ipv6_ips {
+    set blacklist_ipv6 {
         type ipv6_addr;
         flags interval;
         auto-merge;
         elements = { fe80::/10, 2001:db8::/32, ff00::/8, ::/128 }
-    }
-
-    # Chain for malformed TCP flags (applicable to both IPv4 and IPv6 within inet table)
-    chain BAD_FLAGS {
-        # Using a single match for common flag combinations
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == syn | rst counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | psh counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst | psh counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == 0x00 counter drop # No flags (NULL scan)
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst | psh | ack | urg counter drop # XMAS scan
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | psh | urg counter drop
-        tcp flags & (fin | syn | rst | psh | ack | urg) == fin | syn | rst | ack | urg counter drop
     }
 
     # ICMP handling for incoming traffic (IPv4 & IPv6 consolidated)
@@ -280,43 +265,27 @@ table inet filter {
 
         # 4. Anti-spoofing and blacklisted IPs (fast drops for known bad traffic)
         # IPv4
-        iif != "lo" ip saddr @blacklisted_ipv4_ips counter drop
+        iif != "lo" ip saddr @blacklist_ipv4 counter drop
         ip saddr $LAN_INTERFACE_IPV4 counter drop # Deny incoming traffic from own IP
 
         #IPv6
-        ip6 saddr @blacklisted_ipv6_ips counter drop
+        ip6 saddr @blacklist_ipv6 counter drop
         iif != "lo" ip6 saddr $LAN_INTERFACE_IPV6 counter drop
 
         # 5. Drop fragmented packets that are clearly invalid or cannot be reassembled
         ip frag-off != 0 ct state invalid counter drop
 
         # 6. Basic port scanner protection (SYN floods, UDP scans)
-        tcp flags syn limit rate over 5/second burst 5 packets counter drop # SYN scans
-        meta l4proto udp ct state new limit rate over 35/second burst 35 packets counter drop # UDP scans
+        ct state new limit rate 10/second burst 20 packets drop
 
-        # 7. Jump to BAD_FLAGS chain for detailed TCP flag inspection
-        tcp flags & (fin | syn | rst | psh | ack | urg) != 0x00 jump BAD_FLAGS
-
-        # 8. Jump to ICMP chain
+        # 7. Jump to ICMP chain
         meta l4proto { icmp, icmpv6 } counter jump ICMP_IN
 
-        # 9. Whitelist specific services (order by most frequent or most critical for speed)
-        # SSH: Allow incoming SSH connections
-        tcp dport $SSH_PORT ct state new counter accept
+        # 8. Legitimate services
+        tcp dport { $SSH_PORT, $NFS_PORT } ct state new accept
+        tcp sport $DNS_PORTS ct state new accept
 
-        # NFS: Allow incoming NFS
-        tcp dport $NFS_PORT ct state new counter accept
-
-        # DNS: Allow incoming DNS responses
-        ip protocol tcp tcp sport $DNS_PORTS ct state new counter accept
-        ip protocol udp udp sport $DNS_PORTS ct state new counter accept
-
-        # Allow incoming NTP responses
-        udp sport $NTP_PORT ct state new counter accept
-
-        # 10. SYN flood protection
-        tcp flags syn limit rate 100/second burst 200 packets counter accept
-        tcp flags syn ct state new limit rate 30/second burst 60 packets counter drop
+        udp sport { $DNS_PORTS, $NTP_PORT } ct state new accept
     }
 
     chain FORWARD {
@@ -334,22 +303,15 @@ table inet filter {
 
         # 3. Anti-spoofing for outgoing traffic
         # Deny outgoing traffic that does not have the source address of the system interface
-        ip saddr != $LAN_INTERFACE_IPV4 counter drop
-        ip6 addr != $LAN_INTERFACE_IPV6 counter drop
+        oif != "lo" ip saddr != $LAN_INTERFACE_IPV4 counter drop
+        oif != "lo" ip6 addr != $LAN_INTERFACE_IPV6 counter drop
 
-        # Outgoing DNS requests
-        tcp dport $DNS_PORTS ct state new counter accept
-        udp dport $DNS_PORTS ct state new counter accept
+        # 4. Legitimate services
+        tcp dport { $TORRENT_SERVER_PORTS, $DNS_PORTS, $HTTP_PORTS } ct state new accept
+        tcp sport $NFS_PORT ct state new accept
 
-        # Outgoing HTTP and HTTPS requests
-        tcp dport $HTTP_PORTS ct state new counter accept
-
-        # Outgoing NTP requests
-        udp dport $NTP_PORT ct state new counter accept
-
-        # Outgoing NFS (server-side, uses source port)
-        tcp sport $NFS_PORT ct state new counter accept
-        udp sport $NFS_PORT ct state new counter accept
+        udp dport { $TORRENT_SERVER_PORTS, $TRACKER_PORTS, $DNS_PORTS, $NTP_PORT } ct state new accept
+        udp sport $NFS_PORT ct state new accept
 
         # 5. Jump to ICMP_OUT chain for ICMP/ICMPv6 traffic
         meta l4proto { icmp, icmpv6 } counter jump ICMP_OUT
