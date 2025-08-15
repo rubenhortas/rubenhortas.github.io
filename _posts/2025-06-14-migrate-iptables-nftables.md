@@ -279,10 +279,10 @@ table inet filter {
         meta l4proto { icmp, icmpv6 } counter jump ICMP_IN
 
         # 7. Legitimate services
-        tcp dport { $SSH_PORT, $NFS_PORT } ct state new accept
-        tcp sport $DNS_PORTS ct state new accept
+        tcp dport { $SSH_PORT, $NFS_PORT } ct state new counter accept
+        tcp sport $DNS_PORTS ct state new counter accept
 
-        udp sport { $DNS_PORTS, $NTP_PORT } ct state new accept
+        udp sport { $DNS_PORTS, $NTP_PORT } ct state new counter accept
 
         # 8. Basic port scanner protection
         ct state new limit rate 10/second burst 20 packets drop
@@ -307,11 +307,11 @@ table inet filter {
         oif != "lo" ip6 addr != $LAN_INTERFACE_IPV6 counter drop
 
         # 4. Legitimate services
-        tcp dport { $TORRENT_SERVER_PORTS, $DNS_PORTS, $HTTP_PORTS } ct state new accept
-        tcp sport $NFS_PORT ct state new accept
+        tcp dport { $TORRENT_SERVER_PORTS, $DNS_PORTS, $HTTP_PORTS } ct state new counter accept
+        tcp sport $NFS_PORT ct state new counter accept
 
-        udp dport { $TORRENT_SERVER_PORTS, $TRACKER_PORTS, $DNS_PORTS, $NTP_PORT } ct state new accept
-        udp sport $NFS_PORT ct state new accept
+        udp dport { $TORRENT_SERVER_PORTS, $TRACKER_PORTS, $DNS_PORTS, $NTP_PORT } ct state new counter accept
+        udp sport $NFS_PORT ct state new counter accept
 
         # 5. Jump to ICMP_OUT chain for ICMP/ICMPv6 traffic
         meta l4proto { icmp, icmpv6 } counter jump ICMP_OUT
