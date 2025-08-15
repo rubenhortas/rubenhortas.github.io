@@ -275,17 +275,17 @@ table inet filter {
         # 5. Drop fragmented packets that are clearly invalid or cannot be reassembled
         ip frag-off != 0 ct state invalid counter drop
 
-        # 6. Basic port scanner protection (SYN floods, UDP scans)
-        ct state new limit rate 10/second burst 20 packets drop
-
-        # 7. Jump to ICMP chain
+        # 6. Jump to ICMP chain
         meta l4proto { icmp, icmpv6 } counter jump ICMP_IN
 
-        # 8. Legitimate services
+        # 7. Legitimate services
         tcp dport { $SSH_PORT, $NFS_PORT } ct state new accept
         tcp sport $DNS_PORTS ct state new accept
 
         udp sport { $DNS_PORTS, $NTP_PORT } ct state new accept
+
+        # 8. Basic port scanner protection
+        ct state new limit rate 10/second burst 20 packets drop
     }
 
     chain FORWARD {
