@@ -401,6 +401,10 @@ The nftables service will start automatically on boot and load the rules from `/
 
 `sudo cp /home/rubenhortas/configs/nftables.conf /etc/`
 
+And we change the file permissions:
+
+`sudo chown root:root /etc/nftables.conf`
+
 ### Enable and start nftables service
 
 `sudo systemctl enable --now nftables`
@@ -408,6 +412,8 @@ The nftables service will start automatically on boot and load the rules from `/
 ### Reboot and check our nftables rules
 
 After reboot, we can check our nftables rules again to ensure they load correctly and are persisted.
+
+`sudo nft list ruleset`
 
 ## Sources
 
