@@ -2,7 +2,7 @@
 title: Migrate from iptables to nftables. Boost your Linux firewall performance
 date: 2025-06-14 00:00:01 +0000
 categories: [hardening, firewall]
-tags: [hardening, firewall, iptables, nftables]
+tags: [hardening, firewall, iptables, nftables, network, sysadmin]
 ---
 
 Learn the essential steps to migrate your Linux firewall configurations from iptables to nftables.
@@ -325,7 +325,7 @@ table inet filter {
 
 Many of you may have noticed that I have set a static antispoofing configuration.
 It's fine for this machine, since it only has a network interace and doesn't switch networks.
-If you want a dynamic antisoofing configuration, you can read: [Dynamic IP antispoofing with nftables and NetworkManager](https://rubenhortas.github.io/posts/nftables-dynamic-antispoofing-networkmanager/).
+If you want a dynamic antisoofing configuration, you can read: [How to prevent IP spoofing with nftables and NetworkManager](https://rubenhortas.github.io/posts/nftables-dynamic-antispoofing-networkmanager/).
 
 ### Test your nftables ruleset
 
