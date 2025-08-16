@@ -11,7 +11,7 @@ Prevent spoofing of your computer's network interfaces using dynamic nftables ru
 ## Why?
 
 I while ago I wrote my article [Migrate from iptables to nftables](https://rubenhortas.github.io/posts/migrate-iptables-nftables/), in which I explained how to migrate from iptables to nftables and why.
-I guess many of you have noticed that I included an static antispoofing rule.
+I guess many of you have noticed that I included a static antispoofing rule.
 
 The computer on which I configured that firewall acts as a server, it only has that network interface and doesn't change networks.
 So, configuring a static antispoofing rule on that computer, is very simple and very easy to mantain.
