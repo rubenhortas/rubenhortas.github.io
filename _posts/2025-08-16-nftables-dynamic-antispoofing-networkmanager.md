@@ -2,16 +2,15 @@
 title: How to prevent IP spoofing with nftables and NetworkManager
 date: 2025-08-16 00:00:01 +0000
 categories: [hardening, firewall]
-tags: [hardening, firewall, iptables, nftables, antispoofing, spoofing, network, syadmin, networkmanager]
+tags: [hardening, firewall, iptables, nftables, antispoofing, spoofing]
 ---
 
-Why is it dynamyc antispofing important?
-How to add dynamic IP antispoofing rules to your [nftables](https://www.netfilter.org/projects/nftables/index.html) firewall with [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager).
-Prevent spoofing of your computer's network interfaces using dynamic [nftables](https://www.netfilter.org/projects/nftables/index.html) rules.
+Add dynamic IP antispoofing rules to your nftables firewall with NetworkManager.
+Prevent spoofing of your computer's network interfaces using dynamic nftables rules.
 
 ## Why?
 
-I while ago I wrote my article [Migrate from iptables to nftables. Boost your Linux firewall performance](https://rubenhortas.github.io/posts/migrate-iptables-nftables/), in which I explained how to migrate from [iptables](https://www.netfilter.org/projects/iptables/index.html) to [nftables](https://www.netfilter.org/projects/nftables/index.html) and why.
+I while ago I wrote my article [Migrate from iptables to nftables](https://rubenhortas.github.io/posts/migrate-iptables-nftables/), in which I explained how to migrate from iptables to nftables and why.
 I guess many of you have noticed that I included an static antispoofing rule.
 
 The computer on which I configured that firewall acts as a server, it only has that network interface and doesn't change networks.
@@ -24,40 +23,38 @@ Mantaining static antispoofing filtering rules in this scenario would be horribl
 ## What is IP spoofing?
 
 Spoofing is the act of faking your identity in a digital environment to impersonate a trusted source.
-There are many types of spoofing: email spofing, web spoofing, caller ID spoofing, **IP spoofing**...
-For brevity, In this post, I will focus only on **IP spoofing**.
-Focusing on **IP spoofing** of our computer interfaces using dynamc rules with [nftables](https://www.netfilter.org/projects/nftables/index.html) and [NetworkManager](https://en.wikipedia.org/wiki/NetworkManager).
+There are many types of spoofing: email spofing, web spoofing, caller ID spoofing, IP spoofing...
+For brevity, In this post, I will focus only on IP spoofing.
+Focusing on IP spoofing of our computer interfaces using dynamc rules with nftables and NetworkManager.
 
-**IP spoofing** is a type of spoofing where an attacker creates IP packets with a false source IP address.
+IP spoofing is a type of spoofing where an attacker creates IP packets with a false source IP address.
 This is possible because the design of the internet's communication protocols, specifically TCP/IP, doesn't always verify the source IP address of a packet.
 
-## Why is **IP spoofing** dangerous
+## Why is IP spoofing dangerous
 
-**IP spoofing** is dangerous because it allows attackers to bypass security measures and launch powerful and stealthy attacks, for example:
+IP spoofing is dangerous because it allows attackers to bypass security measures and launch powerful and stealthy attacks, for example:
 
-* **DDoS**
+* DDoS
 
   Attackers floods a server with an overwhelming amount of traffic.
   By using spoofed IP addresses, they make it nearly impossible to block the malicious traffic, since the packets may appear to come from different random IPs, trusted IPs, or, in our case, from legitimate IPs from our own machine.
 
-* **Bypass authentication**
+* Bypass authentication
 
   Some systems rely on IP address authentication.
   If an attacker can spoof that IP, he will be able to access the "protected" resources.
 
-* **Masking identity**
+* Masking identity
 
   By spoofing the source IP, an attacker remains anonymous thorough the attack.
   This makes incredibly difficult for sysadmins trace the attack back to its origin.
 
-## Adding dynamic **IP spoofing** rules to [nftables](https://www.netfilter.org/projects/nftables/index.html) to avoid **IP spoofing**
+## Adding dynamic IP spoofing rules to nftables to avoid IP spoofing
 
-> For this to work we need to have the "input" table and the "filter" chanin created.
+> For this to work we need to have the "INPUT" table and the "filter" chanin created.
 {: .prompt-info}
 
-### Create the script
-
-We create the script `10-[nftables](https://www.netfilter.org/projects/nftables/index.html)-antispoofing` in `/etc/NetworkManager/dispatcher.d/` (as root) with the following content (the script is self explainatory):
+We create the script `10-nftables-antispoofing` in `/etc/NetworkManager/dispatcher.d/` (as root) with the following content (the script is self explainatory):
 
 ```bash
 #!/usr/bin/env bash
@@ -73,7 +70,7 @@ delete_rules() {
         handle=$(echo "$line" | sed -n 's/.* handle \([0-9]*\).*/\1/p')
 
         if [ -n "$handle" ]; then
-            nft delete rule inet filter input handle "$handle"
+            nft delete rule inet filter INPUT handle "$handle"
         fi
     done
 }
@@ -85,25 +82,23 @@ if [ "$2" = "dhcp4-change" ]; then
 
     	if [ -n "$ipv4" ]; then
     		delete_rules "$1" "ip" # Delete old antispoofing rules for the interface and family
-    	  nft add rule inet filter input iifname "$1" ip saddr "$ipv4" drop # Add new antispoofing rules
+    	  nft add rule inet filter INPUT iifname "$1" ip saddr "$ipv4" drop # Add new antispoofing rules
     	fi
 
     	if [ -n "$ipv6" ]; then
     		delete_rules "$1" "ip6" # Delete old antispoofing rules for the interface and family
-    	  nft add rule inet filter input iifname "$1" ip6 saddr "$ipv6" drop # Add new antispoofing rules
+    	  nft add rule inet filter INPUT iifname "$1" ip6 saddr "$ipv6" drop # Add new antispoofing rules
     	fi
 fi
 ```
 
-### Give execution permissions to the script
-
 Scripts placed in `/etc/NetworkManager/dispatcher.d/` should be named with a number (between 00 and 99) followed by a descriptive number.
 The naming convention it's `XX-name`.
-[NetworkManager](https://en.wikipedia.org/wiki/NetworkManager) executes these scripts in numerical order from lowest to highest.
+NetworkManager executes these scripts in numerical order from lowest to highest.
 
 We give execution permissions to the script:
 
-`sudo chmod +x /etc/NetworkManager/dispatcher.d/10-[nftables](https://www.netfilter.org/projects/nftables/index.html)-antispoofing`
+`sudo chmod +x /etc/NetworkManager/dispatcher.d/10-nftables-antispoofing`
 
 Now, the script will be executed automatically when we connect or disconnect a network interface or whe we change its configuration.
 
