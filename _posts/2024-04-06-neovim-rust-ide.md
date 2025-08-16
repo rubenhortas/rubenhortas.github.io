@@ -6,7 +6,7 @@ tags: [programming, ide, rust, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-If you read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/configuring-neovim-as-python-ide/), you already know that one of mi favorite editors is [neo]vim.
+If you read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/), you already know that one of mi favorite editors is [neo]vim.
 Between other reasons, when I'm using [neo]vim I feel more focused, I don't know why.
 
 One of my open fronts, in my spare time, is learn Rust, and neovim (in this case) seems a great IDE to do it.
