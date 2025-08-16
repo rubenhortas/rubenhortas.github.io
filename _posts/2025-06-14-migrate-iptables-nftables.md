@@ -325,7 +325,7 @@ table inet filter {
 
 Many of you may have noticed that I have set a static antispoofing configuration.
 It's fine for this machine, since it only has a network interace and doesn't switch networks.
-If you want a dynamic antisoofing configuration, you can read: [How to prevent IP spoofing with nftables and NetworkManager](https://rubenhortas.github.io/posts/nftables-dynamic-antispoofing-networkmanager/).
+If you want a dynamic antisoofing configuration, you can delte the antispoofing blocks (incoming and outcoming) and read: [How to prevent IP spoofing with nftables and NetworkManager](https://rubenhortas.github.io/posts/nftables-dynamic-antispoofing-networkmanager/).
 
 ### Test your nftables ruleset
 
