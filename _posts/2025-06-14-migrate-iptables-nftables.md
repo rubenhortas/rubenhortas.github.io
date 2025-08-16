@@ -323,6 +323,10 @@ table inet filter {
 > Adjust IPs and interfaces according to your needs.
 {: .prompt-info}
 
+Many of you may have noticed that I have set a static antispoofing configuration.
+It's fine for this machine, since it only has a network interace and doesn't switch networks.
+If you want a dynamic antisoofing configuration, you can read: [Dynamic IP antispoofing with nftables and NetworkManager](https://rubenhortas.github.io/posts/nftables-dynamic-antispoofing-networkmanager/).
+
 ### Test your nftables ruleset
 
 #### Validate syntax

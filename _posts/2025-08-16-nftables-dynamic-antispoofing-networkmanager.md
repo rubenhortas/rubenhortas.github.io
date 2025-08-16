@@ -35,14 +35,17 @@ This is possible because the design of the internet's communication protocols, s
 IP spoofing is dangerous because it allows attackers to bypass security measures and launch powerful and stealthy attacks, for example:
 
 * DDoS
+
   Attackers floods a server with an overwhelming amount of traffic.
   By using spoofed IP addresses, they make it nearly impossible to block the malicious traffic, since the packets may appear to come from different random IPs, trusted IPs, or, in our case, from legitimate IPs from our own machine.
 
 * Bypass authentication
+
   Some systems rely on IP address authentication.
   If an attacker can spoof that IP, he will be able to access the "protected" resources.
 
 * Masking identity
+
   By spoofing the source IP, an attacker remains anonymous thorough the attack.
   This makes incredibly difficult for sysadmins trace the attack back to its origin.
 
@@ -53,7 +56,8 @@ IP spoofing is dangerous because it allows attackers to bypass security measures
 
 We create the script `10-nftables-antispoofing` in `/etc/NetworkManager/dispatcher.d/` (as root) with the following content (the script is self explainatory):
 
-```bash#!/usr/bin/env bash
+```bash
+#!/usr/bin/env bash
 
 # $1 = interface name
 # $2 = connection status
