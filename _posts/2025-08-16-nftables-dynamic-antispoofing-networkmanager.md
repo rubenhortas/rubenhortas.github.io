@@ -5,12 +5,12 @@ categories: [hardening, firewall]
 tags: [hardening, firewall, iptables, nftables, antispoofing, spoofing]
 ---
 
-Add dynamic IP antispoofing rules to your nftables firewall with NetworkManager.
-Prevent spoofing of your computer's network interfaces using dynamic nftables rules.
+Add dynamic IP antispoofing rules to your [nftables](https://netfilter.org/projects/nftables/) firewall with [NetworkManager](https://networkmanager.dev/).
+Prevent spoofing of your computer's network interfaces using dynamic [nftables](https://netfilter.org/projects/nftables/) rules.
 
 ## Why?
 
-I while ago I wrote my article [Migrate from iptables to nftables](https://rubenhortas.github.io/posts/migrate-iptables-nftables/), in which I explained how to migrate from iptables to nftables and why.
+I while ago I wrote my article [Migrate from iptables to nftables](https://rubenhortas.github.io/posts/migrate-iptables-nftables/), in which I explained how to migrate from [iptables](https://netfilter.org/projects/iptables/index.html) to [nftables](https://netfilter.org/projects/nftables/) and why.
 I guess many of you have noticed that I included a static antispoofing rule.
 
 The computer on which I configured that firewall acts as a server, it only has that network interface and doesn't change networks.
@@ -25,7 +25,7 @@ Mantaining static antispoofing filtering rules in this scenario would be horribl
 Spoofing is the act of faking your identity in a digital environment to impersonate a trusted source.
 There are many types of spoofing: email spofing, web spoofing, caller ID spoofing, IP spoofing...
 For brevity, In this post, I will focus only on IP spoofing.
-Focusing on IP spoofing of our computer interfaces using dynamc rules with nftables and NetworkManager.
+Focusing on IP spoofing of our computer interfaces using dynamc rules with [nftables](https://netfilter.org/projects/nftables/) and [NetworkManager](https://networkmanager.dev/).
 
 IP spoofing is a type of spoofing where an attacker creates IP packets with a false source IP address.
 This is possible because the design of the internet's communication protocols, specifically TCP/IP, doesn't always verify the source IP address of a packet.
@@ -34,22 +34,22 @@ This is possible because the design of the internet's communication protocols, s
 
 IP spoofing is dangerous because it allows attackers to bypass security measures and launch powerful and stealthy attacks, for example:
 
-* DDoS
+* **DDoS**
 
   Attackers floods a server with an overwhelming amount of traffic.
   By using spoofed IP addresses, they make it nearly impossible to block the malicious traffic, since the packets may appear to come from different random IPs, trusted IPs, or, in our case, from legitimate IPs from our own machine.
 
-* Bypass authentication
+* **Bypass authentication**
 
   Some systems rely on IP address authentication.
   If an attacker can spoof that IP, he will be able to access the "protected" resources.
 
-* Masking identity
+* **Masking identity**
 
   By spoofing the source IP, an attacker remains anonymous thorough the attack.
   This makes incredibly difficult for sysadmins trace the attack back to its origin.
 
-## Adding dynamic IP spoofing rules to nftables to avoid IP spoofing
+## Adding dynamic IP spoofing rules to [nftables](https://netfilter.org/projects/nftables/) to avoid IP spoofing
 
 > For this to work we need to have the "INPUT" table and the "filter" chanin created.
 {: .prompt-info}
@@ -94,7 +94,7 @@ fi
 
 Scripts placed in `/etc/NetworkManager/dispatcher.d/` should be named with a number (between 00 and 99) followed by a descriptive number.
 The naming convention it's `XX-name`.
-NetworkManager executes these scripts in numerical order from lowest to highest.
+[NetworkManager](https://networkmanager.dev/).executes these scripts in numerical order from lowest to highest.
 
 We give execution permissions to the script:
 
