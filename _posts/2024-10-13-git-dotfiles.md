@@ -262,7 +262,7 @@ alias dotfiles='/usr/bin/git --git-dir=$HOME/.git_dotfiles/ --work-tree=$HOME'
 ### Cons
 
 * Needs an alias to do not interfere with the `git` command in other repositories.
-* We will have to manage the files one by one.
+* We will have to manage the files more carefully.
 * We will have to delete a (temporary) directory. Is it really a con?
 
 *Enjoy! ;)*
