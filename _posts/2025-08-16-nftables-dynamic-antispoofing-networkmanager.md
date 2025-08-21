@@ -80,6 +80,7 @@ if [ "$2" = "dhcp4-change" ]; then
 	ipv4=$(ip addr show $1 | awk '$1=="inet"{gsub("/.*","",$2); print $2; next}')
 	ipv6=$(ip addr show $1 | awk '$1=="inet6"{gsub("/.*","",$2); print $2; next}')
 
+      # Delete old rules
     	if [ -n "$ipv4" ]; then
     		delete_rules "$1" "ip" # Delete old antispoofing rules for the interface and family
     	  nft add rule inet filter INPUT iifname "$1" ip saddr "$ipv4" drop # Add new antispoofing rules
