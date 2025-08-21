@@ -66,7 +66,7 @@ delete_rules() {
     local interface="$1"
     local family="$2"
 
-    nft -a list ruleset | grep "iifname \"$interface\" $family" | while read -r line; do
+    nft -a list ruleset | grep "iifname \"$interface\" $family " | while read -r line; do
         handle=$(echo "$line" | sed -n 's/.* handle \([0-9]*\).*/\1/p')
 
         if [ -n "$handle" ]; then
