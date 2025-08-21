@@ -2,23 +2,23 @@
 title: How to prevent IP spoofing with nftables and NetworkManager
 date: 2025-08-16 00:00:01 +0000
 categories: [hardening, firewall]
-tags: [hardening, firewall, iptables, nftables, antispoofing, spoofing]
+tags: [hardening, firewall, iptables, nftables, anti-spoofing, spoofing]
 ---
 
-Add dynamic IP antispoofing rules to your [nftables](https://netfilter.org/projects/nftables/) firewall with [NetworkManager](https://networkmanager.dev/).
+Add dynamic IP anti-spoofing rules to your [nftables](https://netfilter.org/projects/nftables/) firewall with [NetworkManager](https://networkmanager.dev/).
 Prevent spoofing of your computer's network interfaces using dynamic [nftables](https://netfilter.org/projects/nftables/) rules.
 
 ## Why?
 
 I while ago I wrote my article [Migrate from iptables to nftables](https://rubenhortas.github.io/posts/migrate-iptables-nftables/), in which I explained how to migrate from [iptables](https://netfilter.org/projects/iptables/index.html) to [nftables](https://netfilter.org/projects/nftables/) and why.
-I guess many of you have noticed that I included a static antispoofing rule.
+I guess many of you have noticed that I included a static anti-spoofing rule.
 
 The computer on which I configured that firewall acts as a server, it only has that network interface and doesn't change networks.
-So, configuring a static antispoofing rule on that computer, is very simple and very easy to mantain.
+So, configuring a static anti-spoofing rule on that computer, is very simple and very easy to mantain.
 
 But, what happens when the computer it's a laptop (for example)?
 I latop typically has two network interfaces, and may frequently switch between networks.
-Mantaining static antispoofing filtering rules in this scenario would be horrible.
+Mantaining static anti-spoofing filtering rules in this scenario would be horrible.
 
 ## What is IP spoofing?
 
@@ -54,7 +54,7 @@ IP spoofing is dangerous because it allows attackers to bypass security measures
 > For this to work we need to have the "INPUT" table and the "filter" chanin created.
 {: .prompt-info}
 
-We create the script `10-nftables-antispoofing` in `/etc/NetworkManager/dispatcher.d/` (as root) with the following content (the script is self explainatory):
+We create the script `10-nftables-anti-spoofing` in `/etc/NetworkManager/dispatcher.d/` (as root) with the following content (the script is self explainatory):
 
 ```bash
 #!/usr/bin/env bash
@@ -82,13 +82,13 @@ if [ "$2" = "dhcp4-change" ]; then
 
       # Delete old rules
     	if [ -n "$ipv4" ]; then
-    		delete_rules "$1" "ip" # Delete old antispoofing rules for the interface and family
-    	  nft add rule inet filter INPUT iifname "$1" ip saddr "$ipv4" drop # Add new antispoofing rules
+    		delete_rules "$1" "ip" # Delete old anti-spoofing rules for the interface and family
+    	  nft add rule inet filter INPUT iifname "$1" ip saddr "$ipv4" drop # Add new anti-spoofing rules
     	fi
 
     	if [ -n "$ipv6" ]; then
-    		delete_rules "$1" "ip6" # Delete old antispoofing rules for the interface and family
-    	  nft add rule inet filter INPUT iifname "$1" ip6 saddr "$ipv6" drop # Add new antispoofing rules
+    		delete_rules "$1" "ip6" # Delete old anti-spoofing rules for the interface and family
+    	  nft add rule inet filter INPUT iifname "$1" ip6 saddr "$ipv6" drop # Add new anti-spoofing rules
     	fi
 fi
 ```
@@ -99,7 +99,7 @@ The naming convention it's `XX-name`.
 
 We give execution permissions to the script:
 
-`sudo chmod +x /etc/NetworkManager/dispatcher.d/10-nftables-antispoofing`
+`sudo chmod +x /etc/NetworkManager/dispatcher.d/10-nftables-anti-spoofing`
 
 Now, the script will be executed automatically when we connect or disconnect a network interface or whe we change its configuration.
 
