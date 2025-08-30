@@ -1,11 +1,11 @@
 ---
-title: Dynamic firewall ruules with nftables and NetworkManager
+title: Dynamic firewall rules with nftables and NetworkManager
 date: 2025-08-30 00:00:01 +0000
 categories: [hardening, firewall]
 tags: [hardening, firewall, iptables, nftables]
 ---
 
-Dynamically implement IPv4 and IPv6 firewall rules for each network interface with nftables and NetworkManager.
+Dynamically implement IPv4 and IPv6 firewall rules for each network interface with [nftables](https://netfilter.org/projects/nftables/) and [NetworkManager](https://networkmanager.dev/).
 If the interface comes online or changes IP, the rules are automatically updated.
 If the interface goes offline, the rules are automatically deleted.
 
@@ -15,7 +15,8 @@ I while ago I wrote about [Migrate from iptables to nftables](https://rubenhorta
 More recently I wrote about [How to prevent IP spoofing with nftables and NetworkManager](https://rubenhortas.github.io/posts/nftables-dynamic-anti-spoofing-networkmanager/).
 Yep, I'm into firewalling lately... :P
 
-The thing is, as the [iptables to nftables migration post](https://rubenhortas.github.io/posts/migrate-iptables-nftables/) is written in a single file (for simplicity and to use a server as an example), and IP spoofing (althoug is implemented dynamically) is only a part of protection, I decided to combine both, and Explain how to dynamically manage firewall rules with [nftables](https://netfilter.org/projects/nftables/) and [NetworkManager](https://networkmanager.dev/).
+The thing is, as the [iptables to nftables migration post](https://rubenhortas.github.io/posts/migrate-iptables-nftables/) is written in a single file (for simplicity and to use a server as an example), and IP spoofing (althoug is implemented dynamically) is only a part of protection, I decided to combine both, and explain how to dynamically manage firewall rules with [nftables](https://netfilter.org/projects/nftables/) and [NetworkManager](https://networkmanager.dev/).
+
 This implementation is geared toward everyday devices (desktops and/or laptops) where network interfaces may be available (or unavailable) and their IP addresses may change.
 Managing the firewall manually in these environments would be a horrible job, if not impossible.
 
