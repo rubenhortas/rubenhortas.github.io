@@ -93,9 +93,10 @@ if [ "$2" = "dhcp4-change" ]; then
 fi
 ```
 
-Scripts placed in `/etc/NetworkManager/dispatcher.d/` should be named with a number (between 00 and 99) followed by a descriptive number.
-The naming convention it's `XX-name`.
-[NetworkManager](https://networkmanager.dev/).executes these scripts in numerical order from lowest to highest.
+>Scripts placed in `/etc/NetworkManager/dispatcher.d/` should be named with a number (between 00 and 99) followed by a descriptive number.
+>The naming convention it's `XX-name`.
+>[NetworkManager](https://networkmanager.dev/) executes these scripts in numerical order from lowest to highest.
+{: .prompt-info}
 
 We give execution permissions to the script:
 
