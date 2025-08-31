@@ -109,15 +109,16 @@ table inet filter {
 
 ## The rules for interfaces
 
-At this point, we can create one file for all interfaces or one file for each interface.
-I prefer to keep a single file, but this, as always, will depend on each user's preferences and needs.
-
 We create the script `10-nftables-hotplug` in `/etc/NetworkManager/dispatcher.d/` (as root) with the following content (the script is self explainatory):
+
+At this point, we can create one file for all interfaces or one file for each interface.
+To maintain a single file, if I needed other rules depending on the interface, I would handle the cases through conditionals in the code of this script.
+I prefer to keep a single file, but this, as always, will depend on each user's preferences and needs.
 
 ```
 #!/usr/bin/env bash
 
-# /etc/NetworkManager/dispatcher.d/
+# /etc/NetworkManager/dispatcher.d/10-nftables-hotplug
 # $1 = interface name
 # $2 = connection status
 
@@ -194,7 +195,9 @@ fi
 >[NetworkManager](https://networkmanager.dev/) executes these scripts in numerical order from lowest to highest.
 {: .prompt-info}
 
-To maintain a single file, if I needed other rules depending on the interface, I would handle the cases through conditionals in the code of this script.
+>Note that, in this example, all incoming and outgoing traffic is allowed.
+>You should only allow traffic for your trusted services.
+{: .prompt-warning}
 
 With this script, every time an interface connects or changes IP, its old rules will be deleted, and new ones will be added, taking into account the new IP.
 If an interface is disconnected, its associated rules will be deleted.
