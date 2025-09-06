@@ -5,7 +5,7 @@ categories: [awesomewm, configuration]
 tags: [awesomewm, configuration, howto, gnu/linux]
 ---
 
-My favorite tiling windows manager is [awesome window manager](https://awesomewm.org/) (also called awesome or awesomewm). 
+My favorite tiling windows manager is [awesome window manager](https://awesomewm.org/) (also called awesome or awesomewm).
 Awesome does not need mouse, everything can be performed with the keyboard and this is great when you are using a laptop.
 
 Awesome comes complete with its own status bar and can handle a lot of things by default, but uses Lua scripting language for its configuration and, at first, could be a little messy.
@@ -45,7 +45,7 @@ To do this, wi will edit our `~/.config/awesome/rc.lua` file, and we will config
 
 ### Window layouts
 
-Mostly, I only use the maximized layout, but I leave the floating layout for applications that starts with a login dialog, the calculator, and so. 
+Mostly, I only use the maximized layout, but I leave the floating layout for applications that starts with a login dialog, the calculator, and so.
 So in the next section I comment all the others:
 
 ```lua
@@ -239,9 +239,12 @@ theme.wallpaper = themes_path.."/home/ruben/images/wallpaper.jpg"
 
 ## Add widgets
 
-We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widgets](https://github.com/streetturtle/awesome-wm-widgets)
-I usually install the following widget:
-  * logout-menu-widget
+We can add our widgets to end the configuration. A good startingp point is [https://github.com/streetturtle/awesome-wm-widget](https://github.com/streetturtle/awesome-wm-widgets)
+
+### logout-menu-widget
+
+I usually install the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget).
+And I have to fix it: [Fixing awesome logout-menu-widget](https://rubenhortas.github.io/posts/fixing-awesomewm-logout-menu-widget/).
 
 ### Custom widgets
 
@@ -283,7 +286,7 @@ I only want to see the hour and the minutes. If you, as me, want another time fo
 mytextclock = wibox.widget.textclock(" %H:%M ")
 ```
 
-> The formats are the same as in the linux date command 
+> The formats are the same as in the linux date command
 {: .prompt-info}
 
 ### My own widgets (ip and hackthebox)
@@ -294,7 +297,7 @@ You also may find interesting my own awesome widgets:
 
 # GTK applications  with dark theme
 
-For personal reasons I usually work with dark themes, but awesome does not have one, is not its job.  
+For personal reasons I usually work with dark themes, but awesome does not have one, is not its job.
 If you, as me, want applications in dark mode and you have installed gtk applications, you only have to modify the settings.ini files contained in the gtk-\*.\*/ directories under ~./config and set:
 
 ```
@@ -318,6 +321,15 @@ $ sudo update-alternatives --config x-www-browser
 $ xdg-settings set default-web-browser firefox-esr.desktop
 ```
 
+## Autostart applications
+
+If we want execute applications and/or scripts when our awesome starts, we have to add it at the end of the `~/.config/awesome/rc.lua`, e.g.:
+
+```lua
+-- Autostart
+awful.spawn.with_shell("~/scripts/my_config_script")
+```
+
 ## Backup and clean
 
 When we have awesome running configured to our liking, we can make a backup of our configuration files and themes, then we can remove the commented lines and their associated sections and/or declarations. This way we will have a (slightly) lighter configuration and window manager and, with our backup, we can always go back in case something goes wrong.
@@ -328,14 +340,5 @@ When we have awesome running configured to our liking, we can make a backup of o
 * [awesome - ArchWiki](https://wiki.archlinux.org/title/awesome)
 * [awesome recipes](https://awesomewm.org/recipes/)
 * [Debian Wiki - Awesome](https://wiki.debian.org/Awesome)
-
-## Autostart applications
-
-If we want execute applications and/or scripts when our awesome starts, we have to add it at the end of the `~/.config/awesome/rc.lua`, e.g.:
-
-```lua
--- Autostart
-awful.spawn.with_shell("~/scripts/my_config_script")
-```
 
 *Enjoy! ;)*
