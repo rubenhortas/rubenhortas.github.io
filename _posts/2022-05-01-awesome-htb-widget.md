@@ -2,20 +2,20 @@
 title: Awesome HTB widget
 date: 2022-05-01 00:00:01 +0000
 categories: [personal, portfolio]
-tags: [personal, portfolio, awesomewm, widgets, hack the box, developments]
+tags: [personal, portfolio, awesomewm, widget, hack the box, development]
 img_path: /assets/img/posts/
 ---
 
-I did a simple widget to show the IPs of your VPN interface and your target machine (if is set) while you are playing in  [hack the box (hackthebox.com)](https://app.hackthebox.com/)  
+I did a simple widget to show the IPs of your VPN interface and your target machine (if is set) while you are playing in  [hack the box (hackthebox.com)](https://app.hackthebox.com/)
 
 It's also a good widget to see the IP of your VPN interface (and) if the interface is up.
 
 ## Screenshots
-- With target on  
+- With target on
 ![Target on](awesome-htb-widget-target_on_screenshot.jpg)
 _Awesome htb widget with target on_
 
-- With target off  
+- With target off
 ![Target off](awesome-htb-widget-target_off_screenshot.jpg)
 _Awesome htb widget with target off_
 

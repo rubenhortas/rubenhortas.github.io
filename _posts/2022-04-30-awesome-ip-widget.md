@@ -2,11 +2,11 @@
 title: Awesome IP widget
 date: 2022-04-30 00:00:01 +0000
 categories: [personal, portfolio]
-tags: [personal, portfolio, awesomewm, widgets, developments]
+tags: [personal, portfolio, awesomewm, widget, development]
 img_path: /assets/img/posts/
 ---
 
-I did a a simple widget to show the IP of an interface in the awesome window manager wibar.  
+I did a a simple widget to show the IP of an interface in the awesome window manager wibar.
 
 ## Screenshots
 ![Awesome IP widget](awesome-ip-widget-screenshot.jpeg)
