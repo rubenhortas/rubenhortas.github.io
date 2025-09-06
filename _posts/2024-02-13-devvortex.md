@@ -2,7 +2,7 @@
 title: Hack the box - Devvortex pwned!
 date: 2024-02-13 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box, machine, devvortex, joomla, mysql]
+tags: [hack the box, devvortex, joomla, mysql]
 img_path: /assets/img/posts/
 ---
 
@@ -41,7 +41,7 @@ If we look for more information about the services running in those ports we wil
 ```
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.2p1 Ubuntu 4ubuntu0.9 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   3072 48add5b83a9fbcbef7e8201ef6bfdeae (RSA)
 |   256 b7896c0b20ed49b2c1867c2992741c1f (ECDSA)
 |_  256 18cd9d08a621a8b8b6f79f8d405154fb (ED25519)
@@ -93,7 +93,7 @@ We take a look with [joomscan](https://github.com/OWASP/joomscan) and we found t
 ...
 [+] Checking robots.txt existing
 [++] robots.txt is found
-path : http://dev.devvortex.htb/robots.txt 
+path : http://dev.devvortex.htb/robots.txt
 
 Interesting path found from robots.txt
 http://dev.devvortex.htb/joomla/administrator/
@@ -119,12 +119,12 @@ http://dev.devvortex.htb/tmp/
 Taking a further look we find that is a jommla vulnerable version:
 
 ```
-searchsploit joomla | grep -i v4.2  
+searchsploit joomla | grep -i v4.2
 Joomla! v4.2.8 - Unauthenticated information disclosure
 ```
 
 ```
-searchsploit -p 51334 
+searchsploit -p 51334
   Exploit: Joomla! v4.2.8 - Unauthenticated information disclosure
       URL: https://www.exploit-db.com/exploits/51334
      Path: /opt/exploitdb/exploits/php/webapps/51334.py
@@ -213,7 +213,7 @@ uid=33(www-data) gid=33(www-data) groups=33(www-data)
 If we look in the `configuration.php` file we found the database and the credentials:
 
 ```
-www-data@devvortex:~/dev.devvortex.htb$ cat configuration.php | grep -E 'user|password|\$db' 
+www-data@devvortex:~/dev.devvortex.htb$ cat configuration.php | grep -E 'user|password|\$db'
         public $dbtype = 'mysqli';
         public $user = 'lewis';
         public $password = 'f4k3l0g4np455';
@@ -289,7 +289,7 @@ We check our sudo cappabilities and we find that we can execute `/usr/bin/apport
 
 ```
 logan@devvortex:~$ sudo -l
-[sudo] password for logan: 
+[sudo] password for logan:
 Matching Defaults entries for logan on devvortex:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin
 

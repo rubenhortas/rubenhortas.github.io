@@ -2,7 +2,7 @@
 title: Hack the box - Perfection pwned!
 date: 2024-03-17 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box, machine, perfection, ruby, ssti, password cracking]
+tags: [hack the box, perfection, ruby, ssti, password cracking]
 img_path: /assets/img/posts/
 ---
 

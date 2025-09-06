@@ -2,7 +2,7 @@
 title: Hack the box - Analytics pwned!
 date: 2024-03-02 00:00:01 +0000
 categories: [hack the box, machine]
-tags: [hack the box, machine, analytics, docker, metabase, CVE-2023-32629]
+tags: [hack the box, analytics, docker, metabase, CVE-2023-32629]
 img_path: /assets/img/posts/
 ---
 
