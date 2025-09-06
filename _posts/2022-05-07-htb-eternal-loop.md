@@ -2,7 +2,7 @@
 title: Hack The Box - Eternal Loop pwned!
 date: 2022-05-07 00:00:01 +0000
 categories: [hack the box, challenge]
-tags: [hack the box, challenge, misc, htb, Eternal loop, john, zip2john, rockyou, sqlite, sqlite3]
+tags: [hack the box, challenge, misc, htb, Eternal loop, john, zip2john, rockyou, sqlite3]
 img_path: /assets/img/posts/
 ---
 
@@ -12,19 +12,19 @@ img_path: /assets/img/posts/
 
 ## Solution
 
-If we extract the Eternal Loop.zip file we found the 37366.zip file. This file is password protected and contains the 5900.zip file.  
-We don't know the 37366.zip password... We'll try with 5900... It works!  
-Now we know that the zip file will be the name of the inner file.  
+If we extract the Eternal Loop.zip file we found the 37366.zip file. This file is password protected and contains the 5900.zip file.
+We don't know the 37366.zip password... We'll try with 5900... It works!
+Now we know that the zip file will be the name of the inner file.
 
-Ok, the challenge now is unzip the files until we get the last file. We can do this by hand, but, **spoiler alert**: There will be 501 zips!  
+Ok, the challenge now is unzip the files until we get the last file. We can do this by hand, but, **spoiler alert**: There will be 501 zips!
 To do this I did a self-explained python script that you can see here: [eternal_loop.py](https://github.com/rubenhortas/hackthebox/blob/main/eternalLoop/eternal_loop.py)
 
-Once we have the last file, surprise, is password protected. 
+Once we have the last file, surprise, is password protected.
 This time we have not clue what the password might be, so we'll bruteforce it.
 
 First of all is extract the hash of the zip file. We'll use zip2john
 
-```console 
+```console
 zip2john 6969.zip > 6969.hash
 ```
 
@@ -50,7 +50,7 @@ So, we have to open the database
 sqlite3 DoNotTouch
 ```
 
-Once the database is open we can list the tables with the command .tables 
+Once the database is open we can list the tables with the command .tables
 
 ```console
 .tables
@@ -73,7 +73,7 @@ And we can export the tables data to csv files following the next steps:
 select * from table;
 ```
 
-Now we can grep the csv files looking for the flag.  
+Now we can grep the csv files looking for the flag.
 To speed this step up I will tell you that the flag is in the employees table, in the email field for the employee wiht id 69.
 
 ```console
