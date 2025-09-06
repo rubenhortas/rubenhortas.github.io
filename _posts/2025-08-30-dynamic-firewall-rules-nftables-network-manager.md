@@ -39,10 +39,12 @@ To achieve this, this file will only contain:
 ```
 #!/usr/sbin/nft -f
 
+#/etc/nftables.conf
+
 # Clear existing rules
 flush ruleset
 
-# Using 'inet' family for rules that apply to both IPv4 and IPv6,
+# Using 'inet' family for rules that apply to both IPv4 and IPv6
 table inet filter {
     # Blacklisted IP addresses
     set blacklist_ipv4_static {
@@ -69,7 +71,7 @@ table inet filter {
         flags dynamic;
     }
 
-    # ICMP handling for incoming traffic
+    # ICMP handling for incoming traffic (IPv4 & IPv6)
     chain ICMP_IN {
         # Allow replies for established/related ICMP sessions
         icmp type { echo-reply, destination-unreachable, time-exceeded } ct state { related, established } accept
@@ -80,7 +82,7 @@ table inet filter {
         icmpv6 type echo-request drop
     }
 
-    # ICMP handling for outgoing traffic
+    # ICMP handling for outgoing traffic (IPv4 & IPv6)
     chain ICMP_OUT {
         # Allow outgoing echo-requests (ping) and established/related ICMP
         icmp type echo-request ct state { new, established } accept
@@ -139,55 +141,54 @@ delete_rules "$1" INPUT
 delete_rules "$1" OUTPUT
 
 if [[ "$1" != lo && ("$2" = "up" || "$2" = "dhcp4-change" || "$2" = "dhcp6-change") ]]; then
-	# Add rules to the INPUT chain
+    # Add rules to the INPUT chain
 
     # 1. Anti-spofing
-	ipv4=$(ip addr show $1 | awk '$1=="inet"{gsub("/.*","",$2); print $2; next}')
+    ipv4=$(ip addr show $1 | awk '$1=="inet"{gsub("/.*","",$2); print $2; next}')
 
     if [ -n "$ipv4" ]; then
         nft add rule inet filter INPUT iifname "$1" ip saddr "$ipv4" drop
     fi
 
-	ipv6=$(ip addr show $1 | awk '$1=="inet6"{gsub("/.*","",$2); print $2; next}')
+    ipv6=$(ip addr show $1 | awk '$1=="inet6"{gsub("/.*","",$2); print $2; next}')
 
     if [ -n "$ipv6" ]; then
         nft add rule inet filter INPUT iifname "$1" ip6 saddr "$ipv6" drop
     fi
 
-	# 2. Accept established and related traffic
-	nft add rule inet filter INPUT iifname "$1" ct state { established, related } accept
+    # 2. Accept established and related traffic
+    nft add rule inet filter INPUT iifname "$1" ct state { established, related } accept
 
-	# 3. Drop traffic from known blacklisted ips
-	nft add rule inet filter INPUT iifname "$1" ip saddr @blacklist_ipv4 drop
-	nft add rule inet filter INPUT iifname "$1" ip6 saddr @blacklist_ipv6 drop
+    # 3. Drop traffic from known blacklisted ips
+    nft add rule inet filter INPUT iifname "$1" ip saddr @blacklist_ipv4 drop
+    nft add rule inet filter INPUT iifname "$1" ip6 saddr @blacklist_ipv6 drop
 
-	# 4. Drop invalid traffic
-	nft add rule inet filter INPUT iifname "$1" ct state invalid drop
+    # 4. Drop invalid traffic
+    nft add rule inet filter INPUT iifname "$1" ct state invalid drop
 
-	# 5. Drop invalid fragmented packets
+    # 5. Drop invalid fragmented packets
     nft add rule inet filter INPUT iifname "$1" ip frag-off != 0 tcp dport 22 ct state new accept
 
-	# 6. Jump to an ICMP chain
-	nft add rule inet filter INPUT iifname "$1" meta l4proto { icmp, icmpv6 } jump ICMP_IN
+    # 6. Jump to an ICMP chain
+    nft add rule inet filter INPUT iifname "$1" meta l4proto { icmp, icmpv6 } jump ICMP_IN
 
-	# 7. Limit and drop new connections to prevent floods and scans
-	nft add rule inet filter INPUT iifname "$1" tcp limit rate 5/second burst 15 packets counter add @blacklist_ipv4 { ip saddr } drop
-	nft add rule inet filter INPUT iifname "$1" tcp limit rate 5/second burst 15 packets counter add @blacklist_ipv6 { ip6 saddr } drop
-	nft add rule inet filter INPUT iifname "$1" udp limit rate 5/second burst 15 packets counter add @blacklist_ipv4 { ip saddr } drop
-	nft add rule inet filter INPUT iifname "$1" udp limit rate 5/second burst 15 packets counter add @blacklist_ipv6 { ip6 saddr } drop
+    # 7. Limit and drop new connections to prevent floods and scans
+    nft add rule inet filter INPUT iifname "$1" tcp limit rate 5/second burst 15 packets counter add @blacklist_ipv4 { ip saddr } drop
+    nft add rule inet filter INPUT iifname "$1" tcp limit rate 5/second burst 15 packets counter add @blacklist_ipv6 { ip6 saddr } drop
+    nft add rule inet filter INPUT iifname "$1" udp limit rate 5/second burst 15 packets counter add @blacklist_ipv4 { ip saddr } drop
+    nft add rule inet filter INPUT iifname "$1" udp limit rate 5/second burst 15 packets counter add @blacklist_ipv6 { ip6 saddr } drop
 
-	# 8. Accept all incoming traffic
-	nft add rule inet filter INPUT iifname "$1" ct state new accept
+    # 8. Accept all incoming traffic
+    nft add rule inet filter INPUT iifname "$1" ct state new accept
 
-	# Add rules to the OUTPUT chain for the tun0 interface
+    # Add rules to the OUTPUT chain
 
-	# 1. Accept all traffic
-	nft add rule inet filter OUTPUT oifname "$1" accept
+    # 1. Jump to an ICMP chain
+    nft add rule inet filter OUTPUT oifname "$1" meta l4proto { icmp, icmpv6 } jump ICMP_OUT
 
-	# 2. Jump to an ICMP chain
-	nft add rule inet filter OUTPUT oifname "$1" meta l4proto { icmp, icmpv6 } jump ICMP_OUT
+    # 2. Accept all outgoing traffic
+    nft add rule inet filter OUTPUT oifname "$1" accept
 fi
-
 ```
 
 >Scripts placed in /etc/NetworkManager/dispatcher.d/ should be named with a number (between 00 and 99) followed by a descriptive number.
