@@ -2,10 +2,10 @@
 title: How to check NTP servers from Windows
 date: 2022-09-23 00:00:01 +0000
 categories: [windows, administration]
-tags: [windows, administration, ntp, sntp, nis, time, howto]
+tags: [windows, administration, ntp, sntp, nis, time]
 ---
 
-Sometimes we need to retrieve the date from a NTP [Network Time Protocol](https://es.wikipedia.org/wiki/Network_Time_Protocol) 
+Sometimes we need to retrieve the date from a NTP [Network Time Protocol](https://es.wikipedia.org/wiki/Network_Time_Protocol)
 server to record it somewhere.
 
 The first thing is to know if the server is working and reacheable from our computer (yep, firewalls still works).
@@ -31,8 +31,8 @@ netcat time-c.nist.gov 13
 # Checking a SNTP server
 
 Check a SNTP is not as straightforward as check a NTP server. SNTP servers uses the UDP protocol and the 123 port.
-Telnet or netcat won't work for us... 
-But we can use [w32tm](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/ff799054(v=ws.11)). 
+Telnet or netcat won't work for us...
+But we can use [w32tm](https://learn.microsoft.com/en-us/previous-versions/windows/it-pro/windows-server-2012-R2-and-2012/ff799054(v=ws.11)).
 For example, if we wanted to check if ntp02.oal.ul.pt will work for us:
 
 windows > run > cmd

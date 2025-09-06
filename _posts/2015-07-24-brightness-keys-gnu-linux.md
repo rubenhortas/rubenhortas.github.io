@@ -1,8 +1,8 @@
 ---
 title: Get brightness keys working on GNU/Linux
 date: 2015-07-24 00:00:01 +0000
-categories: [gnu/linux, howtos]
-tags: [gnu/linux, howto, xdotool]
+categories: [gnu/linux, brightness keys]
+tags: [gnu/linux, brightbness keys, xdotool]
 ---
 
 After install a new GNU/Linux distribution on my laptop it was working _almost_ all, but not the brightness key (or brightness buttons).

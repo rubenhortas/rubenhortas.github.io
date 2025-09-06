@@ -1,8 +1,8 @@
 ---
 title: Force HDMI hotplug in a Raspberry Pi
 date: 2022-11-11 00:00:01 +0000
-categories: [raspberry pi, howtos]
-tags: [raspberry pi, howto, hdmi] 
+categories: [raspberry pi, hdmi]
+tags: [raspberry pi, hdmi]
 ---
 
 The HDMI output of the Raspberry Pi is only activated if a screen is connected and powered up before the Raspberry Pi is started up.
@@ -19,7 +19,7 @@ With a screen connected to our Raspberry Pi we will execute:
 
 ```shell
 $ tvservice -s
-``` 
+```
 
 Based on the information returned to us we can set our values.
 For example, if or output was:
@@ -29,12 +29,12 @@ state 0xa [HDMI CEA (31) RGB lim 16:9], 1920x1080 @ 50.00Hz, progressive
 ```
 
 Based on our output, our values will be:
-  - hdmi_group=1 # CEA 
+  - hdmi_group=1 # CEA
   - hdmi_mode=31 # (CEA) = (31) = 1080p = 1920x1080, 16:9, 50Hz
-  
+
 >We also can find (or check) our configuration values at [Raspberry Pi documentation video options](https://www.raspberrypi.com/documentation/computers/config_txt.html#video-options)
 {: .prompt-info}
-  
+
 Now we will need to edit the /boot/config.txt file (as root) and uncomment and set the following values:
 
 ```shell

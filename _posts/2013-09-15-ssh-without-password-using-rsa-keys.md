@@ -2,7 +2,7 @@
 title: SSH without password, using RSA keys
 date: 2013-09-15 00:00:01 +0000
 categories: [hardening, ssh]
-tags: [hardening, ssh, security, rsa, network, howto]
+tags: [hardening, ssh, security, rsa, networking]
 img_path: /assets/img/posts/
 ---
 Suppose we have two computers: **computer1 with ip 10.0.0.1** and **computer2 with ip 10.0.0.2**.
@@ -27,7 +27,7 @@ Your identification has been saved in /home/rubenhortas/.ssh/id_rsa.
 Your public key has been saved in /home/rubenhortas/.ssh/id_rsa.pub.
 The key fingerprint is:
 **:**:**:**:**:**:**:**:**:**:**:**:**:**:**:**
-The key's randomart image is: 
+The key's randomart image is:
 ```
 
 _*You have to leave the passphrase empty, otherwise it will ask for it every time we connect to computer2 via SSH_

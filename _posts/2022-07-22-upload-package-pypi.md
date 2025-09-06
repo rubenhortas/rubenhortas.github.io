@@ -2,7 +2,7 @@
 title: Upload a package to PyPI
 date: 2022-07-22 00:00:01 +0000
 categories: [python, pypi]
-tags: [programming, python, pypi, howto]
+tags: [programming, python, pypi]
 ---
 
 Although the [Packaging Python Projects tutorial](https://packaging.python.org/en/latest/tutorials/packaging-projects/) is very detailed in how to package a Python Project, I encountered some difficulties at the time of do it, so I'm going to leave here a summary and some notes to my future me ;)
@@ -89,10 +89,10 @@ python3 -m twine upload dist/*
 pip3 install projectname
 ```
 
-Sources: 
+Sources:
 
-* [Packaging Python Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects)  
-* [Entry points specification](https://packaging.python.org/en/latest/specifications/entry-points)  
+* [Packaging Python Projects](https://packaging.python.org/en/latest/tutorials/packaging-projects)
+* [Entry points specification](https://packaging.python.org/en/latest/specifications/entry-points)
 * [Metadata Hatch](https://hatch.pypa.io/latest/config/metadata)
 
 _Enjoy! ;)_

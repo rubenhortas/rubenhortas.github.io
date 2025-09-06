@@ -2,7 +2,7 @@
 title: Configuring awesome window manager
 date: 2022-09-09 00:00:01 +0000
 categories: [awesomewm, configuration]
-tags: [awesomewm, configuration, howto, gnu/linux]
+tags: [awesomewm, configuration, gnu/linux, windows manager, tiling]
 ---
 
 My favorite tiling windows manager is [awesome window manager](https://awesomewm.org/) (also called awesome or awesomewm).

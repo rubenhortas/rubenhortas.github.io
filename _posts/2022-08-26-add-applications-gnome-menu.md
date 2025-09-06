@@ -2,19 +2,19 @@
 title: Add applications to gnome menu
 date: 2022-08-26 00:00:01 +0000
 categories: [gnu/linux, gnome]
-tags: [gnu/linux, gnome, howto, configuration]
+tags: [gnu/linux, gnome, configuration]
 ---
 
-When we install applications from outside the repositories these applications are not added automatically to the gnome menu.  
+When we install applications from outside the repositories these applications are not added automatically to the gnome menu.
 How can we add them to the menu?
 
-In [gnome](https://www.gnome.org/) applications are added to the menu through .desktop files.  
+In [gnome](https://www.gnome.org/) applications are added to the menu through .desktop files.
 
-.desktop files are in two paths:  
+.desktop files are in two paths:
 * /usr/share/applications/
 * ~/.local/share/applications
 
-To add an application to the menu we need to create a .desktop file for the application in either of the two paths.  
+To add an application to the menu we need to create a .desktop file for the application in either of the two paths.
 
 For instance, if we want to add an entry in the menu for myNewApplication we will create myNewApplication.desktop file in one of the paths with the following content (setting the values for our application):
 
@@ -31,11 +31,11 @@ Categories=Category1;Category2
 Terminal=false
 StartupWMClass=jetbrains-pycharm-ce
 StartupNotify=true
-``` 
+```
 
 ## StartupWMClass
 
-StartupWMClass is a property to associate windows with the owning application. Avoids to have multiple copies of the same icon on the dock for many java-based applications.  
+StartupWMClass is a property to associate windows with the owning application. Avoids to have multiple copies of the same icon on the dock for many java-based applications.
 To find out which WM_CLASS has our application, we can run xprop on a terminal an then click at the application window.
 
 ```shell

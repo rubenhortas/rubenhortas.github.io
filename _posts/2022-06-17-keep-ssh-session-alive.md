@@ -2,14 +2,14 @@
 title: Keep alive ssh sessions
 date: 2022-06-17 00:00:01 +0000
 categories: [gnu/linux, ssh]
-tags: [gnu/linux, ssh, howto, configuration]
+tags: [gnu/linux, ssh, configuration]
 ---
 
-Sometimes firewalls time out idle sessions after a certain period of time.  
-We can avoid have our SSH sessions killed with a few options to keep alive ssh sesions.  
-We can configure the keep alive on the server side or on the client side.  
+Sometimes firewalls time out idle sessions after a certain period of time.
+We can avoid have our SSH sessions killed with a few options to keep alive ssh sesions.
+We can configure the keep alive on the server side or on the client side.
 
-* On the client side:  
+* On the client side:
 We need to edit the ~/.ssh/config file and add or uncomment the following lines:
 
 ```shell
@@ -17,7 +17,7 @@ ServerAliveInterval 300
 ServerAliveCountMax 2
 ```
 
-* On the server side:  
+* On the server side:
 We need to edit the /etc/ssh/sshd_config file and add or uncomment the following lines:
 
 ```shell

@@ -2,7 +2,7 @@
 title: Upload a package to PyPI automatically with GitHub Actions
 date: 2024-11-02 00:00:01 +0000
 categories: [python, pypi]
-tags: [programming, python, pypi,github,github actions, howto]
+tags: [programming, python, pypi,github, github actions]
 img_path: /assets/img/posts/
 ---
 
@@ -10,7 +10,7 @@ Some time ago, I wrote the post [Upload a package to PyPI](https://rubenhortas.g
 
 # GitHub actions
 
-[GitHub actions](https://docs.github.com/en/actions) allows us to automate, customize and execute development workflows right in our github repositories. 
+[GitHub actions](https://docs.github.com/en/actions) allows us to automate, customize and execute development workflows right in our github repositories.
 With [GitHub actions](https://docs.github.com/en/actions) we can automate a lot of tasks (build, tests, deployments, code reviews, issue management...) when an event occurs in our repository.
 [GitHub actions](https://docs.github.com/en/actions) it's a very powerful tool, I have to say that, for me, it has been like discovering a new world.
 
@@ -194,20 +194,20 @@ jobs:
 
 # Publishes the built package to TestPyPI (for testing) if the tag starts with test_v.*
   publish-to-testpypi:
-      name: Publish to TestPyPI 🐍📦 
+      name: Publish to TestPyPI 🐍📦
       needs:
         - build # Start the job only if the build job has completed
       runs-on: ubuntu-latest
-  
+
       environment:
         name: testpypi # Enter the environment name set in the Publisher
         url: https://test.pypi.org/p/example-package-hanaosan0318 # Project URL
-  
+
       permissions:
         id-token: write  # Grant Publishing permissions
-  
+
       if: startsWith(github.ref, 'refs/tags/test_v') # Conditional check for TestPyPI publishing
-  
+
       steps:
       - name: Download all the dists # Download the build artifacts that were saved earlier
         uses: actions/download-artifact@v4
@@ -225,16 +225,16 @@ Publishes the built package to PyPI (production) if the tag starts with v.*
       needs:
         - build # Start the job only if the build job has completed
       runs-on: ubuntu-latest
-      
+
       environment:
         name: pypi # Enter the environment name set in the Publisher
         url: https://pypi.org/p/example-package-hanaosan0318 # Project URL
-        
+
       permissions:
         id-token: write
-  
+
       if: startsWith(github.ref, 'refs/tags/v') # Conditional check for PyPI publishing
-  
+
       steps:
       - name: Download all the dists
         uses: actions/download-artifact@v4
@@ -249,14 +249,14 @@ Publishes the built package to PyPI (production) if the tag starts with v.*
       needs:
         - publish-to-pypi # Start the job only if the PyPI publishing job has completed
       runs-on: ubuntu-latest
-  
+
       permissions:
         contents: write # Grant permission to create a GitHub release
-  
+
       steps:
       - name: Checkout code
         uses: actions/checkout@v4 # Checkout the code
- 
+
       # I had to escape the braces in the following block. Replace them if you copy this.
       - name: Create GitHub Release
         env:
@@ -283,7 +283,7 @@ The workflow will build the distribution packages and upload them to [testpypi.o
 * If a `v*.*.*` tag (e.g. `v1.0.1`) is pushed, the relase version will be generated.
 The workflow will build the packages, upload them to [pypi.org](https://pypi.org/) **and generate the GitHub release**.
 
-## Why I decided to write my own workflow? 
+## Why I decided to write my own workflow?
 
 The reason why I decided to write my own workflow is because the workflows I saw depended on other events, and, usually, they did a lot of work together (as publish to [testpypi.org](https://test.pypi.org/), [pypi.org](https://pypi.org/) and generate the [GitHub](https://github.com) release at the same time).
 I prefer a slightly more structured workflow, based on pushing version tags. And, I want to perform slightly different actions based on these tags.

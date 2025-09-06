@@ -1,8 +1,8 @@
 ---
 title: Set a resolution manually in GNU/Linux
 date: 2022-09-02 00:00:01 +0000
-categories: [gnu/linux, howtos]
-tags: [gnu/linux, howto, screen, resolution ]
+categories: [gnu/linux, screen resolution]
+tags: [gnu/linux, screen, resolution ]
 ---
 
 Lately I'm having problems with mi secondary screen. For some reason it loses its resolution and I have to add it manually.
@@ -19,14 +19,14 @@ This will show the following result
 
 ```
 # 1680x1050 59.95 Hz (CVT 1.76MA) hsync: 65.29 kHz; pclk: 146.25 MHz
-Modeline "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync 
+Modeline "1680x1050_60.00"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync
 ```
 
 * Add the modeline with xrandr:
 
 ```shell
 xrandr --newmode "1680x1050_60"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync
-``` 
+```
 
 * Identify our screens
 
@@ -62,13 +62,13 @@ xrandr --output DVI-I-2 --mode 1680x1050_60
 
 The changes will be lost after reboot. To keep the resolution permanently we can create the file ~/.xprofile with the following content:
 
-``` 
+```
 #!/bin/bash
 
 # Generate modeline
 # cvt 1680x1050 60
- 
-xrandr --newmode "1680x1050_60"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync 
+
+xrandr --newmode "1680x1050_60"  146.25  1680 1784 1960 2240  1050 1053 1059 1089 -hsync +vsync
 xrandr --addmode DVI-I-2 1680x1050_60
 xrandr --output DVI-I-2 --mode 1680x1050_60
 ```

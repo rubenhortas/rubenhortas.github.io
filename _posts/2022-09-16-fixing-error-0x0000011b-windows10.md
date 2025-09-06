@@ -2,10 +2,10 @@
 title: Fixing error 0x0000011b on Windows 10
 date: 2022-09-16 00:00:01 +0000
 categories: [windows10, administration]
-tags: [windows10, administration, windows, error, howto, printer]
+tags: [windows10, administration, windows, error, printer]
 ---
 
-A few days ago, as a personal favor, I had to configure some network printers between some Windows 10 computers. 
+A few days ago, as a personal favor, I had to configure some network printers between some Windows 10 computers.
 Nothing complicated... Until error 0x0000011b appeared...
 
 > Windows cannot connect to the printer. Error: Operation failed with error 0x0000011b on the network.
@@ -24,7 +24,7 @@ So after a bit of googling I saw that other solutions were to uninstall a couple
 I ruled out the option to uninstall updates and set windows update not to install them again, basically for the following reasons:
 * The user does not have an advanced profile and it is very possible that he will reinstall the updates by updating windows, and then he will be left without printers again...
 * The time it would take to uninstall certain updates one by one and test if the error was fixed
-* The chance of someone exploiting that vulnerability in that environment is very remote 
+* The chance of someone exploiting that vulnerability in that environment is very remote
 * The vulnerability does not seem critical
 
 Once the windows update related options were discarded, the only thing left to do was to give it a try to edit the windows registry...

@@ -2,10 +2,10 @@
 title: Fixing awesome logout-menu-widget
 date: 2022-11-18 00:00:01 +0000
 categories: [awesomewm, widget]
-tags: [awesomewm, widget, logout-menu-widget, howto]
+tags: [awesomewm, widget, logout-menu-widget]
 ---
 
-I like to have installed the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) from [Pavel Makhov](https://pavelmakhov.com/) ([@streetturtle](https://github.com/streetturtle))in awesome. 
+I like to have installed the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) from [Pavel Makhov](https://pavelmakhov.com/) ([@streetturtle](https://github.com/streetturtle))in awesome.
 I like to can shut down my machine with a pair of clicks.
 But, it turns out that the [logout-menu-widget](https://github.com/streetturtle/awesome-wm-widgets/tree/master/logout-menu-widget) does not work for me out of the box.
 It's just a configuration problem, and, to solve it, I have to change a couple of lines in the widget source code (logout-menu.lua file).
