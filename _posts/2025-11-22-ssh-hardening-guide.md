@@ -1,5 +1,5 @@
 ---
-title: Essential SSH hardening guide: Secure your server and client with configs and fail2ban
+title: Essential SSH hardening guide
 date: 2025-11-22 00:00:01 +0000
 categories: [hardening, ssh]
 tags: [hardening, ssh, fail2ban]
