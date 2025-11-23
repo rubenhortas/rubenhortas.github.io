@@ -18,6 +18,9 @@ The goal of hardening is to eliminate (or reduce) inherent vulnerabilities that 
 
 ## Keep your system updated ;)
 
+Keep your system updated is the primary way to patch security vulnerabilities.
+So, the fisrt step, and one of the most importants steps in hardening (both on the server side and on the client side) is to keep our system updated.
+
 ## Server hardening
 
 ### The configuration file
