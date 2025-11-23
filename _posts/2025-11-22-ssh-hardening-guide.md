@@ -225,7 +225,7 @@ Better with passphrase? The passphrase prevents the attacker from using the keys
 
 ### Prefer public key authentication
 
-`PreferredAunthetications publickey`
+`PreferredAuthentications publickey`
 
 This forces the use of public keys as form of authentication.
 
