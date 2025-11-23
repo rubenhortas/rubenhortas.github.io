@@ -19,7 +19,7 @@ The goal of hardening is to eliminate (or reduce) inherent vulnerabilities that 
 ## Keep your system updated ;)
 
 Keep your system updated is the primary way to patch security vulnerabilities.
-So, the fisrt step, and one of the most importants steps in hardening (both on the server side and on the client side) is to keep our system updated.
+So, the first step, and one of the most importants steps in hardening (both on the server side and on the client side) is to keep our system updated.
 
 ## Server hardening
 
@@ -87,7 +87,7 @@ We are going to set up an inactiviy timeout to prevent sessions from remaining o
 
 ```
 ClientAliveInterval 300 # The server will send the client a message every 300 seconds if there is no activity
-ClientAliveCountMax 2   # If the clinent does not respond to 2 messages, the connection is terminated
+ClientAliveCountMax 2   # If the client does not respond to 2 messages, the connection is terminated
 ```
 
 >At this point, we have to be careful not to set values so restrictive that they cut off our connections.
