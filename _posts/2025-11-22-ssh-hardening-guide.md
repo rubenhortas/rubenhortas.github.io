@@ -237,7 +237,7 @@ This disables the login with password.
 
 ### Disable host based authentication
 
-`HostBasedAuthetication no`
+`HostBasedAuthentication no`
 
 Host based authentication is less secure.
 
