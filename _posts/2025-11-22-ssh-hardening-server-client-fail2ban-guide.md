@@ -270,8 +270,18 @@ Host based authentication is less secure.
 ### Key verification
 
 We will force the client to verify that the server key matches the key stored in the `known_hosts` file to prevent Man-In-The-Middle (MITM) attacks.
+We can set the `StrictHostKeyChecking` to `ask` or `yes`:
+
+`StrictHostKeyChecking ask`
+
+    * First connection: the SSH client will prompt you to manually confirm if you trust the server's key before adding it to your `known_hosts` file.
+    * Server key changed: The connection will be refused.
 
 `StrictHostKeyChecking yes`
+
+    * First connection: The SSH client will refuse the connection immediately if the host's key is not already present in your `known_hosts` file.
+    You must manually add the host key before attempting to connect.
+    * Server key changed: The connection will be refused.
 
 ### Force the use of modern algorithms
 
