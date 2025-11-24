@@ -1,18 +1,18 @@
 ---
-title: Essential SSH hardening guide
+title: Essential SSH hardening guide (Server, client and fail2ban)
 date: 2025-11-22 00:00:01 +0000
 categories: [hardening, ssh]
 tags: [hardening, ssh, fail2ban]
 ---
 
-Harden the default SSH configuration settings to reduce your system's attack surface in your server and client.
+Harden the default SSH configuration settings to reduce your system's attack surface on both your server and client.
 Also, install and configure [fail2ban](https://github.com/fail2ban/fail2ban) in your server.
 
 ## Why?
 
-SSH is the privileged gateway for remote administration of almost any server or network device (in many cases, this includes personal computers and/or gadgets), this makes SSH a prime target for attackers.
+SSH is the privileged gateway for remote administration of almost any server or network device (in many cases, this includes personal computers and/or gadgets), which makes it a prime target for attackers.
 
-We must harden SSH to prevent attackers from exploiting weak configurations and gaining access to our devices, thereby protecting both our devices and our network (other devices).
+We must harden SSH to prevent attackers from exploiting weak configurations and gaining access to our devices, thereby protecting both our devices and the rest of our network.
 
 The goal of hardening is to eliminate (or reduce) inherent vulnerabilities that may exist in the default configuration of a service.
 
@@ -27,7 +27,7 @@ Therefore, the first step, and one of the most important steps in hardening (bot
 
 To harden SSH, on the server side, we are going to change certain settings in the SSH configuration file: `/etc/ssh/sshd_config`.
 
-To configure the values, we can uncomment the lines (if they are commented out) and edit the values.
+To configure the values, we can uncomment the lines (commented out) and edit the values.
 However, I prefer to leave the original line commented out and place the line with the new value directly below it.
 This is a quick way to see if we have modified a default configuration (and what its default value was) when we review the file, when we add new configurations, or when we modify existing settings.
 If you prefer to edit the values directly, I recommend you make a backup of the original configuration file.
@@ -36,15 +36,15 @@ After changing the settings, we'll need to restart the SSH service for the chang
 
 ### Change the default SSH port
 
-Security by obscurity is never the solution, and **changing the default port isn't a foolproof security measure**, but it will deter automated attacks.
+Security by obscurity is never the solution, and **port change is hardly a silver bullet**, but it will deter automated attacks.
 
-`Port 1023` # Genrally used for testing
+`Port 1023` # Generally used for testing
 
->Changing the port can create a security issue.
+> Changing the port can create a security issue.
 {: .prompt-warning}
 
-The problem here is that changing the port can create a security issue called "Non-Privileged Port Binding" or "Ephemeral Port Hijacking".
-Any unprivileged local user is able to bind and listen to unprivileged ports (1024-65535).
+The catch here is that changing the port can create a security issue called "Non-Privileged Port Binding" or "Ephemeral Port Hijacking".
+While Linux restricts privileged ports (1-1023) to the root user, any unprivileged local user is able to bind and listen to unprivileged ports (1024-65535).
 Therefore, if our SSH server is running on, say, port 2222, and it crashes, a local user could start a fake SSH server on this port.
 
 My choice here is to implement Port Forwarding from the external firewall.
@@ -52,20 +52,20 @@ I would open port 22222 in the firewall and redirect that traffic to port 22 of 
 
 ### Disable X11 forwarding
 
-If we aren't going to use graphical applications via SSH, it's best to disable it.
+If we are not going to use graphical applications via SSH, it is best to disable it.
 The main reason for disabling X11 forwarding is the possibility of an attacker gaining access to your local X server session if the remote SSH server is compromised.
 
 `X11Forwarding no`
 
 ### Disable agent forwarding
 
-We will disable agent forwarding because it creates a security risk by allowing the remote machine to use our local SSH private keys for *any* subsequent connection.
+We will disable agent forwarding because it creates a security risk by allowing the compromissed remote machine to use our local SSH private keys for *any* subsequent connection.
 
 `AllowAgentForwarding no`
 
 ### Restrict root login
 
-On our systems, the `root` account should be disabled already.
+On a well-configured system, the `root` account should be disabled already.
 Disabling the `root` account and elevating privileges using `sudo` is a good security practice.
 Anyway, we are going to disable it:
 
@@ -80,15 +80,15 @@ AllowUsers rubenhortas rhortas
 AllowGroups rubenhortas rhortas ssh
 ```
 
->The users and groups are examples.
->You have to add your own users and groups.
+> The users and groups are examples.
+> You have to add your own users and groups.
 {: .promt-warning}
 
 If a user is listed in `AllowUsers` or belongs to a group listed in `AllowGroups`, they are allowed access.
-If neither `AllowUsers` nor `AllowGroups`is specified, all users are permitted to log in (assuming they have credentials).
+If neither `AllowUsers` nor `AllowGroups` is specified, all users are permitted to log in (assuming they have credentials).
 
->You should consider using only one approach (`AllowUsers` or `AllowGroups`) if possible.
->My personal approach is use only `AllowUsers` because I have few users to manage.
+> You should consider using only one approach (`AllowUsers` or `AllowGroups`) if possible.
+> My personal approach is to use only `AllowUsers` because I have few users to manage.
 {: .prompt-info}
 
 ### Configure the idle timeout
@@ -97,13 +97,13 @@ We are going to set up an inactiviy timeout to prevent sessions from remaining o
 
 ```
 ClientAliveInterval 300 # The server will send the client a message every 300 seconds if there is no activity
-ClientAliveCountMax 2   # If the client does not respond to 2 messages, the connection is terminated
+ClientAliveCountMax 2   # If the client does not respond to 2 messages in 10 minutes (300 x 2 = 600 seconds), the connection is terminated
 ```
 
->At this point, we have to be careful not to set values so restrictive that they cut off our connections.
+> At this point, we have to be careful not to set values so restrictive that they cut off our connections.
 {: .prompt-warning}
 
->Alternatively, for non-SSH specific shell timeouts, consider using the TMOUT environment variable in the shell profile.
+> Alternatively, for non-SSH specific shell timeouts, consider using the TMOUT environment variable in the shell profile.
 {: .prompt-info}
 
 ### Disable password authentication.
@@ -118,7 +118,7 @@ After we have RSA key authentication set up and working, we are going to disable
 
 ### Explicity enforce Protocol 2
 
-While modern SSH server sowftware defaults to using the secure `Protocol 2`, explicity setting the directive is a critical step in hardening our server.
+While modern SSH server software defaults to using the secure `Protocol 2`, and the modern and secure approach is to simply *not* specify the protocol, explicitly setting the directive could be a critical step in hardening our server.
 SSH `Protocol 1`is insecure and has known severe vulnerabilities.
 Explicty setting the configuration ensures that `Protocol 1`is never accepted, even if a client attempts to negotiate it.
 
@@ -135,19 +135,19 @@ We need to harden our Key Exchange Algorithms using algorithms that uses modern 
 
 `KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256`
 
+#### MACs (integrity)
+
+MACs (Message Authentication Codes) ensure the data has not been tampered with in transit.
+We should prioritize **Encrypt-then-MAC (EtM)** algorithms.
+
+`MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com`
+
 #### Ciphers (encryption)
 
 Ciphers encrypt the data channel.
 It's best to prioritize **Authenticated Encryption with Associated Data (AEAD)** ciphers like `chacha20-poly1305` and `aes-gcm`.
 
 `Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr`
-
-#### MACs (integrity)
-
-MACs (Message Authentication Codes) ensure the data hasn't been tampered with in transit.
-We should prioritize **Encrypt-then-MAC (EtM)** algorithms.
-
-`MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com`
 
 ### Reboot SSH service
 
@@ -180,7 +180,7 @@ findtime = 1m               # Time window during which the maxretry count is cal
 bantime = 1m                # Ban duration
 ```
 
->There was a time when I had the ban set to last forever, but it ended up with so many IPs that it degraded performance.
+> There was a time when I had the ban set to last forever, but it ended up with so many IPs that it degraded performance.
 {: .prompt-info}
 
 My `fail2ban` configuration could be quite aggressive.
@@ -196,40 +196,53 @@ sudo systemctl start fail2ban
 
 ## Client hardening
 
-### The configuration file
+### The configuration files
 
-To harden SSH, on the client side, we are going to change certain settings in the SSH configuration file: `~/.ssh/config`.
-This file allows us to define custom settings for individual remote hosts or groups of host.
+To harden SSH, on the client side, we are going to change certain settings in one of the two SSH configuration files: `/etc/ssh/ssh_config` or `~/.ssh/config`.
 
-#### Specific host configuration
+* `/etc/ssh/ssh_config`
 
-To add a specific host, you create a new configration block starting with the `Host` option and a unique alias for that host:
+    This file holds the system-wide configuration.
+    It defines the default configuration for all users on the system.
 
-```
-Host rubenhortas-dev
-    HostName 192.168.1.1
-    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
-    ...
-```
+    To configure the values, we can uncomment the lines (if commented out) and edit the values.
+    However, as I said before, I prefer to leave the original line commented out and place the line with the new value directly below it.
+    If you prefer to edit the values directly, I recommend you make a backup of the original configuration file.
 
-#### Default all hosts configurations
+* `~/.ssh/config`
 
-The `Host *` will work for all hosts, but it's applied hierarchically.
-The `Host *` settings will be applied to every single connection, unless they are overriden by a more specific `Host` entry.
-We will add the hardening settings in this block.
+    This file defines custom configurations for the user and specific hosts or groups of hosts.
 
-```
-Host *
-    PasswordAuthentication no
-    KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
-    ...
-```
+    #### Specific host configuration
+
+    To add a specific host, you create a new configuration block starting with the `Host` option and a unique alias for that host:
+
+    ```
+    Host rubenhortas-dev
+        HostName 192.168.1.1
+        KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+        ...
+    ```
+
+    #### Default configuration for all hosts
+
+    The `Host *` entry applies to all hosts, but its settings are applied hierarchically.
+    The `Host *` settings will be applied to every single connection, unless they are overridden by a more specific `Host` entry.
+    We will add the hardening settings in this block.
+
+    ```
+    Host *
+        PasswordAuthentication no
+        KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+        ...
+    ```
 
 ### Restrict key files permissions
 
 ```
 chmod 700 ~/.ssh
-chmod 600 ~./ssh/id_*
+chmod 600 ~/.ssh/id_*
+chmod 64 ~/.ssh/known_hosts
 ```
 
 ### Private keys
@@ -256,7 +269,7 @@ Host based authentication is less secure.
 
 ### Key verification
 
-We will force the client to verify that the server key matches the key stored in the `known_hosts` file to prevent Man In The Middle (MITM) attacks.
+We will force the client to verify that the server key matches the key stored in the `known_hosts` file to prevent Man-In-The-Middle (MITM) attacks.
 
 `StrictHostKeyChecking yes`
 
@@ -269,13 +282,13 @@ This will ensure that, even if we connect to a legacy server, we will use the be
 
 `KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256`
 
-#### Ciphers (Encryption)
-
-`Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com`
-
 #### MACs (integrity)
 
 `MACs hmac-sha2-512-etm@openssh.com,hmac-sha2-256-etm@openssh.com,umac-128-etm@openssh.com`
+
+#### Ciphers (Encryption)
+
+`Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com`
 
 ### Disable X11 forwarding
 
