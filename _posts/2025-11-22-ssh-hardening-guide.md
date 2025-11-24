@@ -155,7 +155,7 @@ We have to restart the SSH service for the changes to take effect.
 
 `sudo systemctl restart ssh`
 
-### Bonus track: fail2ban
+### Bonus: fail2ban
 
 [fail2ban](https://github.com/fail2ban/fail2ban) monitors failed login attempts in the logs and blocks the IPs addresses they originate from in the firewall.
 
