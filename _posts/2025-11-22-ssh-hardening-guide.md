@@ -18,8 +18,8 @@ The goal of hardening is to eliminate (or reduce) inherent vulnerabilities that 
 
 ## Keep your system updated ;)
 
-Keep your system updated is the primary way to patch security vulnerabilities.
-So, the first step, and one of the most importants steps in hardening (both on the server side and on the client side) is to keep our system updated.
+Keeping your system updated is the primary way to patch security vulnerabilities.
+Therefore, the first step, and one of the most important steps in hardening (both on the server side and on the client side) is to keep your system updated.
 
 ## Server hardening
 
@@ -38,7 +38,17 @@ After changing the settings, we'll need to restart the SSH service for the chang
 
 Security by obscurity is never the solution, and **changing the default port isn't a foolproof security measure**, but it will deter automated attacks.
 
-`Port 22222`
+`Port 1023` # Genrally used for testing
+
+>Changing the port can create a security issue.
+{: .prompt-warning}
+
+The problem here is that changing the port can create a security issue called "Non-Privileged Port Binding" or "Ephemeral Port Hijacking".
+Any unprivileged local user is able to bind and listen to unprivileged ports (1024-65535).
+Therefore, if our SSH server is running on, say, port 2222, and it crashes, a local user could start a fake SSH server on this port.
+
+My choice here is to implement Port Forwarding from the external firewall.
+I would open port 22222 in the firewall and redirect that traffic to port 22 of the machine running the SSH server.
 
 ### Disable X11 forwarding
 
@@ -278,5 +288,7 @@ As on the server side, we will disable X11 forwarding to prevent exposing our gr
 As on the server side, we will disable agent forwarding to prevent that a compromised server from using our keys to (potentially connect to other servers.
 
 `ForwardAgent no`
+
+Thanks to [Rodrigo Rega](https://rodrigorega.es/) and [Alberto Mouriz](https://github.com/AlbertoMouriz) for the advice.
 
 *Thanks for reading! ;)*
