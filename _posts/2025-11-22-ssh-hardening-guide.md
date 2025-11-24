@@ -289,6 +289,6 @@ As on the server side, we will disable agent forwarding to prevent that a compro
 
 `ForwardAgent no`
 
-Thanks to [Rodrigo Rega](https://rodrigorega.es/) and [Alberto Mouriz](https://github.com/AlbertoMouriz) for the advice.
+*Thanks to [Rodrigo Rega](https://rodrigorega.es/) and [Alberto Mouriz](https://github.com/AlbertoMouriz) for the advice.*
 
 *Thanks for reading! ;)*
