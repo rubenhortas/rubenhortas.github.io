@@ -255,11 +255,11 @@ Better with passphrase? The passphrase prevents the attacker from using the keys
 
 This forces the use of public keys as form of authentication.
 
-### Disable password authentication
+### Prioritizing Public Keys
 
 `PasswordAuthentication no`
 
-This disables the login with password.
+This ensures that our client always prioritizes the use of public keys above all other password-based methods.
 
 ### Disable host based authentication
 
