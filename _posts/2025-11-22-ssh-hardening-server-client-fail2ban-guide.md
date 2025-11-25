@@ -269,8 +269,21 @@ Host based authentication is less secure.
 
 ### Key verification
 
-We will force the client to verify that the server key matches the key stored in the `known_hosts` file to prevent Man-In-The-Middle (MITM) attacks.
-We can set the `StrictHostKeyChecking` to `ask` or `yes`:
+We must force the client to verify that the server's key matches the key stored in the `known_hosts` file to prevent Man-In-The-Middle (MITM) attacks.
+The relevant configuration options are setting `StrictHostKeyChecking` to `ask` or `yes`.
+
+We need a balance between security and convenience.
+My preferred approach is to configure `StrictHostKeyChecking ask` for all hosts by default, and set `StrictHostKeyChecking yes` to sensitive hosts (like my own).
+
+A change in a host key is usually due to legitimate administrative reasons (e.g. reinstallations, replacement, changes in key/type algorithms...).
+However, althoug less common, it could be due to malicious acts.
+
+There are certain types of hosts where key changes are not uncommon, such as Capture The Flag (CTF) challenge servers or frequently rebuild virtual machines.
+But, on my own hosts, a change in keys should never happen without my knowledge.
+
+By setting `StrickHostKeyChecking ask` globally, as default, and `StrictHostKeyChecking yes` for critical hosts, I can connect to a host susceptible to key changes and, if the key had changed, I can decide whether to accept the new key. Crucially, if the key had changed on a host where it should not, the strict setting will prevent the connection entirelly, inmediately alerting me to a potential security issue.
+
+if the key had changed on a host where should not, I will find out something is wrong when I connect.
 
 `StrictHostKeyChecking ask`
 
