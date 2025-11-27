@@ -41,11 +41,10 @@ Security by obscurity is never the solution, and **port change is hardly a silve
 `Port 1023` # Generally used for testing
 
 > Changing the port can create a security issue.
-{: .prompt-warning}
-
-The catch here is that changing the port can create a security issue called "Non-Privileged Port Binding" or "Ephemeral Port Hijacking".
+>The catch here is that changing the port can create a security issue called "Non-Privileged Port Binding" or "Ephemeral Port Hijacking".
 While Linux restricts privileged ports (1-1023) to the root user, any unprivileged local user is able to bind and listen to unprivileged ports (1024-65535).
 Therefore, if our SSH server is running on, say, port 2222, and it crashes, a local user could start a fake SSH server on this port.
+{: .prompt-warning}
 
 My choice here is to implement Port Forwarding from the external firewall.
 I would open port 22222 in the firewall and redirect that traffic to port 22 of the machine running the SSH server.
@@ -211,9 +210,9 @@ To harden SSH, on the client side, we are going to change certain settings in on
 
 * `~/.ssh/config`
 
-    This file defines custom configurations for the user and specific hosts or groups of hosts.
+    This file defines custom configurations for the user and specific hosts or groups of hosts:
 
-    #### Specific host configuration
+    1. Specific host configuration
 
     To add a specific host, you create a new configuration block starting with the `Host` option and a unique alias for that host:
 
@@ -224,7 +223,7 @@ To harden SSH, on the client side, we are going to change certain settings in on
         ...
     ```
 
-    #### Default configuration for all hosts
+    2. Default configuration for all hosts
 
     The `Host *` entry applies to all hosts, but its settings are applied hierarchically.
     The `Host *` settings will be applied to every single connection, unless they are overridden by a more specific `Host` entry.
