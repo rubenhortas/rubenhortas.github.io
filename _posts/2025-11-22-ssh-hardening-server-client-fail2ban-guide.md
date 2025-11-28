@@ -212,7 +212,7 @@ To harden SSH, on the client side, we are going to change certain settings in on
 
     This file defines custom configurations for the user and specific hosts or groups of hosts:
 
-    1. Specific host configuration
+    * Specific host configuration
 
     To add a specific host, you create a new configuration block starting with the `Host` option and a unique alias for that host:
 
@@ -223,7 +223,7 @@ To harden SSH, on the client side, we are going to change certain settings in on
         ...
     ```
 
-    2. Default configuration for all hosts
+    * Default configuration for all hosts
 
     The `Host *` entry applies to all hosts, but its settings are applied hierarchically.
     The `Host *` settings will be applied to every single connection, unless they are overridden by a more specific `Host` entry.
