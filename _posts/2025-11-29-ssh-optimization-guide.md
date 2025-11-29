@@ -19,8 +19,6 @@ We can speed up our transfers by changing a few settings.
 
 ### The configuration file
 
-The configuration file
-
 To optimize SSH, on the server side, we are going to tweak the SSH server configuration file: /etc/ssh/sshd_config.
 
 To configure the values, we can uncomment the lines (commented out) and edit the values. However, I prefer to leave the original line commented out and place the line with the new value directly below it.
