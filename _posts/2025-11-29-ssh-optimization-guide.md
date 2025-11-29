@@ -96,6 +96,7 @@ Host rubenhortas-dev
     ControlPath ~/.ssh/control_sockets/%r@%h:%p
     ControlPersist 600
     KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
     LogLevel ERROR
     ...
 ```
@@ -112,6 +113,7 @@ Host *
     ControlPath ~/.ssh/control_sockets/%r@%h:%p
     ControlPersist 600
     KexAlgorithms curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256
+    Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com
     LogLevel ERROR
     ...
 ```
