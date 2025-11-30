@@ -177,6 +177,6 @@ We will define a bash alias in our `~/.bashrc` with our favorite parameters, and
 > Something we can't see using `scp`
 {: .prompt-info}
 
-*Thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advices.
+*Thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advices.*
 
 **Thanks for reading! :)*
