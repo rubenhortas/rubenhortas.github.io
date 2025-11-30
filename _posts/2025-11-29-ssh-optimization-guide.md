@@ -173,8 +173,10 @@ We will define a bash alias in our `~/.bashrc` with our favorite parameters, and
 
 ` alias rsync='rsync --recursive --partial --progress --human-readable --verbose'`
 
-> With the `--verbose` option we can see the file transfer progress.
+> With the `--progress` option we can see the file transfer progress.
 > Something we can't see using `scp`
 {: .prompt-info}
 
-*Thanks for reading! :)*
+*Thanks to [Rodrigo Rega](https://rodrigorega.es/) for the advices.
+
+**Thanks for reading! :)*
