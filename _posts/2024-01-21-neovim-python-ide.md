@@ -30,23 +30,34 @@ This configuration will be the base to which I will add the python configuration
 `~/.config/nvim/init.vim`:
 
 ```lua
-syntax on                       "syntax highlighting
-filetype plugin indent on       "file type detection
-set number                      "display line number
-set path+=**                    "improves searching
-set noswapfile                  "disable use of swap files
-set wildmenu                    "completion menu
-set backspace=indent,eol,start  "ensure proper backspace functionality
-set incsearch                   "see results while search is being typed, see :help incsearch
-set smartindent                 "auto indent on new lines, see :help smartindent
-set expandtab                   "expanding tab to spaces
-set tabstop=4                   "setting tab to 4 columns
-set shiftwidth=4                "setting tab to 4 columns
-set softtabstop=4               "setting tab to 4 columns
-set showmatch                   "display matching bracket or parenthesis
-set hlsearch incsearch          "highlight all pervious search pattern with incsearch
-set clipboard=unnamedplus       "activate the system clipboard
-"set list                        "show all whitespaces (uncomment without Better Whitespace plugin)
+syntax on                               " Enable syntax highlighting
+filetype plugin indent on               " Enable filetype detection, plugins, and smart indentation
+set encoding=utf-8                      " Set file and terminal encoding to UTF-8
+
+set autoindent                          " Copy indentation from the previous line
+set smartindent                         " Enable smarter automatic indentation
+set expandtab                           " Use spaces instead of actual tabs
+set tabstop=4                           " A Tab character is rendered as 4 spaces wide
+set shiftwidth=4                        " Auto-indent commands (e.g., >>) use 4 spaces
+set softtabstop=4                       " Tab/Backtab keys use 4 spaces when inserting
+
+set number                              " Show absolute line number
+set showmatch                           " Briefly show the matching bracket/parenthesis
+set wildmenu                            " Enhanced command-line completion menu
+set mouse=a                             " Enable mouse support in all modes
+set updatetime=250                      " Sets the delay (ms) for showing diagnostics and tooltips (important for LSP)
+
+set path+=**                            " Allow searching for files recursively (e.g., :find filename)
+set incsearch                           " Show results as you type the search pattern (incremental search)
+set hlsearch                            " Highlight all matches of the last search pattern
+set ignorecase                          " Ignore case when searching
+set smartcase                           " Override ignorecase if the search pattern contains uppercase letters
+
+set backspace=indent,eol,start          " Ensures backspace works as expected
+set clipboard=unnamedplus               " Integrate with system clipboard for yank/put (requires external tool like xclip/wl-copy)
+set noswapfile                          " Disable swap files to prevent clutter
+set undofile                            " Enable persistent undo history
+set undodir=~/.config/nvim/undodir      " Specify a directory for undo files (needs to be created)
 ```
 
 In my base configuration I usually add the [Vim Better Whitespace Plugin](https://github.com/ntpeters/vim-better-whitespace) (I'll talk about it later), but I keep the option "list" handy (but commented).
