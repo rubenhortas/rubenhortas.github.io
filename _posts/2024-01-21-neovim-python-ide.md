@@ -6,7 +6,7 @@ tags: [programming, ide, python, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-I have to admit it, [Neo]vim is my editor for everything.
+I have to admit it, Neovim is my editor for everything.
 I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).
 Do I have to edit a file? [Neovim](https://neovim.io).
 Do I have to do a bash script? [Neovim](https://neovim.io).
@@ -21,7 +21,7 @@ The point is that, while I was coding some python scripts, above all using new l
 Features I was used to in [Pycharm](https://www.jetbrains.com/pycharm/), as autocomplete and linting (analzing source code to flag programming errors, bugs, stylistic errors, etc.).
 So, I decided it was time to configure [Neovim](https://neovim.io) to improve my python experience.
 
-## [Neo]vim base configuration
+## Neovim base configuration
 
 This is my base configuration.
 My configuration for all, in all my computers, no matter the purpose.
@@ -110,7 +110,7 @@ Now, we edit our `init.vim` file to append the following lines:
 lua require('lua_config')
 ```
 
-## [Neo]vim plugin manager
+## Neovim plugin manager
 
 As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
 
