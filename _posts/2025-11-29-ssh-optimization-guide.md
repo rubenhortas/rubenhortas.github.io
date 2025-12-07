@@ -171,7 +171,7 @@ The key benefit of `rsync` is its delta-transfer algorithm.
 
 We will define a bash alias in our `~/.bashrc` with our favorite parameters, and then we will use `rsync` instead of `scp`:
 
-`alias rsync='rsync --recursive --partial --progress --human-readable --verbose'`
+`alias rsync='rsync --recursive --partial --progress --human-readable --verbose --size-only --compress'`
 
 > With the `--progress` option we can see the file transfer progress.
 > Something we can't see using `scp`
