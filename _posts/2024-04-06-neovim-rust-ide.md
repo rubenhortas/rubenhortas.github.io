@@ -35,7 +35,7 @@ This is my configuration for all, in all my computers, no matter the purpose.
 
 `~/.config/nvim/init.vim`:
 
-```lua
+```vim
 syntax on                               " Enable syntax highlighting
 filetype plugin indent on               " Enable filetype detection, plugins, and smart indentation
 set encoding=utf-8                      " Set file and terminal encoding to UTF-8

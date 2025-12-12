@@ -29,7 +29,7 @@ This configuration will be the base to which I will add the python configuration
 
 `~/.config/nvim/init.vim`:
 
-```lua
+```vim
 syntax on                               " Enable syntax highlighting
 filetype plugin indent on               " Enable filetype detection, plugins, and smart indentation
 set encoding=utf-8                      " Set file and terminal encoding to UTF-8
