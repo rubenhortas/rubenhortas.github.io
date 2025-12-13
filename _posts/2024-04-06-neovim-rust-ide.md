@@ -50,7 +50,7 @@ set softtabstop=4                       " Tab/Backtab keys use 4 spaces when ins
 set number                              " Show absolute line number
 set showmatch                           " Briefly show the matching bracket/parenthesis
 set wildmenu                            " Enhanced command-line completion menu
-set mouse=a                             " Enable mouse support in all modes
+set mouse=                              " Disable mouse support
 set updatetime=250                      " Sets the delay (ms) for showing diagnostics and tooltips (important for LSP)
 
 set path+=**                            " Allow searching for files recursively (e.g., :find filename)
