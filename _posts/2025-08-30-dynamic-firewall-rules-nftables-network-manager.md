@@ -36,7 +36,7 @@ To achieve this, this file will only contain:
 >If you don't want all ICMP rules to apply to all interfaces, or you want different ICMP rules to apply to different interfaces, don't add these rules to the /etc/nftables.conf file and add them to the interface file(s).
 {: .prompt-info}
 
-```
+```bash
 #!/usr/sbin/nft -f
 
 #/etc/nftables.conf
@@ -117,7 +117,7 @@ At this point, we can create one file for all interfaces or one file for each in
 To maintain a single file, if I needed other rules depending on the interface, I would handle the cases through conditionals in the code of this script.
 I prefer to keep a single file, but this, as always, will depend on each user's preferences and needs.
 
-```
+```bash
 #!/usr/bin/env bash
 
 # /etc/NetworkManager/dispatcher.d/10-nftables-hotplug
