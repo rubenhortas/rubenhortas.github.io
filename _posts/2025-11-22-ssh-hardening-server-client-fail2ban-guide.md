@@ -115,6 +115,10 @@ After we have RSA key authentication set up and working, we are going to disable
 
 `PasswordAuthentication no`
 
+And we will to enable `PubkeyAuthentication`:
+
+`PubkeyAuthentication yes`
+
 ### Explicity enforce Protocol 2
 
 While modern SSH server software defaults to using the secure `Protocol 2`, and the modern and secure approach is to simply *not* specify the protocol, explicitly setting the directive could be a critical step in hardening our server.

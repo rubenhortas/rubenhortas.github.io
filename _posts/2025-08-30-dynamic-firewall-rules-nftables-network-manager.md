@@ -200,7 +200,11 @@ fi
 >You should only allow traffic for your trusted services.
 {: .prompt-warning}
 
-With this script, every time an interface connects or changes IP, its old rules will be deleted, and new ones will be added, taking into account the new IP.
+We give execution permissions to the script:
+
+`sudo chmod +x /etc/NetworkManager/dispatcher.d/10-nftables-anti-spoofing`
+
+Now, with this script, every time an interface connects or changes IP, its old rules will be deleted, and new ones will be added, taking into account the new IP.
 If an interface is disconnected, its associated rules will be deleted.
 
 *Enjoy! ;)*
