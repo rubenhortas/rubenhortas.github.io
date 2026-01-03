@@ -1,11 +1,11 @@
 ---
-title: Maintain NAND flash drives (SSD) in GNU/Linux
+title: How to Maintain SSDs and USB Flash Drives in Linux
 date: 2023-04-08 00:00:01 +0000
 categories: [gnu/linux, administration]
 tags: [gnu/linux, administration, hdd, nand, usb, ssd, fsck, flash drive]
 ---
 
-NAND disk ranges from USB flash drives (thumb drive, memory stick, pendrive, call it what you prefer) to SDD (Solid State Drive) disks.
+NAND storage ranges from USB flash drives (usb drive, flash drive, thumb drive, memory stick, pendrive, call it what you prefer) to SDD (Solid State Drive) disks.
 Both are based on [NAND flash](https://en.wikipedia.org/wiki/Flash_memory#NAND_flash) cells.
 
 As hard disk drives (HDDs), NAND disks can suffer several types of failures: logical failures, firmware failures, and bit rot.
@@ -22,7 +22,7 @@ The paper, from 2015, ["Data Retention in MLC NAND Flash Memory: Characterizatio
 
 Flash memory has a finite number of P/E (program/erase) cycles.
 Although many use a [wear leveling](https://en.wikipedia.org/wiki/Wear_leveling) strategy to work around these limitations, others don't.
-Before a total disk death from usage occurs, some transistors can die from use causing data access errors.
+Before a catastrophic failure from usage occurs, some transistors can die from use causing data access errors.
 
 # Maintenance
 
@@ -31,9 +31,9 @@ But, the maintenance process differs a bit for an USB flash drive.
 
 ## Umount the disk
 
-First of all is know the device assigned to the disk we want to check.
+First, you need to identify the device assigned to the disk we want to check.
 We can know the device assigned using `fdisk -l` or `lsblk`.
-Let's say our disk is still `/dev/sdb`.
+For this exampl we'll assume the device is `/dev/sdb`.
 
 As the disk should be umounted to be able to run fsck, now, we need to umount it:
 
@@ -44,8 +44,16 @@ $ sudo umount /dev/sdb
 ## Check badblocks
 
 In an USB flash drive we won't have S.M.A.R.T. capabilities, so we can skip this step.
-Besides, as a flash drive is not a disk, a flash drive lacks of a reallocator that marks bad sectors and reallocates its data to spare sectors.
-So, the best we can do is rely on badblocks. And, as we will use `2fsck`, we will use `badblocks` through the `fsck -cc` option.
+Besides, as a flash drive is not a disk, a flash drive lacks a reallocator that marks bad sectors and reallocates its data to spare sectors.
+So, the best we can do is rely on badblocks.
+
+>NEVER run these commands on a mounted partition.
+>Running a filesystem check in a mounted partition can cause catastrophic data loss or permanent corruption.
+{: .prompt-warning}
+
+### fsck
+
+`fsck`is a generic wrapper (or front-end), it looks a the partition's signature and then calls the appropiate checker for that system.
 
 ```
 $ sudo fsck -fccy /dev/sdb1
@@ -54,11 +62,17 @@ $ sudo fsck -fccy /dev/sdb1
 Using the `-cc` option, any existing bad blocks in the bad blocks list are preserved, and any new bad blocks found by running `badblocks` will be added to the existing bad blocks list.
 Besides, with `-cc` option the bad block scan will be done using a non-destructive read-write test.
 
-We could have also do it with `e2fsck` or `badblocks` directly:
+### e2fsck
+
+This is the actual back-end tool, specifically designed for the ext family:
 
 ```
 $ sudo e2fsck  -fccy /dev/sdb1
 ```
+
+### badblocks
+
+We could check for bad sectors with `badblocks`, but, unlike `fsck` and `e2fsck`, bad sectors will not be marked as unusable:
 
 ```
 $ sudo badblocks -nsv /dev/sdb1
