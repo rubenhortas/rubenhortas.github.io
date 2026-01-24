@@ -307,10 +307,10 @@ table inet filter {
         oif != "lo" ip6 addr != $LAN_INTERFACE_IPV6 counter drop
 
         # 4. Legitimate services
-        tcp dport { $TORRENT_SERVER_PORTS, $DNS_PORTS, $HTTP_PORTS } ct state new counter accept
+        tcp dport { $DNS_PORTS, $HTTP_PORTS } ct state new counter accept
         tcp sport $NFS_PORT ct state new counter accept
 
-        udp dport { $TORRENT_SERVER_PORTS, $TRACKER_PORTS, $DNS_PORTS, $NTP_PORT } ct state new counter accept
+        udp dport { $TRACKER_PORTS, $DNS_PORTS, $NTP_PORT } ct state new counter accept
         udp sport $NFS_PORT ct state new counter accept
 
         # 5. Jump to ICMP_OUT chain for ICMP/ICMPv6 traffic
