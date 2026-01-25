@@ -25,9 +25,10 @@ Managing the firewall manually in these environments would be a horrible job, if
 >After writing this post I found a better way to prevent IP spoofing with nftables using fib (Forwarding Information Base) module.  
 >The fib module is native to nftables and it has no dependencies.  
 >The fib module is faster and more reliable than fetching interface IPs with bash.  
->Using this, we might even be able to do away with the 10-nftables-hotplug file and consolidate our nftables rules int0 a single file again.  
+>Using this, we might even be able to do away with the 10-nftables-hotplug file and consolidate our nftables rules into a single file again.  
 >Using fib to prevent IP spoofing is as simple as adding the following line to our nftables rules:  
->fib saddr type local drop
+>fib saddr type local drop  
+> So, you can skip this post ;)
 {: .prompt-info}
 
 ## The strategy
