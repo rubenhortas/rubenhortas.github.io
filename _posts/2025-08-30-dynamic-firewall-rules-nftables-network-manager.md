@@ -154,7 +154,10 @@ delete_rules "$1" OUTPUT
 if [[ "$1" != lo && ("$2" = "up" || "$2" = "dhcp4-change" || "$2" = "dhcp6-change") ]]; then
     # Add rules to the INPUT chain
 
-    # 1. Anti-spofing
+    # 1. Accept established and related traffic
+    nft add rule inet filter INPUT iifname "$1" ct state { established, related } accept
+
+    # 2. Anti-spofing
     ipv4=$(ip addr show $1 | awk '$1=="inet"{gsub("/.*","",$2); print $2; next}')
 
     if [ -n "$ipv4" ]; then
@@ -166,9 +169,6 @@ if [[ "$1" != lo && ("$2" = "up" || "$2" = "dhcp4-change" || "$2" = "dhcp6-chang
     if [ -n "$ipv6" ]; then
         nft add rule inet filter INPUT iifname "$1" ip6 saddr "$ipv6" drop
     fi
-
-    # 2. Accept established and related traffic
-    nft add rule inet filter INPUT iifname "$1" ct state { established, related } accept
 
     # 3. Drop traffic from known blacklisted ips
     nft add rule inet filter INPUT iifname "$1" ip saddr @blacklist_ipv4 drop
