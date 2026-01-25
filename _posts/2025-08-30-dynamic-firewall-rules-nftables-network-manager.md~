@@ -22,11 +22,11 @@ Managing the firewall manually in these environments would be a horrible job, if
 
 ## Update!
 
->After writing this post I found a better way to prevent IP spoofing with nftables using fib (Forwarding Information Base) module.  
->The fib module is native to nftables and it has no dependencies.  
->The fib module is faster and more reliable than fetching interface IPs with bash.  
->Using this, we might even be able to do away with the 10-nftables-hotplug file and consolidate our nftables rules int0 a single file again.  
->Using fib to prevent IP spoofing is as simple as adding the following line to our nftables rules:  
+>After writing this post I found a better way to prevent IP spoofing with nftables using fib (Forwarding Information Base) module.
+>The fib module is native to nftables and it has no dependencies.
+>The fib module is faster and more reliable than fetching interface IPs with bash.
+>Using this, we might even be able to do away with the 10-nftables-hotplug file and consolidate our nftables rules int0 a single file again.
+>Using fib to prevent IP spoofing is as simple as adding the following line to our nftables rules:
 >fib saddr type local drop
 {: .prompt-info}
 
@@ -201,13 +201,13 @@ if [[ "$1" != lo && ("$2" = "up" || "$2" = "dhcp4-change" || "$2" = "dhcp6-chang
 fi
 ```
 
->Scripts placed in /etc/NetworkManager/dispatcher.d/ should be named with a number (between 00 and 99) followed by a descriptive number.  
->The naming convention it’s XX-name.  
+>Scripts placed in /etc/NetworkManager/dispatcher.d/ should be named with a number (between 00 and 99) followed by a descriptive number.
+>The naming convention it’s XX-name.
 >[NetworkManager](https://networkmanager.dev/) executes these scripts in numerical order from lowest to highest.
 {: .prompt-info}
 
->Note that, in this example, all incoming and outgoing traffic is allowed.  
->You should only allow traffic for your trusted services.  
+>Note that, in this example, all incoming and outgoing traffic is allowed.
+>You should only allow traffic for your trusted services.
 {: .prompt-warning}
 
 We give execution permissions to the script:
