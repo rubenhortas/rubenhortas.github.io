@@ -20,7 +20,7 @@ The thing is, as the [iptables to nftables migration post](https://rubenhortas.g
 This implementation is geared toward everyday devices (desktops and/or laptops) where network interfaces may be available (or unavailable) and their IP addresses may change.
 Managing the firewall manually in these environments would be a horrible job, if not impossible.
 
-# Update
+## Update!
 
 >After writing this post I found a better way to prevent IP spoofing with nftables using fib (Forwarding Information Base) module.
 >The fib module is native to nftables and it has no dependencies.
