@@ -178,6 +178,14 @@ It's best to prioritize **Authenticated Encryption with Associated Data (AEAD)**
 
 `Ciphers chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr`
 
+### Explicity disable rhosts
+
+rhosts was a weak method to authenticate systems. 
+It defines a way to trust another system simply by its IP address.
+By default is already disabled, but it's better to disable it explicitly.
+
+`IgnoreRhosts yes`
+
 ### Reboot SSH service
 
 We have to restart the SSH service for the changes to take effect.
