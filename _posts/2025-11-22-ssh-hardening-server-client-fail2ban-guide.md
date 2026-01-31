@@ -49,12 +49,38 @@ Therefore, if our SSH server is running on, say, port 2222, and it crashes, a lo
 My choice here is to implement Port Forwarding from the external firewall.
 I would open port 22222 in the firewall and redirect that traffic to port 22 of the machine running the SSH server.
 
+### Reduce MaxAuthTries
+
+Reduce the maximum number of authentication attempts permitted per network connection.
+Once the limit is reached, the server drops the connection.
+This will help us mitigate possible brute-force attacks.
+
+`MaxAuthTries 3`
+
+### Reduce MaxSessions
+
+Reduce the number of "sessions" (like shell windows or file transfers) that can be opened over a single network connection (multiplexing).
+This will help us to prevent resource exhaustion and minimize the potential damage of a session hijacking (since the attacker cannot open new sessions without re-authenticating).
+
+`MaxSessions 2`
+
+>SSH clients often try several authentication methods (like different SSH keys) automatically. If you have 5 keys in your ssh-agent, you might hit a limit of 3 before you even get to type a password or login.
+{: .prompt-warning}
+
 ### Disable X11 forwarding
 
 If we are not going to use graphical applications via SSH, it is best to disable it.
 The main reason for disabling X11 forwarding is the possibility of an attacker gaining access to your local X server session if the remote SSH server is compromised.
 
 `X11Forwarding no`
+
+### Disable TCP Forwarding
+
+By disabling TCP forwarding prevents a compromised SSH session from being used as a bridge to attack other systems.
+If an attacker gains access to a limited user account, they can use TCP forwarding to bypass firewalls and poking around your internal network.
+Disabling TCP forwarding an attacker cannot tunner network traffic through the SSH connection.
+
+`AllowTcpForwarding no`
 
 ### Disable agent forwarding
 
