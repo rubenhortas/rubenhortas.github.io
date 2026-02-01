@@ -1,31 +1,23 @@
 ---
-title: Configuring Neovim as Python IDE
-date: 2024-01-21 00:00:01 +0000
-categories: [neovim, python]
-tags: [programming, ide, python, neovim, nvim]
+title: Configuring Neovim as Standard C IDE
+date: 2026-02-01 00:00:01 +0000
+categories: [neovim, standard c]
+tags: [programming, ide, standard c, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-I have to admit it, Neovim is my editor for everything.
-I started using [Vim](https://www.vim.org) in college, and we have been together since those, but, since a time ago, now as its fork [Neovim](https://neovim.io).
-Do I have to edit a file? [Neovim](https://neovim.io).
-Do I have to do a bash script? [Neovim](https://neovim.io).
-Do I have to do a little python script? [Neovim](https://neovim.io).
+I you read my articles [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/) and [Configuring Neovim as Rust IDE](https://rubenhortas.github.io/posts/neovim-rust-ide/) you already known that Neovim is one of my favorite editor and IDE.
+Using [Neovim](https://neovim.io) mades me feel more focused and productive.
 
-[Vim](https://www.vim.org) and [Neovim](https://neovim.io) are very lightweight and very powerful.
-[Vim](https://www.vim.org) comes installed in (almost) every linux distro, and they are very convenient to use via ssh.
+For certain reasons, I've had to dust off standard c, and let's face it, [Neovim](https://neovim.io) is the best tool to do it.
+So, I converted [Neovim](https://neovim.io) in my standard C IDE.
 
-Although for medium or large python projects my favorite IDE is [Pycharm](https://www.jetbrains.com/pycharm/) (I really love [Pycharm](https://www.jetbrains.com/pycharm/)), for small and fast (or no so fast scripts) I preffer neovim or vim, depends on which one is installed.
-
-The point is that, while I was coding some python scripts, above all using new libraries, I missed some features provided by a IDE.
-Features I was used to in [Pycharm](https://www.jetbrains.com/pycharm/), as autocomplete and linting (analzing source code to flag programming errors, bugs, stylistic errors, etc.).
-So, I decided it was time to configure [Neovim](https://neovim.io) to improve my python experience.
+Converting [Neovim](https://neovim.io) into a standard C IDE environment requires installing and configuring several plugins to replicate the expected features like code completion, diagnostics, project management, and debugging, but it's very fast and straightforard.
 
 ## Neovim base configuration
 
-This is my base configuration.
-My configuration for all, in all my computers, no matter the purpose.
-This configuration will be the base to which I will add the python configuration.
+As always, I'll part from my base configuration.
+This is my configuration for all, in all my computers, no matter the purpose.
 
 `~/.config/nvim/init.vim`:
 
@@ -92,65 +84,72 @@ let &undodir = s:undo_dir
 let mapleader = " "                     " Sets the Leader key to <Space> (used for custom keybinds like <leader>ca)
 ```
 
-In my base configuration I usually add the [Vim Better Whitespace Plugin](https://github.com/ntpeters/vim-better-whitespace) (I'll talk about it later), but I keep the option "list" handy (but commented).
-The "list" option, by default, show tabs as ">", trailing spaces as "-" and non-breakable space characters as "+".
-This default configuration works for me, but can be customized.
+## Language Server Protocol (LSP): `clangd`
 
-## pyright
+`clangd` is the Language Server for C/C++.
+It uses the clang compiler's internal logic to understand C++ code and provide that information to [Neovim](https://neovim.io).
 
-Pyright is a static type checker for Python created by Microsoft.
-Pyright goes beyond just checking for syntax errors.
-Its primary goal is to catch type-related errors in your Python code before you even run it.
-
-Pyright helps us write more maintainable, understandable, and bug-free Python code by leveraging static type checking.
+### Install `clangd`
 
 ```bash
-pipx install pyright
+sudo apt update && sudo apt install clangd
 ```
 
-## Language Server Protocol (LSP): pylsp
+### Configure `clangd` and keymaps
 
-In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
-The [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
-
-```bash
-pipx install 'python-lsp-server[all]'
-```
-
-For [Neovim](https://neovim.io) to load `pylsp` when we are working on a python file we need to create a directory, a couple files and add a little configuration to our `init.vim` file.
-
-The directory:
-
-```bash
-mkdir ~/.config/nvim/lua
-```
-
-The first file (`lua_config.lua`):
-
-```bash
-echo "`call plug#begin('~/.config/nvim/plugins')`" > ~/.config/nvim/lua/lua_config.lua
-```
-
-Now, we need to create the file `~/.config/nvim/lua/lsp_config.lua`, and add the following lines:
+We will set up `clangd` and define some standard keymaps for LSP functions.
+Place this directly in your `init.vim` file within a lua block: 
 
 ```vim
-local lsp = require('lspconfig')
-local completion = require('completion')
+lua << EOF
+-- Function to set up basic keymaps when an LSP server attaches
+local on_attach = function(client, bufnr)
+  -- The following keymaps are examples. Feel free to adjust.
+  local buf_set_keymap = vim.api.nvim_buf_set_keymap
+  local opts = { noremap=true, silent=true }
 
-local custom_attach = function()
-    completion.on_attach()
-    -- Python specifically isn't setting omnifunc correctly, ftplugin conflict
-    vim.api.nvim_buf_set_option(0, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- Go to Definition
+  buf_set_keymap(bufnr, 'n', 'gd', '<cmd>lua vim.lsp.buf.definition()<CR>', opts)
+  -- Show Hover Documentation
+  buf_set_keymap(bufnr, 'n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
+  -- List References
+  buf_set_keymap(bufnr, 'n', 'gr', '<cmd>lua vim.lsp.buf.references()<CR>', opts)
+  -- Code Actions (quick fixes, refactoring)
+  buf_set_keymap(bufnr, 'n', '<leader>ca', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  -- Rename symbol
+  buf_set_keymap(bufnr, 'n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  -- Format code (uses server formatting, which clangd supports)
+  buf_set_keymap(bufnr, 'n', '<leader>cf', '<cmd>lua vim.lsp.buf.format()<CR>', opts)
+
+  -- Format on save (optional, but convenient)
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd('autocmd BufWritePre <buffer> lua vim.lsp.buf.format({async = false})')
+  end
 end
 
-lsp.pylsp.setup{on_attach=custom_attach}
-```
+-- Get the LSP configuration utility
+local lspconfig = require('lspconfig')
 
-Now, we edit our `init.vim` file to append the following lines:
+-- Setup clangd
+lspconfig.clangd.setup {
+    on_attach = on_attach,
+    -- Root directory finder: searches for project markers (like compile_commands.json, .git)
+    root_dir = lspconfig.util.root_pattern("compile_commands.json", ".git", "Makefile"),
+    -- You can add extra clangd arguments here if needed
+    -- cmd = { "clangd", "--background-index" }, 
+}
 
-```vim
-" neovim LSP Configuration
-lua require('lua_config')
+-- Enable diagnostics (errors and warnings)
+vim.diagnostic.config({
+  virtual_text = true,
+  signs = true,
+  update_in_insert = false,
+  float = {
+    source = "always",
+    border = "rounded",
+  },
+})
+EOF
 ```
 
 ## Neovim plugin manager
@@ -182,13 +181,12 @@ I install my plugins in `~/.config/nvim/plugins`, so:
 
 ```bash
 mkdir `~/.config/nvim/plugins`
-```
 
 ### nvim-lspconfig
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('~/.config/nvim/plugins')` section, below all the lines:
 
-```vim
+```lua
 call plug#begin('~/.config/nvim/plugins')
 ...
 
@@ -201,9 +199,9 @@ call plug#end()
 
 A completion engine plugin for neovim written in Lua.
 Completion sources are installed from external repositories and "sourced".
-To install it we need to add the following to our `init.vim` file (respecting the blocks, if exists):
+To install it we need to add the following to our `init.vim` file:
 
-```vim
+```lua
 call plug#begin('~/.config/nvim/plugins')
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -290,8 +288,6 @@ EOF
 ```
 
 > Replace the plugins directory in the first line with your own.
->
-> Also, replace the *'YOUR_LSP_SERVER'* value with 'pylsp', our [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol).
 {: .prompt-warning}
 
 ### Vim Better Whitespace
@@ -321,25 +317,12 @@ To install the plugins we open nvim and run:
 
 `:PlugInstall`
 
-## Ignoring errors
-
-I find quite annoying the "E501 line too long error".
-I think that 80 (or 100) characters are a little short sometimes for the screens we have today.
-If you, as me, want to ignore this error (and/or others), you can create the file `~/.config/pycodestyle` and specify what errors you want to ignore:
-
-```
-[pycodestyle]
-ignore = E501
-```
-
-And, that's all. Now you can start to using [Neovim](https://neovim.io) as your Python IDE!
-
 ## Screenshots
 
-![Example of autocompletion](vim_python_ide_1.png)
+![Example of autocompletion](neovim_c_ide_1.png)
 *Example of autocompletion*
 
-![Example of linting errors and trailing whitespaces](vim_python_ide_2.png)
-*Example of linting errors and trailing whitespaces*
+![Example of linting errors and trailing whitespaces](neovim_c_ide_2.png)
+*Example of linting errors*
 
-*Enjoy! ;)*
+**Thanks for reading! :)**

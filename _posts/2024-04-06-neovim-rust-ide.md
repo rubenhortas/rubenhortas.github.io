@@ -6,13 +6,13 @@ tags: [programming, ide, rust, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-If you read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/), you already know that one of mi favorite editors is [neo]vim.
+If you read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/), you already know that one of mi favorite editors is [Neovim](https://neovim.io).
 Between other reasons, when I'm using [neo]vim I feel more focused, I don't know why.
 
-One of my open fronts, in my spare time, is learn Rust, and neovim (in this case) seems a great IDE to do it.
-I have to say that programming in rust using neovim it reminds me of the old days programming in (ANSI) C using vim.
+One of my open fronts, in my spare time, is learn Rust, and [Neovim](https://neovim.io) (in this case) seems a great IDE to do it.
+I have to say that programming in rust using [Neovim](https://neovim.io) it reminds me of the old days programming in Standard C using [vim](https://www.vim.org/download.php).
 
-Convert neovim in a Rust IDE it's very fast and very straightforward.
+Convert [Neovim](https://neovim.io) in a Rust IDE it's very fast and straightforward.
 After installing Rust, we only will need `rust-analyzer` and three vim plugins.
 
 ## rust-analyzer
@@ -28,18 +28,24 @@ Now, we can install `rust-analyzer` via `rustup`:
 
 `rustup component add rust-analyzer`
 
-## [Neo]vim base configuration
+## Neovim base configuration
 
-As allways, I'll part from my base configuration.
+As always, I'll part from my base configuration.
 This is my configuration for all, in all my computers, no matter the purpose.
 
 `~/.config/nvim/init.vim`:
 
 ```vim
+" ==============================================================================
+" CORE FUNCTIONALITY AND FILETYPE
+" ==============================================================================
 syntax on                               " Enable syntax highlighting
 filetype plugin indent on               " Enable filetype detection, plugins, and smart indentation
 set encoding=utf-8                      " Set file and terminal encoding to UTF-8
 
+" ==============================================================================
+" INDENTATION AND TABS (Using 4-space soft tabs)
+" ==============================================================================
 set autoindent                          " Copy indentation from the previous line
 set smartindent                         " Enable smarter automatic indentation
 set expandtab                           " Use spaces instead of actual tabs
@@ -47,26 +53,52 @@ set tabstop=4                           " A Tab character is rendered as 4 space
 set shiftwidth=4                        " Auto-indent commands (e.g., >>) use 4 spaces
 set softtabstop=4                       " Tab/Backtab keys use 4 spaces when inserting
 
+" Forzar 4 espacios específicamente en C/C++ para evitar overrides
+augroup FileTypeSettings
+    autocmd!
+    autocmd FileType c,cpp setlocal tabstop=4 shiftwidth=4 softtabstop=4
+augroup END
+
+" ==============================================================================
+" UI AND APPEARANCE
+" ==============================================================================
 set number                              " Show absolute line number
 set showmatch                           " Briefly show the matching bracket/parenthesis
 set wildmenu                            " Enhanced command-line completion menu
-set mouse=                              " Disable mouse support
+set mouse=a                             " Enable mouse support
 set updatetime=250                      " Sets the delay (ms) for showing diagnostics and tooltips (important for LSP)
 
-set path+=**                            " Allow searching for files recursively (e.g., :find filename)
+" ==============================================================================
+" SEARCH
+" ==============================================================================
+set path+=** " Allow searching for files recursively (e.g., :find filename)
 set incsearch                           " Show results as you type the search pattern (incremental search)
 set hlsearch                            " Highlight all matches of the last search pattern
 set ignorecase                          " Ignore case when searching
 set smartcase                           " Override ignorecase if the search pattern contains uppercase letters
 
+" ==============================================================================
+" BEHAVIOR AND SYSTEM INTEGRATION
+" ==============================================================================
 set backspace=indent,eol,start          " Ensures backspace works as expected
 set clipboard=unnamedplus               " Integrate with system clipboard for yank/put (requires external tool like xclip/wl-copy)
 set noswapfile                          " Disable swap files to prevent clutter
 set undofile                            " Enable persistent undo history
-set undodir=~/.config/nvim/undodir      " Specify a directory for undo files (needs to be created)
+
+" Specify a directory for undo files and create it if it doesn't exist
+let s:undo_dir = expand('~/.config/nvim/undodir')
+if !isdirectory(s:undo_dir)
+    call mkdir(s:undo_dir, "p")
+endif
+let &undodir = s:undo_dir
+
+" ==============================================================================
+" LEADER KEY
+" ==============================================================================
+let mapleader = " "                     " Sets the Leader key to <Space> (used for custom keybinds like <leader>ca)
 ```
 
-## [Neo]vim plugin manager
+## Neovim plugin manager
 
 As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#neovim), and its installation it's very straightforward:
 
@@ -81,7 +113,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 I install four plugins:
 
 * [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig)
-  Configs for the Nvim LSP client.
+  Configs for the Neovim LSP client.
 
 * [nvim-cmp](https://github.com/hrsh7th/nvim-cmp)
   A completion engine plugin.
@@ -93,12 +125,18 @@ I install four plugins:
   This plugin highlights all trailing whitespaces.
   It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
 
+We need to create the directory where we will install the plugins.
+I install my plugins in `~/.config/nvim/plugins`, so:
+
+```bash
+mkdir `~/.config/nvim/plugins`
+
 ### nvim-lspconfig
 
-To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
+To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('~/.config/nvim/plugins')` section, below all the lines:
 
-```lua
-call plug#begin('/home/rubenhortas/.config/nvim/plugins')
+```vim
+call plug#begin('~/.config/nvim/plugins')
 ...
 
 Plug 'neovim/nvim-lspconfig'
@@ -106,9 +144,9 @@ Plug 'neovim/nvim-lspconfig'
 call plug#end()
 ```
 
-We will also pass LSP settings to the server adding:
+We will also pass LSP settings to the server adding within a lua block (if exists):
 
-```
+```vim
 lua << EOF
 local lspconfig = require'lspconfig'
 
@@ -151,10 +189,10 @@ EOF
 {: .prompt-info}
 
 A completion engine plugin for neovim written in Lua. Completion sources are installed from external repositories and "sourced".
-To install it we need to add the following to our `init.vim` file:
+To install it we need to add the following to our `init.vim` file (respecting the blocks, if exists):
 
-```lua
-call plug#begin('/home/rubenhortas/.config/nvim/plugins')
+```vim
+call plug#begin('~/.config/nvim/plugins')
 Plug 'neovim/nvim-lspconfig'
 Plug 'hrsh7th/cmp-nvim-lsp'
 Plug 'hrsh7th/cmp-buffer'
@@ -242,10 +280,10 @@ EOF
 
 ### rust-lang
 
-To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
+To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('~/.config/nvim/plugins')` section, below all the lines:
 
-```lua
-call plug#begin('/home/rubenhortas/.config/nvim/plugins')
+```vim
+call plug#begin('~/.config/nvim/plugins')
 ...
 
 Plug 'rust-lang/rust.vim'
@@ -258,15 +296,15 @@ call plug#end()
 This plugin causes all trailing whitespace characters to be highlighted.
 Whitespace for the current line will not be highlighted while in insert mode.
 It is possible to disable current line highlighting while in other modes as well.
-A helper function :StripWhitespace is also provided to make whitespace cleaning painless.
+A helper function `:StripWhitespace` is also provided to make whitespace cleaning painless.
 
 This plugin is optional, and can be substituded by the "lines" option in the `vim.init` file.
 But, I like it, and the `:StripWhitespace` function is very useful.
 
-To install it we add the plugin to our `init.vim` file, into the `call plug#begin('/home/rubenhortas/.config/nvim/plugins')` section, below all the lines:
+To install it we add the plugin to our `init.vim` file, into the `call plug#begin('~/.config/nvim/plugins')` section, below all the lines:
 
-```lua
-call plug#begin('/home/rubenhortas/.config/nvim/plugins')
+```vim
+call plug#begin('~/.config/nvim/plugins')
 ...
 
 Plug 'ntpeters/vim-better-whitespace'
