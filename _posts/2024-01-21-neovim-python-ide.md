@@ -23,9 +23,8 @@ So, I decided it was time to configure [Neovim](https://neovim.io) to improve my
 
 ## Neovim base configuration
 
-This is my base configuration.
-My configuration for all, in all my computers, no matter the purpose.
-This configuration will be the base to which I will add the python configuration.
+This is my universal configuration that I use across all my machines, regardless of the task.
+This configuration will be the base to which I'll add the python configuration.
 
 `~/.config/nvim/init.vim`:
 
@@ -104,32 +103,24 @@ Its primary goal is to catch type-related errors in your Python code before you 
 
 Pyright helps us write more maintainable, understandable, and bug-free Python code by leveraging static type checking.
 
-```bash
-pipx install pyright
-```
+`pipx install pyright`
 
 ## Language Server Protocol (LSP): pylsp
 
 In order to use [nvim-cmp](https://github.com/hrsh7th/nvim-cmp) and [nvim-lspconfig](https://github.com/neovim/nvim-lspconfig), we need to install a Language Server Protocol (LSP), in this case `pylsp`.
 The [Language Server Protocol (LSP)](https://en.wikipedia.org/wiki/Language_Server_Protocol) is a protocol used between a development tool and a Language Server (LS) that provides language features like autocompletion, go-to-definition, etc.
 
-```bash
-pipx install 'python-lsp-server[all]'
-```
+`pipx install 'python-lsp-server[all]'`
 
 For [Neovim](https://neovim.io) to load `pylsp` when we are working on a python file we need to create a directory, a couple files and add a little configuration to our `init.vim` file.
 
 The directory:
 
-```bash
-mkdir ~/.config/nvim/lua
-```
+`mkdir ~/.config/nvim/lua`
 
 The first file (`lua_config.lua`):
 
-```bash
-echo "`call plug#begin('~/.config/nvim/plugins')`" > ~/.config/nvim/lua/lua_config.lua
-```
+`echo "`call plug#begin('~/.config/nvim/plugins')`" > ~/.config/nvim/lua/lua_config.lua`
 
 Now, we need to create the file `~/.config/nvim/lua/lsp_config.lua`, and add the following lines:
 
@@ -159,9 +150,7 @@ As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#
 
 Unix/linux:
 
-```bash
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
+`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
 
 ## Plugins
 
@@ -175,14 +164,12 @@ I install three plugins:
 
 * [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
   This plugin highlights all trailing whitespaces.
-  It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
+  It's completely optional and can be replaced by the option "lines" in the `vim.init` file, but I like it.
 
 We need to create the directory where we will install the plugins.
 I install my plugins in `~/.config/nvim/plugins`, so:
 
-```bash
-mkdir `~/.config/nvim/plugins`
-```
+`mkdir `~/.config/nvim/plugins``
 
 ### nvim-lspconfig
 
@@ -256,7 +243,7 @@ lua <<EOF
   -- Set configuration for specific filetype.
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+      { name = 'git' }, -- You can specify the `git` source if [you have installed it](https://github.com/petertriho/cmp-git).
     }, {
       { name = 'buffer' },
     })

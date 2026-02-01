@@ -6,7 +6,7 @@ tags: [programming, ide, rust, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-If you read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/), you already know that one of mi favorite editors is [Neovim](https://neovim.io).
+If you have read my article [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/), you already know that one of mi favorite editors is [Neovim](https://neovim.io).
 Between other reasons, when I'm using [neo]vim I feel more focused, I don't know why.
 
 One of my open fronts, in my spare time, is learn Rust, and [Neovim](https://neovim.io) (in this case) seems a great IDE to do it.
@@ -30,8 +30,8 @@ Now, we can install `rust-analyzer` via `rustup`:
 
 ## Neovim base configuration
 
-As always, I'll part from my base configuration.
-This is my configuration for all, in all my computers, no matter the purpose.
+As always, I'll start from my base configuration.
+This is my universal configuration, that I use across all my machines, regardless of the task
 
 `~/.config/nvim/init.vim`:
 
@@ -104,9 +104,7 @@ As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#
 
 Unix/linux:
 
-```bash
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
+`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
 
 ## Plugins
 
@@ -123,13 +121,12 @@ I install four plugins:
 
 * [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
   This plugin highlights all trailing whitespaces.
-  It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
+  It's completely optional and can be replaced by the option "lines" in the `vim.init` file, but I like it.
 
 We need to create the directory where we will install the plugins.
 I install my plugins in `~/.config/nvim/plugins`, so:
 
-```bash
-mkdir `~/.config/nvim/plugins`
+`mkdir ~/.config/nvim/plugins`
 
 ### nvim-lspconfig
 
@@ -245,7 +242,7 @@ lua <<EOF
   -- Set configuration for specific filetype.
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+      { name = 'git' }, -- You can specify the `git` source if [you have installed it](https://github.com/petertriho/cmp-git).
     }, {
       { name = 'buffer' },
     })

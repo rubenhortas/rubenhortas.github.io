@@ -6,18 +6,22 @@ tags: [programming, ide, standard c, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-I you read my articles [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/) and [Configuring Neovim as Rust IDE](https://rubenhortas.github.io/posts/neovim-rust-ide/) you already known that Neovim is one of my favorite editor and IDE.
-Using [Neovim](https://neovim.io) mades me feel more focused and productive.
+Learn how to transform [Neovim](https://neovim.io) into a powerful Standard C IDE using `clangd`, `LSP`, and `nvim-cmp` for a productive development workflow.
 
-For certain reasons, I've had to dust off standard c, and let's face it, [Neovim](https://neovim.io) is the best tool to do it.
-So, I converted [Neovim](https://neovim.io) in my standard C IDE.
+## Why?
 
-Converting [Neovim](https://neovim.io) into a standard C IDE environment requires installing and configuring several plugins to replicate the expected features like code completion, diagnostics, project management, and debugging, but it's very fast and straightforard.
+I you have read my articles [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/) and [Configuring Neovim as Rust IDE](https://rubenhortas.github.io/posts/neovim-rust-ide/) you already know that Neovim is one of my favorite editor and IDE.
+Using [Neovim](https://neovim.io) makes me feel more focused and productive.
+
+For certain reasons, I've had to dust off Standard C, and let's face it, [Neovim](https://neovim.io) is the best tool to do it.
+So, I converted [Neovim](https://neovim.io) into my Standard C IDE.
+
+Converting [Neovim](https://neovim.io) into a Standard C IDE environment requires installing and configuring several plugins to replicate the expected features like code completion, diagnostics, project management, and debugging, but it's very fast and straightforward.
 
 ## Neovim base configuration
 
-As always, I'll part from my base configuration.
-This is my configuration for all, in all my computers, no matter the purpose.
+As always, I'll start from my base configuration.
+This is my universal configuration that I use across all my machines, regardless of the task.
 
 `~/.config/nvim/init.vim`:
 
@@ -91,9 +95,7 @@ It uses the clang compiler's internal logic to understand C++ code and provide t
 
 ### Install `clangd`
 
-```bash
-sudo apt update && sudo apt install clangd
-```
+`sudo apt update && sudo apt install clangd`
 
 ### Configure `clangd` and keymaps
 
@@ -158,9 +160,7 @@ As plugin manager, my choice is [vim-plug](https://github.com/junegunn/vim-plug#
 
 Unix/linux:
 
-```bash
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-```
+`sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'`
 
 ## Plugins
 
@@ -174,13 +174,12 @@ I install three plugins:
 
 * [Vim Better Whitespace](https://github.com/ntpeters/vim-better-whitespace)
   This plugin highlights all trailing whitespaces.
-  It's totally optional and can be substituted by the option "lines" in the `vim.init` file, but I like it.
+  It's completely optional and can be replaced by the option "lines" in the `vim.init` file, but I like it.
 
 We need to create the directory where we will install the plugins.
 I install my plugins in `~/.config/nvim/plugins`, so:
 
-```bash
-mkdir `~/.config/nvim/plugins`
+`mkdir ~/.config/nvim/plugins`
 
 ### nvim-lspconfig
 
@@ -254,7 +253,7 @@ lua <<EOF
   -- Set configuration for specific filetype.
   cmp.setup.filetype('gitcommit', {
     sources = cmp.config.sources({
-      { name = 'git' }, -- You can specify the `git` source if [you were installed it](https://github.com/petertriho/cmp-git).
+      { name = 'git' }, -- You can specify the `git` source if [you have installed it](https://github.com/petertriho/cmp-git).
     }, {
       { name = 'buffer' },
     })
@@ -280,8 +279,8 @@ lua <<EOF
 
   -- Set up lspconfig.
   local capabilities = require('cmp_nvim_lsp').default_capabilities()
-  -- Replace <YOUR_LSP_SERVER> with each lsp server you've enabled.
-  require('lspconfig')['pylsp'].setup {
+  -- CLANGD
+  require('lspconfig')['clangd'].setup {
     capabilities = capabilities
   }
 EOF
