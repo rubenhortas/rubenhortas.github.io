@@ -1,22 +1,22 @@
 ---
-title: Configuring Neovim as Standard C IDE
+title: Configuring Neovim as C Standard IDE
 date: 2026-02-01 00:00:01 +0000
-categories: [neovim, standard c]
+categories: [neovim, c standard]
 tags: [programming, ide, standard c, neovim, nvim]
 img_path: /assets/img/posts/
 ---
 
-Learn how to transform [Neovim](https://neovim.io) into a powerful Standard C IDE using `clangd`, `LSP`, and `nvim-cmp` for a productive development workflow.
+Learn how to transform [Neovim](https://neovim.io) into a powerful C Standard IDE using `clangd`, `LSP`, and `nvim-cmp` for a productive development workflow.
 
 ## Why?
 
 I you have read my articles [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/) and [Configuring Neovim as Rust IDE](https://rubenhortas.github.io/posts/neovim-rust-ide/) you already know that Neovim is one of my favorite editor and IDE.
 Using [Neovim](https://neovim.io) makes me feel more focused and productive.
 
-For certain reasons, I've had to dust off Standard C, and, for me, [Neovim](https://neovim.io) is the best tool to do it.
-So, I converted [Neovim](https://neovim.io) into my Standard C IDE.
+For certain reasons, I've had to dust off C Standard , and, for me, [Neovim](https://neovim.io) is the best tool to do it.
+So, I converted [Neovim](https://neovim.io) into my C Standard IDE.
 
-Converting [Neovim](https://neovim.io) into a Standard C IDE environment requires installing and configuring several plugins to replicate the expected features like code completion, diagnostics, project management, and debugging, but it's very fast and straightforward.
+Converting [Neovim](https://neovim.io) into a C Standard IDE environment requires installing and configuring several plugins to replicate the expected features like code completion, diagnostics, project management, and debugging, but it's very fast and straightforward.
 
 ## Neovim base configuration
 
