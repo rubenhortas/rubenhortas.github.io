@@ -1,5 +1,5 @@
 ---
-title: Unify Python Linting. Syncing Ruff between PyCharm and Neovim.
+title: Unify Python Linting. Syncing Ruff between PyCharm and Neovim
 date: 2026-02-14 00:00:01 +0000
 categories: [python, linitng]
 tags: [python, linitng, ruff, pycharm, neovim]

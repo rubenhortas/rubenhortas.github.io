@@ -329,4 +329,8 @@ And, that's all. Now you can start to using [Neovim](https://neovim.io) as your 
 ![Example of linting errors and trailing whitespaces](vim_python_ide_2.png)
 *Example of linting errors and trailing whitespaces*
 
+## Unify Python linting
+
+If you've made it this far, you might be also interested in my post [Unify Python Linting. Syncing Ruff between PyCharm and Neovim](https://rubenhortas.github.io/posts/pycharm-neovim-ruff-consistency/)
+
 *Enjoy! ;)*
