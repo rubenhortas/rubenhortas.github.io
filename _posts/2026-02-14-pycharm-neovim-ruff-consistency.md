@@ -32,6 +32,10 @@ First off, let's install `Ruff`:
 
 `pipx install ruff`
 
+Now, we uninstall `python-lsp-server`
+
+`pipx uninstall python-lsp-server`
+
 ## Create a common python standard
 
 As we mentioned before, to ensure both IDEs behave the same, they should read the same font.
@@ -88,7 +92,7 @@ lspconfig.pyright.setup({
 
 PyCharm now natively supports Ruff through the Python LSP plugin (enabled by default).
 
-To configure `Ruff`: Go to Settings (Ctrl+Alt+S):
+To configure `Ruff`: Go to Settings (Ctrl+Alt+S) > Ruff:
 
   * Select the `Enable`checkbox to start configuring `Ruff` settings.
 
