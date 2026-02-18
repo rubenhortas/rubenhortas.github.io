@@ -90,9 +90,9 @@ lspconfig.pyright.setup({
 
 ## Configure PyCharm
 
-PyCharm now natively supports Ruff through the Python LSP plugin (enabled by default).
+Starting in 2025.3, JetBrains included Ruff as a "Core" tool (native) through the Python LSP plugin (enabled by default).
 
-To configure `Ruff`: Go to Settings (Ctrl+Alt+S) > Ruff:
+To configure `Ruff`: Go to Settings (Ctrl+Alt+S) > Python > Tools > Ruff:
 
   * Select the `Enable`checkbox to start configuring `Ruff` settings.
 
