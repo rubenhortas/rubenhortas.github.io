@@ -55,6 +55,9 @@ quote-style = "double"
 indent-style = "space"
 ```
 
+>To apply globally, you can place it in `~/.config/ruff/pyproject.toml` or `~/.config/ruff.toml`
+{: .prompt-info }
+
 ## Configure Neovim
 
 Instead of pylsp (which is heavier), the ideal solution is to use the new ruff server.
@@ -64,24 +67,20 @@ Let's add the following sections to our `init.vim`:
 ```lua
 local lspconfig = require('lspconfig')
 
--- Configuración de Ruff
 lspconfig.ruff.setup({
   on_attach = function(client, bufnr)
-    -- Deshabilitar el hover de Ruff si prefieres el de Pyright
     client.server_capabilities.hoverProvider = false
   end,
 })
 
--- Mantén Pyright para el tipado, pero deja que Ruff limpie el código
 lspconfig.pyright.setup({
   settings = {
     pyright = {
-      -- Usamos Ruff para organizar imports
       disableOrganizeImports = true,
     },
     python = {
       analysis = {
-        ignore = { '*' }, -- Opcional: deja que Ruff maneje el linting
+        ignore = { '*' },
       },
     },
   },
@@ -90,9 +89,9 @@ lspconfig.pyright.setup({
 
 ## Configure PyCharm
 
-Starting in 2025.3, JetBrains included Ruff as a "Core" tool (native) through the Python LSP plugin (enabled by default).
+Starting in 2025.3, JetBrains included `Ruff` as a "Core" tool (native) through the Python LSP plugin (enabled by default).
 
-To configure `Ruff`: Go to Settings (Ctrl+Alt+S) > Python > Tools > Ruff:
+To configure `Ruff`: Go to Settings `(Ctrl+Alt+S) > Python > Tools > Ruff`:
 
   * Select the `Enable`checkbox to start configuring `Ruff` settings.
 
