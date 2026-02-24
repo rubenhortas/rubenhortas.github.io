@@ -124,7 +124,7 @@ The first file (`lua_config.lua`):
 
 Now, we need to create the file `~/.config/nvim/lua/lsp_config.lua`, and add the following lines:
 
-```vim
+```lua
 local lsp = require('lspconfig')
 local completion = require('completion')
 
@@ -139,7 +139,7 @@ lsp.pylsp.setup{on_attach=custom_attach}
 
 Now, we edit our `init.vim` file to append the following lines:
 
-```vim
+```lua
 " neovim LSP Configuration
 lua require('lua_config')
 ```
@@ -175,7 +175,7 @@ I install my plugins in `~/.config/nvim/plugins`, so:
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('~/.config/nvim/plugins')` section, below all the lines:
 
-```vim
+```lua
 call plug#begin('~/.config/nvim/plugins')
 ...
 
@@ -314,7 +314,7 @@ I find quite annoying the "E501 line too long error".
 I think that 80 (or 100) characters are a little short sometimes for the screens we have today.
 If you, as me, want to ignore this error (and/or others), you can create the file `~/.config/pycodestyle` and specify what errors you want to ignore:
 
-```
+```toml
 [pycodestyle]
 ignore = E501
 ```

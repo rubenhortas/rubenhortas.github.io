@@ -143,7 +143,7 @@ call plug#end()
 
 We will also pass LSP settings to the server adding within a lua block (if exists):
 
-```vim
+```lua
 lua << EOF
 local lspconfig = require'lspconfig'
 
@@ -178,7 +178,7 @@ EOF
 ### nvim-cmp
 
 > If you already have installed this plugin, you only need to add the set up lspconfig section for `rust_analyzer`:
-```
+```lua
   require('lspconfig')['rust_analyzer'].setup {
     capabilities = capabilities
   }

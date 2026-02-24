@@ -102,7 +102,7 @@ It uses the clang compiler's internal logic to understand C++ code and provide t
 We will set up `clangd` and define some standard keymaps for LSP functions.
 Place this directly in your `init.vim` file within a lua block: 
 
-```vim
+```lua
 lua << EOF
 -- Function to set up basic keymaps when an LSP server attaches
 local on_attach = function(client, bufnr)
@@ -185,7 +185,7 @@ I install my plugins in `~/.config/nvim/plugins`, so:
 
 To install it, we add the plugin to our `init.vim` file, into the `call plug#begin('~/.config/nvim/plugins')` section, below all the lines:
 
-```lua
+```vim
 call plug#begin('~/.config/nvim/plugins')
 ...
 
