@@ -39,7 +39,37 @@ Now, we uninstall `python-lsp-server`
 ## Create a common python standard
 
 As we mentioned before, to ensure both IDEs behave the same, they should read the same font.
-To force both IDEs to follow the same rules, we need to have this file in the root of our projects:
+To force both IDEs to follow the same rules, we need to configure our `Ruff` settings.
+
+### Configuring ruff
+
+Ruff follows a specific hierarchy to resolve settings. It searches for a configuration file in the current directory and continues up the parent directories until it finds one.
+
+#### Global Configuration (User-wide)
+
+To apply rules to every Python project on your machine (as a fallback when no project-specific file exists), use the following directory: `~/.config/ruff/` with one of the following filenames:
+
+  * `settings.toml` (Recommended)
+  * `ruff.toml`
+  * `.ruff.toml`
+
+>Do not use the [tool.ruff] header. Write properties directly at the root of the file.
+{: .prompt-info }
+
+#### Project Configuration
+
+To apply rules to a specific project, place the file in the project's root directory:
+
+  * `pyproject.toml` (must use [tool.ruff] header and sections)
+  * `ruff.toml` or `.ruff.toml` (direct properties, no headers)
+
+#### Folder-Specific Configuration (Nested)
+
+To override or extend rules for a specific subdirectory (e.g., allowing assert only in /tests or changing line lengths in /scripts), place a file inside that folder.
+   * `ruff.toml` or `.ruff.toml`
+
+A `pyproject.toml` example:
+
 
 ```toml
 [tool.ruff]
@@ -55,13 +85,12 @@ quote-style = "double"
 indent-style = "space"
 ```
 
->To apply globally, you can place it in `~/.config/ruff/settings.toml` or `~/.config/ruff.toml`
 >This is [my pyproject.toml file](https://gist.github.com/rubenhortas/57febeace65b746bda535f5f4c5f087a)
 {: .prompt-info }
 
 ## Configure Neovim
 
-Instead of pylsp (which is heavier), the ideal solution is to use the new ruff server.
+Instead of pylsp (which is heavier), the ideal solution is to use the new `Ruff` server.
 
 Let's add the following sections to our `init.vim`:
 
