@@ -55,7 +55,8 @@ quote-style = "double"
 indent-style = "space"
 ```
 
->To apply globally, you can place it in `~/.config/ruff/pyproject.toml` or `~/.config/ruff.toml`
+>To apply globally, you can place it in `~/.config/ruff/settings.toml` or `~/.config/ruff.toml`
+>This is [my pyproject.toml file](https://gist.github.com/rubenhortas/57febeace65b746bda535f5f4c5f087a)
 {: .prompt-info }
 
 ## Configure Neovim
