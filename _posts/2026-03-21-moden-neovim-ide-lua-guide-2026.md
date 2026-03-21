@@ -15,7 +15,7 @@ Sometimes, upgrading certain components can be a real pain.
 To solve this, I decided to switch to a modular approach.
 
 Moving from a monolithic `init.vim` to a modular Lua-based setup is a great move for [Neovim](https://neovim.io/). Lua is significantly faster than VimScript and allows for much cleaner organization as your configuration grows.
-Switching from `init.vim` (VimScript) to init.lua (Lua) is considered the "modern standard" for [Neovim](https://neovim.io/) in 2026 for several technical and organizational reasons.
+Switching from `init.vim` (VimScript) to `init.lua` (Lua) is considered the "modern standard" for [Neovim](https://neovim.io/) in 2026 for several technical and organizational reasons.
 While VimScript served us well for decades, Lua transforms [Neovim](https://neovim.io/) from a text editor into a highly extensible development platform.
 
 ### Advantages
@@ -23,32 +23,37 @@ While VimScript served us well for decades, Lua transforms [Neovim](https://neov
 #### Performance
 
 Lua is a significantly faster language than VimScript. [Neovim](https://neovim.io/) includes a LuaJIT (Just-In-Time) compiler, which makes the execution of complex configurations and plugins near-instant.
-Startup Time: As your config grows to include hundreds of plugins and complex logic, Lua handles the overhead much better.
-Computation: Heavy tasks like syntax tree parsing (Treesitter) or asynchronous linting are handled more efficiently in Lua.
+Also, as your config grows to include hundreds of plugins and complex logic, Lua handles the overhead much better, and heavy tasks (like syntax tree parsing -Treesitter- or asynchronous linting) are handled more efficiently in Lua.
 
 #### Integration with the Neovim API
 
-In the past, interacting with [Neovim](https://neovim.io/)’s internals via VimScript often felt like using "hacks." With Lua, [Neovim](https://neovim.io/) provides a first-class API (vim.api, vim.lsp, vim.diagnostic).
-Direct Access: You aren't just sending strings to a command line; you are calling structured functions that return tables and objects.
-LSP & Tree-sitter: [Neovim](https://neovim.io/)'s most powerful modern features are written in Lua. Configuring them in their "native" language reduces the complexity of translation layers.
+In the past, interacting with [Neovim](https://neovim.io/)’s internals via VimScript often felt like using "hacks." 
+
+With Lua, [Neovim](https://neovim.io/) provides a first-class API (vim.api, vim.lsp, vim.diagnostic), so you aren't just sending strings to a command line; you are calling structured functions that return tables and objects.
+
+[Neovim](https://neovim.io/)'s most powerful modern features (LSP & Tree-sitter) are written in Lua. Configuring them in their "native" language reduces the complexity of translation layers.
 
 #### Modularity
 
-VimScript was never designed to be a general-purpose programming language. Creating a modular setup in `init.vim` is clunky.
-Lua’s require() function allows you to split your config into logical files (e.g., options.lua, keymaps.lua, plugins/lsp.lua) effortlessly.
-Scoping: Lua has proper local scoping, meaning variables in one file won't accidentally overwrite variables in another, preventing "spaghetti code" bugs.
+VimScript was never designed to be a general-purpose programming language.
+Creating a modular setup in `init.vim` is clunky.
+
+Lua’s `require()` function allows you to split your config into logical files (e.g., options.lua, keymaps.lua, plugins/lsp.lua) effortlessly.
+
+Lua has proper local scoping, meaning variables in one file won't accidentally overwrite variables in another, preventing "spaghetti code" bugs.
 
 #### Plugin ecosystem
 
 The most innovative plugins in 2026 (like Telescope, Lazy.nvim, and Oil.nvim) are written exclusively in Lua.
-Configuration via Tables: Instead of learning obscure VimScript commands, you configure plugins using standard Lua tables, which is more intuitive for developers coming from other languages like JavaScript or Python.
-Extensibility: It is much easier to write your own small helper functions or "mini-plugins" in Lua to customize your workflow.
+
+Instead of learning obscure VimScript commands, you configure plugins using standard Lua tables, which is more intuitive for developers coming from other languages.
+
+It is much easier to write your own small helper functions or "mini-plugins" in Lua to customize your workflow.
 
 #### Modern language features
 
-VimScript is a "domain-specific language" (DSL) limited to Vim. Lua is a widely used, portable language found in game engines (Roblox, WoW) and embedded systems.
-Readable Syntax: Lua has a clean and readable syntax.
-Tooling: You can use Lua Language Servers (lua-ls) to get autocompletion and linting while writing your own config.
+Lua is a widely used, portable language and has a clean and readable syntax.
+You can use Lua Language Servers (lua-ls) to get autocompletion and linting while writing your own config.
 
 ### Better alternatives and All-In-One IDE
 
@@ -62,7 +67,7 @@ In my case, I'm running Debian Stable, and the version of [Neovim](https://neovi
 If you, like me, are using an older version of [Neovim](https://neovim.io/)', it's best to update to a nightly build (or at least version 0.11.x) to avoid errors with LSP (Language Server Protocol).
 
 
-To install the latest [Neovim](https://neovim.io/)' nightly build:
+To install the [latest Neovim nightly build](https://github.com/neovim/neovim/releases):
 
 ```bash
 wget https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.appimage
@@ -126,7 +131,7 @@ require("config.options")
 require("config.keymaps")
 ```
 
-#### `~/.config/nvim/lua/config/options.lua` file:
+#### ~/.config/nvim/lua/config/options.lua
 
 ```lua
 -- ==============================================================================
@@ -212,7 +217,6 @@ require("config.lazy")
 #### ~/.config/nvim/lua/config/lazy.Lua
 
 This file handles the automatic installation of the plugin manager itself if it's missing (bootstrapping).
-Copy this into ~/.config/nvim/lua/config/lazy.lua:
 
 ```lua
 -- Bootstrap lazy.nvim (Automatic install if not present)
@@ -245,7 +249,7 @@ require("lazy").setup({
 
 ### lualine
 
-Lualine is a fast, highly customizable statusline written in Lua. Its job is to turn the boring gray bar at the bottom of Vim into an informative dashboard.
+`lualine` is a fast, highly customizable statusline written in Lua. Its job is to turn the boring gray bar at the bottom of [Neovim](https://neovim.io/) into an informative dashboard.
   * Mode Indicator: Changes color based on whether you are in NORMAL, INSERT, or VISUAL mode.
   * Git Integration: Shows your current branch and how many lines have been added, modified, or removed (without needing any LSP).
   * File Info: Displays the filename, file type (Python, Rust, etc.), and file encoding (UTF-8).
@@ -321,9 +325,9 @@ From there, we will configure the options for our favorite programming languages
 ### nvim-treesitter
 
 Traditional Vim uses "Regex" (text patterns) to highlight code, which is often slow and inaccurate.
-Treesitter builds a real syntax tree of your code.
-Treesitter is very fast, updates instantly as you type.
-Treesitter improves how [Neovim](https://neovim.io/) looks and understands the structure of your code (syntax highlighting), it knows exactly where a function starts and ends, allowing for better indentation and smarter selections.
+`treesitter` builds a real syntax tree of your code.
+`treesitter` is very fast, updates instantly as you type.
+`treesitter` improves how [Neovim](https://neovim.io/) looks and understands the structure of your code (syntax highlighting), it knows exactly where a function starts and ends, allowing for better indentation and smarter selections.
 
 #### ~/.config/nvim/lua/plugins/treesitter.lua
 
@@ -350,10 +354,10 @@ return {
 
 ### Mason.nvim
 
-Think of mason.nvim as a package manager for external dependencies.
+Think of `mason.nvim` as a package manager for external dependencies.
 [Neovim](https://neovim.io/) itself doesn't come with Python linters or Rust compilers. 
-Mason allows you to install LSP servers, DAP servers, linters, and formatters directly from inside [Neovim](https://neovim.io/) with one click (:Mason).
-Mason keeps these tools isolated for [Neovim](https://neovim.io/) so you don't have to clutter your global system path.
+`Mason` allows you to install LSP servers, DAP servers, linters, and formatters directly from inside [Neovim](https://neovim.io/) with one click (:Mason).
+`Mason` keeps these tools isolated for [Neovim](https://neovim.io/) so you don't have to clutter your global system path.
 
 To set up Mason easy, we will use a "trio" of plugins that work together:
   * `mason.nvim`: The manager.
@@ -434,7 +438,7 @@ return {
 
 ### Diagnostic UI
 
-"Diagnostics" are the red/yellow underlines and icons that tell you when you have a syntax error or a warning.
+`Diagnostics` are the red/yellow underlines and icons that tell you when you have a syntax error or a warning.
 By default, [Neovim](https://neovim.io/) shows these, but we can make them much more elegant using a "floating" style and, even, custom icons.
 
 Let's put the configuration in `~/.config/nvim/lua/plugins/lsp.lua` right inside the config function so it loads with your LSP:
@@ -542,7 +546,7 @@ return {
 }
 ```
 
-For nvim-cmp to talk to your LSP servers, you need to tell the LSP servers that [Neovim](https://neovim.io/) is now "capable" of handling completion.
+For `nvim-cmp` to talk to your LSP servers, you need to tell the LSP servers that [Neovim](https://neovim.io/) is now "capable" of handling completion.
 Open `~/.config/nvim/lua/plugins/lsp.lua` and update your config function to include the capabilities variable:
 
 ```lua
@@ -615,7 +619,7 @@ return {
 
 ### Telescope
 
-Telescope highly extendable fuzzy finder that lets you search through lists of files, git commits, help tags, and even your own code symbols.
+`Telescope` is a highly extendable fuzzy finder that lets you search through lists of files, git commits, help tags, and even your own code symbols.
 
 In a traditional IDE, you usually have a file tree on the left. In a modern "keyboard-driven" workflow, you use Telescope to jump to a file by typing just a few letters of its name.
 
@@ -654,7 +658,7 @@ For live grep to work we need to install `ripgrep`:
 
 ### Configuring Ruff (Python code style and rules)
 
-Ruff follows a specific hierarchy to resolve settings. It searches for a configuration file in the current directory and continues up the parent directories until it finds one.
+`Ruff` follows a specific hierarchy to resolve settings. It searches for a configuration file in the current directory and continues up the parent directories until it finds one.
 
 #### Global Configuration (User-wide)
 
