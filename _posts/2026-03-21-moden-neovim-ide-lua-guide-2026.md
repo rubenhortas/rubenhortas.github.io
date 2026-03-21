@@ -395,7 +395,6 @@ return {
           "rust_analyzer",
           "clangd",
         },
-        -- Aquí es donde ocurre la magia de conectar Mason con lspconfig
         handlers = {
           function(server_name)
             lspconfig[server_name].setup({
