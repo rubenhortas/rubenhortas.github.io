@@ -587,16 +587,16 @@ return {
 
       conform.setup({
         formatters_by_ft = {
-          python = { "ruff_format" },     -- Fast Python formatter
-          rust = { "rustfmt" },           -- Standard Rust formatter
-          cpp = { "clang-format" },       -- Standard C/C++ formatter
-          c = { "clang-format" },         -- Standard C/C++ formatter
-          lua = { "stylua" },             -- Great for your Neovim config!
+          python = { "ruff_organize_imports", "ruff_format" },     -- Fast Python formatter
+          rust = { "rustfmt" },                                    -- Standard Rust formatter
+          cpp = { "clang-format" },                                -- Standard C/C++ formatter
+          c = { "clang-format" },                                  -- Standard C/C++ formatter
+          lua = { "stylua" },                                      -- Great for your Neovim config!
         },
         format_on_save = {
-          lsp_fallback = true,            -- Use LSP if no formatter is found
-          async = false,                  -- Set to true if you have huge files
-          timeout_ms = 500,               -- Don't wait forever
+          lsp_fallback = true,                                     -- Use LSP if no formatter is found
+          async = false,                                           -- Set to true if you have huge files
+          timeout_ms = 500,                                        -- Don't wait forever
         },
       })
 
