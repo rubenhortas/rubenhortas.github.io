@@ -68,7 +68,7 @@ To install the latest [Neovim](https://neovim.io/)' nightly build:
 wget https://github.com/neovim/neovim/releases/download/v0.11.6/nvim-linux-x86_64.appimage
 sudo mkdir /opt/nvim
 sudo mv nvim-linux-x86_64.appimage /opt/nvim
-sudo chown root:root /opt/nvim/nvim-linux-x86_64.appimage
+sudo chown "$USER":"$USER" -R /opt/nvim
 sudo chmod 755 /opt/nvim/nvim-linux-x86_64.appimage
 sudo ln /opt/nvim/nvim-linux-x86_64.appimage /usr/bin/vim
 sudo ln /opt/nvim/nvim-linux-x86_64.appimage /usr/bin/nvim
