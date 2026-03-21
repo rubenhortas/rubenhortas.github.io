@@ -8,6 +8,12 @@ img_path: /assets/img/posts/
 
 Learn how to transform [Neovim](https://neovim.io) into a powerful Standard C IDE using `clangd`, `LSP`, and `nvim-cmp` for a productive development workflow.
 
+## Update!
+
+Dear reader, this post has become outdated over time.
+I've found a better way to convert [Neovim](https://neovim.io/) into a multi-language IDE in a much simpler and more modular way, which makes maintenance easier and reduces the time spent on maintenance and configuration.
+I've also added more and better plugins that will increase your productivity, so I recommend you go directly to that article: [How to build a modern Neovim IDE in 2026 A modular Lua guide](https://rubenhortas.github.io/posts/moden-neovim-ide-lua-guide-2026/#basic-ide-configuration)
+
 ## Why?
 
 I you have read my articles [Configuring Neovim as Python IDE](https://rubenhortas.github.io/posts/neovim-python-ide/) and [Configuring Neovim as Rust IDE](https://rubenhortas.github.io/posts/neovim-rust-ide/) you already know that Neovim is one of my favorite editor and IDE.

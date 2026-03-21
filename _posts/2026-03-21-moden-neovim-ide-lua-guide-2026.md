@@ -313,7 +313,7 @@ return {
 
 This is my foundational setup, the one I deploy across all my machines, regardless of their purpose.
 
-## Basic IDE configuration
+## IDE configuration
 
 The basic setup to turn [Neovim](https://neovim.io/) into an IDE involves installing `mason.nvim`, `nvim-treesiter` and configuring `diagnostic ui`.
 From there, we will configure the options for our favorite programming languages.

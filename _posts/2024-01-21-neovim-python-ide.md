@@ -8,6 +8,12 @@ img_path: /assets/img/posts/
 
 Learn how to transform [Neovim](https://neovim.io) into a powerful Python IDE using Ruff for fast linting and Pyright for type checking.
 
+## Update!
+
+Dear reader, this post has become outdated over time.
+I've found a better way to convert [Neovim](https://neovim.io/) into a multi-language IDE in a much simpler and more modular way, which makes maintenance easier and reduces the time spent on maintenance and configuration.
+I've also added more and better plugins that will increase your productivity, so I recommend you go directly to that article: [How to build a modern Neovim IDE in 2026 A modular Lua guide](https://rubenhortas.github.io/posts/moden-neovim-ide-lua-guide-2026/#basic-ide-configuration)
+
 ## Why?
 
 I have to admit it, [Neovim](https://neovim.io) is my editor for everything.
