@@ -726,4 +726,10 @@ indent-style = "space"
 ![ruff](modern_neovim_ruff.png)
 *ruff linter example*
 
+![hover](modern_neovim_hover.png)
+*hover example*
+
+![full screen](modern_neovim_full_screen.png)
+*full screen example*
+
 *Thanks for reading! :)*
