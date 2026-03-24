@@ -88,6 +88,8 @@ indent-style = "space"
 >This is [my pyproject.toml file](https://gist.github.com/rubenhortas/57febeace65b746bda535f5f4c5f087a)
 {: .prompt-info }
 
+{% gist 57febeace65b746bda535f5f4c5f087a %}
+
 ## Configure Neovim
 
 Instead of pylsp (which is heavier), the ideal solution is to use the new `Ruff` server.
