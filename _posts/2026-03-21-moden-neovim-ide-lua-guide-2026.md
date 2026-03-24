@@ -668,6 +668,10 @@ To apply rules to every Python project on your machine (as a fallback when no pr
   * `ruff.toml`
   * `.ruff.toml`
 
+My `settings.toml`:
+
+{% gist b5006ce4cb208c8a96d44bbc9ee4c3df %}
+
 >Do not use the [tool.ruff] header. Write properties directly at the root of the file.
 {: .prompt-info }
 
@@ -678,14 +682,14 @@ To apply rules to a specific project, place the file in the project's root direc
   * `pyproject.toml` (must use [tool.ruff] header and sections)
   * `ruff.toml` or `.ruff.toml` (direct properties, no headers)
 
+My `pyproject.toml`:
+
+{% gist 57febeace65b746bda535f5f4c5f087a %}
+
 #### Folder-Specific Configuration (Nested)
 
 To override or extend rules for a specific subdirectory (e.g., allowing assert only in /tests or changing line lengths in /scripts), place a file inside that folder.
    * `ruff.toml` or `.ruff.toml`
-
-My `pyproject.toml`:
-
-{% gist 57febeace65b746bda535f5f4c5f087a %}
 
 ### Screenshots
 
