@@ -68,27 +68,13 @@ To apply rules to a specific project, place the file in the project's root direc
 To override or extend rules for a specific subdirectory (e.g., allowing assert only in /tests or changing line lengths in /scripts), place a file inside that folder.
    * `ruff.toml` or `.ruff.toml`
 
-A `pyproject.toml` example:
-
-
-```toml
-[tool.ruff]
-line-length = 120
-
-[tool.ruff.lint]
-# "E" (pycodestyle), "F" (Pyflakes), "I" (isort)
-select = ["E", "F", "I"]
-ignore = []
-
-[tool.ruff.format]
-quote-style = "double"
-indent-style = "space"
-```
-
->This is [my pyproject.toml file](https://gist.github.com/rubenhortas/57febeace65b746bda535f5f4c5f087a)
-{: .prompt-info }
+My `pyproject.toml`:
 
 {% gist 57febeace65b746bda535f5f4c5f087a %}
+
+My `settings.toml`:
+
+{% gist b5006ce4cb208c8a96d44bbc9ee4c3df %}
 
 ## Configure Neovim
 
