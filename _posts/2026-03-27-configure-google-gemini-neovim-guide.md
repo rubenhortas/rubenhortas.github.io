@@ -37,8 +37,8 @@ return {
 
   opts = {
     model_config = {
-      model_id = "gemini-1.5-flash",
-      temperature = 0.7, -- Balance between precision and creativity
+      model_id = "gemini-2.5-flash",
+      temperature = 0.4,
     },
 
     -- Disable to avoid annoying ghost text and to save API quota.
