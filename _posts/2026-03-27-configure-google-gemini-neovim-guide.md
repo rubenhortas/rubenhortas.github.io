@@ -82,13 +82,13 @@ Restart [Neovim](https://neovim.io/) to start using the commands.
 
 Check out this demos from [gemini.nvim's README file](https://github.com/kiddos/gemini.nvim?tab=readme-ov-file)
 
-![Chat](/assets/img/posts/gemini-nvim-chat.gif)
+![Chat](gemini-nvim-chat.gif)
 *GeminiChat command*
 
-![Explain Selection](/assets/img/posts/gemini-nvim-codeexplain.gif)
+![Explain Selection](gemini-nvim-codeexplain.gif)
 *GeminiExplain command*
 
-![Code Review](/assets/img/posts/gemini-nvim-codereview.gif)
+![Code Review](gemini-nvim-codereview.gif)
 *GeminiCodeReview command*
 
 *Thanks for reading! :)*
