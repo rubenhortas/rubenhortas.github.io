@@ -22,7 +22,7 @@ Before configuring the plugin, you need an API key from Google.
 * Create a new project
 * Create a new API key and add it to the project.
 * Execute `export GEMINI_API_KEY="your_api_key_here"`  
-* Add the line `export GEMINI_API_KEY="your_api_key_here"` to .profile
+* Add the line `export GEMINI_API_KEY="your_api_key_here"` to ~/.profile
 
 ## Install (and configure) gemini.nvim with Lazy.nvim
 
